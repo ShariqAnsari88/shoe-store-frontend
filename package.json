@@ -13,6 +13,7 @@
         "@reduxjs/toolkit": "^1.9.3",
         "@stripe/react-stripe-js": "^1.16.5",
         "@stripe/stripe-js": "^1.48.0",
+        "axios": "^1.4.0",
         "eslint": "8.34.0",
         "eslint-config-next": "13.1.6",
         "next": "13.1.6",
@@ -24,6 +25,8 @@
         "react-redux": "^8.0.5",
         "react-responsive-carousel": "^3.2.23",
         "react-toastify": "^9.1.1",
+        "redux-persist": "^6.0.0",
+        "redux-thunk": "^2.4.2",
         "swr": "^2.1.0"
     },
     "devDependencies": {

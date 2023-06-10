@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import cartSlice from "./cartSlice";
+
+import { store } from "./rootReducer";
+import thunk from 'redux-thunk'
 
 export default configureStore({
-    reducer: {
-        cart: cartSlice,
-    },
+  reducer: store,  
+  middleware: getDefaultMiddleware =>
+  getDefaultMiddleware(thunk)
 });

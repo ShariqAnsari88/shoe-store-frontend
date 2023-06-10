@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { BsChevronDown } from "react-icons/bs";
 
-const data = [
+const navItems = [
     { id: 1, name: "Home", url: "/" },
     { id: 2, name: "About", url: "/about" },
     { id: 3, name: "Categories", subMenu: true },
@@ -18,8 +18,8 @@ const subMenuData = [
 
 const Menu = ({ showCatMenu, setShowCatMenu, categories }) => {
     return (
-        <ul className="hidden md:flex items-center gap-8 font-medium text-black">
-            {data.map((item) => {
+        <ul className="hidden md:flex item-center gap-8 font-semibold text-[18px] text-black">
+            {navItems.map((item) => {
                 return (
                     <React.Fragment key={item.id}>
                         {!!item?.subMenu ? (

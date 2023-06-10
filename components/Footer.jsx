@@ -11,19 +11,19 @@ const Footer = () => {
                 <div className="flex gap-[50px] md:gap-[75px] lg:gap-[100px] flex-col md:flex-row">
                     {/* MENU START */}
                     <div className="flex flex-col gap-3 shrink-0">
-                        <div className="font-oswald font-medium uppercase text-sm cursor-pointer">
+                        <div className="font-zeroCool font-medium uppercase text-sm cursor-pointer">
                             Find a store
                         </div>
-                        <div className="font-oswald font-medium uppercase text-sm cursor-pointer">
+                        <div className="font-zeroCool font-medium uppercase text-sm cursor-pointer">
                             become a partner
                         </div>
-                        <div className="font-oswald font-medium uppercase text-sm cursor-pointer">
+                        <div className="font-zeroCool font-medium uppercase text-sm cursor-pointer">
                             sign up for email
                         </div>
-                        <div className="font-oswald font-medium uppercase text-sm cursor-pointer">
+                        <div className="font-zeroCool font-medium uppercase text-sm cursor-pointer">
                             send us feedback
                         </div>
-                        <div className="font-oswald font-medium uppercase text-sm cursor-pointer">
+                        <div className="font-zeroCool font-medium uppercase text-sm cursor-pointer">
                             student discount
                         </div>
                     </div>
@@ -33,7 +33,7 @@ const Footer = () => {
                     <div className="flex gap-[50px] md:gap-[75px] lg:gap-[100px] shrink-0">
                         {/* MENU START */}
                         <div className="flex flex-col gap-3">
-                            <div className="font-oswald font-medium uppercase text-sm">
+                            <div className="font-zeroCool font-medium uppercase text-sm">
                                 get help
                             </div>
                             <div className="text-sm text-white/[0.5] hover:text-white cursor-pointer">
@@ -56,8 +56,8 @@ const Footer = () => {
 
                         {/* MENU START */}
                         <div className="flex flex-col gap-3">
-                            <div className="font-oswald font-medium uppercase text-sm">
-                                About nike
+                            <div className="font-zeroCool font-medium uppercase text-sm">
+                                About Troyka
                             </div>
                             <div className="text-sm text-white/[0.5] hover:text-white cursor-pointer">
                                 News
@@ -106,7 +106,7 @@ const Footer = () => {
             <Wrapper className="flex justify-between mt-10 flex-col md:flex-row gap-[10px] md:gap-0">
                 {/* LEFT START */}
                 <div className="text-[12px] text-white/[0.5] hover:text-white cursor-pointer text-center md:text-left">
-                    © 2023 Nike, Inc. All Rights Reserved
+                    © 2023 Troyka, Inc. All Rights Reserved
                 </div>
                 {/* LEFT END */}
 

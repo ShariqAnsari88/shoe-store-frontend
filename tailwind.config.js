@@ -10,6 +10,8 @@ module.exports = {
     ],
     theme: {
         fontFamily: {
+            zeroCool: "Auge-Trial",
+            santello: "Santello Regular",
             oswald: "Oswald, sans-serif",
             urbanist: "Urbanist, sans-serif",
         },
