@@ -17,16 +17,16 @@ const ProductCard = ({ data: { attributes: p, id } }) => {
             <div className="p-4 text-black/[0.9]">
                 <h2 className="text-lg font-medium">{p.name}</h2>
                 <div className="flex items-center text-black/[0.5]">
-                    <p className="mr-2 text-lg font-zeroCool">
+                    <p className="mr-2 text-lg font-normal">
                         {p.price} лв.
                     </p>
 
                     {p.original_price && (
                         <>
-                            <p className="text-base font-zeroCool line-through">
+                            <p className="text-base font-normal line-through">
                                 {p.original_price} лв.
                             </p>
-                            <p className="ml-auto text-base font-zeroCool text-green-500">
+                            <p className="ml-auto text-base font-normal text-green-500">
                                 {getDiscountedPricePercentage(
                                     p.original_price,
                                     p.price

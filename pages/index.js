@@ -10,10 +10,10 @@ export default function Home({ products }) {
             <Wrapper>
                 {/* heading and paragaph start */}
                 <div className="text-center max-w-[800px] mx-auto my-[50px] md:my-[80px]">
-                    <div className="text-[28px] md:text-[34px] mb-5 font-zeroCool leading-tight">
+                    <div className="text-[28px] md:text-[34px] mb-5 font-normal leading-tight">
                         Cushioning for Your Miles
                     </div>
-                    <div className="text-md md:text-xl font-zeroCool">
+                    <div className="text-md md:text-xl font-normal">
                         A lightweight Nike ZoomX midsole is combined with
                         increased stack heights to help provide cushioning
                         during extended stretches of running.

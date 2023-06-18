@@ -1,26 +1,34 @@
 import React, { useState } from "react";
-import { IoMdHeartEmpty } from "react-icons/io";
 import Wrapper from "@/components/Wrapper";
 import ProductDetailsCarousel from "@/components/ProductDetailsCarousel";
 import RelatedProducts from "@/components/RelatedProducts";
 import { fetchDataFromApi } from "@/utils/api";
 import { getDiscountedPricePercentage } from "@/utils/helper";
 import ReactMarkdown from "react-markdown";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "@/store/cartSlice";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { addToWishlist } from "@/store/wishlistSlice";
+import { useAppSelector } from "@/store/hooks";
+import { selectIsWishlisted } from "@/store/wishlistSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeartCircleCheck,faHeartCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 const ProductDetails = ({ product, products }) => {
+  const dispatch = useDispatch();
   const [selectedSize, setSelectedSize] = useState();
   const [showError, setShowError] = useState(false);
-  const dispatch = useDispatch();
+  const isWishlisted = useAppSelector((state) =>
+    selectIsWishlisted(state, { ...product.data[0] })
+  );
   const p = product?.data?.[0]?.attributes;
 
+  const [buttonName, setButtonName] = useState("");
+
   const notify = () => {
-    toast.success("Success. Check your cart!", {
+    toast.success(`Success. Check your ${buttonName}!`, {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -120,9 +128,11 @@ const ProductDetails = ({ product, products }) => {
 
             {/* ADD TO CART BUTTON START */}
             <button
+              name="cart"
               className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75"
-              onClick={() => {
+              onClick={(e) => {
                 if (!selectedSize) {
+                  setButtonName(e.target.name);
                   setShowError(true);
                   document.getElementById("sizesGrid").scrollIntoView({
                     block: "center",
@@ -146,7 +156,9 @@ const ProductDetails = ({ product, products }) => {
 
             {/* WHISHLIST BUTTON START */}
             <button
-              onClick={() => {
+              name="wishlist"
+              onClick={(e) => {
+                setButtonName(e.target.name);
                 if (!selectedSize) {
                   setShowError(true);
                   document.getElementById("sizesGrid").scrollIntoView({
@@ -167,7 +179,7 @@ const ProductDetails = ({ product, products }) => {
               className="w-full py-4 rounded-full border border-black text-lg font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10"
             >
               Whishlist
-              <IoMdHeartEmpty size={20} />
+              <FontAwesomeIcon icon={isWishlisted ? faHeartCircleCheck : faHeartCirclePlus} color={isWishlisted ? '#B22222' : 'charcoal'} />
             </button>
             {/* WHISHLIST BUTTON END */}
 

@@ -3,13 +3,26 @@ import Image from "next/image";
 import Link from "next/link";
 import Wrapper from "@/components/Wrapper";
 import CartItem from "@/components/CartItem";
-import { useSelector } from "react-redux";
-import usePayment from "./api/checkout/payments";
+import { useDispatch, useSelector } from "react-redux";
+import { handlePayment } from "./api/checkout/payments";
+import { useRouter } from "next/router";
+import { resetCart } from "@/store/cartSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCreditCard, faTruckArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const Cart = () => {
-  const { handlePayment } = usePayment();
+  const router = useRouter();
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const { cartItems } = useSelector((state) => state.cart);
+
+  const makePayment = (e) =>
+    dispatch(
+      handlePayment({ paymentMethod: e.target.name, products: cartItems })
+    ).then(() => {
+      router.push("/success");
+      dispatch(resetCart);
+    });
 
   const subTotal = useMemo(() => {
     return cartItems.reduce((total, val) => total + val.attributes.price, 0);
@@ -45,10 +58,10 @@ const Cart = () => {
 
                 <div className="p-5 my-5 bg-black/[0.05] rounded-xl">
                   <div className="flex justify-between">
-                    <div className="uppercase text-md md:text-lg font-zeroCool text-black">
+                    <div className="uppercase text-md md:text-lg font-normal text-black">
                       Subtotal
                     </div>
-                    <div className="text-md md:text-lg font-zeroCool text-black">
+                    <div className="text-md md:text-lg font-normal text-black">
                       {subTotal} лв.
                     </div>
                   </div>
@@ -64,19 +77,22 @@ const Cart = () => {
                 <div className="flex space-x-3 flex-row justify-between">
                   <button
                     name="arrive"
-                    className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center"
-                    onClick={(e) => handlePayment(e, cartItems)}
+                    className="w-full py-4 rounded-md bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center"
+                    onClick={makePayment}
                   >
                     Pay on arrival
+                    <FontAwesomeIcon  icon={faTruckArrowRight}/>
                     {loading && <img src="/spinner.svg" />}
                   </button>
                   <button
                     name="card"
-                    className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center"
-                    onClick={(e) => handlePayment(e, cartItems)}
+                    className="w-full py-4 rounded-md bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center"
+                    onClick={makePayment}
                   >
                     Pay with card
                     {loading && <img src="/spinner.svg" />}
+                  <FontAwesomeIcon  icon={faCreditCard}/>
+
                   </button>
                 </div>
                 {/* BUTTON END */}
