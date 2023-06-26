@@ -2,13 +2,11 @@ import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Wrapper from "@/components/Wrapper";
-import CartItem from "@/components/CartItem";
 import { useAppSelector } from "@/store/hooks";
 import { selectWishlistItems } from "@/store/wishlistSlice";
 import WishlistItem from "@/components/wishlist/WishlistItem";
 
 const Wishlist = () => {
-  const [loading, setLoading] = useState(false);
   const wishlistItems = useAppSelector(selectWishlistItems)
 
   return (

@@ -41,6 +41,14 @@
     letter-spacing: 0.1px;
 }
 
+input {
+    padding: 10px;
+    border-width: 1.4px;
+    border-color: #151718;
+    min-height: 2.5rem;
+    border-radius: 2px;
+}
+
 /* PRODUCT DETAILS CAROUSEL STYLING CUSTOMIZATION START */
 .productCarousel.carousel-root {
     display: flex;

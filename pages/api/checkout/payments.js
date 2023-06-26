@@ -6,7 +6,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 
 export const handlePayment = createAsyncThunk(
   "payments/handlePayment",
-  async ({ paymentMethod, products }, thunkAPI) => {
+  async ({ paymentMethod, products }) => {
     if (paymentMethod === "card") {
       try {
         const stripe = await stripePromise;
@@ -14,6 +14,7 @@ export const handlePayment = createAsyncThunk(
         const res = await makePaymentRequest("/api/orders", {
           products,
           paymentMethod,
+          status: 'active'
         });
 
         await stripe.redirectToCheckout({ 
@@ -28,6 +29,7 @@ export const handlePayment = createAsyncThunk(
         await makePaymentRequest("/api/orders", {
           products,
           paymentMethod,
+          status: 'active'
         });
       } catch (error) {
         console.log(error);

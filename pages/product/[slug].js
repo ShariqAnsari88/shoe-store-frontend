@@ -159,13 +159,6 @@ const ProductDetails = ({ product, products }) => {
               name="wishlist"
               onClick={(e) => {
                 setButtonName(e.target.name);
-                if (!selectedSize) {
-                  setShowError(true);
-                  document.getElementById("sizesGrid").scrollIntoView({
-                    block: "center",
-                    behavior: "smooth",
-                  });
-                } else {
                   dispatch(
                     addToWishlist({
                       ...product?.data?.[0],
@@ -175,7 +168,7 @@ const ProductDetails = ({ product, products }) => {
                   );
                   notify();
                 }
-              }}
+              }
               className="w-full py-4 rounded-full border border-black text-lg font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10"
             >
               Whishlist

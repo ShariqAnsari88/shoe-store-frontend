@@ -4,24 +4,26 @@ import Link from "next/link";
 import Wrapper from "@/components/Wrapper";
 import CartItem from "@/components/CartItem";
 import { useDispatch, useSelector } from "react-redux";
-import { handlePayment } from "./api/checkout/payments";
+import { handlePayment } from "@/pages/api/checkout/payments";
 import { useRouter } from "next/router";
-import { resetCart } from "@/store/cartSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCreditCard, faTruckArrowRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCreditCard,
+  faTruckArrowRight,
+} from "@fortawesome/free-solid-svg-icons";
+import { getUser } from "@/store/contexts/userContext";
 
-const Cart = () => {
+const Cart = (props) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const { cartItems } = useSelector((state) => state.cart);
 
-  const makePayment = (e) =>
+  const makePayment = async (e) =>
     dispatch(
       handlePayment({ paymentMethod: e.target.name, products: cartItems })
     ).then(() => {
       router.push("/success");
-      dispatch(resetCart);
     });
 
   const subTotal = useMemo(() => {
@@ -81,7 +83,7 @@ const Cart = () => {
                     onClick={makePayment}
                   >
                     Pay on arrival
-                    <FontAwesomeIcon  icon={faTruckArrowRight}/>
+                    <FontAwesomeIcon icon={faTruckArrowRight} />
                     {loading && <img src="/spinner.svg" />}
                   </button>
                   <button
@@ -91,8 +93,7 @@ const Cart = () => {
                   >
                     Pay with card
                     {loading && <img src="/spinner.svg" />}
-                  <FontAwesomeIcon  icon={faCreditCard}/>
-
+                    <FontAwesomeIcon icon={faCreditCard} />
                   </button>
                 </div>
                 {/* BUTTON END */}
@@ -133,3 +134,11 @@ const Cart = () => {
 };
 
 export default Cart;
+
+export async function getServerSideProps(ctx) {
+  const user = getUser(ctx);
+
+  return {
+    props: { user },
+  };
+}

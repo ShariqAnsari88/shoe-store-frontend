@@ -22,7 +22,11 @@
         "babel-plugin-macros": "^3.1.0",
         "eslint": "8.34.0",
         "eslint-config-next": "13.1.6",
+        "formik": "^2.4.2",
+        "js-cookie": "^3.0.5",
         "next": "13.1.6",
+        "next-auth": "^4.22.1",
+        "nookies": "^2.5.2",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-icons": "^4.7.1",
@@ -33,7 +37,8 @@
         "react-toastify": "^9.1.1",
         "redux-persist": "^6.0.0",
         "redux-thunk": "^2.4.2",
-        "swr": "^2.1.0"
+        "swr": "^2.1.0",
+        "yup": "^1.2.0"
     },
     "devDependencies": {
         "@babel/preset-react": "^7.22.5",
