@@ -5,6 +5,8 @@ import Wrapper from "@/components/Wrapper";
 import { useAppSelector } from "@/store/hooks";
 import { selectWishlistItems } from "@/store/wishlistSlice";
 import WishlistItem from "@/components/wishlist/WishlistItem";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
 const Wishlist = () => {
   const wishlistItems = useAppSelector(selectWishlistItems)
@@ -16,7 +18,7 @@ const Wishlist = () => {
           <>
             {/* HEADING AND PARAGRAPH START */}
             <div className="text-center max-w-[800px] mx-auto mt-8 md:mt-0">
-              <div className="text-[28px] md:text-[34px] mb-5 font-semibold leading-tight">
+              <div className="text-[#EEEEEE] text-[28px] md:text-[34px] mb-5 font-semibold leading-tight">
                 Your Favourites!
               </div>
             </div>
@@ -41,21 +43,24 @@ const Wishlist = () => {
 
         {/* This is empty screen */}
         {wishlistItems.length < 1 && (
-          <div className="flex-[2] flex flex-col items-center pb-[50px] md:-mt-14">
-            <Image
-              alt="img"
-              src="/empty-cart.jpg"
-              width={300}
-              height={300}
-              className="w-[300px] md:w-[400px]"
+          <div className="flex-[2] flex flex-col items-center pb-[50px]">
+            <FontAwesomeIcon
+              color="#EEEEEE"
+              icon={faHeart}
+              className="mb-10"
+              size="10x"
             />
-            <span className="text-xl font-bold">You don't have any favourites</span>
-            <span className="text-center mt-4">
-              Looks like you have not added anything in your wishlist.
+            <span className="text-[#EEEEEE] text-xl font-bold">
+              Your cart is empty
+            </span>
+            <span className="text-[#EEEEEE] text-center mt-4">
+              Looks like you have not added anything in your cart.
+              <br />
+              Go ahead and explore top categories.
             </span>
             <Link
               href="/"
-              className="py-4 px-8 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 mt-8"
+              className="py-4 px-8 rounded-full bg-[#393646] text-[#EEEEEE] text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 mt-8"
             >
               Continue Shopping
             </Link>

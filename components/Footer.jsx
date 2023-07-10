@@ -2,24 +2,24 @@ import Link from "next/link";
 import React from "react";
 import { FaFacebookF, FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
 import Wrapper from "./Wrapper";
-
+// bg-[#EEEEEE]
 const Footer = () => {
     return (
-        <footer className="bg-black text-white pt-14 pb-3">
+        <footer className="bg-[#393646] text-[#181516]  pt-14 pb-3">
             <Wrapper className="flex justify-between flex-col md:flex-row gap-[50px] md:gap-0">
                 {/* LEFT START */}
                 <div className="flex gap-[50px] md:gap-[75px] lg:gap-[100px] flex-col md:flex-row">
                     {/* MENU START */}
                     <div className="flex flex-col gap-3 shrink-0">
-                        <div className="font-normal font-medium uppercase text-sm cursor-pointer">
+                        <Link href="/contact"  className="text-[#EEEEEE] font-normal font-medium uppercase text-sm cursor-pointer">
                             become a partner
-                        </div>
-                        <div className="font-normal font-medium uppercase text-sm cursor-pointer">
+                        </Link>
+                        <Link href="/contact"  className="text-[#EEEEEE] font-normal font-medium uppercase text-sm cursor-pointer">
                             sign up for email
-                        </div>
-                        <div className="font-normal font-medium uppercase text-sm cursor-pointer">
+                        </Link>
+                        <Link href="/contact"  className="text-[#EEEEEE] font-normal font-medium uppercase text-sm cursor-pointer">
                             send us feedback
-                        </div>
+                        </Link>
                     </div>
                     {/* MENU END */}
 
@@ -27,12 +27,12 @@ const Footer = () => {
                     <div className="flex gap-[50px] md:gap-[75px] lg:gap-[100px] shrink-0">
                         {/* MENU START */}
                         <div className="flex flex-col gap-3">
-                            <div className="font-normal font-medium uppercase text-sm">
+                            <div className="text-[#EEEEEE] font-normal font-medium uppercase text-sm">
                                 get help
                             </div>
-                            <div className="text-sm text-white/[0.5] hover:text-white cursor-pointer">
+                            <Link href="/contact" className="text-[#EEEEEE]] text-sm text-[#EEEEEE]/[0.5] hover:text-[#EEEEEE] cursor-pointer">
                                 Contact Us
-                            </div>
+                            </Link>
                         </div>
                         {/* MENU END */}
                     </div>
@@ -46,20 +46,20 @@ const Footer = () => {
                         onClick={() =>
                             window.open("https://facebook.com", "_blank")
                         }
-                        className="w-10 h-10 rounded-full bg-white/[0.25] flex items-center justify-center text-black hover:bg-white/[0.5] cursor-pointer"
+                        className="w-10 h-10 rounded-full bg-[#EEEEEE]/[0.25] flex items-center justify-center text-black hover:bg-white/[0.5] cursor-pointer"
                     >
                         <FaFacebookF size={20} />
                     </div>
                     <Link
                         href="https://twitter.com"
-                        className="w-10 h-10 rounded-full bg-white/[0.25] flex items-center justify-center text-black hover:bg-white/[0.5] cursor-pointer"
+                        className="w-10 h-10 rounded-full bg-[#EEEEEE]/[0.25] flex items-center justify-center text-black hover:bg-white/[0.5] cursor-pointer"
                     >
                         <FaTwitter size={20} />
                     </Link>
-                    <div className="w-10 h-10 rounded-full bg-white/[0.25] flex items-center justify-center text-black hover:bg-white/[0.5] cursor-pointer">
+                    <div className="w-10 h-10 rounded-full bg-[#EEEEEE]/[0.25] flex items-center justify-center text-black hover:bg-white/[0.5] cursor-pointer">
                         <FaYoutube size={20} />
                     </div>
-                    <div className="w-10 h-10 rounded-full bg-white/[0.25] flex items-center justify-center text-black hover:bg-white/[0.5] cursor-pointer">
+                    <div className="w-10 h-10 rounded-full bg-[#EEEEEE]/[0.25] flex items-center justify-center text-black hover:bg-white/[0.5] cursor-pointer">
                         <FaInstagram size={20} />
                     </div>
                 </div>
@@ -67,20 +67,20 @@ const Footer = () => {
             </Wrapper>
             <Wrapper className="flex justify-between mt-10 flex-col md:flex-row gap-[10px] md:gap-0">
                 {/* LEFT START */}
-                <div className="text-[12px] text-white/[0.5] hover:text-white cursor-pointer text-center md:text-left">
+                <div className="text-[12px] text-[#EEEEEE]/[0.5] hover:text-white/[0.5] cursor-pointer text-center md:text-left">
                     © 2023 Troyka, Inc. All Rights Reserved
                 </div>
                 {/* LEFT END */}
 
                 {/* RIGHT START */}
                 <div className="flex gap-2 md:gap-5 text-center md:text-left flex-wrap justify-center">
-                    <div className="text-[12px] text-white/[0.5] hover:text-white cursor-pointer">
+                    <div className="text-[12px] text-[#EEEEEE]/[0.5] hover:text-white/[0.5] cursor-pointer">
                         Terms of Sale
                     </div>
-                    <div className="text-[12px] text-white/[0.5] hover:text-white cursor-pointer">
+                    <div className="text-[12px] text-[#EEEEEE]/[0.5] hover:text-white/[0.5] cursor-pointer">
                         Terms of Use
                     </div>
-                    <div className="text-[12px] text-white/[0.5] hover:text-white cursor-pointer">
+                    <div className="text-[12px] text-[#EEEEEE]/[0.5] hover:text-white/[0.5] cursor-pointer">
                         Privacy Policy
                     </div>
                 </div>

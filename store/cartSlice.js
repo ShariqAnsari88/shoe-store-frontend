@@ -33,11 +33,19 @@ export const cartSlice = createSlice({
       });
     },
     removeFromCart: (state, action) => {
-      state.cartItems = state.cartItems.filter(
-        (p) => p.id !== action.payload.id
+      const selectedItem = state.cartItems.find(
+        (p) =>
+          p.id === action.payload.id &&
+          p.selectedSize === action.payload.selectedSize
       );
+
+      const index = state.cartItems.indexOf(selectedItem);
+      
+      if (index > -1) {
+        state.cartItems.splice(index, 1);
+      }
     },
-    resetCart: state => {
+    resetCart: (state) => {
       state.cartItems = [];
     },
   },
@@ -46,5 +54,3 @@ export const cartSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const { addToCart, updateCart, removeFromCart, resetCart } =
   cartSlice.actions;
-
-// export default cartSlice.reducer;

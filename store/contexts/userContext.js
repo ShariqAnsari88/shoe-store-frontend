@@ -24,9 +24,10 @@ export const getUser = (ctx) => {
 
   if (cookies.jwt) {
     user = JSON.parse(cookies.user);
+    return {...user, jwt: cookies.jwt}
   }
 
-  return {...user, jwt: cookies.jwt}
+  return {user, jwt: null }
 };
 
 export const useAuthContext = () => useContext(User);

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import login from '@/pages/api/auth/login'
+import login from "@/pages/api/auth/login";
 import { useRouter } from "next/router";
 
 function AuthSelector({ setChoice }) {
-  const router = useRouter()
+  const router = useRouter();
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -33,15 +33,17 @@ function AuthSelector({ setChoice }) {
 
   const handleSubmit = async () => {
     await login(user);
-    router.reload()
+    router.reload();
     // Perform registration logic here
   };
 
   //=========================== Handler Functions END ============================//
 
   return (
-    <div className="flex-1 flex-column space-y-5 md:max-w-[450px] mx-auto  p-[40px] shadow-md border-zinc-700 rounded-sm">
-      <h1 className="font-semibold text-4xl text-center">Sign In</h1>
+    <div className="bg-[#393646] flex-1 flex-column space-y-5 md:max-w-[450px] mx-auto  p-[40px] shadow-md border-zinc-700 rounded-sm">
+      <h1 className="font-semibold text-4xl text-center text-[#F8F1F1]">
+        Sign In
+      </h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -53,29 +55,45 @@ function AuthSelector({ setChoice }) {
             <Form onChange={handleChange}>
               <div className="flex flex-col space-y-6 justify-center">
                 <div className="flex flex-col">
-                  <label className="font-semibold text-lg" htmlFor="username">
+                  <label
+                    className="text-[#EEEEEE] font-semibold text-lg"
+                    htmlFor="username"
+                  >
                     Username
                   </label>
-                  <Field type="text" id="username" name="username" />
+                  <Field
+                    className="border-[#EEEEEE]"
+                    type="text"
+                    id="username"
+                    name="username"
+                  />
                   <ErrorMessage
                     name="username"
                     component="div"
                     render={(msg) => (
-                      <div className="text-[#B22222]">{msg}</div>
+                      <div className="text-[#FFC95F]">{msg}</div>
                     )}
                   />
                 </div>
 
                 <div className="flex flex-col">
-                  <label className="font-semibold text-lg" htmlFor="password">
-                    Password:
+                  <label
+                    className="text-[#EEEEEE] font-semibold text-lg"
+                    htmlFor="password"
+                  >
+                    Password
                   </label>
-                  <Field type="password" id="password" name="password" />
+                  <Field
+                    className="border-[#EEEEEE]"
+                    type="password"
+                    id="password"
+                    name="password"
+                  />
                   <ErrorMessage
                     name="password"
                     component="div"
                     render={(msg) => (
-                      <div className="text-[#B22222]">{msg}</div>
+                      <div className="text-[#FFC95F]">{msg}</div>
                     )}
                   />
                 </div>
@@ -86,21 +104,19 @@ function AuthSelector({ setChoice }) {
                     isValid &&
                     !isEmptyUser &&
                     "hover:opacity-80 transition-opacity ease-in-out"
-                  } md:mr-auto md:ml-0 min-h-[50px] bg-[#151718] rounded-[4px] ${
+                  } md:mr-auto md:ml-0 min-h-[50px] bg-[#EEEEEE] rounded-[4px] ${
                     isValid && !isEmptyUser ? " opacity-100" : "opacity-30"
-                  } md:max-w-[450px] w-full text-white`}
+                  } md:max-w-[450px] w-full text-[#181516]`}
                   type="submit"
                 >
-                  Proceed
+                  Log In
                 </button>
-                <div className="mx-auto">or</div>
-                <button
-                  onClick={setChoice}
-                  className={`hover:opacity-80 transition-opacity ease-in-out md:mr-auto md:ml-0 min-h-[50px] bg-[#151718] rounded-[4px] md:max-w-[450px] w-full text-white`}
-                  type="button"
-                >
-                  Sign Up
-                </button>
+                <div className="text-[#EEEEEE] text-center w-full">
+                  Don't have an account?
+                  <div onClick={setChoice} className="ml-1 inline-block underline cursor-pointer">
+                    Sign Up
+                  </div>
+                </div>
               </div>
             </Form>
           </div>

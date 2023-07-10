@@ -12,33 +12,37 @@ import Image from "next/image";
 
 const HeroBanner = () => {
   return (
-    <div className="relative text-white text-[20px] w-full max-w-[1360px] mx-auto">
+    <div className="mt-4 relative rounded-2xl text-white text-[20px] w-full max-w-[1360px] mx-auto px-4">
       <Carousel
+        className="rounded-2xl"
         autoPlay={true}
         infiniteLoop={true}
         showThumbs={false}
-        showIndicators={false}
+        showIndicators={true}
         showStatus={false}
         renderArrowPrev={(clickHandler, hasPrev) => (
           <div
             onClick={clickHandler}
-            className="absolute right-[31px] md:right-[51px] bottom-0 w-[30px] md:w-[50px] h-[30px] md:h-[50px] bg-black z-10 flex items-center justify-center cursor-pointer hover:opacity-90"
+            className="bg-transparent border-[2px] rounded-full border-white absolute left-5 top-[50%] translate-y-[-50%] md:right-[51px] bottom-0 w-[30px] md:w-[50px] h-[30px] md:h-[50px] bg-#393646 z-10 flex items-center justify-center cursor-pointer hover:opacity-100"
           >
-            <BiArrowBack className="text-sm md:text-lg" />
+            <BiArrowBack color="white" className="text-sm md:text-lg" />
           </div>
         )}
         renderArrowNext={(clickHandler, hasNext) => (
           <div
             onClick={clickHandler}
-            className="absolute right-0 bottom-0 w-[30px] md:w-[50px] h-[30px] md:h-[50px] bg-black z-10 flex items-center justify-center cursor-pointer hover:opacity-90"
+            className="absolute border-[2px] text-white border-white rounded-full right-5 top-[50%] translate-y-[-50%]w-[30px] md:w-[50px] h-[30px] md:h-[50px] bg-#393646 z-10 flex items-center justify-center cursor-pointer hover:opacity-90"
           >
-            <BiArrowBack className="rotate-180 text-sm md:text-lg" />
+            <BiArrowBack
+              color="white"
+              className="rotate-180 text-sm md:text-lg"
+            />
           </div>
         )}
       >
         <div>
           <Image
-            className="w-full h-full object-contain"
+            className="w-full h-full rounded-2xl object-contain"
             src={slideImage1}
             alt="Picture of the author"
           />
@@ -48,14 +52,14 @@ const HeroBanner = () => {
         </div>
 
         <div>
-          <Image src={slideImage2} className="w-full h-full object-contain" />
+          <Image src={slideImage2} className="w-full h-full rounded-2xl object-contain" />
           <div className="px-[15px] md:px-[40px] py-[10px] md:py-[25px] font-normal bg-white absolute bottom-[25px] md:bottom-[75px] left-0 text-black/[0.9] text-[15px] md:text-[30px] uppercase font-medium cursor-pointer hover:opacity-90">
             Shop now
           </div>
         </div>
 
         <div>
-          <Image src={slideImage3} className="w-full h-full object-contain" />
+          <Image src={slideImage3} className="w-full h-full rounded-2xl object-contain" />
           <div className="px-[15px] md:px-[40px] py-[10px] md:py-[25px] font-normal bg-white absolute bottom-[25px] md:bottom-[75px] left-0 text-black/[0.9] text-[15px] md:text-[30px] uppercase font-medium cursor-pointer hover:opacity-90">
             Shop now
           </div>

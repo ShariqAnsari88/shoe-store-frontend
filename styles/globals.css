@@ -17,21 +17,41 @@
     src: url('../assets/fonts/Euclid_SemiBold.ttf');
 }
 
-
 :root {
     font-family: "Euclid", sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
 
-
-    color: rgba(0, 0, 0, 1);
+    color: #EEEEEE;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+}
+ 
+body {
+    background-color: #181516;
+}
+
+h1 {
+    font-size: 24px;
+    color: #EEEEEE
+}
+
+h2 {
+    font-size: 20px;
+    color: #EEEEEE
+}
+
+p {
+    color:#EEEEEE
+}
+
+button {
+    background-color: #393646;
 }
 
 * {
@@ -45,6 +65,7 @@ input {
     padding: 10px;
     border-width: 1.4px;
     border-color: #151718;
+    color: #151718;
     min-height: 2.5rem;
     border-radius: 2px;
 }

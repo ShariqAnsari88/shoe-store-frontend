@@ -36,15 +36,6 @@ const Category = ({ category, products, slug }) => {
                     {data?.data?.map((product) => (
                         <ProductCard key={product?.id} data={product} />
                     ))}
-                    {/* <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard /> */}
                 </div>
                 {/* products grid end */}
 
@@ -52,7 +43,7 @@ const Category = ({ category, products, slug }) => {
                 {data?.meta?.pagination?.total > maxResult && (
                     <div className="flex gap-3 items-center justify-center my-16 md:my-0">
                         <button
-                            className={`rounded py-2 px-4 bg-black text-white disabled:bg-gray-200 disabled:text-gray-500`}
+                            className={`rounded py-2 px-4 bg-#393646 text-[#EEEEEE] disabled:bg-gray-200 disabled:text-gray-500`}
                             disabled={pageIndex === 1}
                             onClick={() => setPageIndex(pageIndex - 1)}
                         >
@@ -64,7 +55,7 @@ const Category = ({ category, products, slug }) => {
                         }`}</span>
 
                         <button
-                            className={`rounded py-2 px-4 bg-black text-white disabled:bg-gray-200 disabled:text-gray-500`}
+                            className={`rounded py-2 px-4 bg-#393646 text-[#EEEEEE] disabled:bg-gray-200 disabled:text-gray-500`}
                             disabled={
                                 pageIndex ===
                                 (data && data.meta.pagination.pageCount)

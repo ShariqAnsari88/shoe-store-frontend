@@ -14,7 +14,11 @@ import { addToWishlist } from "@/store/wishlistSlice";
 import { useAppSelector } from "@/store/hooks";
 import { selectIsWishlisted } from "@/store/wishlistSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeartCircleCheck,faHeartCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCartShopping,
+  faHeartCircleCheck,
+  faHeartCirclePlus,
+} from "@fortawesome/free-solid-svg-icons";
 
 const ProductDetails = ({ product, products }) => {
   const dispatch = useDispatch();
@@ -25,9 +29,10 @@ const ProductDetails = ({ product, products }) => {
   );
   const p = product?.data?.[0]?.attributes;
 
-  const [buttonName, setButtonName] = useState("");
 
-  const notify = () => {
+  const discount = getDiscountedPricePercentage(p.original_price, p.price);
+
+  const notify = (buttonName) => {
     toast.success(`Success. Check your ${buttonName}!`, {
       position: "bottom-right",
       autoClose: 5000,
@@ -54,33 +59,41 @@ const ProductDetails = ({ product, products }) => {
           {/* right column start */}
           <div className="flex-[1] py-3">
             {/* PRODUCT TITLE */}
-            <div className="text-[34px] font-semibold mb-2 leading-tight">
+            <div className="text-[#EEEEEE] text-[34px] font-semibold mb-2 leading-tight">
               {p.name}
             </div>
 
             {/* PRODUCT SUBTITLE */}
-            <div className="text-lg font-semibold mb-5">{p.subtitle}</div>
+            <div className="text-[#EEEEEE] text-lg font-semibold mb-5">
+              {p.subtitle}
+            </div>
 
             {/* PRODUCT PRICE */}
             <div className="flex items-center">
-              <p className="mr-2 text-lg font-semibold">{p.price} лв.</p>
+              <p className="text-[rgb(238,238,238)] mr-2 text-lg font-semibold">
+                {p.price} лв.
+              </p>
               {p.original_price && (
                 <>
-                  <p className="text-base  font-medium line-through">
-                    {p.original_price} лв.
-                  </p>
-                  <p className="ml-auto text-base font-medium text-green-500">
-                    {getDiscountedPricePercentage(p.original_price, p.price)}%
-                    off
-                  </p>
+                  {discount > 0 && (
+                    <>
+                      <p className="text-[#EEEEEE] text-base  font-medium line-through">
+                        {p.original_price} лв.
+                      </p>
+
+                      <p className="ml-auto text-base font-medium text-green-500">
+                        {discount}% off
+                      </p>
+                    </>
+                  )}
                 </>
               )}
             </div>
 
-            <div className="text-md font-medium text-black/[0.5]">
+            <div className="text-[#EEEEEE]/[0.5] text-md font-medium">
               incl. of taxes
             </div>
-            <div className="text-md font-medium text-black/[0.5] mb-20">
+            <div className="text-[#EEEEEE]/[0.5] text-md font-medium mb-20">
               {`(Also includes all applicable duties)`}
             </div>
 
@@ -88,8 +101,10 @@ const ProductDetails = ({ product, products }) => {
             <div className="mb-10">
               {/* HEADING START */}
               <div className="flex justify-between mb-2">
-                <div className="text-md font-semibold">Select Size</div>
-                <div className="text-md font-medium text-black/[0.5] cursor-pointer">
+                <div className="text-[#EEEEEE] text-md font-semibold">
+                  Select Size
+                </div>
+                <div className="text-[#EEEEEE]/[0.5] text-md font-medium cursor-pointer">
                   Select Guide
                 </div>
               </div>
@@ -100,11 +115,15 @@ const ProductDetails = ({ product, products }) => {
                 {p.size.data.map((item, i) => (
                   <div
                     key={i}
-                    className={`border rounded-md text-center py-3 font-medium ${
+                    className={`text-[#EEEEEE] border-[2px] border-[#393646] rounded-md text-center py-3 font-medium ${
                       item.enabled
-                        ? "hover:border-black cursor-pointer"
-                        : "cursor-not-allowed bg-black/[0.1] opacity-50"
-                    } ${selectedSize === item.size ? "border-black" : ""}`}
+                        ? "cursor-pointer"
+                        : "cursor-not-allowed bg-#393646/[0.1] opacity-50"
+                    } ${
+                      selectedSize === item.size
+                        ? "border-[2px] border-[#D8E3E7]"
+                        : ""
+                    }`}
                     onClick={() => {
                       setSelectedSize(item.size);
                       setShowError(false);
@@ -129,10 +148,9 @@ const ProductDetails = ({ product, products }) => {
             {/* ADD TO CART BUTTON START */}
             <button
               name="cart"
-              className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75"
-              onClick={(e) => {
+              className="flex items-center justify-center gap-2 w-full py-4 rounded-full bg-[#393646] text-[#F1F0F1] text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75"
+              onClick={() => {
                 if (!selectedSize) {
-                  setButtonName(e.target.name);
                   setShowError(true);
                   document.getElementById("sizesGrid").scrollIntoView({
                     block: "center",
@@ -146,39 +164,43 @@ const ProductDetails = ({ product, products }) => {
                       oneQuantityPrice: p.price,
                     })
                   );
-                  notify();
+                  notify("cart");
                 }
               }}
             >
               Add to Cart
+              <FontAwesomeIcon icon={faCartShopping} />
             </button>
             {/* ADD TO CART BUTTON END */}
 
             {/* WHISHLIST BUTTON START */}
             <button
               name="wishlist"
-              onClick={(e) => {
-                setButtonName(e.target.name);
-                  dispatch(
-                    addToWishlist({
-                      ...product?.data?.[0],
-                      selectedSize,
-                      oneQuantityPrice: p.price,
-                    })
-                  );
-                  notify();
-                }
-              }
-              className="w-full py-4 rounded-full border border-black text-lg font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10"
+              onClick={() => {
+                dispatch(
+                  addToWishlist({
+                    ...product?.data?.[0],
+                    selectedSize,
+                    oneQuantityPrice: p.price,
+                  })
+                );
+                notify("wishlist");
+              }}
+              className="bg-[#EEEEEE] text-[#393646] w-full py-4 rounded-full border  border-[#393646] text-lg font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10"
             >
               Whishlist
-              <FontAwesomeIcon icon={isWishlisted ? faHeartCircleCheck : faHeartCirclePlus} color={isWishlisted ? '#B22222' : 'charcoal'} />
+              <FontAwesomeIcon
+                icon={isWishlisted ? faHeartCircleCheck : faHeartCirclePlus}
+                color={isWishlisted ? "#B22222" : "charcoal"}
+              />
             </button>
             {/* WHISHLIST BUTTON END */}
 
             <div>
-              <div className="text-lg font-bold mb-5">Product Details</div>
-              <div className="markdown text-md mb-5">
+              <div className="text-[#EEEEEE] text-lg font-bold mb-5">
+                Product Details
+              </div>
+              <div className="text-[#EEEEEE] markdown text-md mb-5">
                 <ReactMarkdown>{p.description}</ReactMarkdown>
               </div>
             </div>

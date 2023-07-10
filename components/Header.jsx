@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Wrapper from "./Wrapper";
 import shopImage from "/assets/images/shop.webp";
 
 import Link from "next/link";
@@ -7,7 +6,6 @@ import Menu from "./Menu";
 import MenuMobile from "./MenuMobile";
 
 import { IoMdHeartEmpty } from "react-icons/io";
-import { BsCart } from "react-icons/bs";
 import { BiMenuAltRight } from "react-icons/bi";
 import { VscChromeClose } from "react-icons/vsc";
 import { fetchDataFromApi } from "@/utils/api";
@@ -16,7 +14,8 @@ import { useAppSelector } from "@/store/hooks";
 import { selectWishlistItems } from "@/store/wishlistSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -59,24 +58,18 @@ const Header = () => {
 
   return (
     <header
-      className={`w-full h-[50px] md:h-[80px] bg-white flex items-center justify-between z-20 sticky top-0 transition-transform duration-300 ${show}`}
+      className={` border-b-[2px] border-[#393646] w-full h-[50px] md:h-[80px] bg-[#181516] flex items-center justify-between z-20 sticky transition-transform duration-300 ${show}`}
     >
       <div className="flex justify-between items-center w-full px-4">
-        {/* <div className="flex flex-row gap-1 items-center"/> */}
-          <Link href="/">
-            <Image
-              alt="img"
-              src={shopImage}
-              className="w-[20px] md:w-[100px]"
-            />
-          </Link>
+        <Link href="/">
+          <Image alt="img" src={shopImage} className="w-[20px] md:w-[100px]" />
+        </Link>
 
-          <Menu
-            showCatMenu={showCatMenu}
-            setShowCatMenu={setShowCatMenu}
-            categories={categories}
-          />
-        
+        <Menu
+          showCatMenu={showCatMenu}
+          setShowCatMenu={setShowCatMenu}
+          categories={categories}
+        />
 
         {mobileMenu && (
           <MenuMobile
@@ -87,18 +80,18 @@ const Header = () => {
           />
         )}
 
-        <div className="flex items-center gap-2 text-black">
+        <div className="flex items-center gap-0 text-black">
           {/* Icon start */}
           <Link href="/profile">
-            <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
+            <div className="text-[#EEEEEE] border-[#D8E3E7] w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-white/[0.05] cursor-pointer relative">
               <FontAwesomeIcon icon={faUser} />
             </div>
           </Link>
           <Link href="/wishlist">
-            <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
+            <div className="text-[#EEEEEE] border-[#D8E3E7] w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-[#EEEEEE]/[0.05] cursor-pointer relative">
               <IoMdHeartEmpty className="text-[19px] md:text-[24px]" />
               {wishlistItems.length > 0 && (
-                <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-[#B22222] absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
+                <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-[#B22222] absolute top-1 left-5 md:left-7 text-[#EEEEEE] text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
                   {wishlistItems.length}
                 </div>
               )}
@@ -108,10 +101,10 @@ const Header = () => {
 
           {/* Icon start */}
           <Link href="/cart">
-            <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
-              <BsCart className="text-[15px] md:text-[20px]" />
+            <div className="text-[#EEEEEE] border-[#D8E3E7] w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-[#EEEEEE]/[0.05] cursor-pointer relative">
+              <FontAwesomeIcon icon={faCartShopping} />
               {cartItems.length > 0 && (
-                <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-[#B22222] absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
+                <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-[#B22222] absolute top-1 left-5 md:left-7 text-[#EEEEEE] text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
                   {cartItems.length}
                 </div>
               )}
@@ -120,14 +113,16 @@ const Header = () => {
           {/* Icon end */}
 
           {/* Mobile icon start */}
-          <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex md:hidden justify-center items-center hover:bg-black/[0.05] cursor-pointer relative -mr-2">
+          <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex md:hidden justify-center items-center hover:bg-#393646/[0.05] cursor-pointer relative -mr-2">
             {mobileMenu ? (
               <VscChromeClose
+                color="#EEEEEE"
                 className="text-[16px]"
                 onClick={() => setMobileMenu(false)}
               />
             ) : (
               <BiMenuAltRight
+                color="#EEEEEE"
                 className="text-[20px]"
                 onClick={() => setMobileMenu(true)}
               />
@@ -141,7 +136,6 @@ const Header = () => {
 };
 
 export default Header;
-
 
 export async function getServerSideProps(ctx) {
   const cookies = nookies.get(ctx);

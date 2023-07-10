@@ -3,10 +3,11 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK);
 import { loadStripe } from "@stripe/stripe-js";
 import { makePaymentRequest } from "@/utils/api";
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { Router } from "next/router";
 
 export const handlePayment = createAsyncThunk(
   "payments/handlePayment",
-  async ({ paymentMethod, products }) => {
+  async ({ paymentMethod, products, addressInfo, user, totalPrice }) => {
     if (paymentMethod === "card") {
       try {
         const stripe = await stripePromise;
@@ -14,7 +15,10 @@ export const handlePayment = createAsyncThunk(
         const res = await makePaymentRequest("/api/orders", {
           products,
           paymentMethod,
-          status: 'active'
+          status: 'active',
+          addressInfo,
+          user,
+          totalPrice
         });
 
         await stripe.redirectToCheckout({ 
@@ -22,6 +26,7 @@ export const handlePayment = createAsyncThunk(
         });
 
       } catch (error) {
+        Router.replace("/failed")
         console.log(error);
       }
     } else {
@@ -29,9 +34,13 @@ export const handlePayment = createAsyncThunk(
         await makePaymentRequest("/api/orders", {
           products,
           paymentMethod,
-          status: 'active'
+          status: 'active',
+          addressInfo,
+          user,
+          totalPrice
         });
       } catch (error) {
+        Router.replace("/failed")
         console.log(error);
       }
     }
