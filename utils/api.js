@@ -1,7 +1,5 @@
-import { headers } from "@/next.config";
 import { API_URL, STRAPI_API_TOKEN } from "./urls";
 import axios from "axios";
-import { Router, useRouter } from "next/router";
 
 const APIHeaders = {
   "Content-Type": "application/json",
