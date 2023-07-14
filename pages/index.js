@@ -21,12 +21,12 @@ export default function Home({ products, userData }) {
         {/* heading and paragaph start */}
         <div className="text-center max-w-[800px] mx-auto my-[50px] md:my-[80px]">
           <div className="text-[#F1F0F1] text-[28px] md:text-[34px] mb-5 font-normal leading-tight">
-            Cushioning for Your Miles
+            Разгледай най-новите продукти
           </div>
           <div className="text-[#F1F0F1] text-md md:text-xl font-normal">
-            A lightweight Nike ZoomX midsole is combined with increased stack
-            heights to help provide cushioning during extended stretches of
-            running.
+            Лека междинна подметка Nike ZoomX е комбинирана с увеличен стек
+            височини, за да се осигури омекотяване по време на продължителни
+            участъци от бягане.
           </div>
         </div>
         {/* heading and paragaph end */}

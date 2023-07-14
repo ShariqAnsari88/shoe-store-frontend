@@ -19,10 +19,10 @@ function AuthSelector({ setChoice }) {
   const isEmptyUser = Object.values(user).some((k) => k.length < 1);
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required("Username is required"),
+    username: Yup.string().required("Моля въведете потребителско име."),
     password: Yup.string()
-      .min(8, "Password must be at least 8 characters")
-      .required("Password is required"),
+      .min(8, "Паролата трябва да съдържа поне 8 символа.")
+      .required("Моля въведете парола."),
   });
 
   //=========================== Handler Functions START ============================//
@@ -37,12 +37,14 @@ function AuthSelector({ setChoice }) {
     // Perform registration logic here
   };
 
+  const handleForgotPassword = async () => router.push('/forgot_password');
+
   //=========================== Handler Functions END ============================//
 
   return (
     <div className="bg-[#393646] flex-1 flex-column space-y-5 md:max-w-[450px] mx-auto  p-[40px] shadow-md border-zinc-700 rounded-sm">
       <h1 className="font-semibold text-4xl text-center text-[#F8F1F1]">
-        Sign In
+        Вход
       </h1>
       <Formik
         initialValues={initialValues}
@@ -59,7 +61,7 @@ function AuthSelector({ setChoice }) {
                     className="text-[#EEEEEE] font-semibold text-lg"
                     htmlFor="username"
                   >
-                    Username
+                    Потребителско име
                   </label>
                   <Field
                     className="border-[#EEEEEE]"
@@ -81,7 +83,7 @@ function AuthSelector({ setChoice }) {
                     className="text-[#EEEEEE] font-semibold text-lg"
                     htmlFor="password"
                   >
-                    Password
+                    Парола
                   </label>
                   <Field
                     className="border-[#EEEEEE]"
@@ -109,13 +111,22 @@ function AuthSelector({ setChoice }) {
                   } md:max-w-[450px] w-full text-[#181516]`}
                   type="submit"
                 >
-                  Log In
+                  Влез
                 </button>
                 <div className="text-[#EEEEEE] text-center w-full">
-                  Don't have an account?
-                  <div onClick={setChoice} className="ml-1 inline-block underline cursor-pointer">
-                    Sign Up
+                  Нямаш профил?
+                  <div
+                    onClick={setChoice}
+                    className="ml-1 inline-block underline cursor-pointer"
+                  >
+                    Регистрирай се.
                   </div>
+                </div>
+                <div
+                  onClick={handleForgotPassword}
+                  className="text-[#EEEEEE] text-center w-full underline cursor-pointer"
+                >
+                  Забравена парола?
                 </div>
               </div>
             </Form>

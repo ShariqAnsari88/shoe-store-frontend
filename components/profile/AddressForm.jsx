@@ -6,6 +6,8 @@ import { useAppSelector } from "@/store/hooks";
 import { selectUserAddress, updateAddress } from "@/store/userSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
+import { emailRegex } from "@/utils/regex";
+import { ToastContainer } from "react-toastify";
 
 const initialValues = {
   firstName: "",
@@ -21,16 +23,16 @@ const initialValues = {
 };
 
 const labels = {
-  firstName: "First Name*",
-  secondName: "Second Name*",
-  company: "Company",
-  street: "Street*",
-  streetNumber: "Street Number*",
-  houseNumber: "House Number*",
-  city: "City*",
-  postalCode: "Postal Code*",
-  phoneNumber: "Phone*",
-  email: "E-Mail",
+  firstName: "Име*",
+  secondName: "Фамилия*",
+  company: "Компания",
+  street: "Улица*",
+  streetNumber: "Номер на улица*",
+  houseNumber: "Номерн а вход/блок*",
+  city: "Местонахождение*",
+  postalCode: "Пощенски код*",
+  phoneNumber: "Телфонен номер*",
+  email: "E-mail адрес",
 };
 
 function AddressForm({ setShowError }) {
@@ -39,27 +41,26 @@ function AddressForm({ setShowError }) {
   const [shouldShowAddress, setShouldShowAddress] = useState(
     addressInfo ? true : false
   );
-  const emailRegex = new RegExp(
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  );
 
   const [address, setAddress] = useState({ ...initialValues });
 
   const isEmptyAddress = Object.values(address).every((k) => k.length < 1);
 
   const validationSchema = Yup.object().shape({
-    firstName: Yup.string().required("First Name is required."),
-    secondName: Yup.string().required("Second Name is required."),
+    firstName: Yup.string().required("Моля, въведете име,"),
+    secondName: Yup.string().required("Моля, въведете фамилия."),
     company: Yup.string().optional(),
-    city: Yup.string().required().min(4, "City should have at least 4 words."),
+    city: Yup.string()
+      .required("Моля, въведете град.")
+      .min(4, "Градът трябва да съдържа поне 4 символа."),
     street: Yup.string().required(),
-    streetNumber: Yup.string().required("Street Number is required."),
-    houseNumber: Yup.string().required("House Number is required."),
-    postalCode: Yup.string().required("Postal Code is required."),
-    phoneNumber: Yup.string().required("Phone is required."),
+    streetNumber: Yup.string().required("Моля, въведете номер на улица."),
+    houseNumber: Yup.string().required("Моля, въведете номер на вход/блок."),
+    postalCode: Yup.string().required("Моля, въведете пощенски код."),
+    phoneNumber: Yup.string().required("Моля, въведете телефонен номер."),
     email: Yup.string()
-      .required("Email address is required.")
-      .matches(emailRegex, "Please, enter a valid email address!"),
+      .required("Моля, въведете e-mail адрес.")
+      .matches(emailRegex, "Моля, въведете валиден e-mail адрес."),
   });
 
   //=========================== Handler Functions START ============================//
@@ -75,7 +76,7 @@ function AddressForm({ setShowError }) {
 
     setShowError(false);
 
-    toast.success(`Address Saved!`, {
+    toast.success(`Адресът е запазен!`, {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -101,8 +102,9 @@ function AddressForm({ setShowError }) {
 
   return (
     <div className="bg-[#393646] flex-1 flex-column mt-4 space-y-2 md:max-w-[450px] p-[40px] shadow-md border-zinc-700 rounded-sm">
+      <ToastContainer />
       <h1 className="font-semibold text-xl text-center text-[#F8F1F1]">
-        Your Address
+        Адрес
       </h1>
       <Formik
         initialValues={initialValues}
@@ -137,20 +139,30 @@ function AddressForm({ setShowError }) {
                     />
                   </div>
                 ))}
+                <div className="flex flex-row gap-5">
+                  <button
+                    onClick={() => setShouldShowAddress(true)}
+                    className={`hover:opacity-80 transition-opacity ease-in-out"
+                   md:mr-auto md:ml-0 min-h-[50px] bg-[#181516] rounded-[4px] md:max-w-[450px] w-full text-[#EEEEEE]`}
+                    type="button"
+                  >
+                    Отказ
+                  </button>
 
-                <button
-                  disabled={!isValid || isEmptyAddress}
-                  className={`${
-                    isValid &&
-                    !isEmptyAddress &&
-                    "hover:opacity-80 transition-opacity ease-in-out"
-                  } md:mr-auto md:ml-0 min-h-[50px] bg-[#EEEEEE] rounded-[4px] ${
-                    isValid && !isEmptyAddress ? " opacity-100" : "opacity-30"
-                  } md:max-w-[450px] w-full text-[#181516]`}
-                  type="submit"
-                >
-                  Save
-                </button>
+                  <button
+                    disabled={!isValid || isEmptyAddress}
+                    className={`${
+                      isValid &&
+                      !isEmptyAddress &&
+                      "hover:opacity-80 transition-opacity ease-in-out"
+                    } md:mr-auto md:ml-0 min-h-[50px] bg-[#EEEEEE] rounded-[4px] ${
+                      isValid && !isEmptyAddress ? " opacity-100" : "opacity-30"
+                    } md:max-w-[450px] w-full text-[#181516]`}
+                    type="submit"
+                  >
+                    Запази
+                  </button>
+                </div>
               </div>
             </Form>
           </div>
@@ -163,9 +175,7 @@ function AddressForm({ setShowError }) {
 export const AddressInfo = ({ addressInfo, setShouldShowAddress }) => {
   return (
     <div className="h-60">
-      <div className="text-[#EEEEEE] text-xl font-semibold mb-2">
-        My Address
-      </div>
+      <div className="text-[#EEEEEE] text-xl font-semibold mb-2">Адрес</div>
       <div className="relative">
         <button
           className="w-8  hover:bg-black/[0.1] bg-transparent rounded-full h-8 top-2 absolute right-2"

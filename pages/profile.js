@@ -7,17 +7,23 @@ import { getUser } from "@/store/contexts/userContext";
 import AddressForm from "@/components/profile/AddressForm";
 import { fetchDataFromApi } from "@/utils/api";
 import OrderItem from "@/components/orders/OrderItem";
+import Modal from "@/components/Modal";
+import EmptyOrders from "@/components/orders/EmptyOrders";
 
 function ProfilePage(props) {
   const { userData, ordersData } = props;
   const [choice, setChoice] = useState("login");
   const orders = ordersData?.data;
   const hasOrders = orders?.length > 0;
+  const [openModal, setOpenModal] = useState(false);
   const handleChoice = () => setChoice("signup");
 
   if (userData.jwt)
     return (
       <div className="min-h-[650px] mt-8 flex mb-10 md:mb-0">
+        {openModal && (
+          <Modal logOut={logOut} close={() => setOpenModal(false)} />
+        )}
         <Wrapper>
           <div className="grid grid-cols-1 gap-10 md:gap-0 md:grid-cols-2 md:py-4 h-full">
             <div className="flex flex-col gap-10 md:border-r-[1px] md:mr-4">
@@ -25,22 +31,27 @@ function ProfilePage(props) {
                 <AddressForm />
               </div>
               <button
-                onClick={logOut}
+                onClick={() => {
+                  setOpenModal(true);
+                }}
                 className={`hover:opacity-80 transition-opacity ease-in-out md:mr-auto md:ml-0 min-h-[50px] border-dashed border-[2px] bg-[#151718] rounded-[4px] md:max-w-[250px] w-full text-[#EEEEEE]`}
                 type="button"
               >
-                Log out
+                Излез
               </button>
             </div>
             <div>
-              <h1 className="font-semibold mb-4">My orders</h1>
-              <div className="flex flex-col gap-2">
-                {hasOrders
-                  ? orders.map((order, index) => (
-                      <OrderItem key={index} {...order.attributes} />
-                    ))
-                  : null}
-              </div>
+              <h1 className="font-semibold mb-4">Моите поръчки</h1>
+
+              {hasOrders && (
+                <div className="flex flex-col gap-2 overflow-y-scroll h-[500px]">
+                  {orders.map((order, index) => (
+                    <OrderItem key={index} {...order.attributes} />
+                  ))}
+                </div>
+              )}
+
+              {!hasOrders && <EmptyOrders />}
             </div>
           </div>
         </Wrapper>

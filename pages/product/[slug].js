@@ -33,7 +33,7 @@ const ProductDetails = ({ product, products }) => {
   const discount = getDiscountedPricePercentage(p.original_price, p.price);
 
   const notify = (buttonName) => {
-    toast.success(`Success. Check your ${buttonName}!`, {
+    toast.success(`Успешно, проверете ${buttonName === 'wishlist' ? 'вашите любими продукти' : 'вашата количка'}!`, {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -91,7 +91,7 @@ const ProductDetails = ({ product, products }) => {
             </div>
 
             <div className="text-[#EEEEEE]/[0.5] text-md font-medium">
-              incl. of taxes
+              вкл. такси
             </div>
             <div className="text-[#EEEEEE]/[0.5] text-md font-medium mb-20">
               {`(Also includes all applicable duties)`}
@@ -102,10 +102,10 @@ const ProductDetails = ({ product, products }) => {
               {/* HEADING START */}
               <div className="flex justify-between mb-2">
                 <div className="text-[#EEEEEE] text-md font-semibold">
-                  Select Size
+                  Избери размер
                 </div>
                 <div className="text-[#EEEEEE]/[0.5] text-md font-medium cursor-pointer">
-                  Select Guide
+                  Наръчник за размери
                 </div>
               </div>
               {/* HEADING END */}
@@ -138,7 +138,7 @@ const ProductDetails = ({ product, products }) => {
               {/* SHOW ERROR START */}
               {showError && (
                 <div className="text-red-600 mt-1">
-                  Size selection is required
+                  Задължително е да изберете размер.
                 </div>
               )}
               {/* SHOW ERROR END */}
@@ -168,7 +168,7 @@ const ProductDetails = ({ product, products }) => {
                 }
               }}
             >
-              Add to Cart
+              Добави в количка
               <FontAwesomeIcon icon={faCartShopping} />
             </button>
             {/* ADD TO CART BUTTON END */}
@@ -188,7 +188,7 @@ const ProductDetails = ({ product, products }) => {
               }}
               className="bg-[#EEEEEE] text-[#393646] w-full py-4 rounded-full border  border-[#393646] text-lg font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10"
             >
-              Whishlist
+              {isWishlisted ? "Премахни от любими" : "Добави в любими"}
               <FontAwesomeIcon
                 icon={isWishlisted ? faHeartCircleCheck : faHeartCirclePlus}
                 color={isWishlisted ? "#B22222" : "charcoal"}
@@ -198,7 +198,7 @@ const ProductDetails = ({ product, products }) => {
 
             <div>
               <div className="text-[#EEEEEE] text-lg font-bold mb-5">
-                Product Details
+                Детайли за продукт
               </div>
               <div className="text-[#EEEEEE] markdown text-md mb-5">
                 <ReactMarkdown>{p.description}</ReactMarkdown>

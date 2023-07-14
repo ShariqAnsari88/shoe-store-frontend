@@ -22,14 +22,14 @@ const RelatedProducts = ({ products }) => {
 
     return (
         <div className="mt-[50px] md:mt-[100px] mb-[100px] md:mb-0">
-            <div className="text-[#EEEEEE] text-2xl font-normal mb-5">You Might Also Like</div>
+            <div className="text-[#EEEEEE] text-2xl font-normal mb-5">Препоръчани продукти</div>
             <Carousel
                 responsive={responsive}
                 containerClass="-mx-[10px]"
-                itemClass="px-[10px]"
+                itemClass="p-[10px]"
             >
                 {products?.data?.map((product) => (
-                    <ProductCard key={product?.id} data={product} />
+                    <ProductCard isCarouselCard key={product?.id} data={product} />
                 ))}
             </Carousel>
         </div>

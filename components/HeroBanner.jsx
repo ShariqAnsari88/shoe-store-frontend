@@ -47,21 +47,27 @@ const HeroBanner = () => {
             alt="Picture of the author"
           />
           <div className="px-[15px] md:px-[40px] py-[10px] md:py-[25px] font-normal bg-white absolute bottom-[25px] md:bottom-[75px] left-0 text-black/[0.9] text-[15px] md:text-[30px] uppercase font-medium cursor-pointer hover:opacity-90">
-            Shop now
+            Пазарувай сега
           </div>
         </div>
 
         <div>
-          <Image src={slideImage2} className="w-full h-full rounded-2xl object-contain" />
+          <Image
+            src={slideImage2}
+            className="w-full h-full rounded-2xl object-contain"
+          />
           <div className="px-[15px] md:px-[40px] py-[10px] md:py-[25px] font-normal bg-white absolute bottom-[25px] md:bottom-[75px] left-0 text-black/[0.9] text-[15px] md:text-[30px] uppercase font-medium cursor-pointer hover:opacity-90">
-            Shop now
+            Пазарувай сега
           </div>
         </div>
 
         <div>
-          <Image src={slideImage3} className="w-full h-full rounded-2xl object-contain" />
+          <Image
+            src={slideImage3}
+            className="w-full h-full rounded-2xl object-contain"
+          />
           <div className="px-[15px] md:px-[40px] py-[10px] md:py-[25px] font-normal bg-white absolute bottom-[25px] md:bottom-[75px] left-0 text-black/[0.9] text-[15px] md:text-[30px] uppercase font-medium cursor-pointer hover:opacity-90">
-            Shop now
+            Пазарувай сега
           </div>
         </div>
       </Carousel>

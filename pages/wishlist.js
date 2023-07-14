@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
 const Wishlist = () => {
-  const wishlistItems = useAppSelector(selectWishlistItems)
+  const wishlistItems = useAppSelector(selectWishlistItems);
 
   return (
     <div className="w-full md:py-20">
@@ -19,7 +19,7 @@ const Wishlist = () => {
             {/* HEADING AND PARAGRAPH START */}
             <div className="text-center max-w-[800px] mx-auto mt-8 md:mt-0">
               <div className="text-[#EEEEEE] text-[28px] md:text-[34px] mb-5 font-semibold leading-tight">
-                Your Favourites!
+                Твоите любими продукти!
               </div>
             </div>
             {/* HEADING AND PARAGRAPH END */}
@@ -29,13 +29,12 @@ const Wishlist = () => {
               {/* CART ITEMS START */}
               <div className="flex-[2]">
                 <div className="grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {wishlistItems.map((item) => (
-                  <WishlistItem key={item.id} wishlistItem={item} />
-                ))}
+                  {wishlistItems.map((item) => (
+                    <WishlistItem key={item.id} wishlistItem={item} />
+                  ))}
                 </div>
               </div>
               {/* CART ITEMS END */}
-
             </div>
             {/* CART CONTENT END */}
           </>
@@ -50,19 +49,17 @@ const Wishlist = () => {
               className="mb-10"
               size="10x"
             />
-            <span className="text-[#EEEEEE] text-xl font-bold">
-              Your cart is empty
-            </span>
+            <span className="text-[#EEEEEE] text-xl font-bold">Празно</span>
             <span className="text-[#EEEEEE] text-center mt-4">
-              Looks like you have not added anything in your cart.
+              Изглежда, че не сте добавили любими продукти.
               <br />
-              Go ahead and explore top categories.
+              Разгледайте най-добрите категории.
             </span>
             <Link
               href="/"
               className="py-4 px-8 rounded-full bg-[#393646] text-[#EEEEEE] text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 mt-8"
             >
-              Continue Shopping
+              Продължи пазаруването
             </Link>
           </div>
         )}

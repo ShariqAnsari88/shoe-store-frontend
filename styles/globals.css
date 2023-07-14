@@ -24,12 +24,13 @@
     line-height: 24px;
 
     color: #EEEEEE;
-
+    
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+    
 }
  
 body {
@@ -55,6 +56,21 @@ button {
 }
 
 * {
+    ::-webkit-scrollbar {
+        width: 6px;
+        padding-left: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 5px;
+    }
+      
+    scroll-behavior: smooth;
     margin: 0;
     padding: 0;
     box-sizing: border-box;

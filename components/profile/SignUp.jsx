@@ -1,4 +1,5 @@
 import registerUser from "@/pages/api/auth/register";
+import { emailRegex } from "@/utils/regex";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -16,23 +17,19 @@ function SignUp() {
 
   const [user, setUser] = useState({...initialValues});
 
-  const emailRegex = new RegExp(
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  );
-
   const isEmptyUser = Object.values(user).some((k) => k.length < 1);
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required("Username is required."),
+    username: Yup.string().required("Моля въведете потребителско име."),
     email: Yup.string()
-      .required("Email address is required.")
-      .matches(emailRegex, "Please, enter a valid email address!"),
+      .required("Моля въведете e-mail адрес.")
+      .matches(emailRegex, "Моля въведете валиден e-mail адрес."),
     password: Yup.string()
-      .min(8, "Password must be at least 8 characters")
-      .required("Password is required."),
+      .min(8, "Паролата трябва да бъде поне 8 символа.")
+      .required("Моля въведете парола."),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), null], "Passwords must match")
-      .required("Confirm password is required."),
+      .oneOf([Yup.ref("password"), null], "Паролите не съвпадат.")
+      .required("Моля потвърдете паролата."),
   });
 
   const handleChange = (e) => {
@@ -46,7 +43,7 @@ function SignUp() {
 
   return (
     <div className="flex-1 flex-column space-y-5">
-      <h1 className="font-semibold text-4xl">Sign Up</h1>
+      <h1 className="font-semibold text-4xl">Нов профил</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -58,7 +55,7 @@ function SignUp() {
               <div className="flex flex-col space-y-6 bg-[#393646] md:max-w-[450px] p-6 rounded-md">
                 <div className="flex  flex-col">
                   <label className="font-semibold text-lg" htmlFor="username">
-                    Username*
+                    Потребителско име*
                   </label>
                   <Field
                     className="border-none"
@@ -77,7 +74,7 @@ function SignUp() {
 
                 <div className="flex flex-col md:max-w-[450px]">
                   <label className="font-semibold text-lg" htmlFor="email">
-                    Email*
+                    E-mail адрес*
                   </label>
                   <Field
                     className="border-none"
@@ -96,7 +93,7 @@ function SignUp() {
 
                 <div className="flex flex-col md:max-w-[450px]">
                   <label className="font-semibold text-lg" htmlFor="password">
-                    Password*
+                    Парола*
                   </label>
                   <Field
                     className="border-none"
@@ -118,7 +115,7 @@ function SignUp() {
                     className="font-semibold text-lg"
                     htmlFor="confirmPassword"
                   >
-                    Confirm Password*
+                    Потвърди парола*
                   </label>
                   <Field
                     className="border-none"
@@ -146,7 +143,7 @@ function SignUp() {
                   } md:max-w-[450px] w-full text-[#393646]`}
                   type="submit"
                 >
-                  Sign Up
+                  Създай акаунт
                 </button>
               </div>
             </Form>

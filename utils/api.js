@@ -1,5 +1,7 @@
+import { headers } from "@/next.config";
 import { API_URL, STRAPI_API_TOKEN } from "./urls";
 import axios from "axios";
+import { Router, useRouter } from "next/router";
 
 const APIHeaders = {
   "Content-Type": "application/json",
@@ -18,5 +20,24 @@ export const fetchDataFromApi = async (endpoint) => {
 
 export const makePaymentRequest = async (endpoint, payload) => {
   const res = await API.post(`${API_URL}${endpoint}`, payload);
+  return res?.data;
+};
+
+export const sendResetEmail = async (payload) => {
+  const res = await API.post(`${API_URL}/api/auth/forgot-password`, {
+    email: payload,
+  });
+  return res?.data;
+};
+
+export const changePassword = async (payload) => {
+  const { code, password, passwordConfirmation } = payload;
+
+  const res = await API.post(`${API_URL}/api/auth/reset-password`, {
+    code, // code contained in the reset link of step 3.
+    password,
+    passwordConfirmation,
+  });
+
   return res?.data;
 };
