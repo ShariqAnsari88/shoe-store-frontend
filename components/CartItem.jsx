@@ -59,7 +59,7 @@ const CartItem = ({ data }) => {
             <div className="flex items-center gap-1">
               <div className="font-normal">Size:</div>
               <select
-                className="hover:text-[#EEEEEE] text-black rounded-md border-[#EEEEEE] border-[2px] cursor-pointer"
+                className="text-black rounded-md border-[#EEEEEE] border-[2px] cursor-pointer"
                 onChange={(e) => updateCartItem(e, "selectedSize")}
               >
                 {p.size.data.map((item, i) => {
@@ -80,7 +80,7 @@ const CartItem = ({ data }) => {
             <div className="flex items-center gap-1">
               <div className="font-semibold">Quantity:</div>
               <select
-                className="hover:text-[#EEEEEE] text-black rounded-md border-[#EEEEEE] border-[2px] cursor-pointer"
+                className="text-black rounded-md border-[#EEEEEE] border-[2px] cursor-pointer"
                 onChange={(e) => updateCartItem(e, "quantity")}
               >
                 {Array.from({ length: 10 }, (_, i) => i + 1).map((q, i) => {
