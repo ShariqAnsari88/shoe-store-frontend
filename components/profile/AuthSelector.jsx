@@ -6,23 +6,21 @@ import { useRouter } from "next/router";
 
 function AuthSelector({ setChoice }) {
   const router = useRouter();
-  const [user, setUser] = useState({
-    username: "",
-    password: "",
-  });
-
+  
   const initialValues = {
     username: "",
     password: "",
   };
 
+  const [user, setUser] = useState({ ...initialValues });
+
   const isEmptyUser = Object.values(user).some((k) => k.length < 1);
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required("Моля въведете потребителско име."),
+    username: Yup.string().required("Моля въведете потребителско име!"),
     password: Yup.string()
-      .min(8, "Паролата трябва да съдържа поне 8 символа.")
-      .required("Моля въведете парола."),
+      .min(8, "Паролата трябва да съдържа поне 8 символа!")
+      .required("Моля въведете парола!"),
   });
 
   //=========================== Handler Functions START ============================//
@@ -37,7 +35,7 @@ function AuthSelector({ setChoice }) {
     // Perform registration logic here
   };
 
-  const handleForgotPassword = async () => router.push('/forgot_password');
+  const handleForgotPassword = async () => router.push("/forgot_password");
 
   //=========================== Handler Functions END ============================//
 
@@ -53,7 +51,6 @@ function AuthSelector({ setChoice }) {
       >
         {({ isValid }) => (
           <div className="flex-1">
-            {isValid}
             <Form onChange={handleChange}>
               <div className="flex flex-col space-y-6 justify-center">
                 <div className="flex flex-col">

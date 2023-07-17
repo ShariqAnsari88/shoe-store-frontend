@@ -10,7 +10,7 @@ function OrderItem(props) {
     cancelled:  <div className="shadow-xl rounded-full h-4 w-4 p-0"><FontAwesomeIcon color="#B22222" icon={faCircle} /></div>
   };
   return (
-    <div className="bg-[#EEEEEE] max-h-20 relative vertical justify-between flex flex-col gap-2 p-2 w-full h-full content-center text-black rounded-md">
+    <div className="bg-[#EEEEEE] max-h-24 relative vertical justify-between flex flex-col gap-2 p-2 w-full h-full content-center text-black rounded-md">
 
       <div className="flex flex-row justify-between">
         <div className="font-semibold uppercase">№: {orderId}</div>

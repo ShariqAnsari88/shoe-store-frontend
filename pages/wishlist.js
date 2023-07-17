@@ -46,8 +46,7 @@ const Wishlist = () => {
             <FontAwesomeIcon
               color="#EEEEEE"
               icon={faHeart}
-              className="mb-10"
-              size="10x"
+              className="my-10 w-20 md:w-40 flex flex-1"
             />
             <span className="text-[#EEEEEE] text-xl font-bold">Празно</span>
             <span className="text-[#EEEEEE] text-center mt-4">

@@ -31,7 +31,7 @@ const HeroBanner = () => {
         renderArrowNext={(clickHandler, hasNext) => (
           <div
             onClick={clickHandler}
-            className="absolute border-[2px] text-white border-white rounded-full right-5 top-[50%] translate-y-[-50%]w-[30px] md:w-[50px] h-[30px] md:h-[50px] bg-#393646 z-10 flex items-center justify-center cursor-pointer hover:opacity-90"
+            className="absolute border-[2px] text-white border-white rounded-full right-5 top-[50%] translate-y-[-50%] w-[30px] md:w-[50px] h-[30px] md:h-[50px] bg-#393646 z-10 flex items-center justify-center cursor-pointer hover:opacity-90"
           >
             <BiArrowBack
               color="white"

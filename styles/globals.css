@@ -55,6 +55,10 @@ button {
     background-color: #393646;
 }
 
+textarea {
+    color: #181516;
+}
+
 * {
     ::-webkit-scrollbar {
         width: 6px;
