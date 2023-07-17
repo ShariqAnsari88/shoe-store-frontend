@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   console.log(body,'body')
   try {
     await sendgrid.send({
-      to: "rewamec197@semonir.com", // Your email where you'll receive emails
+      to: "pilyovmartin20@gmail.com", // Your email where you'll receive emails
       from: "threeoyka@gmail.com", // your website email address here
       subject: `${body.subject}`,
       html: `
