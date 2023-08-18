@@ -42,7 +42,7 @@ export default function Contact() {
     <Wrapper>
       <div class="container mx-auto p-4 my-24 grid grid-cols-2 gap-1">
         <div class="max-w-full bg-[#EEEEEE] rounded p-8 shadow-md">
-          <h2 class="text-center text-2xl font-bold mb-4 text-[#393646]">
+          <h2 class="text-center text-2xl font-bold mb-4 text-neonGreen">
             Свържете се с нас!
           </h2>
           <Formik
@@ -55,7 +55,7 @@ export default function Contact() {
                 <div class="mb-4">
                   <label
                     for="name"
-                    className="text-[#393646] font-semibold block mb-2"
+                    className="text-neonGreen font-semibold block mb-2"
                   >
                     Име
                   </label>
@@ -78,7 +78,7 @@ export default function Contact() {
                 <div class="mb-4">
                   <label
                     for="email"
-                    className="text-[#393646] font-semibold block mb-2"
+                    className="text-neonGreen font-semibold block mb-2"
                   >
                     E-mail адрес
                   </label>
@@ -100,7 +100,7 @@ export default function Contact() {
                 <div className="mb-4">
                   <label
                     for="phone"
-                    className="text-[#393646] font-semibold block mb-2"
+                    className="text-neonGreen font-semibold block mb-2"
                   >
                     Телефонен номер
                   </label>
@@ -122,7 +122,7 @@ export default function Contact() {
                 <div>
                   <label
                     for="subject"
-                    className="text-[#393646] font-semibold block mb-2"
+                    className="text-neonGreen font-semibold block mb-2"
                   >
                     Тема
                   </label>
@@ -144,7 +144,7 @@ export default function Contact() {
                 <div className="mb-4">
                   <label
                     for="message"
-                    className="text-[#393646] font-semibold block mb-2"
+                    className="text-neonGreen font-semibold block mb-2"
                   >
                     Съобщение
                   </label>
@@ -168,8 +168,8 @@ export default function Contact() {
                   type="submit"
                   className={`${
                     isValid && !isEmptyForm
-                      ? "bg-[#393646]"
-                      : "bg-[#393646]/[0.5]"
+                      ? "bg-neonGreen"
+                      : "bg-neonGreen/[0.5]"
                   } text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline`}
                 >
                   Изпрати

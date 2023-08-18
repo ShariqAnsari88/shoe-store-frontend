@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import Wrapper from "@/components/Wrapper";
 import CartItem from "@/components/CartItem";
@@ -15,7 +15,6 @@ import { getUser } from "@/store/contexts/userContext";
 import { useAppSelector } from "@/store/hooks";
 import { selectUserAddress } from "@/store/userSlice";
 import AddressForm from "@/components/profile/AddressForm";
-import { fetchDataFromApi } from "@/utils/api";
 
 const Cart = (props) => {
   const router = useRouter();
@@ -97,7 +96,7 @@ const Cart = (props) => {
                   <button
                     name="arrive"
                     className={`w-full py-4 rounded-md ${
-                      !addressInfo ? "bg-[#393646]/[0.5]" : "bg-[#393646]"
+                      !addressInfo ? "bg-neonGreen/[0.5]" : "bg-neonGreen"
                     } text-[#EEEEEE] text-md font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center`}
                     onClick={(e) => {
                       if (!addressInfo) setShowError(true);
@@ -110,7 +109,7 @@ const Cart = (props) => {
                   <button
                     name="card"
                     className={`w-full py-4 rounded-md ${
-                      !addressInfo ? "bg-[#393646]/[0.5]" : "bg-[#393646]"
+                      !addressInfo ? "bg-neonGreen/[0.5]" : "bg-neonGreen"
                     } text-[#EEEEEE] text-md font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center`}
                     onClick={(e) => {
                       if (!addressInfo) setShowError(true);
@@ -152,7 +151,7 @@ const Cart = (props) => {
             </span>
             <Link
               href="/"
-              className="py-4 px-8 rounded-full bg-[#393646] text-[#EEEEEE] text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 mt-8"
+              className="py-4 px-8 rounded-full bg-neonGreen text-[#EEEEEE] text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 mt-8"
             >
               Продължи пазаруването
             </Link>

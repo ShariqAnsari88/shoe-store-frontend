@@ -52,7 +52,7 @@ function SignUp() {
         {({ isValid }) => (
           <div>
             <Form className="" onChange={handleChange}>
-              <div className="flex flex-col space-y-6 bg-[#393646] md:max-w-[450px] p-6 rounded-md">
+              <div className="flex flex-col space-y-6 bg-neonGreen md:max-w-[450px] p-6 rounded-md">
                 <div className="flex  flex-col">
                   <label className="font-semibold text-lg" htmlFor="username">
                     Потребителско име*
@@ -140,7 +140,7 @@ function SignUp() {
                     "hover:opacity-80 transition-opacity ease-in-out"
                   } md:mr-auto md:ml-0 min-h-[50px] bg-[#EEEEEE] rounded-[4px] ${
                     isValid && !isEmptyUser ? " opac-100" : "opacity-30"
-                  } md:max-w-[450px] w-full text-[#393646]`}
+                  } md:max-w-[450px] w-full text-neonGreen`}
                   type="submit"
                 >
                   Създай акаунт

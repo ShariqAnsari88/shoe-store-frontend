@@ -11,7 +11,7 @@ function EmptyOrders() {
         <h2 className="">Все още нямате направени поръчки.</h2>
         <Link
               href="/"
-              className="py-4 px-8 rounded-full bg-[#393646] text-[#EEEEEE] text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 mt-8"
+              className="py-4 px-8 rounded-full bg-neonGreen text-[#EEEEEE] text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 mt-8"
             >
               Продължи пазаруването
             </Link>

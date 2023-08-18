@@ -17,6 +17,11 @@
     src: url('../assets/fonts/Euclid_SemiBold.ttf');
 }
 
+@font-face {
+    font-family: "Hearthless";
+    src: url('../assets/fonts/Heartless.ttf');
+}
+
 :root {
     font-family: "Euclid", sans-serif;
     font-weight: 400;
@@ -38,12 +43,12 @@ body {
 }
 
 h1 {
-    font-size: 24px;
+    font-size: 38px;
     color: #EEEEEE
 }
 
 h2 {
-    font-size: 20px;
+    font-size: 24px;
     color: #EEEEEE
 }
 

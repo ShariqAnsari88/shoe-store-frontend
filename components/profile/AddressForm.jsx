@@ -101,7 +101,7 @@ function AddressForm({ setShowError }) {
     );
 
   return (
-    <div className="bg-[#393646] flex-1 flex-column mt-4 space-y-2 md:max-w-[450px] p-[40px] shadow-md border-zinc-700 rounded-sm">
+    <div className="bg-neonGreen flex-1 flex-column mt-4 space-y-2 md:max-w-[450px] p-[40px] shadow-md border-zinc-700 rounded-sm">
       <ToastContainer />
       <h1 className="font-semibold text-xl text-center text-[#F8F1F1]">
         Адрес

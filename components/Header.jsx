@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import shopImage from "/assets/images/shop.webp";
+import shopImage from "/public/favicon.ico";
 
 import Link from "next/link";
 import Menu from "./Menu";
@@ -58,11 +58,12 @@ const Header = () => {
 
   return (
     <header
-      className={`border-b-[2px] border-[#393646] w-full h-[50px] md:h-[80px] bg-[#181516] flex items-center justify-between z-20 sticky transition-transform duration-300 ${show}`}
+      className={`border-b-[2px] border-neonGreen w-full h-[50px] md:h-[80px] bg-[#181516] flex items-center justify-between z-20 sticky transition-transform duration-300 ${show}`}
     >
       <div className="flex justify-between items-center w-full px-4">
         <Link href="/">
-          <Image alt="img" src={shopImage} className="w-[70px] md:w-[100px]" />
+          <h1 className="md:text-[38px] text-[26px] font-hearthLess">Troyka Wear</h1>
+          {/* <Image alt="img" src={shopImage} className="w-[70px] md:w-[100px]" /> */}
         </Link>
 
         <Menu

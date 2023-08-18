@@ -50,7 +50,7 @@ export default function WishlistItem(props) {
         </button>
       </div>
       <div className="p-4 text-[#EEEEEE]/[0.9]">
-        <h2 className="text-lg font-medium">
+      <h2 className="text-lg text-neonGreenLighter font-bold">
           {props.wishlistItem.attributes.name}
         </h2>
         <div className="flex items-center text-black/[0.5]">
@@ -66,7 +66,7 @@ export default function WishlistItem(props) {
                         {props.wishlistItem.attributes.original_price} лв.
                       </p>
 
-                      <p className="ml-auto text-base font-medium text-green-500">
+                      <p className="ml-auto text-base font-semibold bg-orange-400 rounded-md p-[5px]">
                         {discount}% off
                       </p>
                     </>

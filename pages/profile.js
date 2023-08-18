@@ -24,7 +24,7 @@ function ProfilePage(props) {
         {openModal && (
           <Modal logOut={logOut} close={() => setOpenModal(false)} />
         )}
-        <Wrapper>
+        <Wrapper >
           <div className="grid grid-cols-1 gap-10 md:gap-0 md:grid-cols-2 md:py-4 h-full">
             <div className="flex flex-col gap-10 md:border-r-[1px] md:mr-4">
               <div className="md:mr-4">
@@ -41,10 +41,10 @@ function ProfilePage(props) {
               </button>
             </div>
             <div>
-              <h1 className="font-semibold mb-4">Моите поръчки</h1>
+              <h1 className="font-semibold mb-4 text-center">Моите поръчки</h1>
 
               {hasOrders && (
-                <div className="flex flex-col gap-2 overflow-y-scroll h-[500px]">
+                <div className="flex flex-col gap-2 overflow-y-scroll max-h-[800px]">
                   {orders.map((order, index) => (
                     <OrderItem key={index} {...order.attributes} />
                   ))}

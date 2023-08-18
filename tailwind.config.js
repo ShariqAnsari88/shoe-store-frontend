@@ -13,8 +13,15 @@ module.exports = {
       normal: "Euclid",
       bold: "Euclid_Bold",
       semibold: "Euclid_SemiBold",
+      hearthLess: "Hearthless"
     },
-    extend: {},
+    extend: {
+      colors: {
+        neonGreen: "#168900",
+        neonGreenLighter: "#33ff14",
+        darkBlack: "#181516"
+       },
+    },
   },
   plugins: [],
 };

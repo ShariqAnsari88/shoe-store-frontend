@@ -59,18 +59,18 @@ const ProductDetails = ({ product, products }) => {
           {/* right column start */}
           <div className="flex-[1] py-3">
             {/* PRODUCT TITLE */}
-            <div className="text-[#EEEEEE] text-[34px] font-semibold mb-2 leading-tight">
+            <div className="text-neonGreenLighter text-[34px] font-semibold mb-2 leading-tight">
               {p.name}
             </div>
 
             {/* PRODUCT SUBTITLE */}
-            <div className="text-[#EEEEEE] text-lg font-semibold mb-5">
+            {/* <div className="text-[#EEEEEE] text-lg font-semibold mb-5">
               {p.subtitle}
-            </div>
+            </div> */}
 
             {/* PRODUCT PRICE */}
             <div className="flex items-center">
-              <p className="text-[rgb(238,238,238)] mr-2 text-lg font-semibold">
+              <p className="text-[rgb(238,238,238)] mr-2 text-2xl font-semibold">
                 {p.price} лв.
               </p>
               {p.original_price && (
@@ -81,7 +81,7 @@ const ProductDetails = ({ product, products }) => {
                         {p.original_price} лв.
                       </p>
 
-                      <p className="ml-auto text-base font-medium text-green-500">
+                      <p className="ml-auto text-base font-semibold bg-orange-400 rounded-md p-[5px]">
                         {discount}% off
                       </p>
                     </>
@@ -94,7 +94,7 @@ const ProductDetails = ({ product, products }) => {
               вкл. такси
             </div>
             <div className="text-[#EEEEEE]/[0.5] text-md font-medium mb-20">
-              {`(Also includes all applicable duties)`}
+              {`(Също така включва всички приложими задължения)`}
             </div>
 
             {/* PRODUCT SIZE RANGE START */}
@@ -115,16 +115,16 @@ const ProductDetails = ({ product, products }) => {
                 {p.size.data.map((item, i) => (
                   <div
                     key={i}
-                    className={`text-[#EEEEEE] border-[2px] border-[#393646] rounded-md text-center py-3 font-medium ${
+                    className={`text-[#EEEEEE] border-[2px] border-neonGreen rounded-md text-center py-3 font-medium ${
                       item.enabled
                         ? "cursor-pointer"
                         : "cursor-not-allowed bg-#393646/[0.1] opacity-50"
                     } ${
                       selectedSize === item.size
-                        ? "border-[2px] border-[#D8E3E7]"
+                        ? "border-[2px] bg-neonGreenLighter text-darkBlack"
                         : ""
                     }`}
-                    onClick={() => {
+                    onClick={() => {                    
                       setSelectedSize(item.size);
                       setShowError(false);
                     }}
@@ -148,7 +148,7 @@ const ProductDetails = ({ product, products }) => {
             {/* ADD TO CART BUTTON START */}
             <button
               name="cart"
-              className="flex items-center justify-center gap-2 w-full py-4 rounded-full bg-[#393646] text-[#F1F0F1] text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75"
+              className="flex items-center justify-center gap-2 w-full py-4 rounded-full bg-neonGreen text-[#F1F0F1] text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75"
               onClick={() => {
                 if (!selectedSize) {
                   setShowError(true);
@@ -186,7 +186,7 @@ const ProductDetails = ({ product, products }) => {
                 );
                 notify("wishlist");
               }}
-              className="bg-[#EEEEEE] text-[#393646] w-full py-4 rounded-full border  border-[#393646] text-lg font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10"
+              className="bg-[#EEEEEE] text-neonGreen w-full py-4 rounded-full border  border-neonGreen text-lg font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10"
             >
               {isWishlisted ? "Премахни от любими" : "Добави в любими"}
               <FontAwesomeIcon

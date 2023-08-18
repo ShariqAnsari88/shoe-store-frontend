@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const ProductDetailsCarousel = ({ images }) => {
     return (
-        <div className="text-[#EEEEEE] text-[20px] w-full max-w-[1360px] mx-auto sticky top-[50px]">
+        <div className="text-[20px] text-neonGreenLighter w-full max-w-[1360px] mx-auto sticky top-[50px]">
             <Carousel
                 infiniteLoop={true}
                 showIndicators={false}

@@ -16,6 +16,7 @@ export default function Home({ products, userData }) {
 
   return (
     <main>
+      <h1 className="text-neonGreenLighter md:text-[126px] drop-shadow-[2px_12px_5px_rgb(51,255,20,0.4)] my-24 text-center font-hearthLess text-[46px]">OMNE TRIUM PERFECTUM</h1>
       <HeroBanner />
       <Wrapper>
         {/* heading and paragaph start */}

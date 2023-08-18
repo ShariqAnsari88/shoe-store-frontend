@@ -1,21 +1,16 @@
 import "@/styles/globals.css";
 import Head from "next/head";
-
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-
-config.autoAddCss = false;
-
 import { Provider } from "react-redux";
 import { persistor } from "@/store/store";
 import { PersistGate } from "redux-persist/lib/integration/react";
 import { rootReducer } from "@/store/store";
-import { UserProvider } from "@/store/contexts/userContext";
 import Layout from "@/components/Layout";
 
-export default function App({ user, Component, pageProps }) {
+config.autoAddCss = false;
+
+export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
@@ -27,7 +22,7 @@ export default function App({ user, Component, pageProps }) {
           rel="stylesheet"
         ></link>
 
-        <link rel="icon" href="../assets/images/shop.webp" />
+        <link rel="icon" href="favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
