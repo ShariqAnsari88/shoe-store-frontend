@@ -51,8 +51,8 @@ const ForgotPassword = () => {
     <div className="min-h-[650px] flex items-center">
       <Wrapper>
         <ToastContainer/>
-        <div className="max-w-[600px] rounded-lg p-5 border text-[#EEEEEE] border-[#EEEEEE] mx-auto flex flex-col">
-          <div className="text-2xl font-bold text-[#EEEEEE]">
+        <div className="max-w-[600px] rounded-lg p-5 border text-offWhite border-offWhite mx-auto flex flex-col">
+          <div className="text-2xl font-bold text-offWhite">
             Забравена парола?
           </div>
           <Formik
@@ -67,13 +67,13 @@ const ForgotPassword = () => {
                   <div className="flex flex-col space-y-6 justify-center">
                     <div className="flex flex-col">
                       <label
-                        className="text-[#EEEEEE] font-semibold text-lg"
+                        className="text-offWhite font-semibold text-lg"
                         htmlFor="email"
                       >
                         E-mail адрес
                       </label>
                       <Field
-                        className="border-[#EEEEEE]"
+                        className="border-offWhite"
                         type="text"
                         id="username"
                         name="email"
@@ -86,7 +86,7 @@ const ForgotPassword = () => {
                         )}
                       />
                     </div>
-                    <div className="text-base mt-5 text-[#EEEEEE]">
+                    <div className="text-base mt-5 text-offWhite">
                       Въведете имейл адреса предоставен при регистрацията си. Ще
                       изпратим имейл с инструкции за промяна на парола, на
                       посочения от вас адрес.
@@ -98,7 +98,7 @@ const ForgotPassword = () => {
                         isValid &&
                         !isEmptyUser &&
                         "hover:opacity-80 transition-opacity ease-in-out"
-                      } md:mr-auto md:ml-0 min-h-[50px] bg-[#EEEEEE] rounded-[4px] ${
+                      } md:mr-auto md:ml-0 min-h-[50px] bg-offWhite rounded-[4px] ${
                         isValid && !isEmptyUser ? " opacity-100" : "opacity-30"
                       } w-full text-[#181516]`}
                       type="submit"

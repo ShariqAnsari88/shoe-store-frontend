@@ -17,7 +17,7 @@ const ProductCard = ({ data: { attributes: p, id }, isCarouselCard }) => {
         src={p.thumbnail.data.attributes.url}
         alt={p.name ?? "No Photo"}
       />
-      <div className=" p-4 text-[#EEEEEE]/[0.9]">
+      <div className=" p-4 text-offWhite/[0.9]">
         <h2 className="text-lg text-neonGreenLighter font-bold">{p.name}</h2>
         <div className="flex items-center text-black/[0.5]">
           <p className="mr-2 text-lg font-normal">{p.price} лв.</p>

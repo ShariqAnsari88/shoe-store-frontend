@@ -22,7 +22,7 @@ export default function Contact() {
     email: Yup.string()
       .required("Моля въведете e-mail адрес!")
       .matches(emailRegex, "Моля въведете валиден e-mail адрес!"),
-    phone: Yup.string().required("Моля въведете телефонен номер!"),
+    phone: Yup.number("Моля използвайте валиден телефонен номер!").required("Моля въведете телефонен номер!"),
     message: Yup.string()
       .required("Моля въведете съобщение!")
       .min(10, "Трябва да въведете поне 10 символа."),
@@ -41,7 +41,7 @@ export default function Contact() {
   return (
     <Wrapper>
       <div class="container mx-auto p-4 my-24 grid grid-cols-2 gap-1">
-        <div class="max-w-full bg-[#EEEEEE] rounded p-8 shadow-md">
+        <div class="max-w-full bg-offWhite rounded p-8 shadow-md">
           <h2 class="text-center text-2xl font-bold mb-4 text-neonGreen">
             Свържете се с нас!
           </h2>
@@ -71,7 +71,7 @@ export default function Contact() {
                     name="name"
                     component="div"
                     render={(msg) => (
-                      <div className="text-[#FFC95F]">{msg}</div>
+                      <div className="text-darkRed">{msg}</div>
                     )}
                   />
                 </div>
@@ -93,7 +93,7 @@ export default function Contact() {
                     name="email"
                     component="div"
                     render={(msg) => (
-                      <div className="text-[#FFC95F]">{msg}</div>
+                      <div className="text-darkRed">{msg}</div>
                     )}
                   />
                 </div>
@@ -115,7 +115,7 @@ export default function Contact() {
                     name="phone"
                     component="div"
                     render={(msg) => (
-                      <div className="text-[#FFC95F]">{msg}</div>
+                      <div className="text-darkRed">{msg}</div>
                     )}
                   />
                 </div>
@@ -137,7 +137,7 @@ export default function Contact() {
                     name="subject"
                     component="div"
                     render={(msg) => (
-                      <div className="text-[#FFC95F]">{msg}</div>
+                      <div className="text-darkRed">{msg}</div>
                     )}
                   />
                 </div>
@@ -159,7 +159,7 @@ export default function Contact() {
                     name="message"
                     component="div"
                     render={(msg) => (
-                      <div className="text-[#FFC95F]">{msg}</div>
+                      <div className="text-darkRed">{msg}</div>
                     )}
                   />
                 </div>
@@ -182,10 +182,10 @@ export default function Contact() {
         <div className="h-full flex justify-between mx-auto 2xl:container 2xl:mx-auto lg:px-10 md:px-6 px-4">
           <div className="grid md:min-w-[450px] lg:grid-cols-1 md:grid-cols-2 grid-cols-1 lg:gap-8 gap-4">
             {/* Safe Shopping Grid Card */}
-            <div className="rounded-md p-6 bg-[#EEEEEE]">
+            <div className="rounded-md p-6 bg-offWhite">
               <div className="flex flex-row items-center">
-                <BsPhoneFill color="#181516" />
-                <p className="text-xl text-gray-800 font-semibold leading-5 mt-6">
+                <BsPhoneFill color="#168900" />
+                <p className="text-xl text-neonGreen font-semibold leading-5 mt-6">
                   Телефонен номер
                 </p>
               </div>
@@ -195,10 +195,10 @@ export default function Contact() {
             </div>
 
             {/* Personal Shopping Grid Card */}
-            <div className="rounded-md p-6 bg-[#EEEEEE]">
+            <div className="rounded-md p-6 bg-offWhite">
               <div className="flex flex-row items-center">
-                <FaLocationArrow color="#181516" />
-                <p className=" text-xl text-gray-800 font-semibold leading-5 mt-6">
+                <FaLocationArrow color="#168900"  />
+                <p className=" text-xl text-neonGreen font-semibold leading-5 mt-6">
                   Адрес
                 </p>
               </div>
@@ -208,10 +208,10 @@ export default function Contact() {
             </div>
 
             {/* Free Shopping Grid Card */}
-            <div className="rounded-md p-6 bg-[#EEEEEE]">
+            <div className="rounded-md p-6 bg-offWhite">
               <div className="flex flex-row items-center">
-                <FaTruckMoving color="#181516" />
-                <p className=" text-xl text-gray-800 font-semibold leading-5 mt-6">
+                <FaTruckMoving color="#168900"  />
+                <p className=" text-xl text-neonGreen font-semibold leading-5 mt-6">
                   E-mail адрес
                 </p>
               </div>

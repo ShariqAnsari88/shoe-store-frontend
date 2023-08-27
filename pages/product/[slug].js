@@ -64,7 +64,7 @@ const ProductDetails = ({ product, products }) => {
             </div>
 
             {/* PRODUCT SUBTITLE */}
-            {/* <div className="text-[#EEEEEE] text-lg font-semibold mb-5">
+            {/* <div className="text-offWhite text-lg font-semibold mb-5">
               {p.subtitle}
             </div> */}
 
@@ -77,7 +77,7 @@ const ProductDetails = ({ product, products }) => {
                 <>
                   {discount > 0 && (
                     <>
-                      <p className="text-[#EEEEEE] text-base  font-medium line-through">
+                      <p className="text-offWhite text-base  font-medium line-through">
                         {p.original_price} лв.
                       </p>
 
@@ -90,10 +90,10 @@ const ProductDetails = ({ product, products }) => {
               )}
             </div>
 
-            <div className="text-[#EEEEEE]/[0.5] text-md font-medium">
+            <div className="text-offWhite/[0.5] text-md font-medium">
               вкл. такси
             </div>
-            <div className="text-[#EEEEEE]/[0.5] text-md font-medium mb-20">
+            <div className="text-offWhite/[0.5] text-md font-medium mb-20">
               {`(Също така включва всички приложими задължения)`}
             </div>
 
@@ -101,10 +101,10 @@ const ProductDetails = ({ product, products }) => {
             <div className="mb-10">
               {/* HEADING START */}
               <div className="flex justify-between mb-2">
-                <div className="text-[#EEEEEE] text-md font-semibold">
+                <div className="text-offWhite text-md font-semibold">
                   Избери размер
                 </div>
-                <div className="text-[#EEEEEE]/[0.5] text-md font-medium cursor-pointer">
+                <div className="text-offWhite/[0.5] text-md font-medium cursor-pointer">
                   Наръчник за размери
                 </div>
               </div>
@@ -115,7 +115,7 @@ const ProductDetails = ({ product, products }) => {
                 {p.size.data.map((item, i) => (
                   <div
                     key={i}
-                    className={`text-[#EEEEEE] border-[2px] border-neonGreen rounded-md text-center py-3 font-medium ${
+                    className={`border-[2px] border-neonGreen rounded-md text-center py-3 font-medium ${
                       item.enabled
                         ? "cursor-pointer"
                         : "cursor-not-allowed bg-#393646/[0.1] opacity-50"
@@ -148,7 +148,7 @@ const ProductDetails = ({ product, products }) => {
             {/* ADD TO CART BUTTON START */}
             <button
               name="cart"
-              className="flex items-center justify-center gap-2 w-full py-4 rounded-full bg-neonGreen text-[#F1F0F1] text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75"
+              className="flex items-center justify-center gap-2 w-full py-4 rounded-full bg-neonGreen  text-[#F1F0F1] text-lg font-medium transition ease-in-out active:scale-95 mb-3 hover:opacity-75"
               onClick={() => {
                 if (!selectedSize) {
                   setShowError(true);
@@ -186,7 +186,7 @@ const ProductDetails = ({ product, products }) => {
                 );
                 notify("wishlist");
               }}
-              className="bg-[#EEEEEE] text-neonGreen w-full py-4 rounded-full border  border-neonGreen text-lg font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10"
+              className="bg-offWhite text-neonGreen transition ease-in-out w-full py-4 rounded-full border  border-neonGreen text-lg font-medium active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10"
             >
               {isWishlisted ? "Премахни от любими" : "Добави в любими"}
               <FontAwesomeIcon
@@ -197,10 +197,10 @@ const ProductDetails = ({ product, products }) => {
             {/* WHISHLIST BUTTON END */}
 
             <div>
-              <div className="text-[#EEEEEE] text-lg font-bold mb-5">
+              <div className="text-offWhite text-lg font-bold mb-5">
                 Детайли за продукт
               </div>
-              <div className="text-[#EEEEEE] markdown text-md mb-5">
+              <div className="text-offWhite markdown text-md mb-5">
                 <ReactMarkdown>{p.description}</ReactMarkdown>
               </div>
             </div>

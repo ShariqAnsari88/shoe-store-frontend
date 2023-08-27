@@ -49,7 +49,7 @@ const Cart = (props) => {
           <>
             {/* HEADING AND PARAGRAPH START */}
             <div className="text-center max-w-[800px] mx-auto mt-8 md:mt-0">
-              <div className="text-[#EEEEEE] text-[28px] md:text-[34px] mb-5 font-semibold leading-tight">
+              <div className="text-offWhite text-[28px] md:text-[34px] mb-5 font-semibold leading-tight">
                 Вашата количка
               </div>
             </div>
@@ -59,7 +59,7 @@ const Cart = (props) => {
             <div className="flex flex-col lg:flex-row gap-12 py-10">
               {/* CART ITEMS START */}
               <div className="flex-[2]">
-                <div className="text-[#EEEEEE] text-lg font-bold">Продукти</div>
+                <div className="text-offWhite text-lg font-bold">Продукти</div>
                 <div className="mb-10">
                   {cartItems.map((item) => (
                     <CartItem key={item.id} data={item} />
@@ -72,18 +72,18 @@ const Cart = (props) => {
 
               {/* SUMMARY START */}
               <div className="flex-[1]">
-                <div className="text-[#EEEEEE] text-lg font-bold">Резюме</div>
+                <div className="text-offWhite text-lg font-bold">Резюме</div>
 
                 <div className="p-5 my-5 bg-#393646/[0.05] rounded-xl">
                   <div className="flex justify-between">
-                    <div className="uppercase text-md md:text-lg font-normal text-[#EEEEEE]">
+                    <div className="uppercase text-md md:text-lg font-normal text-offWhite">
                       Междинна сума
                     </div>
-                    <div className="text-md md:text-lg font-normal text-[#EEEEEE]">
+                    <div className="text-md md:text-lg font-normal text-offWhite">
                       {subTotal} лв.
                     </div>
                   </div>
-                  <div className="text-[#EEEEEE] text-sm md:text-md py-5 border-t mt-5">
+                  <div className="text-offWhite text-sm md:text-md py-5 border-t mt-5">
                     Междинната сума отразява общата цена на вашата поръчка,
                     включително мита и данъци, преди всички приложими отстъпки.
                     Не включва разходи за доставка и международна транзакционни
@@ -95,9 +95,9 @@ const Cart = (props) => {
                 <div className="flex space-x-3 flex-row justify-between">
                   <button
                     name="arrive"
-                    className={`w-full py-4 rounded-md ${
+                    className={`transition ease-in-out w-full py-4 rounded-md ${
                       !addressInfo ? "bg-neonGreen/[0.5]" : "bg-neonGreen"
-                    } text-[#EEEEEE] text-md font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center`}
+                    } text-offWhite text-md font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center`}
                     onClick={(e) => {
                       if (!addressInfo) setShowError(true);
                       else makePayment(e);
@@ -108,9 +108,9 @@ const Cart = (props) => {
                   </button>
                   <button
                     name="card"
-                    className={`w-full py-4 rounded-md ${
+                    className={`transition ease-in-out w-full py-4 rounded-md ${
                       !addressInfo ? "bg-neonGreen/[0.5]" : "bg-neonGreen"
-                    } text-[#EEEEEE] text-md font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center`}
+                    } text-offWhite text-md font-medium active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center`}
                     onClick={(e) => {
                       if (!addressInfo) setShowError(true);
                       else makePayment(e);
@@ -141,17 +141,17 @@ const Cart = (props) => {
               icon={faCartShopping}
               className="my-10 w-20 md:w-40 flex flex-1"
             />
-            <span className="text-[#EEEEEE] text-xl font-bold">
+            <span className="text-offWhite text-xl font-bold">
               Вашата количка е празна
             </span>
-            <span className="text-[#EEEEEE] text-center mt-4">
+            <span className="text-offWhite text-center mt-4">
               Изглежда, че не сте добавили нищо в количката си.
               <br />
               Разгледайте най-добрите категории.
             </span>
             <Link
               href="/"
-              className="py-4 px-8 rounded-full bg-neonGreen text-[#EEEEEE] text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 mt-8"
+              className="py-4 px-8 rounded-full bg-neonGreen text-offWhite text-lg font-medium transition ease-in-out active:scale-95 mb-3 hover:opacity-75 mt-8"
             >
               Продължи пазаруването
             </Link>

@@ -8,19 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { emailRegex } from "@/utils/regex";
 import { ToastContainer } from "react-toastify";
-
-const initialValues = {
-  firstName: "",
-  secondName: "",
-  city: "",
-  company: "",
-  street: "",
-  streetNumber: "",
-  houseNumber: "",
-  postalCode: "",
-  phoneNumber: "",
-  email: "",
-};
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 const labels = {
   firstName: "Име*",
@@ -41,6 +29,19 @@ function AddressForm({ setShowError }) {
   const [shouldShowAddress, setShouldShowAddress] = useState(
     addressInfo ? true : false
   );
+
+  const initialValues = {
+    firstName: addressInfo?.firstName ?? "",
+    secondName: addressInfo?.secondName ?? "",
+    city: addressInfo?.city ?? "",
+    company: addressInfo?.company ?? "",
+    street: addressInfo?.street ?? "",
+    streetNumber: addressInfo?.streetNumber ?? "",
+    houseNumber: addressInfo?.houseNumber ?? "",
+    postalCode: addressInfo?.postalCode ?? "",
+    phoneNumber: addressInfo?.phoneNumber ?? "",
+    email: addressInfo?.email ?? "",
+  };
 
   const [address, setAddress] = useState({ ...initialValues });
 
@@ -103,9 +104,14 @@ function AddressForm({ setShowError }) {
   return (
     <div className="bg-neonGreen flex-1 flex-column mt-4 space-y-2 md:max-w-[450px] p-[40px] shadow-md border-zinc-700 rounded-sm">
       <ToastContainer />
-      <h1 className="font-semibold text-xl text-center text-[#F8F1F1]">
+      <div className="flex items-center gap-2 mb-2 justify-center">
+      <div>
+        <FontAwesomeIcon color="#EEEEEE" icon={faLocationDot} />
+      </div>
+      <h1 className="font-semibold text-xl text-[#F8F1F1]">
         Адрес
       </h1>
+      </div>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -119,13 +125,13 @@ function AddressForm({ setShowError }) {
                 {Object.keys(initialValues).map((a) => (
                   <div key={a} className="flex flex-col">
                     <label
-                      className="capitalize text-[#EEEEEE]  text-sm"
+                      className="capitalize text-offWhite  text-sm"
                       htmlFor={a}
                     >
                       {labels[a]}
                     </label>
                     <Field
-                      className="border-[#EEEEEE] h-2"
+                      className="border-offWhite h-2"
                       type="text"
                       id={a}
                       name={a}
@@ -142,8 +148,8 @@ function AddressForm({ setShowError }) {
                 <div className="flex flex-row gap-5">
                   <button
                     onClick={() => setShouldShowAddress(true)}
-                    className={`hover:opacity-80 transition-opacity ease-in-out"
-                   md:mr-auto md:ml-0 min-h-[50px] bg-[#181516] rounded-[4px] md:max-w-[450px] w-full text-[#EEEEEE]`}
+                    className={`hover:opacity-80 transition ease-in-out"
+                   md:mr-auto md:ml-0 min-h-[50px] bg-[#181516] rounded-[4px] md:max-w-[450px] w-full text-offWhite`}
                     type="button"
                   >
                     Отказ
@@ -155,7 +161,7 @@ function AddressForm({ setShowError }) {
                       isValid &&
                       !isEmptyAddress &&
                       "hover:opacity-80 transition-opacity ease-in-out"
-                    } md:mr-auto md:ml-0 min-h-[50px] bg-[#EEEEEE] rounded-[4px] ${
+                    } md:mr-auto md:ml-0 min-h-[50px] bg-offWhite rounded-[4px] ${
                       isValid && !isEmptyAddress ? " opacity-100" : "opacity-30"
                     } md:max-w-[450px] w-full text-[#181516]`}
                     type="submit"
@@ -175,17 +181,22 @@ function AddressForm({ setShowError }) {
 export const AddressInfo = ({ addressInfo, setShouldShowAddress }) => {
   return (
     <div className="h-60">
-      <div className="text-[#EEEEEE] text-xl font-semibold mb-2">Адрес</div>
+      <div className="flex items-center gap-2 mb-2">
+      <div className="bg-neonGreen w-8 h-8 rounded-full flex items-center justify-center">
+        <FontAwesomeIcon color="#EEEEEE" icon={faLocationDot} />
+      </div>
+      <h1 className="text-offWhite text-xl font-semibold">Адрес</h1>
+      </div>
       <div className="relative">
         <button
-          className="w-8  hover:bg-black/[0.1] bg-transparent rounded-full h-8 top-2 absolute right-2"
+          className="w-8  hover:bg-black/[0.1] transition ease-in-out bg-transparent rounded-full h-8 top-2 absolute right-2"
           name="button"
           onClick={() => setShouldShowAddress(false)}
         >
           <FontAwesomeIcon color="#151718" icon={faPenToSquare} />
         </button>
 
-        <div className="bg-[#EEEEEE] p-4 rounded-md flex flex-col gap-1">
+        <div className="bg-offWhite p-4 rounded-md flex flex-col gap-1">
           <div className="text-[#151718] font-semibold">{`${addressInfo.firstName} ${addressInfo.secondName}`}</div>
           {addressInfo.company && <div>{`${addressInfo.company}`}</div>}
           <div className="text-[#151718]">{`${addressInfo.email}`}</div>

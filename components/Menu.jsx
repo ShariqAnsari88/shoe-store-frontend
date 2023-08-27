@@ -18,7 +18,7 @@ const subMenuData = [
 
 const Menu = ({ showCatMenu, setShowCatMenu, categories }) => {
   return (
-  <ul className="hidden md:flex item-center gap-3 font-semibold text-[18px] text-[#EEEEEE]">
+  <ul className="hidden md:flex item-center gap-3 font-semibold text-[18px] text-offWhite">
       {navItems.map((item) => {
         return (
           <React.Fragment key={item.id}>
@@ -32,7 +32,7 @@ const Menu = ({ showCatMenu, setShowCatMenu, categories }) => {
                 <BsChevronDown size={14} />
 
                 {showCatMenu && (
-                  <ul className="bg-[#EEEEEE] absolute top-6 left-0 min-w-[250px] px-1 py-1 text-[#181516] shadow-lg">
+                  <ul className="bg-offWhite absolute top-6 left-0 min-w-[250px] px-1 py-1 text-[#181516] shadow-lg">
                     {categories?.map(({ attributes: c, id }) => {
                       return (
                         <Link

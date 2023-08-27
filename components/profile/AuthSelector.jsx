@@ -55,13 +55,13 @@ function AuthSelector({ setChoice }) {
               <div className="flex flex-col space-y-6 justify-center">
                 <div className="flex flex-col">
                   <label
-                    className="text-[#EEEEEE] font-semibold text-lg"
+                    className="text-offWhite font-semibold text-lg"
                     htmlFor="username"
                   >
                     Потребителско име
                   </label>
                   <Field
-                    className="border-[#EEEEEE]"
+                    className="border-offWhite"
                     type="text"
                     id="username"
                     name="username"
@@ -77,13 +77,13 @@ function AuthSelector({ setChoice }) {
 
                 <div className="flex flex-col">
                   <label
-                    className="text-[#EEEEEE] font-semibold text-lg"
+                    className="text-offWhite font-semibold text-lg"
                     htmlFor="password"
                   >
                     Парола
                   </label>
                   <Field
-                    className="border-[#EEEEEE]"
+                    className="border-offWhite"
                     type="password"
                     id="password"
                     name="password"
@@ -103,14 +103,14 @@ function AuthSelector({ setChoice }) {
                     isValid &&
                     !isEmptyUser &&
                     "hover:opacity-80 transition-opacity ease-in-out"
-                  } md:mr-auto md:ml-0 min-h-[50px] bg-[#EEEEEE] rounded-[4px] ${
+                  } md:mr-auto md:ml-0 min-h-[50px] bg-offWhite rounded-[4px] ${
                     isValid && !isEmptyUser ? " opacity-100" : "opacity-30"
                   } md:max-w-[450px] w-full text-[#181516]`}
                   type="submit"
                 >
                   Влез
                 </button>
-                <div className="text-[#EEEEEE] text-center w-full">
+                <div className="text-offWhite text-center w-full">
                   Нямаш профил?
                   <div
                     onClick={setChoice}
@@ -121,7 +121,7 @@ function AuthSelector({ setChoice }) {
                 </div>
                 <div
                   onClick={handleForgotPassword}
-                  className="text-[#EEEEEE] text-center w-full underline cursor-pointer"
+                  className="text-offWhite text-center w-full underline cursor-pointer"
                 >
                   Забравена парола?
                 </div>

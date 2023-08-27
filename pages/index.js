@@ -1,3 +1,4 @@
+import Banner from "@/components/Banner";
 import HeroBanner from "@/components/HeroBanner";
 import ProductCard from "@/components/ProductCard";
 import Wrapper from "@/components/Wrapper";
@@ -19,16 +20,17 @@ export default function Home({ products, userData }) {
       <h1 className="text-neonGreenLighter md:text-[126px] drop-shadow-[2px_12px_5px_rgb(51,255,20,0.4)] my-24 text-center font-hearthLess text-[46px]">OMNE TRIUM PERFECTUM</h1>
       <HeroBanner />
       <Wrapper>
+
         {/* heading and paragaph start */}
-        <div className="text-center max-w-[800px] mx-auto my-[50px] md:my-[80px]">
-          <div className="text-[#F1F0F1] text-[28px] md:text-[34px] mb-5 font-normal leading-tight">
+        <div className="z-1 text-center max-w-[800px] mx-auto my-[50px] md:my-[80px]">
+          <p className="text-[#F1F0F1] text-[28px] md:text-[34px] mb-5 font-normal leading-tight">
             Разгледай най-новите продукти
-          </div>
-          <div className="text-[#F1F0F1] text-md md:text-xl font-normal">
+          </p>
+          <p className="text-[#F1F0F1] text-md md:text-xl font-normal">
             Лека междинна подметка Nike ZoomX е комбинирана с увеличен стек
             височини, за да се осигури омекотяване по време на продължителни
             участъци от бягане.
-          </div>
+          </p>
         </div>
         {/* heading and paragaph end */}
 

@@ -138,7 +138,7 @@ function SignUp() {
                     isValid &&
                     !isEmptyUser &&
                     "hover:opacity-80 transition-opacity ease-in-out"
-                  } md:mr-auto md:ml-0 min-h-[50px] bg-[#EEEEEE] rounded-[4px] ${
+                  } md:mr-auto md:ml-0 min-h-[50px] bg-offWhite rounded-[4px] ${
                     isValid && !isEmptyUser ? " opac-100" : "opacity-30"
                   } md:max-w-[450px] w-full text-neonGreen`}
                   type="submit"

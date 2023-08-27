@@ -12,7 +12,7 @@ import Image from "next/image";
 
 const HeroBanner = () => {
   return (
-    <div className="mt-4 relative rounded-2xl text-white text-[20px] w-full max-w-[1360px] mx-auto px-4">
+    <div className="mt-4 relative rounded-2xl text-white text-[20px] w-full max-w-[95%] mx-auto ">
       <Carousel
         className="rounded-2xl"
         autoPlay={true}

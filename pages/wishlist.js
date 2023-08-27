@@ -16,7 +16,7 @@ const Wishlist = () => {
           <>
             {/* HEADING AND PARAGRAPH START */}
             <div className="text-center max-w-[800px] mx-auto mt-8 md:mt-0">
-              <div className="text-[#EEEEEE] text-[28px] md:text-[34px] mb-5 font-semibold leading-tight">
+              <div className="text-offWhite text-[28px] md:text-[34px] mb-5 font-semibold leading-tight">
                 Твоите любими продукти!
               </div>
             </div>
@@ -46,15 +46,15 @@ const Wishlist = () => {
               icon={faHeart}
               className="my-10 w-20 md:w-40 flex flex-1"
             />
-            <span className="text-[#EEEEEE] text-xl font-bold">Празно</span>
-            <span className="text-[#EEEEEE] text-center mt-4">
+            <span className="text-offWhite text-xl font-bold">Празно</span>
+            <span className="text-offWhite text-center mt-4">
               Изглежда, че не сте добавили любими продукти.
               <br />
               Разгледайте най-добрите категории.
             </span>
             <Link
               href="/"
-              className="py-4 px-8 rounded-full bg-neonGreen text-[#EEEEEE] text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 mt-8"
+              className="py-4 px-8 rounded-full bg-neonGreen text-offWhite text-lg font-medium transition ease-in-out active:scale-95 mb-3 hover:opacity-75 mt-8"
             >
               Продължи пазаруването
             </Link>

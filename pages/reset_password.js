@@ -58,13 +58,13 @@ const ForgotPassword = () => {
                   <div className="flex flex-col space-y-6 justify-center">
                     <div className="flex flex-col">
                       <label
-                        className="text-[#EEEEEE] font-semibold text-lg"
+                        className="text-offWhite font-semibold text-lg"
                         htmlFor="password"
                       >
                         Нова парола
                       </label>
                       <Field
-                        className="border-[#EEEEEE]"
+                        className="border-offWhite"
                         type="text"
                         id="password"
                         name="password"
@@ -80,13 +80,13 @@ const ForgotPassword = () => {
 
                     <div className="flex flex-col">
                       <label
-                        className="text-[#EEEEEE] font-semibold text-lg"
+                        className="text-offWhite font-semibold text-lg"
                         htmlFor="passwordConfirmation"
                       >
                         Потвърди парола
                       </label>
                       <Field
-                        className="border-[#EEEEEE]"
+                        className="border-offWhite"
                         type="passwordConfirmation"
                         id="passwordConfirmation"
                         name="passwordConfirmation"
@@ -106,7 +106,7 @@ const ForgotPassword = () => {
                         isValid &&
                         !isEmptyPassword &&
                         "hover:opacity-80 transition-opacity ease-in-out"
-                      } md:mr-auto md:ml-0 min-h-[50px] bg-[#EEEEEE] rounded-[4px] ${
+                      } md:mr-auto md:ml-0 min-h-[50px] bg-offWhite rounded-[4px] ${
                         isValid && !isEmptyPassword
                           ? " opacity-100"
                           : "opacity-30"

@@ -62,7 +62,7 @@ const Header = () => {
     >
       <div className="flex justify-between items-center w-full px-4">
         <Link href="/">
-          <h1 className="md:text-[38px] text-[26px] font-hearthLess">Troyka Wear</h1>
+         <Image width={45} height={45} className="md:w-10 md:h-10 w-8 h-8" alt="image" src="/logo-white.png"/>
           {/* <Image alt="img" src={shopImage} className="w-[70px] md:w-[100px]" /> */}
         </Link>
 
@@ -84,15 +84,15 @@ const Header = () => {
         <div className="flex items-center gap-0 text-black">
           {/* Icon start */}
           <Link href="/profile">
-            <div className="text-[#EEEEEE] border-[#D8E3E7] w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-white/[0.05] cursor-pointer relative">
+            <div className="text-offWhite border-[#D8E3E7] w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-white/[0.05] cursor-pointer relative">
               <FontAwesomeIcon icon={faUser} />
             </div>
           </Link>
           <Link href="/wishlist">
-            <div className="text-[#EEEEEE] border-[#D8E3E7] w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-[#EEEEEE]/[0.05] cursor-pointer relative">
+            <div className="text-offWhite border-[#D8E3E7] w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-offWhite/[0.05] cursor-pointer relative">
               <IoMdHeartEmpty className="text-[19px] md:text-[24px]" />
               {wishlistItems.length > 0 && (
-                <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-[#B22222] absolute top-1 left-5 md:left-7 text-[#EEEEEE] text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
+                <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-[#B22222] absolute top-1 left-5 md:left-7 text-offWhite text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
                   {wishlistItems.length}
                 </div>
               )}
@@ -102,10 +102,10 @@ const Header = () => {
 
           {/* Icon start */}
           <Link href="/cart">
-            <div className="text-[#EEEEEE] border-[#D8E3E7] w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-[#EEEEEE]/[0.05] cursor-pointer relative">
+            <div className="text-offWhite border-[#D8E3E7] w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-offWhite/[0.05] cursor-pointer relative">
               <FontAwesomeIcon icon={faCartShopping} />
               {cartItems.length > 0 && (
-                <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-[#B22222] absolute top-1 left-5 md:left-7 text-[#EEEEEE] text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
+                <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-[#B22222] absolute top-1 left-5 md:left-7 text-offWhite text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
                   {cartItems.length}
                 </div>
               )}

@@ -22,7 +22,7 @@ const RelatedProducts = ({ products }) => {
 
     return (
         <div className="mt-[50px] md:mt-[100px] mb-[100px] md:mb-0">
-            <div className="text-[#EEEEEE] text-2xl font-normal mb-5">Препоръчани продукти</div>
+            <div className="text-offWhite text-2xl font-normal mb-5">Препоръчани продукти</div>
             <Carousel
                 responsive={responsive}
                 containerClass="-mx-[10px]"

@@ -1,12 +1,15 @@
 import Link from "next/link";
 import React from "react";
-import { FaFacebookF, FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 import Wrapper from "./Wrapper";
+import Image from "next/image";
 // bg-darkBlack
 const Footer = () => {
   return (
-    <footer className="bg-neonGreenLighter text-[#181516]  pt-14 pb-3">
-      <Wrapper className="flex justify-between flex-col md:flex-row gap-[50px] md:gap-0">
+    <footer className="flex justify-center md:flex-row flex-col items-center gap-2 bg-offWhite  text-[#181516]">
+      <Image alt="img" width={300} height={300} className="w-32 h-full" src="/logo-black.png"/>
+      <div>
+      <Wrapper className="flex justify-between flex-col md:flex-row gap-[50px] pt-10">
         {/* LEFT START */}
         <div className="flex gap-[50px] md:gap-[75px] lg:gap-[100px] flex-col md:flex-row">
           {/* MENU START */}
@@ -43,17 +46,17 @@ const Footer = () => {
         {/* RIGHT START */}
         <div className="flex gap-4 justify-center md:justify-start">
 
-          <div onClick={()=> window.open("https://www.instagram.com/troykawear/")} className="w-10 h-10 rounded-full bg-darkBlack/[0.25] flex items-center justify-center text-black hover:text-darkBlack/[0.5] cursor-pointer">
+          <div onClick={()=> window.open("https://www.instagram.com/troykawear/")} className="w-10 h-10 rounded-full bg-darkBlack/[0.25] transition ease-in-out flex items-center justify-center text-black hover:text-darkBlack/[0.5] cursor-pointer">
             <FaInstagram size={20} />
           </div>
         </div>
         {/* RIGHT END */}
       </Wrapper>
-      <Wrapper className="flex justify-between mt-10 flex-col md:flex-row gap-[10px] md:gap-0">
+      <Wrapper className="flex justify-between ml-2 mt-10 flex-col md:flex-row gap-[10px] md:gap-0">
         {/* LEFT START */}
         <div className="text-[12px] text-darkBlack/[0.8] hover:text-darkBlack/[0.5] cursor-pointer text-center md:text-left">
           Съдържанието на този сайт е защитено с авторски права и принадлежи на
-          © 2023 Troyka Wear.{" "}
+          © 2023 Troyka Wear.
         </div>
         {/* LEFT END */}
 
@@ -71,6 +74,8 @@ const Footer = () => {
         </div>
         {/* RIGHT END */}
       </Wrapper>
+      </div>
+      {/* <Image width={600} height={600} className=" w-90 h-10" src="/troyka-eye.png"/> */}
     </footer>
   );
 };

@@ -34,32 +34,32 @@ const CartItem = ({ data }) => {
       <div className="w-full flex flex-col">
         <div className="flex flex-col md:flex-row justify-between">
           {/* PRODUCT TITLE */}
-          <div className="text-lg md:text-2xl font-normal text-[#EEEEEE]/[0.8]">
+          <div className="text-lg md:text-2xl font-normal text-offWhite/[0.8]">
             {p.name}
           </div>
 
           {/* PRODUCT SUBTITLE */}
-          <div className="text-sm md:text-md font-normal text-[#EEEEEE]/[0.5] block md:hidden">
+          <div className="text-sm md:text-md font-normal text-offWhite/[0.5] block md:hidden">
             {p.subtitle}
           </div>
 
           {/* PRODUCT PRICE */}
-          <div className="text-sm md:text-md font-normal text-[#EEEEEE]/[0.5] mt-2">
+          <div className="text-sm md:text-md font-normal text-offWhite/[0.5] mt-2">
             {p.price} лв.
           </div>
         </div>
 
         {/* PRODUCT SUBTITLE */}
-        <div className="text-md font-normal text-[#EEEEEE]/[0.5] hidden md:block">
+        <div className="text-md font-normal text-offWhite/[0.5] hidden md:block">
           {p.subtitle}
         </div>
 
         <div className="flex items-center justify-between mt-4">
-          <div className="flex items-center gap-2 md:gap-10 text-[#EEEEEE]/[0.5] text-sm md:text-md">
+          <div className="flex items-center gap-2 md:gap-10 text-offWhite/[0.5] text-sm md:text-md">
             <div className="flex items-center gap-1">
               <div className="font-normal">Size:</div>
               <select
-                className="text-black rounded-md border-[#EEEEEE] border-[2px] cursor-pointer"
+                className="text-black rounded-md border-offWhite border-[2px] cursor-pointer"
                 onChange={(e) => updateCartItem(e, "selectedSize")}
               >
                 {p.size.data.map((item, i) => {
@@ -80,7 +80,7 @@ const CartItem = ({ data }) => {
             <div className="flex items-center gap-1">
               <div className="font-semibold">Quantity:</div>
               <select
-                className="text-black rounded-md border-[#EEEEEE] border-[2px] cursor-pointer"
+                className="text-black rounded-md border-offWhite border-[2px] cursor-pointer"
                 onChange={(e) => updateCartItem(e, "quantity")}
               >
                 {Array.from({ length: 10 }, (_, i) => i + 1).map((q, i) => {
@@ -95,7 +95,7 @@ const CartItem = ({ data }) => {
           </div>
           <RiDeleteBin6Line
             onClick={() => dispatch(removeFromCart({ id: data.id, selectedSize: data.selectedSize }))}
-            className="cursor-pointer text-[#EEEEEE]/[0.5] hover:text-[#EEEEEE] text-[16px] md:text-[20px]"
+            className="cursor-pointer transition ease-in-out text-offWhite/[0.5] hover:text-offWhite text-[16px] md:text-[20px]"
           />
         </div>
       </div>
