@@ -48,20 +48,20 @@ function AddressForm({ setShowError }) {
   const isEmptyAddress = Object.values(address).every((k) => k.length < 1);
 
   const validationSchema = Yup.object().shape({
-    firstName: Yup.string().required("Моля, въведете име,"),
-    secondName: Yup.string().required("Моля, въведете фамилия."),
+    firstName: Yup.string().required("Моля, въведете име!"),
+    secondName: Yup.string().required("Моля, въведете фамилия!"),
     company: Yup.string().optional(),
     city: Yup.string()
-      .required("Моля, въведете град.")
-      .min(4, "Градът трябва да съдържа поне 4 символа."),
+      .required("Моля, въведете град!")
+      .min(4, "Градът трябва да съдържа поне 4 символа!"),
     street: Yup.string().required(),
-    streetNumber: Yup.string().required("Моля, въведете номер на улица."),
-    houseNumber: Yup.string().required("Моля, въведете номер на вход/блок."),
-    postalCode: Yup.string().required("Моля, въведете пощенски код."),
-    phoneNumber: Yup.string().required("Моля, въведете телефонен номер."),
+    streetNumber: Yup.string().required("Моля, въведете номер на улица!"),
+    houseNumber: Yup.string().required("Моля, въведете номер на вход/блок!"),
+    postalCode: Yup.string().required("Моля, въведете пощенски код!"),
+    phoneNumber: Yup.string().required("Моля, въведете телефонен номер!"),
     email: Yup.string()
-      .required("Моля, въведете e-mail адрес.")
-      .matches(emailRegex, "Моля, въведете валиден e-mail адрес."),
+      .required("Моля, въведете e-mail адрес!")
+      .matches(emailRegex, "Моля, въведете валиден e-mail адрес!"),
   });
 
   //=========================== Handler Functions START ============================//

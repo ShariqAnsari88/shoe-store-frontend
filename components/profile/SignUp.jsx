@@ -67,7 +67,7 @@ function SignUp() {
                     name="username"
                     component="div"
                     render={(msg) => (
-                      <div className="text-[#FFC95F]">{msg}</div>
+                      <div className="text-darkRed">{msg}</div>
                     )}
                   />
                 </div>
@@ -86,7 +86,7 @@ function SignUp() {
                     name="email"
                     component="div"
                     render={(msg) => (
-                      <div className="text-[#FFC95F]">{msg}</div>
+                      <div className="text-darkRed">{msg}</div>
                     )}
                   />
                 </div>
@@ -105,7 +105,7 @@ function SignUp() {
                     name="password"
                     component="div"
                     render={(msg) => (
-                      <div className="text-[#FFC95F]">{msg}</div>
+                      <div className="text-darkRed">{msg}</div>
                     )}
                   />
                 </div>
@@ -127,7 +127,7 @@ function SignUp() {
                     name="confirmPassword"
                     component="div"
                     render={(msg) => (
-                      <div className="text-[#FFC95F]">{msg}</div>
+                      <div className="text-darkRed">{msg}</div>
                     )}
                   />
                 </div>

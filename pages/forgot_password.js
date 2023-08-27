@@ -82,7 +82,7 @@ const ForgotPassword = () => {
                         name="email"
                         component="div"
                         render={(msg) => (
-                          <div className="text-[#FFC95F]">{msg}</div>
+                          <div className="text-darkRed">{msg}</div>
                         )}
                       />
                     </div>

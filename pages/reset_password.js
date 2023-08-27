@@ -73,7 +73,7 @@ const ForgotPassword = () => {
                         name="password"
                         component="div"
                         render={(msg) => (
-                          <div className="text-[#FFC95F]">{msg}</div>
+                          <div className="text-darkRed">{msg}</div>
                         )}
                       />
                     </div>
@@ -95,7 +95,7 @@ const ForgotPassword = () => {
                         name="passwordConfirmation"
                         component="div"
                         render={(msg) => (
-                          <div className="text-[#FFC95F]">{msg}</div>
+                          <div className="text-darkRed">{msg}</div>
                         )}
                       />
                     </div>
