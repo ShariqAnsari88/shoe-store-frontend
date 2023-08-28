@@ -22,6 +22,12 @@
     src: url('../assets/fonts/Heartless.ttf');
 }
 
+/* @font-face {
+    font-family: "Manier_Regular";
+    src: url('../assets/fonts/Manier_Regular.otf');
+}
+ */
+
 :root {
     font-family: "Euclid", sans-serif;
     font-weight: 400;

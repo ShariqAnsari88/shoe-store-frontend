@@ -7,8 +7,8 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <footer className="flex justify-center md:flex-row flex-col items-center gap-2 bg-offWhite  text-[#181516]">
-      <Image alt="img" width={300} height={300} className="w-32 h-full" src="/logo-black.png"/>
-      <div>
+      <Image alt="img" width={600} height={600} className="w-32 h-full" src="/logo-black.png"/>
+      <div className="md:min-w-[55%] pb-8">
       <Wrapper className="flex justify-between flex-col md:flex-row gap-[50px] pt-10">
         {/* LEFT START */}
         <div className="flex gap-[50px] md:gap-[75px] lg:gap-[100px] flex-col md:flex-row">
@@ -27,9 +27,9 @@ const Footer = () => {
           <div className="flex gap-[50px] md:gap-[75px] lg:gap-[100px] shrink-0">
             {/* MENU START */}
             <div className="flex flex-col gap-3">
-              <div className="text-darkBlack font-normal font-medium uppercase text-sm">
+              <p className="text-darkBlack font-normal font-medium uppercase text-sm">
                 Помощ
-              </div>
+              </p>
               <Link
                 href="/contact"
                 className="text-darkBlack] text-sm text-darkBlack/[0.8] hover:text-darkBlack/[0.5] cursor-pointer"
@@ -52,25 +52,25 @@ const Footer = () => {
         </div>
         {/* RIGHT END */}
       </Wrapper>
-      <Wrapper className="flex justify-between ml-2 mt-10 flex-col md:flex-row gap-[10px] md:gap-0">
+      <Wrapper className="flex justify-between ml-2 mt-5 flex-col md:flex-row gap-[10px] md:gap-0">
         {/* LEFT START */}
-        <div className="text-[12px] text-darkBlack/[0.8] hover:text-darkBlack/[0.5] cursor-pointer text-center md:text-left">
+        <p className="text-[12px] text-darkBlack/[0.8]  hover:text-darkBlack/[0.5] cursor-pointer mt-auto text-center md:text-left">
           Съдържанието на този сайт е защитено с авторски права и принадлежи на
           © 2023 Troyka Wear.
-        </div>
+        </p>
         {/* LEFT END */}
 
         {/* RIGHT START */}
-        <div className="flex gap-2 md:gap-5 text-center md:text-left flex-wrap justify-center">
-          <div className="text-[12px] text-darkBlack hover:text-darkBlack/[0.5] cursor-pointer">
+        <div className="flex flex-col gap-2 md:gap-1 text-center md:text-right flex-wrap justify-center">
+          <p className="text-[12px] text-darkBlack hover:text-darkBlack/[0.5] cursor-pointer">
             Условия за продажба
-          </div>
-          <div className="text-[12px] text-darkBlack hover:text-darkBlack/[0.5] cursor-pointer">
+          </p>
+          <p className="text-[12px] text-darkBlack hover:text-darkBlack/[0.5] cursor-pointer">
             Условия за ползване
-          </div>
-          <div className="text-[12px] text-darkBlack hover:text-darkBlack/[0.5] cursor-pointer">
+          </p>
+          <p className="text-[12px] text-darkBlack hover:text-darkBlack/[0.5] cursor-pointer">
             Политика за поверителност
-          </div>
+          </p>
         </div>
         {/* RIGHT END */}
       </Wrapper>

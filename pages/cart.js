@@ -15,6 +15,7 @@ import { getUser } from "@/store/contexts/userContext";
 import { useAppSelector } from "@/store/hooks";
 import { selectUserAddress } from "@/store/userSlice";
 import AddressForm from "@/components/profile/AddressForm";
+import Divider from "@/components/Divider";
 
 const Cart = (props) => {
   const router = useRouter();
@@ -23,6 +24,7 @@ const Cart = (props) => {
   const [showError, setShowError] = useState(false);
   const addressInfo = useAppSelector(selectUserAddress);
   const { cartItems } = useSelector((state) => state.cart);
+  const deliveryPrice = 5
 
   const subTotal = useMemo(() => {
     return cartItems.reduce((total, val) => total + val.attributes.price, 0);
@@ -80,7 +82,16 @@ const Cart = (props) => {
                       Междинна сума
                     </div>
                     <div className="text-md md:text-lg font-normal text-offWhite">
-                      {subTotal} лв.
+                      {subTotal} лв
+                    </div>
+                  </div>
+                  <Divider />
+                  <div className="flex justify-between">
+                    <div className="uppercase text-md md:text-lg font-normal text-offWhite">
+                      Стойност на доставка
+                    </div>
+                    <div className="text-md md:text-lg font-normal text-offWhite">
+                      {subTotal < 50 ? deliveryPrice : 0} лв
                     </div>
                   </div>
                   <div className="text-offWhite text-sm md:text-md py-5 border-t mt-5">
