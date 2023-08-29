@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import slideImage1 from "../public/slide-1.png";
+import slideImage1 from "../public/black-shirt.png";
 import slideImage2 from "../public/slide-2.png";
 import slideImage3 from "../public/slide-3.png";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
@@ -12,9 +12,9 @@ import Image from "next/image";
 
 const HeroBanner = () => {
   return (
-    <div className="mt-4 relative rounded-2xl text-white text-[20px] w-full max-w-[95%] mx-auto ">
+    <div className="mt-4 relative rounded-2xl text-white text-[20px] max-h-[800px] max-w-[95%] mx-auto ">
       <Carousel
-        className="rounded-2xl"
+        className="rounded-2xl max-h-[800px]"
         autoPlay={true}
         infiniteLoop={true}
         showThumbs={false}
@@ -42,7 +42,7 @@ const HeroBanner = () => {
       >
         <div>
           <Image
-            className="w-full h-full rounded-2xl object-contain"
+            className="rounded-2xl max-h-[700px] object-contain"
             src={slideImage1}
             alt="Picture of the author"
           />
@@ -54,7 +54,7 @@ const HeroBanner = () => {
         <div>
           <Image
             src={slideImage2}
-            className="w-full h-full rounded-2xl object-contain"
+            className="rounded-2xl max-h-[700px] object-contain"
           />
           <div className="px-[15px] md:px-[40px] py-[10px] md:py-[25px] font-normal bg-white absolute bottom-[25px] md:bottom-[75px] left-0 text-black/[0.9] text-[15px] md:text-[30px] uppercase font-medium cursor-pointer hover:opacity-90">
             Пазарувай сега
@@ -64,7 +64,7 @@ const HeroBanner = () => {
         <div>
           <Image
             src={slideImage3}
-            className="w-full h-full rounded-2xl object-contain"
+            className="rounded-2xl max-h-[700px] object-cover"
           />
           <div className="px-[15px] md:px-[40px] py-[10px] md:py-[25px] font-normal bg-white absolute bottom-[25px] md:bottom-[75px] left-0 text-black/[0.9] text-[15px] md:text-[30px] uppercase font-medium cursor-pointer hover:opacity-90">
             Пазарувай сега

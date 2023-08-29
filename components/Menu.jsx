@@ -18,7 +18,7 @@ const subMenuData = [
 
 const Menu = ({ showCatMenu, setShowCatMenu, categories }) => {
   return (
-  <ul className="hidden md:flex item-center gap-3 font-semibold text-[18px] text-offWhite">
+  <ul className="hidden md:flex item-center gap-3 font-semibold text-[24px] ">
       {navItems.map((item) => {
         return (
           <React.Fragment key={item.id}>
