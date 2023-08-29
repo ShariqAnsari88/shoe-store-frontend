@@ -8,10 +8,12 @@ const ProductCard = ({ data: { attributes: p, id }, isCarouselCard }) => {
   return (
     <Link
       href={`/product/${p.slug}`}
-      className={`transform ${isCarouselCard ? null : "border-[2px]"} rounded-md overflow-hidden bg-[#181516] duration-200 hover:scale-105 cursor-pointer`}
-    >      
+      className={`transform ${
+        isCarouselCard ? null : "border-2"
+      } overflow-hidden bg-[#181516] duration-200 hover:scale-105 cursor-pointer flex flex-col justify-between`}
+    >
       <Image
-        className=" max-h-64 object-contain"
+        className="object-contain"
         width={500}
         height={500}
         src={p.thumbnail.data.attributes.url}

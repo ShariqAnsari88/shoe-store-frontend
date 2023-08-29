@@ -16,12 +16,10 @@ export default function WishlistItem(props) {
   const imageSrc =
     props.wishlistItem.attributes?.image?.data[0]?.attributes?.url;
   return (
-    <div>
-      <div
-        className="relative hover:scale-105 transition-all transition-property: all
+    <div     className="relative hover:scale-105 transition-all transition-property: all
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1)
-    transition-duration: 150ms z-0 bg-[#181516] rounded-md"
-      >
+    transition-duration: 150ms z-0 rounded-md border-2">
+      <div>
         <a
           href={`/product/${props.wishlistItem.attributes.slug}`}
           className="rounded-md"
