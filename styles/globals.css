@@ -22,14 +22,25 @@
     src: url('../assets/fonts/Heartless.ttf');
 }
 
-/* @font-face {
-    font-family: "Manier_Regular";
-    src: url('../assets/fonts/Manier_Regular.otf');
+@font-face {
+    font-family: "Boffin";
+    src: url('../assets/fonts/Boffin.otf');
 }
- */
+
+@font-face {
+    font-family: "Boffin-B";
+    src: url('../assets/fonts/BoffinBold.otf');
+}
+
+@font-face {
+    font-family: "Boffin-M";
+    src: url('../assets/fonts/BoffinCondensed.otf');
+}
+
+
 
 :root {
-    font-family: "Euclid", sans-serif;
+    font-family: "Boffin", sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;

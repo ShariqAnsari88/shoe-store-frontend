@@ -52,7 +52,7 @@ const Footer = () => {
         </div>
         {/* RIGHT END */}
       </Wrapper>
-      <Wrapper className="flex justify-between ml-2 mt-5 flex-col md:flex-row gap-[10px] md:gap-0">
+      <Wrapper className="flex justify-between mt-5 flex-col md:flex-row gap-[10px] md:gap-0">
         {/* LEFT START */}
         <p className="text-[12px] text-darkBlack/[0.8]  hover:text-darkBlack/[0.5] cursor-pointer mt-auto text-center md:text-left">
           Съдържанието на този сайт е защитено с авторски права и принадлежи на

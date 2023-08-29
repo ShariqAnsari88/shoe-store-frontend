@@ -10,9 +10,9 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      normal: "Euclid",
-      bold: "Euclid_Bold",
-      semibold: "Euclid_SemiBold",
+      normal: "Boffin",
+      bold: "Boffin-B",
+      semibold: "Boffin-M",
       hearthLess: "Hearthless"
     },
     extend: {

@@ -104,9 +104,6 @@ const ProductDetails = ({ product, products }) => {
                 <div className="text-offWhite text-md font-semibold">
                   Избери размер
                 </div>
-                <div className="text-offWhite/[0.5] text-md font-medium cursor-pointer">
-                  Наръчник за размери
-                </div>
               </div>
               {/* HEADING END */}
 
