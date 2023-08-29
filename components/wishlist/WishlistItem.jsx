@@ -11,14 +11,17 @@ export default function WishlistItem(props) {
 
   if (!props.wishlistItem) return null;
 
-  const discount = getDiscountedPricePercentage(props.wishlistItem.attributes.original_price, props.wishlistItem.attributes.price);
+  const discount = getDiscountedPricePercentage(
+    props.wishlistItem.attributes.original_price,
+    props.wishlistItem.attributes.price
+  );
 
   const imageSrc =
     props.wishlistItem.attributes?.image?.data[0]?.attributes?.url;
   return (
-    <div     className="relative hover:scale-105 transition-all transition-property: all
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1)
-    transition-duration: 150ms z-0 rounded-md border-2">
+    <div
+      className={`transform border-2 overflow-hidden duration-200 hover:scale-105 cursor-pointer flex flex-col justify-between`}
+    >
       <div>
         <a
           href={`/product/${props.wishlistItem.attributes.slug}`}
@@ -28,15 +31,13 @@ export default function WishlistItem(props) {
             alt="img"
             width={1000}
             height={1000}
-            className="min-h-[350px] w-full h-full object-contain z-0 rounded-md"
+            className="object-contain"
             src={imageSrc}
           />
         </a>
         <button
           onClick={() =>
-            dispatch(
-              removeFromWishlist({ id: props.wishlistItem.id })
-            )
+            dispatch(removeFromWishlist({ id: props.wishlistItem.id }))
           }
           className="bg-white px-1 rounded-md z-1 absolute top-2 right-2"
         >
@@ -48,7 +49,7 @@ export default function WishlistItem(props) {
         </button>
       </div>
       <div className="p-4 text-offWhite/[0.9]">
-      <h2 className="text-lg text-neonGreenLighter font-bold">
+        <h2 className="text-lg text-neonGreenLighter font-bold">
           {props.wishlistItem.attributes.name}
         </h2>
         <div className="flex items-center text-black/[0.5]">
@@ -58,17 +59,17 @@ export default function WishlistItem(props) {
 
           {props.wishlistItem.attributes.original_price && (
             <>
-                         {discount > 0 && (
-                    <>
-                      <p className="text-offWhite text-base  font-medium line-through">
-                        {props.wishlistItem.attributes.original_price} лв.
-                      </p>
+              {discount > 0 && (
+                <>
+                  <p className="text-offWhite text-base  font-medium line-through">
+                    {props.wishlistItem.attributes.original_price} лв.
+                  </p>
 
-                      <p className="ml-auto text-base font-semibold bg-orange-400 rounded-md p-[5px]">
-                        {discount}% off
-                      </p>
-                    </>
-                  )}
+                  <p className="ml-auto text-base font-semibold bg-orange-400 rounded-md p-[5px]">
+                    {discount}% off
+                  </p>
+                </>
+              )}
             </>
           )}
         </div>

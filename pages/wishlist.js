@@ -26,7 +26,7 @@ const Wishlist = () => {
             <div className="flex flex-col lg:flex-row gap-12 py-10">
               {/* CART ITEMS START */}
               <div className="flex-[2]">
-                <div className="grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 my-14 px-5 md:px-0">
                   {wishlistItems.map((item) => (
                     <WishlistItem key={item.id} wishlistItem={item} />
                   ))}
@@ -34,7 +34,7 @@ const Wishlist = () => {
               </div>
               {/* CART ITEMS END */}
             </div>
-            {/* CART CONTENT END */}
+          {/* CART CONTENT END */}
           </>
         )}
 
@@ -54,7 +54,7 @@ const Wishlist = () => {
             </span>
             <Link
               href="/"
-              className="py-4 px-8 rounded-full bg-neonGreen text-offWhite text-lg font-medium transition ease-in-out active:scale-95 mb-3 hover:opacity-75 mt-8"
+              className="rounded-full py-4 px-8 bg-neonGreen text-offWhite text-lg font-medium transition ease-in-out active:scale-95 mb-3 hover:opacity-75 mt-8"
             >
               Продължи пазаруването
             </Link>
