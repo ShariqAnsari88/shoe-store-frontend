@@ -70,7 +70,7 @@ function AuthSelector({ setChoice }) {
                     name="username"
                     component="div"
                     render={(msg) => (
-                      <div className="text-darkRed">{msg}</div>
+                      <div className="text-errorYellow">{msg}</div>
                     )}
                   />
                 </div>
@@ -92,7 +92,7 @@ function AuthSelector({ setChoice }) {
                     name="password"
                     component="div"
                     render={(msg) => (
-                      <div className="text-darkRed">{msg}</div>
+                      <div className="text-errorYellow">{msg}</div>
                     )}
                   />
                 </div>

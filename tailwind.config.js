@@ -22,6 +22,7 @@ module.exports = {
         neonGreenLighter: "#33ff14",
         darkBlack: "#181516",
         darkRed: "#B22222",
+        errorYellow: "#FFC95F"
        },
        backgroundImage: {
         'troykaEye': "url('../assets/images/troyka-eye.png')",

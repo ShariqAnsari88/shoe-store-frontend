@@ -140,7 +140,7 @@ function AddressForm({ setShowError }) {
                       name={a}
                       component="div"
                       render={(msg) => (
-                        <div className="text-[#FFC95F]">{msg}</div>
+                        <div className="text-errorYellow">{msg}</div>
                       )}
                     />
                   </div>

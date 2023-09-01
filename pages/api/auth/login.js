@@ -11,7 +11,7 @@ export default async function handler(user) {
       password,
     });
 
-   setToken(postRes)
+    setToken(postRes)
 
     console.log("Authenticated")
   } catch (e) {
