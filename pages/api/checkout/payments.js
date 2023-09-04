@@ -1,4 +1,4 @@
-const stripePromise = loadStripe(process.env.NEXT_PB_STRIPE_PK_LIVE);
+const stripePromise = loadStripe(process.env.NEXT_STRIPE_PK_LIVE);
 
 import { loadStripe } from "@stripe/stripe-js";
 import { makePaymentRequest } from "@/utils/api";
