@@ -18,7 +18,7 @@ export const handlePayment = createAsyncThunk(
           status: 'active',
           addressInfo,
           user,
-          totalPrice
+          totalPrice,
         });
 
         await stripe.redirectToCheckout({ 
@@ -37,10 +37,10 @@ export const handlePayment = createAsyncThunk(
           status: 'active',
           addressInfo,
           user,
-          totalPrice
+          totalPrice,
         });
       } catch (error) {
-        Router.replace("/failed")
+        Router.replace("/")
         console.log(error);
       }
     }
