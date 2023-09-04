@@ -41,8 +41,8 @@ const Cart = (props) => {
         totalPrice: subTotal,
       })
     ).then((e) => {
-      if (e.error) router.replace("/failed");
-      else router.replace("/success");
+      if (e.error) router.replace("/");
+      else router.replace("/");
     });
 
   return (
@@ -124,6 +124,7 @@ const Cart = (props) => {
                       !addressInfo ? "bg-neonGreen/[0.5]" : "bg-neonGreen"
                     } text-offWhite text-md font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center`}
                     onClick={(e) => {
+                      е.preventDefault()
                       if (!addressInfo) setShowError(true);
                       else makePayment(e);
                     }}
