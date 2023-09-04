@@ -19,7 +19,6 @@ import Divider from "@/components/Divider";
 import Image from "next/image";
 
 const Cart = (props) => {
-  const router = useRouter();
   const user = props.user.username;
   const dispatch = useDispatch();
   const [showError, setShowError] = useState(false);
@@ -31,20 +30,17 @@ const Cart = (props) => {
     return cartItems.reduce((total, val) => total + val.attributes.price, 0);
   }, [cartItems]);
 
-  const makePayment = async (e) =>
+  const makePayment = async (event) => {
     dispatch(
       handlePayment({
-        paymentMethod: e.target.name,
+        paymentMethod: event.target.name,
         products: cartItems,
         addressInfo,
         user,
         totalPrice: subTotal,
       })
-    ).then((e) => {
-      if (e.error) router.replace("/");
-      else router.replace("/");
-    });
-
+    )
+  };
   return (
     <div className="w-full md:py-20">
       <Wrapper>
@@ -100,15 +96,15 @@ const Cart = (props) => {
                     </div>
                   </div>
                   <div className="text-offWhite text-sm md:text-md py-5 border-t mt-5">
-                  <div className=" text-offWhite text-xl rounded-md flex flex-row items-center gap-2 mb-6">
-                    <Image
-                      className="w-20"
-                      alt="img"
-                      width={600}
-                      height={600}
-                      src="/speedy-logo.jpeg"
-                    />
-                  </div>
+                    <div className=" text-offWhite text-xl rounded-md flex flex-row items-center gap-2 mb-6">
+                      <Image
+                        className="w-20"
+                        alt="img"
+                        width={600}
+                        height={600}
+                        src="/speedy-logo.jpeg"
+                      />
+                    </div>
                     Междинната сума отразява общата цена на вашата поръчка,
                     включително мита и данъци, преди всички приложими отстъпки.
                     Не включва разходи за доставка и международна транзакционни

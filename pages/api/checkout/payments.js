@@ -1,9 +1,8 @@
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK_TEST);
+const stripePromise = loadStripe(process.env.NEXT_PB_STRIPE_PK_LIVE);
 
 import { loadStripe } from "@stripe/stripe-js";
 import { makePaymentRequest } from "@/utils/api";
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { Router } from "next/router";
 
 export const handlePayment = createAsyncThunk(
   "payments/handlePayment",
@@ -26,8 +25,7 @@ export const handlePayment = createAsyncThunk(
         });
 
       } catch (error) {
-        Router.replace("/failed")
-        console.log(error);
+        console.log(error,'Error handling card payment');
       }
     } else {
       try {
@@ -40,8 +38,7 @@ export const handlePayment = createAsyncThunk(
           totalPrice,
         });
       } catch (error) {
-        Router.replace("/")
-        console.log(error);
+        console.log(error, 'Error handling arrive order');
       }
     }
   }
