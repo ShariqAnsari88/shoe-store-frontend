@@ -124,7 +124,6 @@ const Cart = (props) => {
                       !addressInfo ? "bg-neonGreen/[0.5]" : "bg-neonGreen"
                     } text-offWhite text-md font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center`}
                     onClick={(e) => {
-                      е.preventDefault()
                       if (!addressInfo) setShowError(true);
                       else makePayment(e);
                     }}
@@ -138,7 +137,6 @@ const Cart = (props) => {
                       !addressInfo ? "bg-neonGreen/[0.5]" : "bg-neonGreen"
                     } text-offWhite text-md font-medium active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center`}
                     onClick={(e) => {
-                      e.preventDefault();
                       if (!addressInfo) setShowError(true);
                       else makePayment(e);
                     }}
