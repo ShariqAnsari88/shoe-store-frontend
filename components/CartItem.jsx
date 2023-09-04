@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 
 const CartItem = ({ data }) => {
   const p = data.attributes;
+  const isAccessory = p.categories.data[0].attributes.slug.includes('aksesoari')
 
   const dispatch = useDispatch();
 
@@ -56,13 +57,13 @@ const CartItem = ({ data }) => {
 
         <div className="flex items-center justify-between mt-4">
           <div className="flex items-center gap-2 md:gap-10 text-offWhite/[0.5] text-sm md:text-md">
-            <div className="flex items-center gap-1">
+           {!isAccessory && <div className="flex items-center gap-1">
               <div className="font-normal">Size:</div>
               <select
                 className="text-black rounded-md border-offWhite border-[2px] cursor-pointer"
                 onChange={(e) => updateCartItem(e, "selectedSize")}
               >
-                {p.size.data.map((item, i) => {
+                {p.size.data.map((item, i) => {              
                   return (
                     <option
                       key={i}
@@ -75,7 +76,7 @@ const CartItem = ({ data }) => {
                   );
                 })}
               </select>
-            </div>
+            </div>}
 
             <div className="flex items-center gap-1">
               <div className="font-semibold">Quantity:</div>

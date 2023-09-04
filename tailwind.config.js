@@ -1,3 +1,5 @@
+import plugin from 'tailwindcss'
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -13,7 +15,11 @@ module.exports = {
       normal: "Boffin",
       bold: "Boffin-B",
       semibold: "Boffin-M",
-      hearthLess: "Hearthless"
+      hearthLess: "Hearthless",
+      backdropFilter: {
+        none: "none",
+        blur: "blur(20px)",
+      },
     },
     extend: {
       colors: {
@@ -22,12 +28,25 @@ module.exports = {
         neonGreenLighter: "#33ff14",
         darkBlack: "#181516",
         darkRed: "#B22222",
-        errorYellow: "#FFC95F"
-       },
-       backgroundImage: {
-        'troykaEye': "url('../assets/images/troyka-eye.png')",
+        errorYellow: "#FFC95F",
+      },
+      backgroundImage: {
+        troykaEye: "url('../assets/images/troyka-eye.png')",
+        random:
+          "url('/about-us-3.jpg')",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          'text-shadow': (value) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme('textShadow') }
+      )
+    }),
+  ],
 };

@@ -190,7 +190,7 @@ export default function Contact() {
                 </p>
               </div>
               <p className="font-normal text-base leading-6 text-gray-600 my-4">
-                +359893484851
+                +359877331274
               </p>
             </div>
 
@@ -203,7 +203,7 @@ export default function Contact() {
                 </p>
               </div>
               <p className="font-normal text-base leading-6 text-gray-600 my-4">
-                ул. "св. Киприян" 260
+                *
               </p>
             </div>
 

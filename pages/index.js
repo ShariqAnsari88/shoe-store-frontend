@@ -22,11 +22,11 @@ export default function Home({ products, userData }) {
       <Wrapper>
 
         {/* heading and paragaph start */}
-        <div className="z-1 text-center max-w-[800px] mx-auto my-[50px] md:my-[80px]">
-          <p className="text-[#F1F0F1] text-[28px] md:text-[34px] mb-5 font-normal leading-tight">
+        <div className="p-4 rounded-md bg-offWhite z-1 text-center l my-[50px] md:my-[80px]">
+          <p className="text-darkBlack text-[28px] md:text-[34px] mb-5 font-normal leading-tight">
             Разгледай най-новите продукти
           </p>
-          <p className="text-[#F1F0F1] text-md md:text-xl font-normal">
+          <p className="text-darkBlack text-md md:text-xl font-normal">
             Лека междинна подметка Nike ZoomX е комбинирана с увеличен стек
             височини, за да се осигури омекотяване по време на продължителни
             участъци от бягане.

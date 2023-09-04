@@ -24,9 +24,9 @@ const Success = () => {
           <div className="text-base mt-5 text-offWhite">
             За всяко запитване, свързано с продукт, изпратете имейл до
           </div>
-          <div className="underline text-offWhite">threeoyka@gmail.com</div>
+          <div className="underline text-offWhite">troyka@gmail.com</div>
 
-          <Link href="/" className="font-bold mt-5 text-offWhite">
+          <Link href="/" className="font-bold mt-5 bg-neonGreen p-2 w-52 hover:opacity-75 text-center rounded-md text-offWhite">
             Продължи пазаруването
           </Link>
         </div>

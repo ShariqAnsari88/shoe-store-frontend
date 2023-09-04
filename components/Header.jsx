@@ -62,7 +62,7 @@ const Header = () => {
     >
       <div className="flex justify-between items-center w-full px-4">
         <Link href="/">
-         <Image width={45} height={45} className="md:w-10 md:h-10 w-8 h-8" alt="image" src="/logo-white.png"/>
+         <Image width={600} height={600} className="md:w-12 w-6" alt="image" src="/logo-white.png"/>
           {/* <Image alt="img" src={shopImage} className="w-[70px] md:w-[100px]" /> */}
         </Link>
 

@@ -22,34 +22,40 @@ import {
 
 const ProductDetails = ({ product, products }) => {
   const dispatch = useDispatch();
-  const [selectedSize, setSelectedSize] = useState();
+  const isAccessory = product.data[0].attributes.categories.data[0].attributes.slug.includes('aksesoari')
+
+  const [selectedSize, setSelectedSize] = useState(isAccessory ? 'M' : undefined);
   const [showError, setShowError] = useState(false);
   const isWishlisted = useAppSelector((state) =>
     selectIsWishlisted(state, { ...product.data[0] })
   );
   const p = product?.data?.[0]?.attributes;
 
-
   const discount = getDiscountedPricePercentage(p.original_price, p.price);
 
   const notify = (buttonName) => {
-    toast.success(`Успешно, проверете ${buttonName === 'wishlist' ? 'вашите любими продукти' : 'вашата количка'}!`, {
-      position: "bottom-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
+    toast.success(
+      `Успешно, проверете ${
+        buttonName === "wishlist" ? "вашите любими продукти" : "вашата количка"
+      }!`,
+      {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      }
+    );
   };
 
   return (
     <div className="w-full md:py-20">
       <ToastContainer />
       <Wrapper>
-        <div className="flex flex-col lg:flex-row md:px-10 gap-[50px] lg:gap-[100px]">
+        <div id="wrapperGrid" className="flex flex-col lg:flex-row md:px-10 gap-[50px] lg:gap-[100px]">
           {/* left column start */}
           <div className="w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0">
             <ProductDetailsCarousel images={p.image.data} />
@@ -98,48 +104,50 @@ const ProductDetails = ({ product, products }) => {
             </div>
 
             {/* PRODUCT SIZE RANGE START */}
-            <div className="mb-10">
-              {/* HEADING START */}
-              <div className="flex justify-between mb-2">
-                <div className="text-offWhite text-md font-semibold">
-                  Избери размер
-                </div>
-              </div>
-              {/* HEADING END */}
-
-              {/* SIZE START */}
-              <div id="sizesGrid" className="grid grid-cols-3 gap-2">
-                {p.size.data.map((item, i) => (
-                  <div
-                    key={i}
-                    className={`border-[2px] border-neonGreen rounded-md text-center py-3 font-medium ${
-                      item.enabled
-                        ? "cursor-pointer"
-                        : "cursor-not-allowed bg-#393646/[0.1] opacity-50"
-                    } ${
-                      selectedSize === item.size
-                        ? "border-[2px] bg-neonGreenLighter text-darkBlack"
-                        : ""
-                    }`}
-                    onClick={() => {                    
-                      setSelectedSize(item.size);
-                      setShowError(false);
-                    }}
-                  >
-                    {item.size}
+            {!isAccessory  && (
+              <div className="mb-10">
+                {/* HEADING START */}
+                <div className="flex justify-between mb-2">
+                  <div className="text-offWhite text-md font-semibold">
+                    Избери размер
                   </div>
-                ))}
-              </div>
-              {/* SIZE END */}
-
-              {/* SHOW ERROR START */}
-              {showError && (
-                <div className="text-red-600 mt-1">
-                  Задължително е да изберете размер.
                 </div>
-              )}
-              {/* SHOW ERROR END */}
-            </div>
+                {/* HEADING END */}
+
+                {/* SIZE START */}
+                <div id="sizesGrid" className="grid grid-cols-3 gap-2">
+                  {p.size.data.map((item, i) => (
+                    <div
+                      key={i}
+                      className={`border-[2px] border-neonGreen rounded-md text-center py-3 font-medium ${
+                        item.enabled
+                          ? "cursor-pointer"
+                          : "cursor-not-allowed bg-#393646/[0.1] opacity-50"
+                      } ${
+                        selectedSize === item.size
+                          ? "border-[2px] bg-neonGreenLighter text-darkBlack"
+                          : ""
+                      }`}
+                      onClick={() => {
+                        setSelectedSize(item.size);
+                        setShowError(false);
+                      }}
+                    >
+                      {item.size}
+                    </div>
+                  ))}
+                </div>
+                {/* SIZE END */}
+
+                {/* SHOW ERROR START */}
+                {showError && (
+                  <div className="text-red-600 mt-1">
+                    Задължително е да изберете размер.
+                  </div>
+                )}
+                {/* SHOW ERROR END */}
+              </div>
+            )}
             {/* PRODUCT SIZE RANGE END */}
 
             {/* ADD TO CART BUTTON START */}
@@ -149,7 +157,7 @@ const ProductDetails = ({ product, products }) => {
               onClick={() => {
                 if (!selectedSize) {
                   setShowError(true);
-                  document.getElementById("sizesGrid").scrollIntoView({
+                  document.getElementById("wrapperGrid").scrollIntoView({
                     block: "center",
                     behavior: "smooth",
                   });

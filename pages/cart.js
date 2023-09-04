@@ -16,6 +16,7 @@ import { useAppSelector } from "@/store/hooks";
 import { selectUserAddress } from "@/store/userSlice";
 import AddressForm from "@/components/profile/AddressForm";
 import Divider from "@/components/Divider";
+import Image from "next/image";
 
 const Cart = (props) => {
   const router = useRouter();
@@ -24,7 +25,7 @@ const Cart = (props) => {
   const [showError, setShowError] = useState(false);
   const addressInfo = useAppSelector(selectUserAddress);
   const { cartItems } = useSelector((state) => state.cart);
-  const deliveryPrice = 5
+  const deliveryPrice = 5;
 
   const subTotal = useMemo(() => {
     return cartItems.reduce((total, val) => total + val.attributes.price, 0);
@@ -90,11 +91,24 @@ const Cart = (props) => {
                     <div className="uppercase text-md md:text-lg font-normal text-offWhite">
                       Стойност на доставка
                     </div>
-                    <div className="text-md md:text-lg font-normal text-offWhite">
-                      {subTotal < 50 ? deliveryPrice : 0} лв
+                    <div
+                      className={`text-md md:text-lg font-normal text-neonGreenLighter ${
+                        subTotal >= 50 && "line-through"
+                      }`}
+                    >
+                      {deliveryPrice} лв
                     </div>
                   </div>
                   <div className="text-offWhite text-sm md:text-md py-5 border-t mt-5">
+                  <div className=" text-offWhite text-xl rounded-md flex flex-row items-center gap-2 mb-6">
+                    <Image
+                      className="w-20"
+                      alt="img"
+                      width={600}
+                      height={600}
+                      src="/speedy-logo.jpeg"
+                    />
+                  </div>
                     Междинната сума отразява общата цена на вашата поръчка,
                     включително мита и данъци, преди всички приложими отстъпки.
                     Не включва разходи за доставка и международна транзакционни
@@ -123,6 +137,7 @@ const Cart = (props) => {
                       !addressInfo ? "bg-neonGreen/[0.5]" : "bg-neonGreen"
                     } text-offWhite text-md font-medium active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center`}
                     onClick={(e) => {
+                      e.preventDefault();
                       if (!addressInfo) setShowError(true);
                       else makePayment(e);
                     }}
