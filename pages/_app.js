@@ -35,7 +35,6 @@ export default function App({ Component, pageProps }) {
           rel="stylesheet"
         />
       </Head>
-      <ToastContainer />
       <Provider store={rootReducer}>
         <PersistGate persistor={persistor}>
         <Banner />
