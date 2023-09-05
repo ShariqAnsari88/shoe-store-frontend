@@ -37,6 +37,7 @@ export const handlePayment = createAsyncThunk(
           user,
           totalPrice,
         });
+
       } catch (error) {
         console.log(error, 'Error handling arrive order');
       }

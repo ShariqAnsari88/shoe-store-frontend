@@ -1,9 +1,20 @@
+import { handlePayment } from "@/pages/api/checkout/payments";
 import { createSlice } from "@reduxjs/toolkit";
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState: {
     cartItems: [],
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(handlePayment.fulfilled, (state, action) => {
+        window.location.replace('/success')
+      })
+      // You can chain calls, or have separate `builder.addCase()` lines each time
+      .addCase(handlePayment.rejected, (state, action) => {
+        window.location.replace('/failed')
+      });
   },
   reducers: {
     addToCart: (state, action) => {
@@ -40,7 +51,7 @@ export const cartSlice = createSlice({
       );
 
       const index = state.cartItems.indexOf(selectedItem);
-      
+
       if (index > -1) {
         state.cartItems.splice(index, 1);
       }
@@ -48,7 +59,7 @@ export const cartSlice = createSlice({
     resetCart: (state) => {
       state.cartItems = [];
     },
-  }
+  },
 });
 
 // Action creators are generated for each case reducer function

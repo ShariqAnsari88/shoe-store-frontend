@@ -4,7 +4,6 @@ import Wrapper from "@/components/Wrapper";
 import CartItem from "@/components/CartItem";
 import { useDispatch, useSelector } from "react-redux";
 import { handlePayment } from "@/pages/api/checkout/payments";
-import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
@@ -17,6 +16,7 @@ import { selectUserAddress } from "@/store/userSlice";
 import AddressForm from "@/components/profile/AddressForm";
 import Divider from "@/components/Divider";
 import Image from "next/image";
+import { toast } from "react-toastify";
 
 const Cart = (props) => {
   const user = props.user.username;

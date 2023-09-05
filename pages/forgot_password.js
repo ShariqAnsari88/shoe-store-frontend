@@ -9,7 +9,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ForgotPassword = () => {
-  const router = useRouter();
   const [userEmailInfo, setUserEmail] = useState({
     email: "",
   });

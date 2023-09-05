@@ -8,7 +8,7 @@ const Failed = () => {
       <Wrapper>
         <div className="max-w-[600px] rounded-lg p-5 border text-offWhite border-offWhite mx-auto flex flex-col">
           <div className="text-2xl font-bold text-offWhite">
-            Неуспешно плащане!
+            За съжаление, не успяхме да създадем вашата поръчка!
           </div>
           <div className="text-base mt-5 text-offWhite">
             За всяко запитване, свързано с продукт, изпратете имейл до
