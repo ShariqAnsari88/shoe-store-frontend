@@ -16,7 +16,6 @@ import { selectUserAddress } from "@/store/userSlice";
 import AddressForm from "@/components/profile/AddressForm";
 import Divider from "@/components/Divider";
 import Image from "next/image";
-import { toast } from "react-toastify";
 
 const Cart = (props) => {
   const user = props.user.username;
