@@ -16,6 +16,7 @@ const nextConfig = {
     NEXT_STRIPE_SK_TEST: process.env.NEXT__STRIPE_SK_TEST,
     SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
     SPEEDY_API_URL: process.env.SPEEDY_API_URL,
+    IS_REALEASED: process.env.IS_REALEASED
   },
 };
 

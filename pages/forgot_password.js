@@ -2,7 +2,6 @@ import Wrapper from "@/components/Wrapper";
 import { sendResetEmail } from "@/utils/api";
 import { emailRegex } from "@/utils/regex";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";

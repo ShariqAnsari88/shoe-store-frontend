@@ -8,7 +8,7 @@ import { PersistGate } from "redux-persist/lib/integration/react";
 import { rootReducer } from "@/store/store";
 import Layout from "@/components/Layout";
 import Banner from "@/components/Banner";
-import { ToastContainer } from "react-toastify";
+
 config.autoAddCss = false;
 
 export default function App({ Component, pageProps }) {

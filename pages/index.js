@@ -1,12 +1,18 @@
-import Banner from "@/components/Banner";
 import HeroBanner from "@/components/HeroBanner";
 import ProductCard from "@/components/ProductCard";
 import Wrapper from "@/components/Wrapper";
 import { getUser } from "@/store/contexts/userContext";
 import { setUserInfo } from "@/store/userSlice";
-import { fetchDataFromApi } from "@/utils/api";
-import { useEffect } from "react";
+import { fetchDataFromApi, sendSubscriptionEmail } from "@/utils/api";
+import { sendContactEmail } from "@/utils/emailAPI";
+import { emailRegex } from "@/utils/regex";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { FaInstagram } from "react-icons/fa";
 import { useDispatch } from "react-redux";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Home({ products, userData }) {
   const dispatch = useDispatch();
@@ -17,31 +23,7 @@ export default function Home({ products, userData }) {
 
   return (
     <main>
-      <h1 className="text-neonGreenLighter md:text-[126px] drop-shadow-[2px_12px_5px_rgb(51,255,20,0.4)] my-24 text-center font-hearthLess text-[46px]">OMNE TRIUM PERFECTUM</h1>
-      <HeroBanner />
-      <Wrapper>
-
-        {/* heading and paragaph start */}
-        <div className="p-4 rounded-md bg-offWhite z-1 text-center l my-[50px] md:my-[80px]">
-          <p className="text-darkBlack text-[28px] md:text-[34px] mb-5 font-normal leading-tight">
-            Разгледай най-новите продукти
-          </p>
-          <p className="text-darkBlack text-md md:text-xl font-normal">
-            Лека междинна подметка Nike ZoomX е комбинирана с увеличен стек
-            височини, за да се осигури омекотяване по време на продължителни
-            участъци от бягане.
-          </p>
-        </div>
-        {/* heading and paragaph end */}
-
-        {/* products grid start */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 my-14 px-5 md:px-0">
-          {products?.data?.map((product) => (
-            <ProductCard key={product?.id} data={product} />
-          ))}
-        </div>
-        {/* products grid end */}
-      </Wrapper>
+      <HomePage products={products}/>
     </main>
   );
 }
@@ -55,3 +37,190 @@ export async function getServerSideProps(ctx) {
     props: { products, userData },
   };
 }
+
+const HomePage = ({ products }) => {
+  return (
+    <>
+      <h1 className="text-neonGreenLighter font-hearthLess md:text-[126px] drop-shadow-[2px_12px_5px_rgb(51,255,20,0.4)] my-24 text-center text-[46px]">
+        OMNE TRIUM PERFECTUM
+      </h1>
+      <HeroBanner />
+      <Wrapper>
+        <div className="p-4 rounded-md bg-offWhite z-1 text-center l my-[50px] md:my-[80px]">
+          <p className="text-darkBlack text-[24px] md:text-[28px] mb-5 font-semibold leading-tight">
+            Разгледай най-новите продукти
+          </p>
+          <p className="text-darkBlack text-md md:text-md font-normal max-w-[60%] mx-auto ">
+            Лека междинна подметка Nike ZoomX е комбинирана с увеличен стек
+            височини, за да се осигури омекотяване по време на продължителни
+            участъци от бягане.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-4 gap-5 my-14 px-5 md:px-0">
+          {products?.data?.map((product) => (
+            <ProductCard key={product?.id} data={product} />
+          ))}
+        </div>
+      </Wrapper>
+    </>
+  );
+};
+
+export const ComingSoon = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [hasError, setError] = useState(false);
+
+  const onSubmit = async (e) => {
+    setIsLoading(true);
+    e?.preventDefault();
+
+    if (!emailRegex.test(email)) {
+      setError(true);
+      setIsLoading(false);
+    } else {
+      const res = await sendSubscriptionEmail("/api/subscriptions", { email });
+
+      if (res.error) {
+        console.log(res.error, "- Error creating email!");
+        setIsLoading(false);
+        setEmail("");
+        toast.error(`Този имейл вече има абонамент.`, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      } else {
+        sendContactEmail({ type: "subscribe", email });
+        toast.success(`Успешнo се абонирахте, благодарим ви!`, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        setIsLoading(false);
+        setEmail("");
+      }
+    }
+  };
+
+  const handleChange = (e) => {
+    setEmail(e.target.value);
+
+    if (!emailRegex.test(e.target.value)) {
+      setError(true);
+    } else {
+      setError(false);
+    }
+  };
+
+  return (
+    <Wrapper className="flex flex-col md:flex-row max-w-full h-screen justify-between items-center gap-12 md:my-0 ">
+      <ToastContainer />
+      <div className="flex-1 md:my-0 my-2">
+        <HeroBanner />
+      </div>
+      <div className="flex flex-col items-center md:gap-0 gap-10 h-full">
+        <div className="md:mt-12">
+          <Image width="70" height="70" alt="img" src="/logo-white.png" />
+        </div>
+        <div className="text-center flex flex-1 flex-col items-center justify-center">
+          <h1 className="mb-24 font-semibold text-center text-[42px] sm:text-[50px] md:text-[82px]">
+            Очаквайте скоро
+          </h1>
+          <p className="md:text-[18px] text-[18px] mb-12">
+            Междувременно можете се регистрирайте за нашия
+            <br />
+            месечен бюлетин, за да сте в течение.
+          </p>
+          <div className="flex flex-col gap-2">
+            <div className="flex max-h-10 items-center justify-center gap-2 w-full">
+              <input
+                value={email}
+                name="email"
+                id="email"
+                onChange={handleChange}
+                className="rounded-full text-sm md:w-80 p-2 border-[2px] border-neonGreen"
+              />
+
+              <button
+                type="button"
+                disabled={isLoading || hasError ? true : false}
+                onClick={onSubmit}
+                className={`rounded-full h-full w-24 ${
+                  isLoading || hasError ? "disabled" : ""
+                }   
+              ${isLoading || hasError ? "bg-darkBlack" : "bg-neonGreen"}
+              ${isLoading || hasError ? " border-[1px]" : "border-0"}
+              text-offWhite
+               text-[12px]
+              font-semibold
+              transition
+              ease-in-out 
+              active:scale-95
+              hover:opacity-75
+              text-center
+            `}
+              >
+                {isLoading ? (
+                  <svg
+                    aria-hidden="true"
+                    role="status"
+                    class="inline w-4 h-4 text-white animate-spin"
+                    viewBox="0 0 100 101"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                      fill="#E5E7EB"
+                    />
+                    <path
+                      d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                ) : (
+                  "Запиши се"
+                )}
+              </button>
+            </div>
+            {hasError ? (
+              <div className="text-left text-errorYellow md:text-md text-sm font-semibold">
+                Моля въведете правилен имейл адрес!
+              </div>
+            ) : null}
+          </div>
+        </div>
+        <div
+          onClick={() => window.open("https://www.instagram.com/troykawear/")}
+          className="
+      w-10 
+      h-10
+      mb-10
+      md:mb-12
+      rounded-full
+       bg-white/[0.25] 
+       transition 
+       ease-in-out 
+       flex 
+       items-center 
+       justify-center 
+       hover:text-white/[0.5] cursor-pointer"
+        >
+          <FaInstagram size={20} />
+        </div>
+      </div>
+    </Wrapper>
+  );
+};

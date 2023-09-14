@@ -108,9 +108,9 @@ function AddressForm({ setShowError }) {
       <div>
         <FontAwesomeIcon color="#EEEEEE" icon={faLocationDot} />
       </div>
-      <h1 className="font-semibold text-xl text-[#F8F1F1]">
+      <h2 className="font-semibold text-xl text-[#F8F1F1]">
         Адрес
-      </h1>
+      </h2>
       </div>
       <Formik
         initialValues={initialValues}
@@ -185,7 +185,7 @@ export const AddressInfo = ({ addressInfo, setShouldShowAddress }) => {
       <div className="bg-neonGreen w-8 h-8 rounded-full flex items-center justify-center">
         <FontAwesomeIcon color="#EEEEEE" icon={faLocationDot} />
       </div>
-      <h1 className="text-offWhite text-xl font-semibold">Адрес</h1>
+      <h2 className="text-offWhite text-xl font-semibold">Адрес</h2>
       </div>
       <div className="relative">
         <button

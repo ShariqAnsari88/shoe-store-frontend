@@ -12,9 +12,9 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      normal: "Boffin",
-      bold: "Boffin-B",
-      semibold: "Boffin-M",
+      normal: "Euclid",
+      bold: "Euclid_Bold",
+      semibold: "Euclid_SemiBold",
       hearthLess: "Hearthless",
       backdropFilter: {
         none: "none",
@@ -34,6 +34,12 @@ module.exports = {
         troykaEye: "url('../assets/images/troyka-eye.png')",
         random:
           "url('/about-us-3.jpg')",
+      },
+      screens: {
+        'sm': '767px',
+        '2sm': '1024px',
+        'md': '1025px',
+        // => @media (min-width: 992px) { ... }
       },
     },
   },

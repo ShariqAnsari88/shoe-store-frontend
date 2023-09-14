@@ -16,6 +16,11 @@ export const fetchDataFromApi = async (endpoint) => {
   return res?.data;
 };
 
+export const sendSubscriptionEmail = async(endpoint, email) => {
+  const res = await API.post(`${API_URL}${endpoint}`, email);
+  return res?.data;
+}
+
 export const makePaymentRequest = async (endpoint, payload) => {
   const res = await API.post(`${API_URL}${endpoint}`, payload);
   return res?.data;

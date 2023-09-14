@@ -1,74 +1,103 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import slideImage1 from "../public/black-shirt.png";
-import slideImage2 from "../public/slide-2.png";
-import slideImage3 from "../public/slide-3.png";
+import slideImage1 from "../public/carousel_images/NS_back.png";
+import slideImage2 from "../public/carousel_images/NS_front.png";
+import slideImage3 from "../public/carousel_images/PP_back.png";
+import slideImage4 from "../public/carousel_images/PP_front.png";
+import slideImage5 from "../public/carousel_images/PV_back.png";
+import slideImage6 from "../public/carousel_images/PV_front.png";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 
-import { BiArrowBack } from "react-icons/bi";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 const HeroBanner = () => {
   return (
-    <div className="mt-4 relative rounded-2xl text-white text-[20px] max-h-[800px] max-w-[95%] mx-auto ">
+    <div className={`text-white text-[20px] flex sm:h-[600px] min-w-[400px] h-[400px] mx-auto my-4`}>
       <Carousel
-        className="rounded-2xl max-h-[800px]"
         autoPlay={true}
         infiniteLoop={true}
         showThumbs={false}
-        showIndicators={true}
         showStatus={false}
         renderArrowPrev={(clickHandler, hasPrev) => (
           <div
             onClick={clickHandler}
-            className="bg-transparent border-[2px] rounded-full border-white absolute left-5 top-[50%] translate-y-[-50%] md:right-[51px] bottom-0 w-[30px] md:w-[50px] h-[30px] md:h-[50px] bg-#393646 z-10 flex items-center justify-center cursor-pointer hover:opacity-100"
+            className="bg-transparent absolute left-5 top-[50%] translate-y-[-50%] md:right-[51px] bottom-0 w-[30px] md:w-[50px] h-[30px] md:h-[50px] bg-#393646 z-10 flex items-center justify-center cursor-pointer hover:opacity-100"
           >
-            <BiArrowBack color="white" className="text-sm md:text-lg" />
+            <FontAwesomeIcon size="xl" icon={faAngleLeft} />
           </div>
         )}
         renderArrowNext={(clickHandler, hasNext) => (
           <div
             onClick={clickHandler}
-            className="absolute border-[2px] text-white border-white rounded-full right-5 top-[50%] translate-y-[-50%] w-[30px] md:w-[50px] h-[30px] md:h-[50px] bg-#393646 z-10 flex items-center justify-center cursor-pointer hover:opacity-90"
+            className="absolute  
+          text-white 
+            right-5 
+            top-[50%] 
+            translate-y-[-50%] 
+            w-[30px] md:w-[50px] 
+            h-[30px] md:h-[50px] 
+            bg-#393646 
+            z-10 
+            flex 
+            items-center 
+            justify-center 
+            cursor-pointer 
+            hover:opacity-90"
           >
-            <BiArrowBack
-              color="white"
-              className="rotate-180 text-sm md:text-lg"
-            />
+            <FontAwesomeIcon size="xl" icon={faAngleRight} />
           </div>
         )}
       >
         <div>
           <Image
-            className="rounded-2xl max-h-[700px] object-contain"
+            alt="img"
             src={slideImage1}
-            alt="Picture of the author"
+            className={`sm:h-[600px] h-[350px] object-contain`}
           />
-          <div className="px-[15px] md:px-[40px] py-[10px] md:py-[25px] font-normal bg-white absolute bottom-[25px] md:bottom-[75px] left-0 text-black/[0.9] text-[15px] md:text-[30px] uppercase font-medium cursor-pointer hover:opacity-90">
-            Пазарувай сега
-          </div>
         </div>
 
         <div>
           <Image
+            alt="img"
             src={slideImage2}
-            className="rounded-2xl max-h-[700px] object-contain"
+            className={`sm:h-[600px] h-[350px]  object-contain`}
           />
-          <div className="px-[15px] md:px-[40px] py-[10px] md:py-[25px] font-normal bg-white absolute bottom-[25px] md:bottom-[75px] left-0 text-black/[0.9] text-[15px] md:text-[30px] uppercase font-medium cursor-pointer hover:opacity-90">
-            Пазарувай сега
-          </div>
         </div>
 
         <div>
           <Image
+            alt="img"
             src={slideImage3}
-            className="rounded-2xl max-h-[700px] object-cover"
+            className={`sm:h-[600px] h-[350px]  object-contain`}
           />
-          <div className="px-[15px] md:px-[40px] py-[10px] md:py-[25px] font-normal bg-white absolute bottom-[25px] md:bottom-[75px] left-0 text-black/[0.9] text-[15px] md:text-[30px] uppercase font-medium cursor-pointer hover:opacity-90">
-            Пазарувай сега
-          </div>
+        </div>
+        
+        <div>
+          <Image
+            alt="img"
+            src={slideImage4}
+            className={`sm:h-[600px] h-[350px]  object-contain`}
+          />
+        </div>
+
+        <div>
+          <Image
+            alt="img"
+            src={slideImage5}
+            className={`sm:h-[600px] h-[350px]  object-contain`}
+          />
+        </div>
+
+        <div>
+          <Image
+            alt="img"
+            src={slideImage6} 
+            className={`sm:h-[600px] h-[350px]  object-contain`}
+          />
         </div>
       </Carousel>
     </div>

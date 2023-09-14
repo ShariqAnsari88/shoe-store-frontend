@@ -6,9 +6,9 @@ function about() {
   return (
     <div className="bg-random bg-center bg-cover bg-fixed bg-no-repeat">
       <Wrapper className="flex flex-col justify-center items-center min-h-[800px] backdrop-blur-xl min-w-full py-10">
-        <h1 className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] text-center pb-10">
+        <h2 className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] text-center pb-10">
           Кои сме ние?
-        </h1>
+        </h2>
         <div className="flex flex-1 border border-1 md:w-[85%] gap-5 items-center flex-col justify-between">
           <p className="p-4 md:text-[22px] text-[18px] drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] text-offWhite">
             Добре дошли в Troyka, вашата любима дестинация за улично облекло от

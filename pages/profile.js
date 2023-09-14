@@ -41,7 +41,7 @@ function ProfilePage(props) {
               </button>
             </div>
             <div>
-              <h1 className="font-semibold mb-4 text-center">Моите поръчки</h1>
+              <h3 className="font-semibold mb-4 text-center">Моите поръчки</h3>
 
               {hasOrders && (
                 <div className="flex flex-col gap-2 overflow-y-scroll max-h-[800px]">

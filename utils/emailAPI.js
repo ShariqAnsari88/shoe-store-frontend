@@ -2,7 +2,7 @@ import axios from "axios";
 import { EMAIL_API_URL } from "./urls";
 
 const headers = {
-  "Content-Type": "text/plain;charset=utf-8",
+  "Content-Type": "application/json",
 };
 
 const API = axios.create({
@@ -11,16 +11,31 @@ const API = axios.create({
 });
 
 export const sendContactEmail = async (payload) => {
-  const { subject, name, email, message, phone } = payload;
-  try {
-    await API.post("/api/sendgrid", {
-      subject,
-      from: email,
-      message,
-      name,
-      phone,
-    });
-  } catch (error) {
-    console.log(error, "Error sending mail!");
+  if (payload.type) {
+    const { type, email } = payload;
+    try {
+      await API.post("/api/sendgrid", {
+        type,
+        from: email,
+        subject: 'Абониране'
+      });
+    } catch (error) {
+      console.log(error, "Error sending mail!");
+    }
+  } else {
+    const { subject, name, email, message, phone, type } = payload;
+
+    try {
+      await API.post("/api/sendgrid", {
+        type,
+        subject,
+        from: email,
+        message,
+        name,
+        phone,
+      });
+    } catch (error) {
+      console.log(error, "Error sending mail!");
+    }
   }
 };

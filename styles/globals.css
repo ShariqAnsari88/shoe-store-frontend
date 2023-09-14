@@ -40,7 +40,7 @@
 
 
 :root {
-    font-family: "Boffin", sans-serif;
+    font-family: "Euclid", sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
@@ -60,13 +60,17 @@ body {
 }
 
 h1 {
-    font-size: 38px;
+    font-size: 80px;
     color: #EEEEEE
 }
 
 h2 {
-    font-size: 24px;
+    font-size: 48px;
     color: #EEEEEE
+}
+
+h3 {
+    font-size: 24px;
 }
 
 p {
