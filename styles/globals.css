@@ -60,6 +60,7 @@ body {
 }
 
 h1 {
+    line-height:normal;
     font-size: 80px;
     color: #EEEEEE
 }
