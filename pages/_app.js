@@ -8,10 +8,12 @@ import { PersistGate } from "redux-persist/lib/integration/react";
 import { rootReducer } from "@/store/store";
 import Layout from "@/components/Layout";
 import Banner from "@/components/Banner";
+import { appWithTranslation } from "next-i18next";
 
 config.autoAddCss = false;
 
-export default function App({ Component, pageProps }) {
+function App({ Component, pageProps }) {
+  const isReleased = process.env.IS_REALEASED;
   return (
     <>
       <Head>
@@ -37,10 +39,12 @@ export default function App({ Component, pageProps }) {
       </Head>
       <Provider store={rootReducer}>
         <PersistGate persistor={persistor}>
-        <Banner />
-          <Layout component={Component} pageProps={pageProps}></Layout>
+          {isReleased === "true" && <Banner />}
+          <Layout component={Component} pageProps={pageProps}/>
         </PersistGate>
       </Provider>
     </>
   );
-}
+};
+
+export default appWithTranslation(App);

@@ -1,12 +1,23 @@
 /** @type {import('next').NextConfig} */
+
+const { i18n } = require("./next-i18next.config");
+
 const nextConfig = {
-  staticPageGenerationTimeout: 120,
+  staticPageGenerationTimeout: 500,
   reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: ["res.cloudinary.com"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        // You can add these as well
+        // port: '',
+        // pathname: 'arifscloud/image/upload/**',
+      },
+    ],
   },
   env: {
     BASE_URL: process.env.NEXT_PUBLIC_API_URL,
@@ -16,8 +27,9 @@ const nextConfig = {
     NEXT_STRIPE_SK_TEST: process.env.NEXT__STRIPE_SK_TEST,
     SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
     SPEEDY_API_URL: process.env.SPEEDY_API_URL,
-    IS_REALEASED: process.env.IS_REALEASED
+    IS_RELEASED: process.env.IS_RELEASED,
   },
+  i18n,
 };
 
 module.exports = nextConfig;

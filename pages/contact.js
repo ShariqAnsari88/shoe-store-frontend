@@ -6,8 +6,11 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { emailRegex } from "@/utils/regex";
 import * as Yup from "yup";
 import { sendContactEmail } from "@/utils/emailAPI";
+import { useTranslation } from "react-i18next";
 
 export default function Contact() {
+  const { t } = useTranslation("common");
+
   const initialValues = {
     name: "",
     email: "",
@@ -22,7 +25,9 @@ export default function Contact() {
     email: Yup.string()
       .required("Моля въведете e-mail адрес!")
       .matches(emailRegex, "Моля въведете валиден e-mail адрес!"),
-    phone: Yup.number("Моля използвайте валиден телефонен номер!").required("Моля въведете телефонен номер!"),
+    phone: Yup.number("Моля използвайте валиден телефонен номер!").required(
+      "Моля въведете телефонен номер!"
+    ),
     message: Yup.string()
       .required("Моля въведете съобщение!")
       .min(10, "Трябва да въведете поне 10 символа."),
@@ -40,6 +45,7 @@ export default function Contact() {
 
   return (
     <Wrapper>
+      <div>{t("coming")}</div>
       <div class="container mx-auto p-4 my-24 grid grid-cols-2 gap-1">
         <div class="max-w-full bg-offWhite rounded p-8 shadow-md">
           <h2 class="text-center text-2xl font-bold mb-4 text-neonGreen">
@@ -70,9 +76,7 @@ export default function Contact() {
                   <ErrorMessage
                     name="name"
                     component="div"
-                    render={(msg) => (
-                      <div className="text-darkRed">{msg}</div>
-                    )}
+                    render={(msg) => <div className="text-darkRed">{msg}</div>}
                   />
                 </div>
                 <div class="mb-4">
@@ -92,9 +96,7 @@ export default function Contact() {
                   <ErrorMessage
                     name="email"
                     component="div"
-                    render={(msg) => (
-                      <div className="text-darkRed">{msg}</div>
-                    )}
+                    render={(msg) => <div className="text-darkRed">{msg}</div>}
                   />
                 </div>
                 <div className="mb-4">
@@ -114,9 +116,7 @@ export default function Contact() {
                   <ErrorMessage
                     name="phone"
                     component="div"
-                    render={(msg) => (
-                      <div className="text-darkRed">{msg}</div>
-                    )}
+                    render={(msg) => <div className="text-darkRed">{msg}</div>}
                   />
                 </div>
                 <div>
@@ -136,9 +136,7 @@ export default function Contact() {
                   <ErrorMessage
                     name="subject"
                     component="div"
-                    render={(msg) => (
-                      <div className="text-darkRed">{msg}</div>
-                    )}
+                    render={(msg) => <div className="text-darkRed">{msg}</div>}
                   />
                 </div>
                 <div className="mb-4">
@@ -158,9 +156,7 @@ export default function Contact() {
                   <ErrorMessage
                     name="message"
                     component="div"
-                    render={(msg) => (
-                      <div className="text-darkRed">{msg}</div>
-                    )}
+                    render={(msg) => <div className="text-darkRed">{msg}</div>}
                   />
                 </div>
                 <button
@@ -197,7 +193,7 @@ export default function Contact() {
             {/* Personal Shopping Grid Card */}
             <div className="rounded-md p-6 bg-offWhite">
               <div className="flex flex-row items-center">
-                <FaLocationArrow color="#168900"  />
+                <FaLocationArrow color="#168900" />
                 <p className=" text-xl text-neonGreen font-semibold leading-5 mt-6">
                   Адрес
                 </p>
@@ -210,7 +206,7 @@ export default function Contact() {
             {/* Free Shopping Grid Card */}
             <div className="rounded-md p-6 bg-offWhite">
               <div className="flex flex-row items-center">
-                <FaTruckMoving color="#168900"  />
+                <FaTruckMoving color="#168900" />
                 <p className=" text-xl text-neonGreen font-semibold leading-5 mt-6">
                   E-mail адрес
                 </p>
