@@ -9,6 +9,7 @@ import { sendSubscriptionEmail } from "@/utils/api";
 
 import { sendContactEmail } from "@/utils/emailAPI";
 import { emailRegex } from "@/utils/regex";
+import LanguageSwitcher from "../lang/LanguageSwitcher";
 
 export default function ComingSoon() {
   const { t } = useTranslation("coming_soon");
@@ -69,7 +70,7 @@ export default function ComingSoon() {
   };
 
   return (
-    <Wrapper className="flex flex-col md:flex-row max-w-full h-screen justify-between items-center gap-12 md:my-0 ">
+    <Wrapper className="flex flex-col md:flex-row max-w-full h-screen justify-around items-center gap-12 md:my-0 ">
       <ToastContainer />
       <div className="flex-1 md:my-0 my-2">
         <HeroBanner />
@@ -85,7 +86,7 @@ export default function ComingSoon() {
           <p className="md:text-[18px] text-[18px] mb-12 max-w-[600px]">
             {t("description")}
           </p>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 mb-12">
             <div className="flex max-h-10 items-center justify-center gap-2 w-full">
               <input
                 value={email}
@@ -143,6 +144,8 @@ export default function ComingSoon() {
               </div>
             ) : null}
           </div>
+          <LanguageSwitcher />
+
         </div>
         <div
           onClick={() => window.open("https://www.instagram.com/troykawear/")}
