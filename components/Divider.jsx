@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-function Divider() {
-  return (
-    <div className="w-full h-[1px] bg-offWhite my-5"/>
-  )
+function Divider({ color }) {
+  return <div className={`w-[90%] h-[1px] bg-${color ?? "offWhite"} my-5`} />;
 }
 
-export default Divider
+export default Divider;

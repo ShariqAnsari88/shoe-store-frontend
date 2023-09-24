@@ -1,13 +1,11 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useCallback } from "react";
+import React from "react";
 
 const options = ["en", "it", "bg"];
 
 export default function LanguageSwitcher() {
   const { locale } = useRouter();
-
-  document.cookie = `NEXT_LOCALE=${locale}; max-age=31536000; path=/`
 
   return (
     <div className="flex gap-10 justify-center items-center">

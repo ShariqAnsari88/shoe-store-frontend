@@ -8,10 +8,14 @@ import HomePage from "@/components/screens/HomePage";
 import ComingSoon from "@/components/screens/ComingSoon";
 import { useTranslation } from "next-i18next";
 import { fetchDataFromApi } from "@/utils/api";
+import { useRouter } from "next/router";
 
 export default function Home({ products, userData, ...rest }) {
   const dispatch = useDispatch();
 
+  const { locale } = useRouter();
+
+  document.cookie = `NEXT_LOCALE=${locale}; max-age=31536000; path=/`
   const isReleased = process.env.IS_RELEASED === "true";
   
   useEffect(() => {
