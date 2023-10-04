@@ -16,7 +16,6 @@ export default function LanguageSwitcher() {
           className={`transition ease-in-out border-[1px] w-10 h-10 rounded-md flex items-center justify-center hover:bg-gray-500/[0.5] ${
             option === locale ? "bg-neonGreen" : null
           }`}
-          onClick={() => console.log(option, "kura")}
           key={`${option}-${index}`}
         >
           {option.toUpperCase()}

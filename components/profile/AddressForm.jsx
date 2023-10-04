@@ -9,26 +9,28 @@ import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { emailRegex } from "@/utils/regex";
 import { ToastContainer } from "react-toastify";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
-
-const labels = {
-  firstName: "Име*",
-  secondName: "Фамилия*",
-  company: "Компания",
-  street: "Улица*",
-  streetNumber: "Номер на улица*",
-  houseNumber: "Номерн а вход/блок*",
-  city: "Местонахождение*",
-  postalCode: "Пощенски код*",
-  phoneNumber: "Телфонен номер*",
-  email: "E-mail адрес",
-};
+import { useTranslation } from "react-i18next";
 
 function AddressForm({ setShowError }) {
   const dispatch = useDispatch();
+  const { t } = useTranslation(["profile", "buttons", "forms"]);
   const addressInfo = useAppSelector(selectUserAddress);
   const [shouldShowAddress, setShouldShowAddress] = useState(
     addressInfo ? true : false
   );
+
+  const labels = {
+    firstName: t("firstName", { ns: "forms" }),
+    secondName: t("secondName", { ns: "forms" }),
+    company: t("company", { ns: "forms" }),
+    street: t("street", { ns: "forms" }),
+    streetNumber: t("streetNumber", { ns: "forms" }),
+    houseNumber: t("houseNumber", { ns: "forms" }),
+    city: t("city", { ns: "forms" }),
+    postalCode: t("postalCode", { ns: "forms" }),
+    phoneNumber: t("phoneNumber", { ns: "forms" }),
+    email: t("email", { ns: "forms" }),
+  };
 
   const initialValues = {
     firstName: addressInfo?.firstName ?? "",
@@ -105,12 +107,12 @@ function AddressForm({ setShowError }) {
     <div className="bg-neonGreen flex-1 flex-column mt-4 space-y-2 md:max-w-[450px] p-[40px] shadow-md border-zinc-700 rounded-sm">
       <ToastContainer />
       <div className="flex items-center gap-2 mb-2 justify-center">
-      <div>
-        <FontAwesomeIcon color="#EEEEEE" icon={faLocationDot} />
-      </div>
-      <h2 className="font-semibold text-xl text-[#F8F1F1]">
-        Адрес
-      </h2>
+        <div>
+          <FontAwesomeIcon color="#EEEEEE" icon={faLocationDot} />
+        </div>
+        <h2 className="font-semibold text-xl text-[#F8F1F1]">
+          {t("address", { ns: "forms" })}
+        </h2>
       </div>
       <Formik
         initialValues={initialValues}
@@ -152,7 +154,7 @@ function AddressForm({ setShowError }) {
                    md:mr-auto md:ml-0 min-h-[50px] bg-[#181516] rounded-[4px] md:max-w-[450px] w-full text-offWhite`}
                     type="button"
                   >
-                    Отказ
+                    {t("cancel", { ns: "buttons" })}
                   </button>
 
                   <button
@@ -166,7 +168,7 @@ function AddressForm({ setShowError }) {
                     } md:max-w-[450px] w-full text-[#181516]`}
                     type="submit"
                   >
-                    Запази
+                    {t("save", { ns: "buttons" })}
                   </button>
                 </div>
               </div>
@@ -179,13 +181,16 @@ function AddressForm({ setShowError }) {
 }
 
 export const AddressInfo = ({ addressInfo, setShouldShowAddress }) => {
+  const { t } = useTranslation(["profile", "buttons"]);
   return (
     <div className="h-60">
       <div className="flex items-center gap-2 mb-2">
-      <div className="bg-neonGreen w-8 h-8 rounded-full flex items-center justify-center">
-        <FontAwesomeIcon color="#EEEEEE" icon={faLocationDot} />
-      </div>
-      <h2 className="text-offWhite text-xl font-semibold">Адрес</h2>
+        <div className="bg-neonGreen w-8 h-8 rounded-full flex items-center justify-center">
+          <FontAwesomeIcon color="#EEEEEE" icon={faLocationDot} />
+        </div>
+        <h2 className="text-offWhite text-xl font-semibold">
+          {t("address", { ns: "forms" })}
+        </h2>
       </div>
       <div className="relative">
         <button

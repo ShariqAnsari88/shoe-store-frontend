@@ -1,0 +1,14 @@
+{
+  "firstName": "First Name*",
+  "secondName": "LastName*",
+  "company": "Company",
+  "street": "Street*",
+  "streetNumber": "Street Number*",
+  "houseNumber": "Entrance/Block Number*",
+  "city": "Location*",
+  "postalCode": "Postal Code*",
+  "phoneNumber": "Phone Number*",
+  "email": "Email address",
+  "address": "Address",
+  "address_error": "Please add a shipping address!"
+}

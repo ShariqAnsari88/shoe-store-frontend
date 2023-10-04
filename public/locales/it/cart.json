@@ -1,0 +1,10 @@
+{
+  "your_cart": "Il tuo carrello",
+  "summary": "Riepilogo",
+  "products": "Prodotti",
+  "subtotal": "totale parziale",
+  "shipping": "Valore di spedizione",
+  "shipping_description": "Il totale parziale riflette il prezzo totale del tuo ordine, inclusi dazi e tasse, prima di eventuali sconti applicabili. Non include le spese di spedizione e le commissioni per le transazioni internazionali.",
+  "empty_description": "Sembra che tu non abbia aggiunto nulla al carrello. Dai un'occhiata alle nostre migliori categorie.",
+  "empty": "il tuo carrello è vuoto"
+}

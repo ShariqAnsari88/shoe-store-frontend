@@ -1,16 +1,18 @@
 import React from "react";
 import Link from "next/link";
 import { BsChevronDown } from "react-icons/bs";
-
-const navItems = [
-  { id: 1, name: "Начало", url: "/" },
-  { id: 2, name: "За нас", url: "/about" },
-  { id: 3, name: "Категории", subMenu: true },
-  { id: 4, name: "Контакти", url: "/contact" },
-];
-
+import { useTranslation } from "next-i18next";
 
 const Menu = ({ showCatMenu, setShowCatMenu, categories }) => {
+  const { t } = useTranslation("nav");
+
+  const navItems = [
+    { id: 1, name: t("home"), url: "/" },
+    { id: 2, name: t("about"), url: "/about" },
+    { id: 3, name: t("category"), subMenu: true },
+    { id: 4, name: t("contact"), url: "/contact" },
+  ];
+
   return (
   <ul className="hidden md:flex item-center gap-3 font-semibold text-[18px] ">
       {navItems.map((item) => {

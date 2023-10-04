@@ -1,17 +1,17 @@
 import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import { useRouter } from "next/router";
 
 function Layout(props) {
   const Component = props.component;
 
-  const isReleased = process.env.IS_RELEASED === 'true';
+  const { query } = useRouter();
+  const isReleased = query.released;
 
   return (
     <div>
-      {isReleased && <Header />}
       <Component {...props.pageProps} />
-      {isReleased && <Footer />}
     </div>
   );
 }

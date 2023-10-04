@@ -1,0 +1,15 @@
+{
+  "add_cart": "Add to cart",
+  "add_wishlist": "Add to wishlist",
+  "remove_cart": "Remove from cart",
+  "remove_wishlist": "Remove from wishlist",
+  "your_favourite_products": "your wishlist",
+  "your_cart": "your cart",
+  "success": "Success, check",
+  "continue": "Continue shopping",
+  "pay_arrival": "Pay on delivery",
+  "pay_card": "Pay with card",
+  "log_out": "Log out",
+  "cancel": "Cancel",
+  "save": "Save"
+}

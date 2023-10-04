@@ -19,12 +19,22 @@ import {
   faHeartCircleCheck,
   faHeartCirclePlus,
 } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Container from "@/components/Container";
 
 const ProductDetails = ({ product, products }) => {
+  const { t } = useTranslation(["product_details", "buttons"]);
   const dispatch = useDispatch();
-  const isAccessory = product.data[0].attributes.categories.data[0].attributes.slug.includes('aksesoari')
+  const slug = product.data[0].attributes.categories.data[0].attributes.slug;
+  const isAccessory =
+    slug.includes("aksesoari-1") ||
+    slug.includes("accessori-2") ||
+    slug.includes("accessories-1");
 
-  const [selectedSize, setSelectedSize] = useState(isAccessory ? 'M' : undefined);
+  const [selectedSize, setSelectedSize] = useState(
+    isAccessory ? "M" : undefined
+  );
   const [showError, setShowError] = useState(false);
   const isWishlisted = useAppSelector((state) =>
     selectIsWishlisted(state, { ...product.data[0] })
@@ -35,8 +45,10 @@ const ProductDetails = ({ product, products }) => {
 
   const notify = (buttonName) => {
     toast.success(
-      `Успешно, проверете ${
-        buttonName === "wishlist" ? "вашите любими продукти" : "вашата количка"
+      `${t("success", { ns: "buttons" })} ${
+        buttonName === "wishlist"
+          ? t("your_favourite_products", { ns: "buttons" })
+          : t("your_cart", { ns: "buttons" })
       }!`,
       {
         position: "bottom-right",
@@ -52,201 +64,199 @@ const ProductDetails = ({ product, products }) => {
   };
 
   return (
-    <div className="w-full md:py-20">
-      <ToastContainer />
-      <Wrapper>
-        <div id="wrapperGrid" className="flex flex-col lg:flex-row md:px-10 gap-[50px] lg:gap-[100px]">
-          {/* left column start */}
-          <div className="w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0">
-            <ProductDetailsCarousel images={p.image.data} />
-          </div>
-          {/* left column end */}
-
-          {/* right column start */}
-          <div className="flex-[1] py-3">
-            {/* PRODUCT TITLE */}
-            <div className="text-neonGreenLighter text-[34px] font-semibold mb-2 leading-tight">
-              {p.name}
+    <Container>
+      <div className="w-full py-12">
+        <ToastContainer />
+        <Wrapper>
+          <div
+            id="wrapperGrid"
+            className="flex flex-col lg:flex-row md:px-10 gap-[50px] lg:gap-[100px]"
+          >
+            {/* left column start */}
+            <div className="w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0">
+              <ProductDetailsCarousel images={p.image.data} />
             </div>
+            {/* left column end */}
 
-            {/* PRODUCT SUBTITLE */}
-            {/* <div className="text-offWhite text-lg font-semibold mb-5">
+            {/* right column start */}
+            <div className="flex-[1] py-3">
+              {/* PRODUCT TITLE */}
+              <div className="text-neonGreenLighter text-[34px] font-semibold mb-2 leading-tight">
+                {p.name}
+              </div>
+
+              {/* PRODUCT SUBTITLE */}
+              {/* <div className="text-offWhite text-lg font-semibold mb-5">
               {p.subtitle}
             </div> */}
 
-            {/* PRODUCT PRICE */}
-            <div className="flex items-center">
-              <p className="text-[rgb(238,238,238)] mr-2 text-2xl font-semibold">
-                {p.price} лв.
-              </p>
-              {p.original_price && (
-                <>
-                  {discount > 0 && (
-                    <>
-                      <p className="text-offWhite text-base  font-medium line-through">
-                        {p.original_price} лв.
-                      </p>
+              {/* PRODUCT PRICE */}
+              <div className="flex items-center">
+                <p className="text-[rgb(238,238,238)] mr-2 text-2xl font-semibold">
+                  {t("price", { count: p.price })}
+                </p>
+                {p.original_price && (
+                  <>
+                    {discount > 0 && (
+                      <>
+                        <p className="text-offWhite text-base  font-medium line-through">
+                          {t("price", { count: p.original_price })}
+                        </p>
 
-                      <p className="ml-auto text-base font-semibold bg-orange-400 rounded-md p-[5px]">
-                        {discount}% off
-                      </p>
-                    </>
-                  )}
-                </>
-              )}
-            </div>
-
-            <div className="text-offWhite/[0.5] text-md font-medium">
-              вкл. такси
-            </div>
-            <div className="text-offWhite/[0.5] text-md font-medium mb-20">
-              {`(Също така включва всички приложими задължения)`}
-            </div>
-
-            {/* PRODUCT SIZE RANGE START */}
-            {!isAccessory  && (
-              <div className="mb-10">
-                {/* HEADING START */}
-                <div className="flex justify-between mb-2">
-                  <div className="text-offWhite text-md font-semibold">
-                    Избери размер
-                  </div>
-                </div>
-                {/* HEADING END */}
-
-                {/* SIZE START */}
-                <div id="sizesGrid" className="grid grid-cols-3 gap-2">
-                  {p.size.data.map((item, i) => (
-                    <div
-                      key={i}
-                      className={`border-[2px] border-neonGreen rounded-md text-center py-3 font-medium ${
-                        item.enabled
-                          ? "cursor-pointer"
-                          : "cursor-not-allowed bg-#393646/[0.1] opacity-50"
-                      } ${
-                        selectedSize === item.size
-                          ? "border-[2px] bg-neonGreenLighter text-darkBlack"
-                          : ""
-                      }`}
-                      onClick={() => {
-                        setSelectedSize(item.size);
-                        setShowError(false);
-                      }}
-                    >
-                      {item.size}
-                    </div>
-                  ))}
-                </div>
-                {/* SIZE END */}
-
-                {/* SHOW ERROR START */}
-                {showError && (
-                  <div className="text-red-600 mt-1">
-                    Задължително е да изберете размер.
-                  </div>
+                        <p className="ml-auto text-base font-semibold bg-orange-400 rounded-md p-[5px]">
+                          {t("off", { count: discount })}
+                        </p>
+                      </>
+                    )}
+                  </>
                 )}
-                {/* SHOW ERROR END */}
               </div>
-            )}
-            {/* PRODUCT SIZE RANGE END */}
 
-            {/* ADD TO CART BUTTON START */}
-            <button
-              name="cart"
-              className="flex items-center justify-center gap-2 w-full py-4 rounded-full bg-neonGreen  text-[#F1F0F1] text-lg font-medium transition ease-in-out active:scale-95 mb-3 hover:opacity-75"
-              onClick={() => {
-                if (!selectedSize) {
-                  setShowError(true);
-                  document.getElementById("wrapperGrid").scrollIntoView({
-                    block: "center",
-                    behavior: "smooth",
-                  });
-                } else {
+              <div className="text-offWhite/[0.5] text-md font-medium">
+                {t("taxes")}
+              </div>
+              <div className="text-offWhite/[0.5] text-md font-medium mb-20">
+                {t("obligation")}
+              </div>
+
+              {/* PRODUCT SIZE RANGE START */}
+              {!isAccessory && (
+                <div className="mb-10">
+                  {/* HEADING START */}
+                  <div className="flex justify-between mb-2">
+                    <div className="text-offWhite text-md font-semibold">
+                      {t("choose_size")}
+                    </div>
+                  </div>
+                  {/* HEADING END */}
+
+                  {/* SIZE START */}
+                  <div id="sizesGrid" className="grid grid-cols-3 gap-2">
+                    {p.size.data.map((item, i) => (
+                      <div
+                        key={i}
+                        className={`border-[2px] border-neonGreen rounded-md text-center py-3 font-medium ${
+                          item.enabled
+                            ? "cursor-pointer"
+                            : "cursor-not-allowed bg-#393646/[0.1] opacity-50"
+                        } ${
+                          selectedSize === item.size
+                            ? "border-[2px] bg-neonGreenLighter text-darkBlack"
+                            : ""
+                        }`}
+                        onClick={() => {
+                          setSelectedSize(item.size);
+                          setShowError(false);
+                        }}
+                      >
+                        {item.size}
+                      </div>
+                    ))}
+                  </div>
+                  {/* SIZE END */}
+
+                  {/* SHOW ERROR START */}
+                  {showError && (
+                    <div className="text-red-600 mt-1">{t("error")}</div>
+                  )}
+                  {/* SHOW ERROR END */}
+                </div>
+              )}
+              {/* PRODUCT SIZE RANGE END */}
+
+              {/* ADD TO CART BUTTON START */}
+              <button
+                name="cart"
+                className="flex items-center justify-center gap-2 w-full py-4 rounded-full bg-neonGreen  text-[#F1F0F1] text-lg font-medium transition ease-in-out active:scale-95 mb-3 hover:opacity-75"
+                onClick={() => {
+                  if (!selectedSize) {
+                    setShowError(true);
+                    document.getElementById("wrapperGrid").scrollIntoView({
+                      block: "center",
+                      behavior: "smooth",
+                    });
+                  } else {
+                    dispatch(
+                      addToCart({
+                        ...product?.data?.[0],
+                        selectedSize,
+                        oneQuantityPrice: p.price,
+                      })
+                    );
+                    notify("cart");
+                  }
+                }}
+              >
+                {t("add_cart", { ns: "buttons" })}
+                <FontAwesomeIcon icon={faCartShopping} />
+              </button>
+              {/* ADD TO CART BUTTON END */}
+
+              {/* WHISHLIST BUTTON START */}
+              <button
+                name="wishlist"
+                onClick={() => {
                   dispatch(
-                    addToCart({
+                    addToWishlist({
                       ...product?.data?.[0],
                       selectedSize,
                       oneQuantityPrice: p.price,
                     })
                   );
-                  notify("cart");
-                }
-              }}
-            >
-              Добави в количка
-              <FontAwesomeIcon icon={faCartShopping} />
-            </button>
-            {/* ADD TO CART BUTTON END */}
+                  notify("wishlist");
+                }}
+                className="bg-offWhite text-neonGreen transition ease-in-out w-full py-4 rounded-full border  border-neonGreen text-lg font-medium active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10"
+              >
+                {isWishlisted
+                  ? t("remove_wishlist", { ns: "buttons" })
+                  : t("add_wishlist", { ns: "buttons" })}
+                <FontAwesomeIcon
+                  icon={isWishlisted ? faHeartCircleCheck : faHeartCirclePlus}
+                  color={isWishlisted ? "#B22222" : "charcoal"}
+                />
+              </button>
+              {/* WHISHLIST BUTTON END */}
 
-            {/* WHISHLIST BUTTON START */}
-            <button
-              name="wishlist"
-              onClick={() => {
-                dispatch(
-                  addToWishlist({
-                    ...product?.data?.[0],
-                    selectedSize,
-                    oneQuantityPrice: p.price,
-                  })
-                );
-                notify("wishlist");
-              }}
-              className="bg-offWhite text-neonGreen transition ease-in-out w-full py-4 rounded-full border  border-neonGreen text-lg font-medium active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10"
-            >
-              {isWishlisted ? "Премахни от любими" : "Добави в любими"}
-              <FontAwesomeIcon
-                icon={isWishlisted ? faHeartCircleCheck : faHeartCirclePlus}
-                color={isWishlisted ? "#B22222" : "charcoal"}
-              />
-            </button>
-            {/* WHISHLIST BUTTON END */}
-
-            <div>
-              <div className="text-offWhite text-lg font-bold mb-5">
-                Детайли за продукт
-              </div>
-              <div className="text-offWhite markdown text-md mb-5">
-                <ReactMarkdown>{p.description}</ReactMarkdown>
+              <div>
+                <div className="text-offWhite text-lg font-bold mb-5">
+                  {t("details")}
+                </div>
+                <div className="text-offWhite markdown text-md mb-5">
+                  <ReactMarkdown>{p.description}</ReactMarkdown>
+                </div>
               </div>
             </div>
+            {/* right column end */}
           </div>
-          {/* right column end */}
-        </div>
 
-        <RelatedProducts products={products} />
-      </Wrapper>
-    </div>
+          <RelatedProducts products={products} />
+        </Wrapper>
+      </div>
+    </Container>
   );
 };
 
 export default ProductDetails;
 
-export async function getStaticPaths() {
-  const products = await fetchDataFromApi("/api/products?populate=*");
-  const paths = products?.data?.map((p) => ({
-    params: {
-      slug: p.attributes.slug,
-    },
-  }));
-
-  return {
-    paths,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params: { slug } }) {
+export async function getServerSideProps({ params: { slug }, locale }) {
   const product = await fetchDataFromApi(
-    `/api/products?populate=*&filters[slug][$eq]=${slug}`
+    `/api/products?populate=*&filters[slug][$eq]=${slug}&locale=${locale}`
   );
+
   const products = await fetchDataFromApi(
-    `/api/products?populate=*&[filters][slug][$ne]=${slug}`
+    `/api/products?populate=*&[filters][slug][$ne]=${slug}&locale=${locale}`
   );
 
   return {
     props: {
       product,
       products,
+      ...(await serverSideTranslations(locale, [
+        "product_details",
+        "buttons",
+        "footer",
+        "nav",
+      ])),
     },
   };
 }

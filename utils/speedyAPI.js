@@ -5,7 +5,7 @@ const APIHeaders = {
 };
 
 export const API = axios.create({
-  baseURL: process.env.SPEEDY_API_URL,
+  baseL: process.env.SPEEDY_API_URL,
   headers: APIHeaders,
 });
 

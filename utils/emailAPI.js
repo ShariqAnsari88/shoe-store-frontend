@@ -6,7 +6,7 @@ const headers = {
 };
 
 const API = axios.create({
-  baseURL: EMAIL_API_URL,
+  baseL: EMAIL_API_URL,
   headers,
 });
 

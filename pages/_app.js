@@ -9,11 +9,15 @@ import { rootReducer } from "@/store/store";
 import Layout from "@/components/Layout";
 import Banner from "@/components/Banner";
 import { appWithTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 
 config.autoAddCss = false;
 
 function App({ Component, pageProps }) {
-  const isReleased = process.env.IS_REALEASED;
+  const { query } = useRouter();
+
+  const isReleased = query.released;
+
   return (
     <>
       <Head>
@@ -40,11 +44,11 @@ function App({ Component, pageProps }) {
       <Provider store={rootReducer}>
         <PersistGate persistor={persistor}>
           {isReleased === "true" && <Banner />}
-          <Layout component={Component} pageProps={pageProps}/>
+          <Layout component={Component} pageProps={pageProps} />
         </PersistGate>
       </Provider>
     </>
   );
-};
+}
 
 export default appWithTranslation(App);

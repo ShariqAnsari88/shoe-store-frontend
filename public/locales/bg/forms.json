@@ -1,0 +1,14 @@
+{
+  "firstName": "Име*",
+  "secondName": "Фамилия*",
+  "company": "Компания",
+  "street": "Улица*",
+  "streetNumber": "Номер на улица*",
+  "houseNumber": "Номерн а вход/блок*",
+  "city": "Местонахождение*",
+  "postalCode": "Пощенски код*",
+  "phoneNumber": "Телфонен номер*",
+  "email": "Email адрес",
+  "address": "Адрес",
+  "address_error": "Моля добавете адрес за доставка!"
+}

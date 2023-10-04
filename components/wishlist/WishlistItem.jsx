@@ -5,10 +5,13 @@ import { faHeartCircleMinus } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { removeFromWishlist } from "@/store/wishlistSlice";
 import { getDiscountedPricePercentage } from "@/utils/helper";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function WishlistItem(props) {
   const dispatch = useDispatch();
-
+  const { locale } = useRouter();
+  const currency = locale !== 'bg' ? '€' : 'ЛВ'
   if (!props.wishlistItem) return null;
 
   const discount = getDiscountedPricePercentage(
@@ -23,8 +26,8 @@ export default function WishlistItem(props) {
       className={`transform border-2 overflow-hidden duration-200 hover:scale-105 cursor-pointer flex flex-col justify-between`}
     >
       <div>
-        <a
-          href={`/product/${props.wishlistItem.attributes.slug}`}
+        <Link
+           href={{ pathname: `/product/${props.wishlistItem.attributes.slug}`}}
           className="rounded-md"
         >
           <Image
@@ -34,7 +37,7 @@ export default function WishlistItem(props) {
             className="object-contain"
             src={imageSrc}
           />
-        </a>
+        </Link>
         <button
           onClick={() =>
             dispatch(removeFromWishlist({ id: props.wishlistItem.id }))
@@ -54,7 +57,7 @@ export default function WishlistItem(props) {
         </h2>
         <div className="flex items-center text-black/[0.5]">
           <p className="mr-2 text-lg font-normal">
-            {props.wishlistItem.attributes.price} лв.
+            {props.wishlistItem.attributes.price} {currency}.
           </p>
 
           {props.wishlistItem.attributes.original_price && (

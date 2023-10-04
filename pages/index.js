@@ -6,32 +6,37 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import "react-toastify/dist/ReactToastify.css";
 import HomePage from "@/components/screens/HomePage";
 import ComingSoon from "@/components/screens/ComingSoon";
-import { useTranslation } from "next-i18next";
 import { fetchDataFromApi } from "@/utils/api";
 import { useRouter } from "next/router";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export default function Home({ products, userData, ...rest }) {
   const dispatch = useDispatch();
 
-  const { locale } = useRouter();
+  const { locale, query } = useRouter();
+  const isReleased = query.released;
 
-  document.cookie = `NEXT_LOCALE=${locale}; max-age=31536000; path=/`
-  const isReleased = process.env.IS_RELEASED === "true";
-  
+  document.cookie = `NEXT_LOCALE=${locale}; max-age=31536000; path=/`;
+
   useEffect(() => {
     dispatch(setUserInfo(userData));
   }, []);
 
   return (
     <main>
+      {isReleased && <Header />}
       {isReleased ? <HomePage products={products} /> : <ComingSoon />}
+      {isReleased && <Footer />}
     </main>
   );
 }
 
 export async function getServerSideProps(ctx) {
   const { locale } = ctx;
-  const products = await fetchDataFromApi("/api/products?populate=*");
+  const products = await fetchDataFromApi(
+    `/api/products?populate=*&locale=${locale}`
+  );
 
   const userData = getUser(ctx);
 
@@ -39,7 +44,13 @@ export async function getServerSideProps(ctx) {
     props: {
       products,
       userData,
-      ...(await serverSideTranslations(locale, ["common","coming_soon"])),
+      ...(await serverSideTranslations(locale, [
+        "common",
+        "coming_soon",
+        "nav",
+        "footer",
+        "buttons"
+      ])),
       // Will be passed to the page component as props
     },
   };

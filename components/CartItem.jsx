@@ -3,12 +3,17 @@ import React from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { updateCart, removeFromCart } from "@/store/cartSlice";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 
 const CartItem = ({ data }) => {
-  const p = data.attributes;
-  const isAccessory = p.categories.data[0].attributes.slug.includes('aksesoari')
-
   const dispatch = useDispatch();
+
+  const router = useRouter()
+  const { locale } = router
+  const p = data.attributes;
+  const slug =  p.categories.data[0].attributes.slug
+  const isAccessory = slug.includes('aksesoari-1') || slug.includes('accessori-2') || slug.includes('accessories-1')  
+  const currency = locale !== 'bg' ? '€' : 'ЛВ'
 
   const updateCartItem = (e, key) => {
     let payload = {
@@ -46,7 +51,7 @@ const CartItem = ({ data }) => {
 
           {/* PRODUCT PRICE */}
           <div className="text-sm md:text-md font-normal text-offWhite/[0.5] mt-2">
-            {p.price} лв.
+            {p.price} {currency}.
           </div>
         </div>
 

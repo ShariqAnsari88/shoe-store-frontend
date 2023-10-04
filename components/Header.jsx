@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import shopImage from "/public/favicon.ico";
-
 import Link from "next/link";
 import Menu from "./Menu";
 import MenuMobile from "./MenuMobile";
@@ -16,8 +14,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/router";
 
 const Header = () => {
+  const { locale } = useRouter();
   const [mobileMenu, setMobileMenu] = useState(false);
   const [showCatMenu, setShowCatMenu] = useState(false);
   const [show, setShow] = useState("translate-y-0");
@@ -52,7 +52,7 @@ const Header = () => {
   }, []);
 
   const fetchCategories = async () => {
-    const { data } = await fetchDataFromApi("/api/categories?populate=*");
+    const { data } = await fetchDataFromApi(`/api/categories?populate=*&locale=${locale}`);
     setCategories(data);
   };
 
@@ -62,7 +62,13 @@ const Header = () => {
     >
       <div className="flex justify-between items-center w-full px-4">
         <Link href="/">
-         <Image width={600} height={600} className="md:w-12 w-6" alt="image" src="/logo-white.png"/>
+          <Image
+            width={600}
+            height={600}
+            className="md:w-12 w-6"
+            alt="image"
+            src="/logo-white.png"
+          />
           {/* <Image alt="img" src={shopImage} className="w-[70px] md:w-[100px]" /> */}
         </Link>
 
@@ -137,19 +143,3 @@ const Header = () => {
 };
 
 export default Header;
-
-export async function getServerSideProps(ctx) {
-  const cookies = nookies.get(ctx);
-  let user = null;
-
-  if (cookies.jwt) {
-    user = cookies.user;
-  }
-
-  return {
-    props: {
-      user,
-      cookies,
-    },
-  };
-}

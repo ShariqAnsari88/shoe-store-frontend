@@ -1,6 +1,8 @@
 import React from "react";
+import { useTranslation } from "next-i18next";
 
 const Modal = ({ logOut, close }) => {
+  const { t } = useTranslation(["modals", "buttons"]);
   return (
     <div class="fixed z-10 w-full flex justify-center">
       <div class="bg-white rounded-md flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
@@ -19,25 +21,23 @@ const Modal = ({ logOut, close }) => {
           </span>
 
           <h3 class="mb-2 text-2xl font-bold text-gray-800">
-            Излизаш от акаунта си
+            {t("logging_out")}
           </h3>
-          <p class="text-gray-500">
-            Сигурен ли си, че искаш да излезеш от акаунта си?
-          </p>
+          <p class="text-gray-500">{t("sure")}</p>
 
           <div class="mt-6 flex justify-center gap-x-4">
             <button
               onClick={logOut}
               class="py-2.5 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm"
             >
-              Излез
+              {t("log_out", { ns: "buttons" })}
             </button>
             <button
               onClick={close}
               type="button"
               class="py-2.5 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-neonGreen text-white hover:bg-neonGreen/[0.8] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm"
             >
-              Отказ
+              {t("cancel", { ns: "buttons" })}
             </button>
           </div>
         </div>

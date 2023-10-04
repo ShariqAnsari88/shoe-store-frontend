@@ -16,6 +16,6 @@ export default async function handler(data) {
     
     console.log('Authenticated');
   } catch (e) {
-    console.log(e, "error");
+    console.log(e, "Error Authenticating.");
   }
 }

@@ -7,12 +7,12 @@ const APIHeaders = {
 };
 
 export const API = axios.create({
-  baseURL: API_URL,
+  baseL: API_URL,
   headers: APIHeaders,
 });
 
 export const fetchDataFromApi = async (endpoint) => {
-  const res = await API.get(`${API_URL}${endpoint}`);
+  const res = await API.get(`${'http://localhost:1337'}${endpoint}`);
   return res?.data;
 };
 

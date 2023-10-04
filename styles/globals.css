@@ -37,7 +37,10 @@
     src: url('../assets/fonts/BoffinCondensed.otf');
 }
 
-
+@font-face {
+    font-family: "SPArielBG";
+    src: url('../assets/fonts/SPArielBG.otf');
+}
 
 :root {
     font-family: "Euclid", sans-serif;
@@ -66,6 +69,7 @@ h1 {
 }
 
 h2 {
+    line-height:normal;
     font-size: 48px;
     color: #EEEEEE
 }

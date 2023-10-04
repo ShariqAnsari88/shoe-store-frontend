@@ -1,0 +1,10 @@
+{
+  "taxes": "incl. fees",
+  "obligation": "(It also includes all applicable liabilities)",
+  "choose_size": "Choose size",
+  "details": "Product details",
+  "recommended": "Recommended products",
+  "error": "You must select a size.",
+  "off": "{{count}}% off",
+  "price": "{{count}} €"
+}

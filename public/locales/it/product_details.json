@@ -1,0 +1,10 @@
+{
+  "taxes": "incl. commissioni",
+  "obligation": "(Include anche tutte le passività applicabili)",
+  "choose_size": "Scegli una taglia",
+  "details": "Dettagli del prodotto",
+  "recommended": "Prodotti consigliati",
+  "error": "È necessario selezionare una taglia.",
+  "off": "{{count}}% spento",
+  "price": "{{count}} €"
+}
