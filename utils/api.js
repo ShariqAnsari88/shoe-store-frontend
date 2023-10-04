@@ -12,7 +12,7 @@ export const API = axios.create({
 });
 
 export const fetchDataFromApi = async (endpoint) => {
-  const res = await API.get(`${'http://localhost:1337'}${endpoint}`);
+  const res = await API.get(`${API_URL}${endpoint}`);
   return res?.data;
 };
 
