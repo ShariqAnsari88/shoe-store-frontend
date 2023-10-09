@@ -1,20 +1,22 @@
 import { handlePayment } from "@/pages/api/checkout/payments";
 import { createSlice } from "@reduxjs/toolkit";
+import { revertAll } from "./rootReducer";
+
+const initialState = { cartItems: [] };
 
 export const cartSlice = createSlice({
   name: "cart",
-  initialState: {
-    cartItems: [],
-  },
+  initialState,
   extraReducers: (builder) => {
     builder
       .addCase(handlePayment.fulfilled, (state, action) => {
-        window.location.replace('/success')
+        window.location.replace("/success");
       })
       // You can chain calls, or have separate `builder.addCase()` lines each time
       .addCase(handlePayment.rejected, (state, action) => {
-        window.location.replace('/failed')
-      });
+        window.location.replace("/failed");
+      })
+      .addCase(revertAll, () => initialState);
   },
   reducers: {
     addToCart: (state, action) => {

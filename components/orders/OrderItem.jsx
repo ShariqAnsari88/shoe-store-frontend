@@ -1,12 +1,10 @@
+import useCurrency from "@/hooks/useCurrency";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRouter } from "next/router";
 import React from "react";
 
 function OrderItem(props) {
-  const router = useRouter();
-  const { locale } = router;
-  const currency = locale !== "bg" ? "€" : "ЛВ";
+  const { currency } = useCurrency();
 
   const { totalPrice, status, orderId } = props;
   const selectedStatus = {
@@ -33,7 +31,7 @@ function OrderItem(props) {
         <div className="">{selectedStatus[status] ?? null}</div>
       </div>
       <div>
-        Цена: {totalPrice ?? "[Липсва] "} {currency}.
+        Цена: {totalPrice ?? "[??] "} {currency}.
       </div>
     </div>
   );

@@ -5,13 +5,12 @@ import { faHeartCircleMinus } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { removeFromWishlist } from "@/store/wishlistSlice";
 import { getDiscountedPricePercentage } from "@/utils/helper";
-import { useRouter } from "next/router";
 import Link from "next/link";
+import useCurrency from "@/hooks/useCurrency";
 
 export default function WishlistItem(props) {
   const dispatch = useDispatch();
-  const { locale } = useRouter();
-  const currency = locale !== 'bg' ? '€' : 'ЛВ'
+  const { currency } = useCurrency();
   if (!props.wishlistItem) return null;
 
   const discount = getDiscountedPricePercentage(

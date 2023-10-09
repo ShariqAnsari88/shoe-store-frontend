@@ -73,6 +73,7 @@ export async function getServerSideProps(ctx) {
         "about",
         "footer",
         "nav",
+        "banner"
       ])),
     },
   };

@@ -1,30 +1,24 @@
 import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
 
-const ProductDetailsCarousel = ({ images }) => {
-    return (
-        <div className="text-[20px] text-neonGreenLighter w-full max-w-[1360px] mx-auto sticky top-[50px]">
-            <Carousel
-                infiniteLoop={true}
-                showIndicators={false}
-                showStatus={false}
-                thumbWidth={60}
-                className="productCarousel"
-            >
-                {images?.map((img) => (
-                    <Image
-                    width={1920}
-                    height={1080}
-                        key={img.id}
-                        src={img.attributes.url}
-                        alt={img.attributes.name}
-                    />
-                ))}
-            </Carousel>
-        </div>
-    );
+const ProductDetailsCarousel = ({ image, sliderImages, selected }) => {
+  const selectedImage = sliderImages
+    ? sliderImages.find((a) => a.attributes.hash === selected)?.attributes
+    : null;
+
+  return (
+    <div className="text-[20px] text-neonGreenLighter w-full max-w-[1360px] mx-auto sticky top-[50px]">
+      <Image
+        className="rounded-md"
+        width={800}
+        height={600}
+        key={selectedImage?.id || image.id}
+        src={selectedImage?.url || image.attributes.url}
+        alt={selectedImage?.name || image.attributes.name}
+      />
+    </div>
+  );
 };
 
 export default ProductDetailsCarousel;

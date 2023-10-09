@@ -50,20 +50,24 @@ function AddressForm({ setShowError }) {
   const isEmptyAddress = Object.values(address).every((k) => k.length < 1);
 
   const validationSchema = Yup.object().shape({
-    firstName: Yup.string().required("Моля, въведете име!"),
-    secondName: Yup.string().required("Моля, въведете фамилия!"),
+    firstName: Yup.string().required(t("name_required", { ns: "forms" })),
+    secondName: Yup.string().required(
+      t("secondName_required", { ns: "forms" })
+    ),
     company: Yup.string().optional(),
     city: Yup.string()
-      .required("Моля, въведете град!")
-      .min(4, "Градът трябва да съдържа поне 4 символа!"),
-    street: Yup.string().required(),
-    streetNumber: Yup.string().required("Моля, въведете номер на улица!"),
-    houseNumber: Yup.string().required("Моля, въведете номер на вход/блок!"),
-    postalCode: Yup.string().required("Моля, въведете пощенски код!"),
-    phoneNumber: Yup.string().required("Моля, въведете телефонен номер!"),
+      .required(t("city_required", { ns: "forms" }))
+      .min(4, t("city_min", { ns: "forms" })),
+    street: Yup.string().required(t("street_required", { ns: "forms" })),
+    streetNumber: Yup.string().required(
+      t("streetNumber_required", { ns: "forms" })
+    ),
+    houseNumber: Yup.string().required(t("house_required", { ns: "forms" })),
+    postalCode: Yup.string().required(t("postal_required", { ns: "forms" })),
+    phoneNumber: Yup.string().required(t("phone_required", { ns: "forms" })),
     email: Yup.string()
-      .required("Моля, въведете e-mail адрес!")
-      .matches(emailRegex, "Моля, въведете валиден e-mail адрес!"),
+      .required(t("email_required", { ns: "forms" }))
+      .matches(emailRegex, t("email_incorrect", { ns: "forms" })),
   });
 
   //=========================== Handler Functions START ============================//
@@ -79,7 +83,7 @@ function AddressForm({ setShowError }) {
 
     setShowError(false);
 
-    toast.success(`Адресът е запазен!`, {
+    toast.success(t("address_saved", { ns: "buttons" }), {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -104,7 +108,7 @@ function AddressForm({ setShowError }) {
     );
 
   return (
-    <div className="bg-neonGreen flex-1 flex-column mt-4 space-y-2 md:max-w-[450px] p-[40px] shadow-md border-zinc-700 rounded-sm">
+    <div className="bg-neonGreen flex-1 flex-column mt-4 space-y-2 p-[40px] shadow-md border-zinc-700 rounded-sm">
       <ToastContainer />
       <div className="flex items-center gap-2 mb-2 justify-center">
         <div>

@@ -1,8 +1,8 @@
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import React from "react";
 import { useTranslation } from "next-i18next";
+import { faHeartCrack } from "@fortawesome/free-solid-svg-icons";
 
 const WishlistEmpty = () => {
   const { t } = useTranslation(["wishlist", "buttons"]);
@@ -10,7 +10,7 @@ const WishlistEmpty = () => {
     <div className="flex-[2] flex flex-col items-center pb-[50px]">
       <FontAwesomeIcon
         color="#EEEEEE"
-        icon={faHeart}
+        icon={faHeartCrack}
         className="my-10 w-20 md:w-40 flex flex-1"
       />
       <span className="text-offWhite text-xl font-bold">{t("empty")}</span>

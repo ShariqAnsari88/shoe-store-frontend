@@ -15,9 +15,12 @@ import Image from "next/image";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
+import Banner from "./Banner";
 
 const Header = () => {
-  const { locale } = useRouter();
+  const { locale, query } = useRouter();
+
+  const isReleased = query.released;
   const [mobileMenu, setMobileMenu] = useState(false);
   const [showCatMenu, setShowCatMenu] = useState(false);
   const [show, setShow] = useState("translate-y-0");
@@ -52,93 +55,102 @@ const Header = () => {
   }, []);
 
   const fetchCategories = async () => {
-    const { data } = await fetchDataFromApi(`/api/categories?populate=*&locale=${locale}`);
+    const { data } = await fetchDataFromApi(
+      `/api/categories?populate=*&locale=${locale}`
+    );
     setCategories(data);
   };
 
   return (
-    <header
-      className={`border-b-[2px] border-neonGreen w-full h-[50px] md:h-[80px] bg-[#181516] flex items-center justify-between z-20 sticky transition-transform duration-300 ${show}`}
-    >
-      <div className="flex justify-between items-center w-full px-4">
-        <Link href="/">
-          <Image
-            width={600}
-            height={600}
-            className="md:w-12 w-6"
-            alt="image"
-            src="/logo-white.png"
-          />
-          {/* <Image alt="img" src={shopImage} className="w-[70px] md:w-[100px]" /> */}
-        </Link>
+    <>
+      {isReleased === "true" && <Banner />}
+      <header
+        className={`border-b-[2px] border-neonGreen w-full sm:h-[50px] md:h-[170px] bg-[#181516] flex flex-col items-center justify-around z-20 sticky transition-transform duration-300 ${show}`}
+      >
+        <div className="flex justify-between items-center w-full px-4">
+          <Link href="/">
+            <Image
+              width={600}
+              height={600}
+              className="md:w-12 w-6"
+              alt="image"
+              src="/logo-white.png"
+            />
+            {/* <Image alt="img" src={shopImage} className="w-[70px] md:w-[100px]" /> */}
+          </Link>
 
+          <Image alt="image" width={600} height={600} className="md:w-56 w-20 ml-20" src="/troyka_white.png" />
+  
+
+          {mobileMenu && (
+            <MenuMobile
+              showCatMenu={showCatMenu}
+              setShowCatMenu={setShowCatMenu}
+              setMobileMenu={setMobileMenu}
+              categories={categories}
+            />
+          )}
+
+          <div className="flex items-center text-black">
+            {/* Icon start */}
+            <Link href="/profile">
+              <div className="text-offWhite border-[#D8E3E7] w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-white/[0.05] cursor-pointer relative">
+                <FontAwesomeIcon icon={faUser} />
+              </div>
+            </Link>
+            <Link href="/wishlist">
+              <div className="text-offWhite border-[#D8E3E7] w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-offWhite/[0.05] cursor-pointer relative">
+                <IoMdHeartEmpty className="text-[19px] md:text-[24px]" />
+                {wishlistItems.length > 0 && (
+                  <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-[#B22222] absolute top-1 left-5 md:left-7 text-offWhite text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
+                    {wishlistItems.length}
+                  </div>
+                )}
+              </div>
+            </Link>
+            {/* Icon end */}
+
+            {/* Icon start */}
+            <Link href="/cart">
+              <div className="text-offWhite border-[#D8E3E7] w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-offWhite/[0.05] cursor-pointer relative">
+                <FontAwesomeIcon icon={faCartShopping} />
+                {cartItems.length > 0 && (
+                  <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-[#B22222] absolute top-1 left-5 md:left-7 text-offWhite text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
+                    {cartItems.length}
+                  </div>
+                )}
+              </div>
+            </Link>
+            {/* Icon end */}
+
+            {/* Mobile icon start */}
+            <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex md:hidden justify-center items-center hover:bg-#393646/[0.05] cursor-pointer relative -mr-2">
+              {mobileMenu ? (
+                <VscChromeClose
+                  color="#EEEEEE"
+                  className="text-[16px]"
+                  onClick={() => setMobileMenu(false)}
+                />
+              ) : (
+                <BiMenuAltRight
+                  color="#EEEEEE"
+                  className="text-[20px]"
+                  onClick={() => setMobileMenu(true)}
+                />
+              )}
+            </div>
+            {/* Mobile icon end */}
+          </div>
+        </div>
+        <div>
         <Menu
-          showCatMenu={showCatMenu}
-          setShowCatMenu={setShowCatMenu}
-          categories={categories}
-        />
-
-        {mobileMenu && (
-          <MenuMobile
             showCatMenu={showCatMenu}
             setShowCatMenu={setShowCatMenu}
-            setMobileMenu={setMobileMenu}
             categories={categories}
           />
-        )}
-
-        <div className="flex items-center gap-0 text-black">
-          {/* Icon start */}
-          <Link href="/profile">
-            <div className="text-offWhite border-[#D8E3E7] w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-white/[0.05] cursor-pointer relative">
-              <FontAwesomeIcon icon={faUser} />
-            </div>
-          </Link>
-          <Link href="/wishlist">
-            <div className="text-offWhite border-[#D8E3E7] w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-offWhite/[0.05] cursor-pointer relative">
-              <IoMdHeartEmpty className="text-[19px] md:text-[24px]" />
-              {wishlistItems.length > 0 && (
-                <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-[#B22222] absolute top-1 left-5 md:left-7 text-offWhite text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
-                  {wishlistItems.length}
-                </div>
-              )}
-            </div>
-          </Link>
-          {/* Icon end */}
-
-          {/* Icon start */}
-          <Link href="/cart">
-            <div className="text-offWhite border-[#D8E3E7] w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-offWhite/[0.05] cursor-pointer relative">
-              <FontAwesomeIcon icon={faCartShopping} />
-              {cartItems.length > 0 && (
-                <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-[#B22222] absolute top-1 left-5 md:left-7 text-offWhite text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
-                  {cartItems.length}
-                </div>
-              )}
-            </div>
-          </Link>
-          {/* Icon end */}
-
-          {/* Mobile icon start */}
-          <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex md:hidden justify-center items-center hover:bg-#393646/[0.05] cursor-pointer relative -mr-2">
-            {mobileMenu ? (
-              <VscChromeClose
-                color="#EEEEEE"
-                className="text-[16px]"
-                onClick={() => setMobileMenu(false)}
-              />
-            ) : (
-              <BiMenuAltRight
-                color="#EEEEEE"
-                className="text-[20px]"
-                onClick={() => setMobileMenu(true)}
-              />
-            )}
-          </div>
-          {/* Mobile icon end */}
         </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
 };
 

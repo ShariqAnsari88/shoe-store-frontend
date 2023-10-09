@@ -22,20 +22,22 @@ import {
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Container from "@/components/Container";
+import ImageSelector from "@/components/product/ImageSelector";
 
 const ProductDetails = ({ product, products }) => {
   const { t } = useTranslation(["product_details", "buttons"]);
   const dispatch = useDispatch();
-  const slug = product.data[0].attributes.categories.data[0].attributes.slug;
-  const isAccessory =
-    slug.includes("aksesoari-1") ||
-    slug.includes("accessori-2") ||
-    slug.includes("accessories-1");
+  const { productSlider, slug } = product.data[0].attributes;
+
+  const isAccessory = slug.includes("band");
 
   const [selectedSize, setSelectedSize] = useState(
     isAccessory ? "M" : undefined
   );
+
   const [showError, setShowError] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(undefined);
+  const hasSlider = productSlider.data && productSlider.data.length  > 0
   const isWishlisted = useAppSelector((state) =>
     selectIsWishlisted(state, { ...product.data[0] })
   );
@@ -63,6 +65,7 @@ const ProductDetails = ({ product, products }) => {
     );
   };
 
+
   return (
     <Container>
       <div className="w-full py-12">
@@ -73,8 +76,19 @@ const ProductDetails = ({ product, products }) => {
             className="flex flex-col lg:flex-row md:px-10 gap-[50px] lg:gap-[100px]"
           >
             {/* left column start */}
-            <div className="w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0">
-              <ProductDetailsCarousel images={p.image.data} />
+            <div className="flex gap-2 w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0">
+              <ProductDetailsCarousel
+                selected={selectedImage}
+                sliderImages={productSlider.data}
+                image={p.image.data[0]}
+              />
+              {hasSlider && (
+                <ImageSelector
+                  selected={selectedImage}
+                  onSelect={setSelectedImage}
+                  images={productSlider.data}
+                />
+              )}
             </div>
             {/* left column end */}
 

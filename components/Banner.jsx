@@ -1,11 +1,15 @@
+import useCurrency from "@/hooks/useCurrency";
 import { useAppSelector } from "@/store/hooks";
 import { selectShowBanner, setShowBanner } from "@/store/uiSlice";
 import { XMarkIcon } from "@heroicons/react/20/solid";
+import { useTranslation } from "next-i18next";
 import { useDispatch } from "react-redux";
 
 export default function Banner() {
   const dispatch = useDispatch();
   const shouldShowBanner = useAppSelector(selectShowBanner);
+  const { currency } = useCurrency();
+  const { t } = useTranslation("banner");
 
   if (!shouldShowBanner) return null;
 
@@ -58,12 +62,10 @@ export default function Banner() {
           >
             <circle cx={1} cy={1} r={1} />
           </svg>
-          <p className="text-sm leading-6 text-gray-900">
-            Безплатна доставка при покука над
-          </p>
+          <p className="text-sm leading-6 text-gray-900">{t("description")}</p>
         </div>
-        <div className="cursor-pointer flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-phlatt-9000 text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900">
-          50лв
+        <div className="lowercase cursor-pointer flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-phlatt-9000 text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900">
+          {currency !== "ЛВ" ? "25" : "50"} {currency}
         </div>
       </div>
       <div className="flex flex-1 justify-end">
@@ -72,7 +74,6 @@ export default function Banner() {
           type="button"
           className="-m-3 p-3 focus-visible:outline-offset-[-4px]"
         >
-          <span className="sr-only">Dismiss</span>
           <XMarkIcon className="h-5 w-5 text-gray-900" aria-hidden="true" />
         </button>
       </div>

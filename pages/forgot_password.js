@@ -6,8 +6,10 @@ import { useState } from "react";
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from "next-i18next";
 
 const ForgotPassword = () => {
+  const { t } = useTranslation(["forms", "buttons"]);
   const [userEmailInfo, setUserEmail] = useState({
     email: "",
   });
@@ -20,8 +22,8 @@ const ForgotPassword = () => {
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
-      .required("Моля въведете имейл адрес.")
-      .matches(emailRegex, "Моля въведете валиден e-mail адрес."),
+      .required(t("email_required"))
+      .matches(emailRegex, t("email_incorrect")),
   });
 
   const handleChange = (e) => {
@@ -31,7 +33,7 @@ const ForgotPassword = () => {
   const handleSubmit = async () => {
     await sendResetEmail(userEmailInfo.email)
       .then((res) => {
-        toast.success(`Успешна заявка, моля проверете e-mail адресът си!`, {
+        toast.success(t("success_request"), {
           position: "bottom-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -48,10 +50,10 @@ const ForgotPassword = () => {
   return (
     <div className="min-h-[650px] flex items-center">
       <Wrapper>
-        <ToastContainer/>
+        <ToastContainer />
         <div className="max-w-[600px] rounded-lg p-5 border text-offWhite border-offWhite mx-auto flex flex-col">
           <div className="text-2xl font-bold text-offWhite">
-            Забравена парола?
+            {t("forgot_password")}
           </div>
           <Formik
             initialValues={initialValues}
@@ -68,7 +70,7 @@ const ForgotPassword = () => {
                         className="text-offWhite font-semibold text-lg"
                         htmlFor="email"
                       >
-                        E-mail адрес
+                        {t("email")}
                       </label>
                       <Field
                         className="border-offWhite"
@@ -85,9 +87,7 @@ const ForgotPassword = () => {
                       />
                     </div>
                     <div className="text-base mt-5 text-offWhite">
-                      Въведете имейл адреса предоставен при регистрацията си. Ще
-                      изпратим имейл с инструкции за промяна на парола, на
-                      посочения от вас адрес.
+                      {t("address_registration")}
                     </div>
 
                     <button
@@ -101,7 +101,7 @@ const ForgotPassword = () => {
                       } w-full text-[#181516]`}
                       type="submit"
                     >
-                      Изпрати
+                      {t("send", { ns: "buttons" })}
                     </button>
                   </div>
                 </Form>
@@ -115,3 +115,14 @@ const ForgotPassword = () => {
 };
 
 export default ForgotPassword;
+
+export async function getServerSideProps(ctx) {
+  const { locale } = ctx;
+
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["forms","buttons"])),
+      // Will be passed to the page component as props
+    },
+  };
+}

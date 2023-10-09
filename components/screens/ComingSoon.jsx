@@ -12,7 +12,7 @@ import LanguageSwitcher from "../lang/LanguageSwitcher";
 import Divider from "../Divider";
 
 export default function ComingSoon() {
-  const { t } = useTranslation("coming_soon");
+  const { t } = useTranslation(["coming_soon", "buttons"]);
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [hasError, setError] = useState(false);
@@ -31,7 +31,7 @@ export default function ComingSoon() {
         console.log(res.error, "- Error creating email!");
         setIsLoading(false);
         setEmail("");
-        toast.error(`Този имейл вече има абонамент.`, {
+        toast.error(t("failed_subscribe"), {
           position: "bottom-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -43,7 +43,7 @@ export default function ComingSoon() {
         });
       } else {
         // sendContactEmail({ type: "subscribe", email });
-        toast.success(`Успешнo се абонирахте, благодарим ви!`, {
+        toast.success(t("success_subscribe"), {
           position: "bottom-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -72,7 +72,6 @@ export default function ComingSoon() {
   return (
     <Wrapper className="flex flex-col md:flex-row max-w-full h-screen justify-around items-center gap-12 md:my-0 ">
       <ToastContainer />
-
       <div className="flex flex-col items-center md:gap-0 gap-10 h-full">
         <HeroBanner />
         <div className="md:mt-12">
@@ -82,7 +81,7 @@ export default function ComingSoon() {
           <h1 className="mb-2 font-semibold text-center text-[42px] sm:text-[50px] md:text-[82px]">
             {t("welcome")}
           </h1>
-          <Divider height="5px"/>
+          <Divider height="5px" />
           <p className="md:text-[18px] text-[18px] mb-12 md:max-w-[600px] max-w-[90%]">
             {t("description")}
           </p>
@@ -145,10 +144,12 @@ export default function ComingSoon() {
             ) : null}
           </div>
           <div className="flex flex-col justify-center items-center gap-10">
-          <LanguageSwitcher />
-          <div
-            onClick={() => window.open("https://www.instagram.com/troykawear/")}
-            className="
+            <LanguageSwitcher />
+            <div
+              onClick={() =>
+                window.open("https://www.instagram.com/troykawear/")
+              }
+              className="
          w-10 
          h-10
          mb-10
@@ -161,9 +162,9 @@ export default function ComingSoon() {
          items-center 
          justify-center 
          hover:text-white/[0.5] cursor-pointer"
-          >
-            <FaInstagram size={20} />
-          </div>
+            >
+              <FaInstagram size={20} />
+            </div>
           </div>
         </div>
       </div>

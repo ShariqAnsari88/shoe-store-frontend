@@ -10,11 +10,12 @@ import { fetchDataFromApi } from "@/utils/api";
 import { useRouter } from "next/router";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { revertAll } from "@/store/rootReducer";
 
 export default function Home({ products, userData, ...rest }) {
   const dispatch = useDispatch();
-
   const { locale, query } = useRouter();
+
   const isReleased = query.released;
 
   document.cookie = `NEXT_LOCALE=${locale}; max-age=31536000; path=/`;
@@ -22,6 +23,10 @@ export default function Home({ products, userData, ...rest }) {
   useEffect(() => {
     dispatch(setUserInfo(userData));
   }, []);
+
+  useEffect(() => {
+    dispatch(revertAll());
+  }, [locale]);
 
   return (
     <main>
@@ -49,7 +54,8 @@ export async function getServerSideProps(ctx) {
         "coming_soon",
         "nav",
         "footer",
-        "buttons"
+        "buttons",
+        "banner",
       ])),
       // Will be passed to the page component as props
     },

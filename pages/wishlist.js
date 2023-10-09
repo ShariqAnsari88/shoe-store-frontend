@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Wrapper from "@/components/Wrapper";
 import { useAppSelector } from "@/store/hooks";
 import { selectWishlistItems } from "@/store/wishlistSlice";

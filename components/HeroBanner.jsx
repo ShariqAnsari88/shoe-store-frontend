@@ -1,12 +1,9 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import slideImage1 from "../public/carousel_images/NS_back.png";
-import slideImage2 from "../public/carousel_images/NS_front.png";
-import slideImage3 from "../public/carousel_images/PP_back.png";
-import slideImage4 from "../public/carousel_images/PP_front.png";
-import slideImage5 from "../public/carousel_images/PV_back.png";
-import slideImage6 from "../public/carousel_images/PV_front.png";
+import slideImage1 from "../public/carousel_images/carousel_1.jpg";
+import slideImage2 from "../public/carousel_images/carousel_2.jpg";
+import slideImage3 from "../public/carousel_images/carousel_3.jpg";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 
@@ -16,11 +13,12 @@ import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 const HeroBanner = () => {
   return (
-    <div className={`text-white text-[20px] flex sm:h-[600px] min-w-[400px] h-[400px] mx-auto my-4`}>
+    <div className={`text-white mt-12 text-[20px] flex sm:h-[600px] min-w-[400px] h-[400px] mx-auto my-4`}>
       <Carousel
         autoPlay={true}
         infiniteLoop={true}
         showThumbs={false}
+        showIndicators={false}
         showStatus={false}
         renderArrowPrev={(clickHandler, hasPrev) => (
           <div
@@ -72,30 +70,6 @@ const HeroBanner = () => {
           <Image
             alt="img"
             src={slideImage3}
-            className={`sm:h-[600px] h-[350px]  object-contain`}
-          />
-        </div>
-        
-        <div>
-          <Image
-            alt="img"
-            src={slideImage4}
-            className={`sm:h-[600px] h-[350px]  object-contain`}
-          />
-        </div>
-
-        <div>
-          <Image
-            alt="img"
-            src={slideImage5}
-            className={`sm:h-[600px] h-[350px]  object-contain`}
-          />
-        </div>
-
-        <div>
-          <Image
-            alt="img"
-            src={slideImage6} 
             className={`sm:h-[600px] h-[350px]  object-contain`}
           />
         </div>

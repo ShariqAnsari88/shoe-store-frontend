@@ -31,15 +31,13 @@ function ProfilePage(props) {
         )}
         <div className="w-full mx-2">
           <div className="grid grid-cols-1 gap-10 md:gap-0 md:grid-cols-2 md:py-4 h-full">
-            <div className="flex flex-col gap-10 md:border-r-[1px]">
-              <div className="md:mr-4">
+            <div className="flex flex-col gap-10 md:border-r-[1px] px-4 mx-auto w-full">
                 <AddressForm />
-              </div>
               <button
                 onClick={() => {
                   setOpenModal(true);
                 }}
-                className={`hover:opacity-80 transition-opacity ease-in-out md:mr-auto md:ml-0 min-h-[50px] border-dashed border-[2px] bg-[#151718] rounded-[4px] md:max-w-[250px] w-full text-offWhite`}
+                className={`hover:opacity-80 transition-opacity ease-in-out mx-auto min-h-[50px] border-dashed border-[2px] bg-[#151718] rounded-[4px] md:max-w-[250px] w-full text-offWhite`}
                 type="button"
               >
                 {t("log_out", { ns: "buttons" })}

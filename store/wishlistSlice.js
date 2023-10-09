@@ -1,12 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { revertAll } from "./rootReducer";
 
-const name = "wishList";
+const name = "wishList"
+
+const initialState = {
+  wishlistItems: [],
+};
 
 export const wishlistSlice = createSlice({
   name,
-  initialState: {
-    wishlistItems: [],
-  },
+  initialState,
   reducers: {
     addToWishlist: (state, action) => {
       const item = state.wishlistItems.find((p) => p.id === action.payload.id);
@@ -26,6 +29,7 @@ export const wishlistSlice = createSlice({
       );
     },
   },
+  extraReducers: (builder) => builder.addCase(revertAll, () => initialState),
 });
 
 // Action creators are generated for each case reducer function

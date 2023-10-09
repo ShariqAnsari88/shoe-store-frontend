@@ -14,10 +14,6 @@ import { useRouter } from "next/router";
 config.autoAddCss = false;
 
 function App({ Component, pageProps }) {
-  const { query } = useRouter();
-
-  const isReleased = query.released;
-
   return (
     <>
       <Head>
@@ -43,7 +39,6 @@ function App({ Component, pageProps }) {
       </Head>
       <Provider store={rootReducer}>
         <PersistGate persistor={persistor}>
-          {isReleased === "true" && <Banner />}
           <Layout component={Component} pageProps={pageProps} />
         </PersistGate>
       </Provider>

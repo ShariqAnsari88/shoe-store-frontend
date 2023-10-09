@@ -11,7 +11,7 @@ import Container from "@/components/Container";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 export default function Contact() {
-  const { t } = useTranslation("forms");
+  const { t } = useTranslation(["forms", "buttons"]);
 
   const initialValues = {
     name: "",
@@ -22,17 +22,15 @@ export default function Contact() {
   };
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string().required("Моля въведете вашето име!"),
-    subject: Yup.string().required("Моля въведете тема на съобщението!"),
+    name: Yup.string().required(t("name_required")),
+    subject: Yup.string().required(t("subject_required")),
     email: Yup.string()
-      .required("Моля въведете e-mail адрес!")
-      .matches(emailRegex, "Моля въведете валиден e-mail адрес!"),
-    phone: Yup.number("Моля използвайте валиден телефонен номер!").required(
-      "Моля въведете телефонен номер!"
-    ),
+      .required(t("email_required"))
+      .matches(emailRegex, t("email_incorrect")),
+    phone: Yup.number(t("phone_incorrect")).required(t("phone_required")),
     message: Yup.string()
-      .required("Моля въведете съобщение!")
-      .min(10, "Трябва да въведете поне 10 символа."),
+      .required(t("message_required"))
+      .min(10, t("message_min")),
   });
 
   const [contactForm, setContactForm] = useState({ ...initialValues });
@@ -51,7 +49,7 @@ export default function Contact() {
         <div class="container p-4 my-12 grid sm:grid-cols-2 gap-4">
           <div class="bg-offWhite rounded p-8 shadow-md">
             <h2 class="text-center text-2xl font-bold mb-4 text-neonGreen">
-              Свържете се с нас!
+              {t("contact_us")}
             </h2>
             <Formik
               initialValues={initialValues}
@@ -65,7 +63,7 @@ export default function Contact() {
                       for="name"
                       className="text-neonGreen font-semibold block mb-2"
                     >
-                      Име
+                      {t("firstName")}
                     </label>
                     <Field
                       onCha
@@ -88,7 +86,7 @@ export default function Contact() {
                       for="email"
                       className="text-neonGreen font-semibold block mb-2"
                     >
-                      E-mail адрес
+                      {t("email")}
                     </label>
                     <Field
                       type="email"
@@ -110,7 +108,7 @@ export default function Contact() {
                       for="phone"
                       className="text-neonGreen font-semibold block mb-2"
                     >
-                      Телефонен номер
+                      {t("phoneNumber")}
                     </label>
                     <Field
                       type="tel"
@@ -132,7 +130,7 @@ export default function Contact() {
                       for="subject"
                       className="text-neonGreen font-semibold block mb-2"
                     >
-                      Тема
+                      {t("subject")}
                     </label>
                     <Field
                       id="subject"
@@ -154,7 +152,7 @@ export default function Contact() {
                       for="message"
                       className="text-neonGreen font-semibold block mb-2"
                     >
-                      Съобщение
+                      {t("message")}
                     </label>
                     <Field
                       id="message"
@@ -180,7 +178,7 @@ export default function Contact() {
                         : "bg-neonGreen/[0.5]"
                     } text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline`}
                   >
-                    Изпрати
+                    {t("send", { ns: "buttons" })}
                   </button>
                 </Form>
               )}
@@ -194,7 +192,7 @@ export default function Contact() {
                 <div className="flex flex-row items-center">
                   <BsPhoneFill color="#168900" />
                   <p className="text-xl text-neonGreen font-semibold leading-5 mt-6">
-                    Телефонен номер
+                    {t("phoneNumber")}
                   </p>
                 </div>
                 <p className="font-normal text-base leading-6 text-gray-600 my-4">
@@ -207,7 +205,7 @@ export default function Contact() {
                 <div className="flex flex-row items-center">
                   <FaLocationArrow color="#168900" />
                   <p className=" text-xl text-neonGreen font-semibold leading-5 mt-6">
-                    Адрес
+                    {t("address")}
                   </p>
                 </div>
                 <p className="font-normal text-base leading-6 text-gray-600 my-4">
@@ -220,7 +218,7 @@ export default function Contact() {
                 <div className="flex flex-row items-center">
                   <FaTruckMoving color="#168900" />
                   <p className=" text-xl text-neonGreen font-semibold leading-5 mt-6">
-                    E-mail адрес
+                    {t("email")}
                   </p>
                 </div>
                 <p className=" font-normal text-base leading-6 text-gray-600 my-4">
@@ -241,11 +239,11 @@ export async function getServerSideProps(ctx) {
   return {
     props: {
       ...(await serverSideTranslations(locale, [
-        "cart",
         "footer",
         "nav",
         "buttons",
         "forms",
+        "banner",
       ])),
     },
   };

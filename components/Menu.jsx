@@ -14,13 +14,13 @@ const Menu = ({ showCatMenu, setShowCatMenu, categories }) => {
   ];
 
   return (
-  <ul className="hidden md:flex item-center gap-3 font-semibold text-[18px] ">
+    <ul className="hidden md:flex item-center gap-6 font-semibold text-[18px] ">
       {navItems.map((item) => {
         return (
           <React.Fragment key={item.id}>
             {!!item?.subMenu ? (
               <li
-                className="cursor-pointer flex items-center gap-2 relative"
+                className="cursor-pointer p-2 transition ease-in-out hover:bg-offWhite hover:text-darkBlack flex items-center gap-2 relative"
                 onMouseEnter={() => setShowCatMenu(true)}
                 onMouseLeave={() => setShowCatMenu(false)}
               >
@@ -28,7 +28,7 @@ const Menu = ({ showCatMenu, setShowCatMenu, categories }) => {
                 <BsChevronDown size={14} />
 
                 {showCatMenu && (
-                  <ul className="bg-offWhite absolute top-6 left-0 min-w-[250px] px-1 py-1 text-[#181516] shadow-lg">
+                  <ul className="bg-offWhite absolute top-10 left-0 min-w-[250px] px-1 py-1 text-[#181516] shadow-lg">
                     {categories?.map(({ attributes: c, id }) => {
                       return (
                         <Link
@@ -36,7 +36,7 @@ const Menu = ({ showCatMenu, setShowCatMenu, categories }) => {
                           href={`/category/${c.slug}`}
                           onClick={() => setShowCatMenu(false)}
                         >
-                          <li className="h-12 flex justify-between items-center px-3 hover:bg-#393646/[0.03] rounded-md">
+                          <li className="h-12  flex justify-between items-center px-3 hover:bg-#393646/[0.03] rounded-md">
                             {c.name}
                             <span className="opacity-50 text-sm">
                               {`(${c.products.data.length})`}
@@ -49,7 +49,9 @@ const Menu = ({ showCatMenu, setShowCatMenu, categories }) => {
                 )}
               </li>
             ) : (
-              <li className="cursor-pointer">
+              <li
+                className="cursor-pointer p-2 transition ease-in-out hover:bg-offWhite hover:text-darkBlack"
+              >
                 <Link href={item?.url}>{item.name}</Link>
               </li>
             )}
