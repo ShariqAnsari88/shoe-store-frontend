@@ -2,8 +2,9 @@ import Image from "next/image";
 import React from "react";
 
 export default function ImageSelector({ images, onSelect, selected }) {
-  const selectedImage = images.find((a) => a.attributes.hash === selected)
-    ?.attributes?.hash;
+    
+  const selectedImage = images ? images.find((a) => a.attributes.hash === selected)
+    ?.attributes?.hash : undefined
 
   return (
     <div className="flex flex-col gap-2">

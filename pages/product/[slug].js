@@ -77,11 +77,11 @@ const ProductDetails = ({ product, products }) => {
           >
             {/* left column start */}
             <div className="flex gap-2 w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0">
-              {p && <ProductDetailsCarousel
+              <ProductDetailsCarousel
                 selected={selectedImage}
                 sliderImages={productSlider.data}
                 image={p.image.data[0]}
-              />}
+              />
               {/* {hasSlider && (
                 <ImageSelector
                   selected={selectedImage}
