@@ -43,8 +43,6 @@ const ProductDetails = ({ product, products }) => {
   );
   const p = product?.data?.[0]?.attributes;
 
-   console.log(p,'zdr')
-
   const discount = getDiscountedPricePercentage(p.original_price, p.price);
 
   const notify = (buttonName) => {
@@ -84,13 +82,13 @@ const ProductDetails = ({ product, products }) => {
                 sliderImages={productSlider.data}
                 image={p.image.data[0]}
               />}
-              {hasSlider && (
+              {/* {hasSlider && (
                 <ImageSelector
                   selected={selectedImage}
                   onSelect={setSelectedImage}
                   images={productSlider.data}
                 />
-              )}
+              )} */}
             </div>
             {/* left column end */}
 
