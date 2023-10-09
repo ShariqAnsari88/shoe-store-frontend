@@ -37,7 +37,7 @@ const ProductDetails = ({ product, products }) => {
 
   const [showError, setShowError] = useState(false);
   const [selectedImage, setSelectedImage] = useState(undefined);
-  const hasSlider = productSlider.data && productSlider.data.length  > 0
+  const hasSlider = productSlider && productSlider?.data?.length  > 0
   const isWishlisted = useAppSelector((state) =>
     selectIsWishlisted(state, { ...product.data[0] })
   );
@@ -79,7 +79,7 @@ const ProductDetails = ({ product, products }) => {
             <div className="flex gap-2 w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0">
               <ProductDetailsCarousel
                 selected={selectedImage}
-                sliderImages={productSlider.data}
+                sliderImages={productSlider?.data}
                 image={p.image.data[0]}
               />
               {hasSlider && (
