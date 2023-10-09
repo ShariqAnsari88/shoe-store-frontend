@@ -82,13 +82,13 @@ const ProductDetails = ({ product, products }) => {
                 sliderImages={productSlider.data}
                 image={p.image.data[0]}
               />
-              {/* {hasSlider && (
+              {hasSlider && (
                 <ImageSelector
                   selected={selectedImage}
                   onSelect={setSelectedImage}
                   images={productSlider.data}
                 />
-              )} */}
+              )}
             </div>
             {/* left column end */}
 
