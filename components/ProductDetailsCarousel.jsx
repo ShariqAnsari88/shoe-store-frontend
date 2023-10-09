@@ -7,15 +7,17 @@ const ProductDetailsCarousel = ({ image, sliderImages, selected }) => {
     ? sliderImages.find((a) => a.attributes.hash === selected)?.attributes
     : null;
 
+    console.log(selectedImage,'zdr');
+
   return (
     <div className="text-[20px] text-neonGreenLighter w-full max-w-[1360px] mx-auto sticky top-[50px]">
       <Image
         className="rounded-md"
         width={800}
         height={600}
-        key={selectedImage?.id || image.id}
-        src={selectedImage?.url || image.attributes.url}
-        alt={selectedImage?.name || image.attributes.name}
+        key={selectedImage?.id ?? image.id}
+        src={selectedImage?.url ?? image.attributes.url}
+        alt={selectedImage?.name ?? image.attributes.name}
       />
     </div>
   );

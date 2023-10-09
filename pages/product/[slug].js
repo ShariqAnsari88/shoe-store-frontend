@@ -43,6 +43,8 @@ const ProductDetails = ({ product, products }) => {
   );
   const p = product?.data?.[0]?.attributes;
 
+   console.log(p,'zdr')
+
   const discount = getDiscountedPricePercentage(p.original_price, p.price);
 
   const notify = (buttonName) => {
@@ -77,11 +79,11 @@ const ProductDetails = ({ product, products }) => {
           >
             {/* left column start */}
             <div className="flex gap-2 w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0">
-              <ProductDetailsCarousel
+              {p && <ProductDetailsCarousel
                 selected={selectedImage}
                 sliderImages={productSlider.data}
                 image={p.image.data[0]}
-              />
+              />}
               {hasSlider && (
                 <ImageSelector
                   selected={selectedImage}
