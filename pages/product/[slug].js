@@ -37,7 +37,7 @@ const ProductDetails = ({ product, products }) => {
 
   const [showError, setShowError] = useState(false);
   const [selectedImage, setSelectedImage] = useState(undefined);
-  const hasSlider = productSlider.data && productSlider.data.length  > 0
+  // const hasSlider = productSlider.data && productSlider.data.length  > 0
   const isWishlisted = useAppSelector((state) =>
     selectIsWishlisted(state, { ...product.data[0] })
   );
