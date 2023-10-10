@@ -6,5 +6,6 @@
   "shipping": "Shipping value",
   "shipping_description": "The subtotal reflects the total price of your order, including duties and taxes, before any applicable discounts. Does not include shipping costs and international transaction fees.",
   "empty_description": "It looks like you haven't added anything to your cart. Have a look at our best categories.",
-  "empty": "Your cart is empty"
+  "empty": "Your cart is empty",
+  "total":"Total"
 }

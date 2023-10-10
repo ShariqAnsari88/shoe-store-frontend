@@ -107,7 +107,17 @@ const Cart = (props) => {
                         {deliveryPrice} {currency}
                       </div>
                     </div>
-                    <div className="text-offWhite text-sm md:text-md py-5 border-t mt-5">
+                    <Divider />
+                    <div className="flex justify-between">
+                      <div className="uppercase text-md md:text-lg font-normal text-offWhite">
+                        {t("total")}
+                      </div>
+                      <div className="uppercase text-md md:text-lg font-normal text-offWhite">
+                        {deliveryPrice + subTotal} {currency}
+                      </div>
+                    </div>
+                    <Divider />
+                    <div className="text-offWhite text-sm md:text-md py-5 mt-5">
                       <div className=" text-offWhite text-xl rounded-md flex flex-row items-center gap-2 mb-6">
                         <Image
                           className="w-20"
