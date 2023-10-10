@@ -171,7 +171,7 @@ const ProductDetails = ({ product, products }) => {
 
                   {/* SHOW ERROR START */}
                   {showError && (
-                    <div className="text-red-600 mt-1">{t("error")}</div>
+                    <div className="text-errorYellow mt-1">{t("error")}</div>
                   )}
                   {/* SHOW ERROR END */}
                 </div>

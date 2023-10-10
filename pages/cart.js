@@ -37,6 +37,14 @@ const Cart = (props) => {
     return cartItems.reduce((total, val) => total + val.attributes.price, 0);
   }, [cartItems]);
 
+  const calculateTotal = () => {
+    if (locale === "bg") {
+      return subTotal >= 50 ? subTotal : subTotal + deliveryPrice;
+    } else {
+      subTotal >= 25 ? subTotal : subTotal + deliveryPrice;
+    }
+  };
+
   const makePayment = async (event) => {
     dispatch(
       handlePayment({
@@ -44,10 +52,11 @@ const Cart = (props) => {
         products: cartItems,
         addressInfo,
         user,
-        totalPrice: subTotal,
+        totalPrice: calculateTotal(),
       })
     );
   };
+
   return (
     <Container>
       <div className="w-full md:py-20">
@@ -113,7 +122,7 @@ const Cart = (props) => {
                         {t("total")}
                       </div>
                       <div className="uppercase text-md md:text-lg font-normal text-offWhite">
-                        {deliveryPrice + subTotal} {currency}
+                        {calculateTotal()} {currency}
                       </div>
                     </div>
                     <Divider />
