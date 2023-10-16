@@ -2,6 +2,7 @@
   "add_cart": "Aggiungi al carrello",
   "add_wishlist": "Aggiungi alla lista dei desideri",
   "address_saved": "Il tuo indirizzo è salvato!",
+  "credentials_saved": "Le tue informazioni personali sono protette!",
   "remove_cart": "Rimuovi dal carrello",
   "remove_wishlist": "Rimuovi dalla lista dei desideri",
   "your_favourite_products": "la tua lista dei desideri",
@@ -16,5 +17,7 @@
   "pay_card": "Paga con carta",
   "log_out": "Disconnettersi",
   "cancel": "Annulla",
-  "save": "Salva"
+  "save": "Salva",
+  "delivery_home": "Consegna all'indirizzo specificato",
+  "delivery_office": "Consegna all'ufficio veloce"
 }

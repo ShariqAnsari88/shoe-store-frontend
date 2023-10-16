@@ -2,6 +2,7 @@
   "add_cart": "Добави в количка",
   "add_wishlist": "Добави в любими",
   "address_saved": "Адресът е запазен!",
+  "credentials_saved": "Вашата лична информация е запазена!",
   "remove_cart": "Премахни от количка",
   "remove_wishlist": "Премахни от любими",
   "your_favourite_products": "вашите любими продукти",
@@ -16,5 +17,7 @@
   "pay_card": "Плати с карта",
   "log_out": "Излез",
   "cancel": "Отказ",
-  "save": "Запази"
+  "save": "Запази",
+  "delivery_home": "Доставка до посочен адрес",
+  "delivery_office": "Доставка до офис на Speedy"
 }

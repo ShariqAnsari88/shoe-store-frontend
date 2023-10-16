@@ -15,6 +15,7 @@
         "@fortawesome/free-solid-svg-icons": "^6.4.0",
         "@fortawesome/react-fontawesome": "^0.2.0",
         "@heroicons/react": "^2.0.18",
+        "@material-tailwind/react": "^2.1.2",
         "@next/font": "13.1.6",
         "@react-email/render": "^0.0.7",
         "@reduxjs/toolkit": "^1.9.6",

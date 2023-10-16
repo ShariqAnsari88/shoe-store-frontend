@@ -1,24 +1,48 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
+import { Tabs, TabsHeader, Tab } from "@material-tailwind/react";
 
-const options = ["en", "it", "bg"];
+const options = [
+  { label: "en", value: "en" },
+  { label: "it", value: "it" },
+  { label: "bg", value: "bg" },
+];
 
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher({ isHeader }) {
   const { locale } = useRouter();
+
+  if (isHeader)
+    return (
+      <Tabs value={locale}>
+        <TabsHeader>
+          {options.map(({ label, value }) => (
+            <Tab className="font-bold text-[10px] sm:text-[16px] h-5 sm:h-7" key={value} value={value}>
+              <Link
+                locale={value}
+                href="/?released=true"
+                className="flex items-center justify-center gap-2"
+              >
+                {label.toUpperCase()}
+              </Link>
+            </Tab>
+          ))}
+        </TabsHeader>
+      </Tabs>
+    );
 
   return (
     <div className="flex gap-10 justify-center items-center">
       {options.map((option, index) => (
         <Link
           href="/"
-          locale={option}
+          locale={option.value}
           className={`transition ease-in-out border-[1px] w-10 h-10 rounded-md flex items-center justify-center hover:bg-gray-500/[0.5] ${
-            option === locale ? "bg-neonGreen" : null
+            option.value === locale ? "bg-neonGreen" : null
           }`}
-          key={`${option}-${index}`}
+          key={`${option.label}-${index}`}
         >
-          {option.toUpperCase()}
+          {option.label.toUpperCase()}
         </Link>
       ))}
     </div>

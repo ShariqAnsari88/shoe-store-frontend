@@ -7,6 +7,7 @@ export const userSlice = createSlice({
   initialState: {
     userInfo: null,
     address: null,
+    credentials: null,
   },
   reducers: {
     setUserInfo: (state, action) => {
@@ -26,13 +27,22 @@ export const userSlice = createSlice({
     updateAddress: (state, action) => {
       state.address = action.payload;
     },
+    updateCredentials: (state, action) => {
+      state.credentials = action.payload;
+    },
   },
   extraReducers: {},
 });
 
 // Action creators are generated for each case reducer function
-export const { setUserInfo, deleteUserInfo, updateUserInfo, updateAddress } =
-  userSlice.actions;
+export const {
+  setUserInfo,
+  deleteUserInfo,
+  updateUserInfo,
+  updateAddress,
+  updateCredentials,
+} = userSlice.actions;
 
 export const selectUserAddress = (state) => state[name].address;
+export const selectUserCredentials = (state) => state[name].credentials;
 // export default cartSlice.reducer;

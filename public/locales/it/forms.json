@@ -9,6 +9,7 @@
   "streetNumber_required": "Inserisci un numero civico!",
   "houseNumber": "Numero di ingresso/isolato*",
   "house_required": "Potresti, inserisci il numero dell'acqua/blocco!",
+  "credentials": "Informazione personale",
   "city": "Posizione*",
   "city_required": "Inserisci una città!",
   "city_min": "La città deve contenere almeno 4 caratteri!",

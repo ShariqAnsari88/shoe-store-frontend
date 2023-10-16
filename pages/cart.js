@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { memo, useMemo, useState } from "react";
 import Link from "next/link";
 import Wrapper from "@/components/Wrapper";
 import CartItem from "@/components/CartItem";
@@ -20,6 +20,8 @@ import Container from "@/components/Container";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import SelectAddress from "@/components/cart/SelectAddress";
+import CredentialsForm from "@/components/profile/CredentialsForm";
 
 const Cart = (props) => {
   const user = props.user.username;
@@ -31,6 +33,7 @@ const Cart = (props) => {
   const [showError, setShowError] = useState(false);
   const addressInfo = useAppSelector(selectUserAddress);
   const { cartItems } = useSelector((state) => state.cart);
+  const [deliveryOption, setDeliveryOption] = useState("home");
   const deliveryPrice = 5;
 
   const subTotal = useMemo(() => {
@@ -43,6 +46,11 @@ const Cart = (props) => {
     } else {
       subTotal >= 25 ? subTotal : subTotal + deliveryPrice;
     }
+  };
+
+  const handleDeliveryOption = (option) => {
+    if (!option) return;
+    setDeliveryOption(option);
   };
 
   const makePayment = async (event) => {
@@ -84,8 +92,18 @@ const Cart = (props) => {
                     ))}
                   </div>
 
-                  <AddressForm />
+                  <div className="flex flex-col gap-6">
+                    <SelectAddress
+                      onSelect={handleDeliveryOption}
+                      selected={deliveryOption}
+                    />
+                    <div className="flex flex-col gap-6">
+                    <CredentialsForm />
+                    <AddressForm disabled={deliveryOption === "office"} />
+                    </div>
+                  </div>
                 </div>
+
                 {/* CART ITEMS END */}
 
                 {/* SUMMARY START */}
@@ -170,7 +188,7 @@ const Cart = (props) => {
                     </button>
                   </div>
                   {showError && (
-                    <div className="text-red-600 mt-1">
+                    <div className="text-errorYellow mt-1">
                       {t("address_error", { ns: "forms" })}
                     </div>
                   )}
@@ -210,7 +228,7 @@ const Cart = (props) => {
   );
 };
 
-export default Cart;
+export default memo(Cart);
 
 export async function getServerSideProps(ctx) {
   const { locale } = ctx;

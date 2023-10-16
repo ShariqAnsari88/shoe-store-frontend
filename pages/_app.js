@@ -7,9 +7,8 @@ import { persistor } from "@/store/store";
 import { PersistGate } from "redux-persist/lib/integration/react";
 import { rootReducer } from "@/store/store";
 import Layout from "@/components/Layout";
-import Banner from "@/components/Banner";
 import { appWithTranslation } from "next-i18next";
-import { useRouter } from "next/router";
+import { ThemeProvider } from "@material-tailwind/react";
 
 config.autoAddCss = false;
 
@@ -37,11 +36,13 @@ function App({ Component, pageProps }) {
           rel="stylesheet"
         />
       </Head>
-      <Provider store={rootReducer}>
-        <PersistGate persistor={persistor}>
-          <Layout component={Component} pageProps={pageProps} />
-        </PersistGate>
-      </Provider>
+      <ThemeProvider>
+        <Provider store={rootReducer}>
+          <PersistGate persistor={persistor}>
+            <Layout component={Component} pageProps={pageProps} />
+          </PersistGate>
+        </Provider>
+      </ThemeProvider>
     </>
   );
 }

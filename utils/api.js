@@ -7,7 +7,7 @@ const APIHeaders = {
 };
 
 export const API = axios.create({
-  baseL: API_URL,
+  baseURL: API_URL,
   headers: APIHeaders,
 });
 
@@ -16,14 +16,18 @@ export const fetchDataFromApi = async (endpoint) => {
   return res?.data;
 };
 
-export const sendSubscriptionEmail = async(endpoint, email) => {
+export const sendSubscriptionEmail = async (endpoint, email) => {
   const res = await API.post(`${API_URL}${endpoint}`, email);
   return res?.data;
-}
+};
 
 export const makePaymentRequest = async (endpoint, payload) => {
-  const res = await API.post(`${API_URL}${endpoint}`, payload);
-  return res?.data;
+  try {
+    const res = await API.post(`${API_URL}${endpoint}`, payload);
+    return res?.data;
+  } catch (error) {
+    console.log(error, "error");
+  }
 };
 
 export const sendResetEmail = async (payload) => {

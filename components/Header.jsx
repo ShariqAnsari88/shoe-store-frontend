@@ -16,6 +16,7 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import Banner from "./Banner";
+import LanguageSwitcher from "./lang/LanguageSwitcher";
 
 const Header = () => {
   const { locale, query } = useRouter();
@@ -68,6 +69,7 @@ const Header = () => {
         className={`border-b-[2px] border-neonGreen w-full sm:h-[50px] md:h-[170px] bg-[#181516] flex flex-col items-center justify-around z-20 sticky transition-transform duration-300 ${show}`}
       >
         <div className="flex justify-between items-center w-full px-4">
+          <div className="flex gap-6 justify-between items-center">
           <Link href="/">
             <Image
               width={600}
@@ -76,10 +78,11 @@ const Header = () => {
               alt="image"
               src="/logo-white.png"
             />
-            {/* <Image alt="img" src={shopImage} className="w-[70px] md:w-[100px]" /> */}
           </Link>
+          <LanguageSwitcher isHeader/>
+          </div>
 
-          <Image alt="image" width={600} height={600} className="md:w-56 w-20 ml-20" src="/troyka_white.png" />
+          <Image alt="image" width={600} height={600} className="md:w-56 w-20" src="/troyka_white.png" />
   
 
           {mobileMenu && (

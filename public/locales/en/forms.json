@@ -9,6 +9,7 @@
   "streetNumber_required": "Please enter a street number!",
   "houseNumber": "Entrance/Block Number*",
   "house_required": "Please enter an entry/block number!",
+  "credentials": "Personal Information",
   "city": "Location*",
   "city_required": "Please enter a city!",
   "city_min": "The city must contain at least 4 characters!",

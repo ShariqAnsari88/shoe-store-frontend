@@ -72,16 +72,16 @@ const Footer = () => {
           {/* LEFT END */}
 
           {/* RIGHT START */}
-          <div className="flex flex-col gap-2 md:gap-1 text-center md:text-right flex-wrap justify-center">
-            <p className="text-[12px] text-darkBlack hover:text-darkBlack/[0.5] cursor-pointer">
-              {t("terms_sale")}
-            </p>
-            <p className="text-[12px] text-darkBlack hover:text-darkBlack/[0.5] cursor-pointer">
+          <div  className="flex flex-col gap-2 md:gap-1 text-center md:text-right flex-wrap justify-center">
+            <a href="pdfs/Troyka_Wear_Returns.pdf" target="_blank" rel='noopener noreferrer' className="text-[12px] text-darkBlack hover:text-darkBlack/[0.5] cursor-pointer">
+              {t("refund_policy")}
+            </a>
+            <a href="/pdfs/Troyka_Wear_Terms_Of_Service.pdf" target="_blank" rel='noopener noreferrer' className="text-[12px] text-darkBlack hover:text-darkBlack/[0.5] cursor-pointer">
               {t("terms_use")}
-            </p>
-            <p className="text-[12px] text-darkBlack hover:text-darkBlack/[0.5] cursor-pointer">
+            </a>
+            <a href="/pdfs/Troyka_Wear_Privacy_Policy.pdf" target='_blank' rel='noopener noreferrer' className="text-[12px] text-darkBlack hover:text-darkBlack/[0.5] cursor-pointer">
               {t("privacy_policy")}
-            </p>
+            </a>
           </div>
           {/* RIGHT END */}
         </Wrapper>

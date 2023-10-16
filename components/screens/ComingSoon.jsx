@@ -31,7 +31,7 @@ export default function ComingSoon() {
         console.log(res.error, "- Error creating email!");
         setIsLoading(false);
         setEmail("");
-        toast.error(t("failed_subscribe"), {
+        toast.error(t("failed_subscribe", { ns: "buttons" }), {
           position: "bottom-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -43,7 +43,7 @@ export default function ComingSoon() {
         });
       } else {
         // sendContactEmail({ type: "subscribe", email });
-        toast.success(t("success_subscribe"), {
+        toast.success(t("success_subscribe", { ns: "buttons" }), {
           position: "bottom-right",
           autoClose: 5000,
           hideProgressBar: false,
