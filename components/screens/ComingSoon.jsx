@@ -10,8 +10,12 @@ import { sendSubscriptionEmail } from "@/utils/api";
 import { emailRegex } from "@/utils/regex";
 import LanguageSwitcher from "../lang/LanguageSwitcher";
 import Divider from "../Divider";
+import { sendContactEmail } from "@/utils/emailAPI";
+import { errorConfig, successConfig } from "@/utils/toastConfig";
+import { useRouter } from "next/router";
 
 export default function ComingSoon() {
+  const { locale } = useRouter();
   const { t } = useTranslation(["coming_soon", "buttons"]);
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
@@ -25,37 +29,29 @@ export default function ComingSoon() {
       setError(true);
       setIsLoading(false);
     } else {
-      const res = await sendSubscriptionEmail("/api/subscriptions", { email });
-
-      if (res.error) {
-        console.log(res.error, "- Error creating email!");
-        setIsLoading(false);
-        setEmail("");
-        toast.error(t("failed_subscribe", { ns: "buttons" }), {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
+      await sendSubscriptionEmail("/api/subscriptions", {
+        email,
+      })
+        .then((r) => {
+          if (r.error) {
+            toast.error(t("failed_subscribe", { ns: "buttons" }), errorConfig);
+            setIsLoading(false);
+            setEmail("");
+          } else {
+            sendContactEmail({ type: "subscribe", email, locale });
+            toast.success(
+              t("success_subscribe", { ns: "buttons" }),
+              successConfig
+            );
+            setIsLoading(false);
+            setEmail("");
+          }
+        })
+        .catch((e) => {
+          setIsLoading(false);
+          setEmail("");
+          toast.error(t("failed_subscribe", { ns: "buttons" }), errorConfig);
         });
-      } else {
-        // sendContactEmail({ type: "subscribe", email });
-        toast.success(t("success_subscribe", { ns: "buttons" }), {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
-        setIsLoading(false);
-        setEmail("");
-      }
     }
   };
 

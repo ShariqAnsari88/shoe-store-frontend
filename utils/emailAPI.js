@@ -12,12 +12,13 @@ const API = axios.create({
 
 export const sendContactEmail = async (payload) => {
   if (payload.type) {
-    const { type, email } = payload;
+    const { type, locale, email } = payload;
     try {
       await API.post("/api/sendgrid", {
+        locale,
         type,
-        from: email,
-        subject: 'Абониране'
+        email,
+        subject: "Абонамент",
       });
     } catch (error) {
       console.log(error, "Error sending mail!");
@@ -29,7 +30,7 @@ export const sendContactEmail = async (payload) => {
       await API.post("/api/sendgrid", {
         type,
         subject,
-        from: email,
+        email,
         message,
         name,
         phone,

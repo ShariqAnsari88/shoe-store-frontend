@@ -32,9 +32,9 @@ const Footer = () => {
             {/* MENU END */}
 
             {/* NORMAL MENU START */}
-            <div className="flex gap-[50px]  md:gap-[75px] lg:gap-[100px] shrink-0">
+            <div className="flex gap-[50px] md:gap-[75px] lg:gap-[100px] shrink-0">
               {/* MENU START */}
-              <div className="flex flex-col gap-3 lg:text-center">
+              <div className="flex flex-col gap-3 sm:mx-auto md:text-left mx-0 text-center">
                 <p className="text-darkBlack font-semibold uppercase text-sm">
                   {t("help")}
                 </p>

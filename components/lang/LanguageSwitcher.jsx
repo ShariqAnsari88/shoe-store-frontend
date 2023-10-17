@@ -15,9 +15,19 @@ export default function LanguageSwitcher({ isHeader }) {
   if (isHeader)
     return (
       <Tabs value={locale}>
-        <TabsHeader>
+        <TabsHeader
+          className="rounded-none  bg-transparent p-0"
+          indicatorProps={{
+            className:
+              "bg-transparent border-b-2 border-offWhite shadow-none rounded-none",
+          }}
+        >
           {options.map(({ label, value }) => (
-            <Tab className="font-bold text-[10px] sm:text-[16px] h-5 sm:h-7" key={value} value={value}>
+            <Tab
+              className={`text-offWhite font-bold text-[10px] sm:text-[16px] h-5 sm:h-7`}
+              key={value}
+              value={value}
+            >
               <Link
                 locale={value}
                 href="/?released=true"

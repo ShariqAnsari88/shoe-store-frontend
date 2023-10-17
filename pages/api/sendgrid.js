@@ -2,28 +2,41 @@ import sendgrid from "@sendgrid/mail";
 
 sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 
+const selectTemplate = {
+  IT: process.env.EMAIL_TEMPLATE_ID_IT,
+  EN: process.env.EMAIL_TEMPLATE_ID_EN,
+  BG: process.env.EMAIL_TEMPLATE_ID_BG,
+};
+
 export default async function handler(req, res) {
   const body = req.body;
 
-  const selectMessage = {
-    subscribe: `<div>$Имейл: ${body.from}</div><br/>`,
+  if (body.type) {
+    const { locale, email } = body;
 
-    order: `<div>$Име: ${body.name}</div><br/>
-    <div>$Имейл: ${body.from}</div><br/>
-    <div>$Телефонен номер: ${body.phone}</div><br/>
-    <div>${body.message}</div>`,
-  };
+    const localeUpperCased = locale.toUpperCase();
 
-  try {
-    await sendgrid.send({
-      to: "threeoyka@gmail.com", // Your email where you'll receive emails
-      from: "threeoyka@gmail.com", // your website email address here
-      subject: `${body.subject}`,
-      html: selectMessage[body.type ?? "order"],
-    });
+    try {
+      await sendgrid.send({
+        to: email, // Your email where you'll receive emails
+        from: "info.troyka@gmail.com", // your website email address here
+        templateId: selectTemplate[localeUpperCased],
+      });
 
-    res.send(200).json({ success: "Request send!" });
-  } catch (error) {
-    return res.status(error.statusCode || 500).json({ error: error.message });
+      res.send(200).json({ success: "Request send!" });
+    } catch (error) {
+      return res.status(error.statusCode || 500).json({ error: error.message });
+    }
+  } else {
+    try {
+      await sendgrid.send({
+        to: email, // Your email where you'll receive emails
+        from: "info.troyka@gmail.com", // your website email address here
+      });
+
+      res.send(200).json({ success: "Request send!" });
+    } catch (error) {
+      return res.status(error.statusCode || 500).json({ error: error.message });
+    }
   }
 }

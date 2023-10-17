@@ -11,8 +11,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
+        protocol: "https",
+        hostname: "res.cloudinary.com",
         // You can add these as well
         // port: '',
         // pathname: 'arifscloud/image/upload/**',
@@ -28,6 +28,9 @@ const nextConfig = {
     SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
     SPEEDY_API_URL: process.env.SPEEDY_API_URL,
     IS_RELEASED: process.env.IS_RELEASED,
+    EMAIL_TEMPLATE_ID_EN: process.env.EMAIL_TEMPLATE_ID_EN,
+    EMAIL_TEMPLATE_ID_IT: process.env.EMAIL_TEMPLATE_ID_IT,
+    EMAIL_TEMPLATE_ID_BG: process.env.EMAIL_TEMPLATE_ID_BG,
   },
   i18n,
 };
