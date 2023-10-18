@@ -23,9 +23,9 @@ export default async function handler(req, res) {
         templateId: selectTemplate[localeUpperCased],
       });
 
-      res.send(200).json({ success: "Request send!" });
+      res.status(200).json({ success: "Request send!" });
     } catch (error) {
-      return res.status(error.statusCode || 500).json({ error: error.message });
+      res.status(error.statusCode || 500).json({ error: error.message });
     }
   } else {
     try {
@@ -34,9 +34,9 @@ export default async function handler(req, res) {
         from: "info.troyka@gmail.com", // your website email address here
       });
 
-      res.send(200).json({ success: "Request send!" });
+      res.status(200).json({ success: "Request send!" });
     } catch (error) {
-      return res.status(error.statusCode || 500).json({ error: error.message });
+      res.status(error.statusCode || 500).json({ error: error.message });
     }
   }
 }
