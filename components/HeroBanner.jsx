@@ -1,9 +1,7 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @next/next/no-img-element */
 import React from "react";
-import slideImage1 from "../public/carousel_images/carousel_1.jpg";
-import slideImage2 from "../public/carousel_images/carousel_2.jpg";
-import slideImage3 from "../public/carousel_images/carousel_3.jpg";
+import slideImage1 from "../public/carousel_images/carousel_1-min.jpg";
+import slideImage2 from "../public/carousel_images/carousel_2-min.jpg";
+import slideImage3 from "../public/carousel_images/carousel_3-min.jpg";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 
