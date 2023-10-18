@@ -3,37 +3,27 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/store/hooks";
-import { selectUserAddress, updateAddress } from "@/store/userSlice";
+import { selectOfficeAddress, updateOfficeAddres } from "@/store/userSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { ToastContainer } from "react-toastify";
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot, faTruck } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 
-function AddressForm({ disabled, setShowError }) {
+function OfficeAddressForm({ disabled, setShowError }) {
   const dispatch = useDispatch();
   const { t } = useTranslation(["profile", "buttons", "forms"]);
-  const addressInfo = useAppSelector(selectUserAddress);
+  const officeAddressInfo = useAppSelector(selectOfficeAddress);
   const [shouldShowAddress, setShouldShowAddress] = useState(
-    addressInfo ? true : false
+    officeAddressInfo ? true : false
   );
 
   const labels = {
-    company: t("company", { ns: "forms" }),
-    street: t("street", { ns: "forms" }),
-    streetNumber: t("streetNumber", { ns: "forms" }),
-    houseNumber: t("houseNumber", { ns: "forms" }),
-    city: t("city", { ns: "forms" }),
-    postalCode: t("postalCode", { ns: "forms" }),
+    officeAddress: t("officeAddress", { ns: "froms" }),
   };
 
   const initialValues = {
-    city: addressInfo?.city ?? "",
-    company: addressInfo?.company ?? "",
-    street: addressInfo?.street ?? "",
-    streetNumber: addressInfo?.streetNumber ?? "",
-    houseNumber: addressInfo?.houseNumber ?? "",
-    postalCode: addressInfo?.postalCode ?? "",
+    officeAddress: officeAddressInfo.officeAddress ?? "",
   };
 
   const [address, setAddress] = useState({ ...initialValues });
@@ -41,16 +31,9 @@ function AddressForm({ disabled, setShowError }) {
   const isEmptyAddress = Object.values(address).every((k) => k.length < 1);
 
   const validationSchema = Yup.object().shape({
-    company: Yup.string().optional(),
-    city: Yup.string()
-      .required(t("city_required", { ns: "forms" }))
-      .min(4, t("city_min", { ns: "forms" })),
-    street: Yup.string().required(t("street_required", { ns: "forms" })),
-    streetNumber: Yup.string().required(
-      t("streetNumber_required", { ns: "forms" })
-    ),
-    houseNumber: Yup.string().required(t("house_required", { ns: "forms" })),
-    postalCode: Yup.string().required(t("postal_required", { ns: "forms" })),
+    officeAddress: Yup.string()
+      .required(t("officeAddress_required", { ns: "forms" }))
+      .min(10, t("officeAddress_min", { ns: "forms" })),
   });
 
   //=========================== Handler Functions START ============================//
@@ -60,10 +43,8 @@ function AddressForm({ disabled, setShowError }) {
   };
 
   const handleSubmit = async () => {
-    dispatch(updateAddress(address));
-
+    dispatch(updateOfficeAddres(address));
     setShouldShowAddress(true);
-
     setShowError(false);
 
     toast.success(t("address_saved", { ns: "buttons" }), {
@@ -84,9 +65,9 @@ function AddressForm({ disabled, setShowError }) {
 
   if (shouldShowAddress)
     return (
-      <AddressInfo
-      disabled={disabled}
-        addressInfo={addressInfo}
+      <OfficeAddressInfo
+        disabled={disabled}
+        officeAddressInfo={officeAddressInfo}
         setShouldShowAddress={setShouldShowAddress}
       />
     );
@@ -99,7 +80,7 @@ function AddressForm({ disabled, setShowError }) {
           <FontAwesomeIcon color="#EEEEEE" icon={faLocationDot} />
         </div>
         <h2 className="font-semibold text-xl text-[#F8F1F1]">
-          {t("address", { ns: "forms" })}
+          {t("officeAddress", { ns: "forms" })}
         </h2>
       </div>
       <Formik
@@ -137,19 +118,8 @@ function AddressForm({ disabled, setShowError }) {
                 <div className="flex flex-row gap-5">
                   <button
                     onClick={() => setShouldShowAddress(true)}
-                    className={`
-                     hover:opacity-80 
-                     transition 
-                     ease-in-out
-                     md:mr-auto 
-                     md:ml-0
-                     min-h-[50px] 
-                    bg-[#181516] 
-                     rounded-[4px] 
-                     md:max-w-[450px] 
-                     w-full 
-                    text-offWhite
-                    `}
+                    className={`hover:opacity-80 transition ease-in-out"
+                   md:mr-auto md:ml-0 min-h-[50px] bg-[#181516] rounded-[4px] md:max-w-[450px] w-full text-offWhite`}
                     type="button"
                   >
                     {t("cancel", { ns: "buttons" })}
@@ -178,16 +148,20 @@ function AddressForm({ disabled, setShowError }) {
   );
 }
 
-export const AddressInfo = ({ disabled, addressInfo, setShouldShowAddress }) => {
+export const OfficeAddressInfo = ({
+  disabled,
+  officeAddressInfo,
+  setShouldShowAddress,
+}) => {
   const { t } = useTranslation(["profile", "buttons"]);
   return (
     <div>
       <div className="flex items-center gap-2 mb-2">
         <div className="bg-neonGreen w-8 h-8 rounded-full flex items-center justify-center">
-          <FontAwesomeIcon color="#EEEEEE" icon={faLocationDot} />
+          <FontAwesomeIcon color="#EEEEEE" icon={faTruck} />
         </div>
         <h2 className="text-offWhite text-xl font-semibold">
-          {t("address", { ns: "forms" })}
+          {t("officeAddress", { ns: "forms" })}
         </h2>
       </div>
       <div className="relative">
@@ -201,17 +175,16 @@ export const AddressInfo = ({ disabled, addressInfo, setShouldShowAddress }) => 
 
         <div
           className={`${
-            disabled ? "opacity-60 pointer-events-none border-[0px]" : "opacity-100 border-[2px] border-neonGreen"
-          } bg-offWhite p-4 rounded-md flex flex-col gap-1 transition ease-in-out`}
+            disabled ? "opacity-60 pointer-events-none" : "opacity-100 border-[2px] border-neonGreen"
+          } bg-offWhite p-4 rounded-md flex flex-col gap-1`}
         >
-          {addressInfo.company && <div>{`${addressInfo.company}`}</div>}
-          <div className="text-[#151718]">{addressInfo.city}</div>
-          <div className="text-[#151718]">{`${addressInfo.postalCode}`}</div>
-          <div className="text-[#151718]">{`${addressInfo.street} ${addressInfo.streetNumber}`}</div>
+          <div className="text-[#151718]">
+            {officeAddressInfo.officeAddress}
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default AddressForm;
+export default OfficeAddressForm;

@@ -12,7 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { getUser } from "@/store/contexts/userContext";
 import { useAppSelector } from "@/store/hooks";
-import { selectUserAddress } from "@/store/userSlice";
+import { selectUserAddress, selectUserCredentials } from "@/store/userSlice";
 import AddressForm from "@/components/profile/AddressForm";
 import Divider from "@/components/Divider";
 import Image from "next/image";
@@ -22,6 +22,7 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import SelectAddress from "@/components/cart/SelectAddress";
 import CredentialsForm from "@/components/profile/CredentialsForm";
+import OfficeAddressForm from "@/components/profile/OfficeAddressForm";
 
 const Cart = (props) => {
   const user = props.user.username;
@@ -32,6 +33,7 @@ const Cart = (props) => {
   const currency = locale !== "bg" ? "€" : "ЛВ";
   const [showError, setShowError] = useState(false);
   const addressInfo = useAppSelector(selectUserAddress);
+  const credentialsInfo = useAppSelector(selectUserCredentials);
   const { cartItems } = useSelector((state) => state.cart);
   const [deliveryOption, setDeliveryOption] = useState("home");
   const deliveryPrice = 5;
@@ -99,7 +101,10 @@ const Cart = (props) => {
                     />
                     <div className="flex flex-col gap-6">
                     <CredentialsForm />
+                    <div className="grid grid-cols-2 gap-2">
                     <AddressForm disabled={deliveryOption === "office"} />
+                    <OfficeAddressForm disabled={deliveryOption === "home"} />
+                    </div>
                     </div>
                   </div>
                 </div>
@@ -163,7 +168,7 @@ const Cart = (props) => {
                     <button
                       name="arrive"
                       className={`transition ease-in-out w-full py-4 rounded-md ${
-                        !addressInfo ? "bg-neonGreen/[0.5]" : "bg-neonGreen"
+                        !addressInfo || !credentialsInfo ? "disabled pointer-events-none" : "bg-neonGreen"
                       } text-offWhite text-md font-medium active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center`}
                       onClick={(e) => {
                         if (!addressInfo) setShowError(true);
@@ -176,7 +181,7 @@ const Cart = (props) => {
                     <button
                       name="card"
                       className={`transition ease-in-out w-full py-4 rounded-md ${
-                        !addressInfo ? "bg-neonGreen/[0.5]" : "bg-neonGreen"
+                        !addressInfo || !credentialsInfo  ? "disabled pointer-events-none" : "bg-neonGreen"
                       } text-offWhite text-md font-medium active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center`}
                       onClick={(e) => {
                         if (!addressInfo) setShowError(true);

@@ -33,13 +33,12 @@ module.exports = withMT({
       },
       backgroundImage: {
         troykaEye: "url('../assets/images/troyka-eye.png')",
-        random:
-          "url('/about-us-3.jpg')",
+        random: "url('/about-us-3.jpg')",
       },
       screens: {
-        'sm': '767px',
-        '2sm': '1024px',
-        'md': '1025px',
+        sm: "767px",
+        "2sm": "1024px",
+        md: "1025px",
         // => @media (min-width: 992px) { ... }
       },
     },
@@ -48,12 +47,12 @@ module.exports = withMT({
     plugin(function ({ matchUtilities, theme }) {
       matchUtilities(
         {
-          'text-shadow': (value) => ({
+          "text-shadow": (value) => ({
             textShadow: value,
           }),
         },
-        { values: theme('textShadow') }
-      )
+        { values: theme("textShadow") }
+      );
     }),
   ],
 });

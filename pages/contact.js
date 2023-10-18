@@ -9,6 +9,7 @@ import { sendContactEmail } from "@/utils/emailAPI";
 import { useTranslation } from "next-i18next";
 import Container from "@/components/Container";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { Textarea, Input } from "@material-tailwind/react";
 
 export default function Contact() {
   const { t } = useTranslation(["forms", "buttons"]);
@@ -37,18 +38,20 @@ export default function Contact() {
 
   const isEmptyForm = Object.values(contactForm).some((k) => k.length < 1);
 
-  const handleChange = (e) => {
+  const handleFormChange = (e) => {
     setContactForm({ ...contactForm, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async () => await sendContactEmail(contactForm);
+  const handleSubmit = async () => {
+    await sendContactEmail(contactForm);
+  };
 
   return (
     <Container>
       <Wrapper>
-        <div class="container p-4 my-12 grid sm:grid-cols-2 gap-4">
-          <div class="bg-offWhite rounded p-8 shadow-md">
-            <h2 class="text-center text-2xl font-bold mb-4 text-neonGreen">
+        <div className="container p-4 my-12 grid sm:grid-cols-2 gap-4">
+          <div className="bg-offWhite rounded p-8 shadow-md">
+            <h2 className="text-center text-2xl font-bold mb-4 text-neonGreen">
               {t("contact_us")}
             </h2>
             <Formik
@@ -56,116 +59,99 @@ export default function Contact() {
               validationSchema={validationSchema}
               onSubmit={handleSubmit}
             >
-              {({ isValid }) => (
-                <Form onChange={handleChange}>
-                  <div class="mb-4">
-                    <label
-                      for="name"
-                      className="text-neonGreen font-semibold block mb-2"
-                    >
-                      {t("firstName")}
-                    </label>
-                    <Field
-                      onCha
+              {({ isValid, errors, handleBlur, handleChange }) => (
+                <Form onChange={handleFormChange}>
+                  <div className="mb-4">
+                    <Input
+                      className="bg-white"
+                      label={t("firstName")}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={errors.name}
                       type="text"
                       id="name"
                       name="name"
-                      placeholder="Пример"
-                      class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
                     />
                     <ErrorMessage
                       name="name"
                       component="div"
                       render={(msg) => (
-                        <div className="text-darkRed">{msg}</div>
+                        <div className=" text-red-400">{msg}</div>
                       )}
                     />
                   </div>
-                  <div class="mb-4">
-                    <label
-                      for="email"
-                      className="text-neonGreen font-semibold block mb-2"
-                    >
-                      {t("email")}
-                    </label>
-                    <Field
+                  <div className="mb-4">
+                    <Input
+                      label={t("email")}
+                      error={errors.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
                       type="email"
                       id="email"
                       name="email"
-                      placeholder="пример@gmail.com"
-                      className="w-full px-3 py-2 border  border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                      className="bg-white"
                     />
                     <ErrorMessage
                       name="email"
                       component="div"
                       render={(msg) => (
-                        <div className="text-darkRed">{msg}</div>
+                        <div className=" text-red-400">{msg}</div>
                       )}
                     />
                   </div>
                   <div className="mb-4">
-                    <label
-                      for="phone"
-                      className="text-neonGreen font-semibold block mb-2"
-                    >
-                      {t("phoneNumber")}
-                    </label>
-                    <Field
+                    <Input
+                      error={errors.phone}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      label={t("phoneNumber")}
                       type="tel"
                       id="phone"
                       name="phone"
-                      placeholder="Вашият телефонен номер"
-                      className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                      className="bg-white"
                     />
                     <ErrorMessage
                       name="phone"
                       component="div"
                       render={(msg) => (
-                        <div className="text-darkRed">{msg}</div>
-                      )}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      for="subject"
-                      className="text-neonGreen font-semibold block mb-2"
-                    >
-                      {t("subject")}
-                    </label>
-                    <Field
-                      id="subject"
-                      name="subject"
-                      rows="4"
-                      placeholder="Въведете тема съобщението"
-                      className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-                    />
-                    <ErrorMessage
-                      name="subject"
-                      component="div"
-                      render={(msg) => (
-                        <div className="text-darkRed">{msg}</div>
+                        <div className=" text-red-400">{msg}</div>
                       )}
                     />
                   </div>
                   <div className="mb-4">
-                    <label
-                      for="message"
-                      className="text-neonGreen font-semibold block mb-2"
-                    >
-                      {t("message")}
-                    </label>
-                    <Field
+                    <Input
+                      error={errors.subject}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      id="subject"
+                      name="subject"
+                      rows="4"
+                      label={t("subject")}
+                      className="bg-white"
+                    />
+                    <ErrorMessage
+                      name="subject"
+                      component="div"
+                      render={(msg) => (
+                        <div className=" text-red-400">{msg}</div>
+                      )}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <Textarea
+                      error={errors.message}
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      label={t("message")}
                       id="message"
                       name="message"
-                      rows="10"
-                      placeholder="Примерно съобщение"
-                      className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                      className="bg-white"
                     />
                     <ErrorMessage
                       name="message"
                       component="div"
                       render={(msg) => (
-                        <div className="text-darkRed">{msg}</div>
+                        <div className=" text-red-400">{msg}</div>
                       )}
                     />
                   </div>

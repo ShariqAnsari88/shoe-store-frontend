@@ -31,5 +31,8 @@
   "forgot_password": "Ha dimenticato la password?",
   "message": "Messaggio*",
   "message_required": "Per favore inserisci un messaggio!",
-  "message_min": "Devi inserire almeno 10 caratteri!"
+  "message_min": "Devi inserire almeno 10 caratteri!",
+  "officeAddress": "Indirizzo dell'ufficio",
+  "officeAddress_required": "L'indirizzo dell'ufficio è obbligatorio!",
+  "officeAddress_min": "Devi inserire almeno 10 caratteri!"
 }

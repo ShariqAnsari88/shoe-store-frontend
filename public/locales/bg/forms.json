@@ -19,7 +19,7 @@
   "phone_incorrect": "Моля използвайте валиден телефонен номер!",
   "phone_required": "Моля въведете телефонен номер!",
   "name_required": "Моля въведете вашето име!",
-  "email": "Email адрес",
+  "email": "Email адрес*",
   "email_required": "Моля въведете имейл адрес!",
   "email_incorrect": "Моля въведете валиден e-mail адрес!",
   "address": "Адрес",
@@ -31,5 +31,8 @@
   "forgot_password": "Забравена парола?",
   "message": "Съобщение*",
   "message_required": "Моля, въведете съобщение!",
-  "message_min": "Трябва да въведете поне 10 символа!"
+  "message_min": "Трябва да въведете поне 10 символа!",
+  "officeAddress": "Адрес на офис",
+  "officeAddress_required": "Адресът е задължителен!",
+  "officeAddress_min": "Адресът трябва да бъде поне 10 символа!"
 }

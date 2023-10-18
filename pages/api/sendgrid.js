@@ -28,9 +28,12 @@ export default async function handler(req, res) {
       res.status(error.statusCode || 500).json({ error: error.message });
     }
   } else {
+    const { email, subject, name, message } = body;
     try {
       await sendgrid.send({
-        to: email, // Your email where you'll receive emails
+        text: `Имейл на потребителя: ${email}; $Име:${name}; Съобщение:${message}`,
+        subject,
+        to: "info.troyka@gmail.com", // Your email where you'll receive emails
         from: "info.troyka@gmail.com", // your website email address here
       });
 
