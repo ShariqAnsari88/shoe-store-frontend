@@ -23,7 +23,7 @@ function OfficeAddressForm({ disabled, setShowError }) {
   };
 
   const initialValues = {
-    officeAddress: officeAddressInfo.officeAddress ?? "",
+    officeAddress: officeAddressInfo?.officeAddress ?? "",
   };
 
   const [address, setAddress] = useState({ ...initialValues });
