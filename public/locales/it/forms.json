@@ -15,7 +15,7 @@
   "city_min": "La città deve contenere almeno 4 caratteri!",
   "postalCode": "Codice postale*",
   "postal_required": "Molto, vedi il codice postale!",
-  "phoneNumber": "Numero di telefono*",
+  "phoneNumber": "Numero di telefono",
   "phone_incorrect": "Si prega di utilizzare un numero di telefono valido!",
   "phone_required": "Inserisci un numero di telefono",
   "name_required": "Per favore inserisci il tuo nome!",

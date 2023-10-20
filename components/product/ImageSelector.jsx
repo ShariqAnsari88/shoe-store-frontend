@@ -12,7 +12,7 @@ export default function ImageSelector({ images, onSelect, selected }) {
         <div
           onClick={() => onSelect(image.attributes.hash)}
           key={`${image.hash}-${index}`}
-          className={`w-16 h-18 rounded-md transition ease-in-out hover:opacity-100 hover:border-[2px] hover:border-neonGreen ${
+          className={`w-16 h-18 rounded-md transition ease-in-out hover:opacity-100 hover:border-[2px ${
             selectedImage === image.attributes.hash
               ? "border-[2px] border-neonGreen opacity-100"
               : "opacity-60 border-0"

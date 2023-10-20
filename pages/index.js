@@ -53,6 +53,7 @@ export async function getServerSideProps(ctx) {
         "common",
         "coming_soon",
         "nav",
+        "forms",
         "footer",
         "buttons",
         "banner",

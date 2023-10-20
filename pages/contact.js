@@ -2,7 +2,7 @@ import Wrapper from "@/components/Wrapper";
 import React, { useState } from "react";
 import { BsPhoneFill } from "react-icons/bs";
 import { FaLocationArrow, FaTruckMoving } from "react-icons/fa";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { ErrorMessage, Form, Formik } from "formik";
 import { emailRegex } from "@/utils/regex";
 import * as Yup from "yup";
 import { sendContactEmail } from "@/utils/emailAPI";
@@ -28,7 +28,7 @@ export default function Contact() {
     email: Yup.string()
       .required(t("email_required"))
       .matches(emailRegex, t("email_incorrect")),
-    phone: Yup.number(t("phone_incorrect")).required(t("phone_required")),
+    phone: Yup.number(t("phone_incorrect")).optional(),
     message: Yup.string()
       .required(t("message_required"))
       .min(10, t("message_min")),
@@ -46,6 +46,8 @@ export default function Contact() {
     await sendContactEmail(contactForm);
   };
 
+
+
   return (
     <Container>
       <Wrapper>
@@ -61,6 +63,7 @@ export default function Contact() {
             >
               {({ isValid, errors, handleBlur, handleChange }) => (
                 <Form onChange={handleFormChange}>
+                  {console.log(isValid)}
                   <div className="mb-4">
                     <Input
                       className="bg-white"
@@ -208,7 +211,7 @@ export default function Contact() {
                   </p>
                 </div>
                 <p className=" font-normal text-base leading-6 text-gray-600 my-4">
-                  troyka@gmail.com
+                  info.troyka@gmail.com
                 </p>
               </div>
             </div>

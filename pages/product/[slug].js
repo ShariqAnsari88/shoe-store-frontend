@@ -126,11 +126,8 @@ const ProductDetails = ({ product, products }) => {
                 )}
               </div>
 
-              <div className="text-offWhite/[0.5] text-md font-medium">
-                {t("taxes")}
-              </div>
               <div className="text-offWhite/[0.5] text-md font-medium mb-20">
-                {t("obligation")}
+                {t("taxes")}
               </div>
 
               {/* PRODUCT SIZE RANGE START */}

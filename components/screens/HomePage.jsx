@@ -2,17 +2,15 @@ import Image from "next/image";
 import HeroBanner from "../HeroBanner";
 import ProductCard from "../ProductCard";
 import Wrapper from "../Wrapper";
+import SubscribeDialog from "../SubscribeDialog";
+import { ToastContainer } from "react-toastify";
 
 export default function HomePage({ products }) {
 
     return (
       <>
-        {/* <h1 className="text-neonGreenLighter font-hearthLess md:text-[126px] drop-shadow-[2px_12px_5px_rgb(51,255,20,0.4)] my-24 text-center text-[46px]">
-          OMNE TRIUM PERFECTUM
-        </h1> */}
-        {/* <div className="w-full">
-        <Image width={1000} height={1000} className="mx-auto" src="/troyka_white.png" />
-        </div> */}
+        <ToastContainer />
+        <SubscribeDialog />
         <HeroBanner />
         <Wrapper>
           <div className="p-4 rounded-md bg-offWhite z-1 text-center my-[50px] md:my-[80px]">

@@ -6,7 +6,7 @@ function Layout(props) {
   return (
     <>
       <Component {...props.pageProps} />
-      <Analytics />
+      {process.env.NODE_ENV !== 'development' && <Analytics />}
     </>
   );
 }

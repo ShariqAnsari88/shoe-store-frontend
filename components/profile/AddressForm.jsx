@@ -136,7 +136,7 @@ function AddressForm({ disabled, setShowError }) {
                 ))}
                 <div className="flex flex-row gap-5">
                   <button
-                    onClick={() => setShouldShowAddress(true)}
+                    onClick={() => !isValid || isEmptyAddress ? setShouldShowAddress(true) : null}
                     className={`
                      hover:opacity-80 
                      transition 

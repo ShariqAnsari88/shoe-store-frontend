@@ -36,7 +36,7 @@ const Cart = (props) => {
   const credentialsInfo = useAppSelector(selectUserCredentials);
   const { cartItems } = useSelector((state) => state.cart);
   const [deliveryOption, setDeliveryOption] = useState("home");
-  const deliveryPrice = 5;
+  const deliveryPrice = deliveryOption === 'office' ? 5 : 7.50;
 
   const subTotal = useMemo(() => {
     return cartItems.reduce((total, val) => total + val.attributes.price, 0);
@@ -101,7 +101,7 @@ const Cart = (props) => {
                     />
                     <div className="flex flex-col gap-6">
                     <CredentialsForm />
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid sm:grid-cols-2 grid-cols-1 gap-2">
                     <AddressForm disabled={deliveryOption === "office"} />
                     <OfficeAddressForm disabled={deliveryOption === "home"} />
                     </div>
