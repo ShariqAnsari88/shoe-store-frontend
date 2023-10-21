@@ -79,7 +79,7 @@ const Header = () => {
               src="/logo-white.png"
             />
           </Link>
-          <LanguageSwitcher isHeader/>
+          <LanguageSwitcher isHeader />
           </div>
 
           <Image alt="image" width={600} height={600} className="md:w-56 w-20" src="/troyka_white.png" />

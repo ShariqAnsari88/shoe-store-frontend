@@ -9,7 +9,7 @@ const options = [
   { label: "bg", value: "bg" },
 ];
 
-export default function LanguageSwitcher({ isHeader }) {
+export default function LanguageSwitcher({ isHeader, textColor, borderColor }) {
   const { locale } = useRouter();
 
   if (isHeader)
@@ -18,13 +18,16 @@ export default function LanguageSwitcher({ isHeader }) {
         <TabsHeader
           className="rounded-none  bg-transparent p-0"
           indicatorProps={{
-            className:
-              "bg-transparent border-b-2 border-offWhite shadow-none rounded-none",
+            className: `bg-transparent border-b-2 ${
+              borderColor ?? "border-offWhite"
+            } shadow-none rounded-none`,
           }}
         >
           {options.map(({ label, value }) => (
             <Tab
-              className={`text-offWhite font-bold text-[10px] sm:text-[16px] h-5 sm:h-7`}
+              className={`${
+                textColor ?? "text-offWhite"
+              } font-bold text-[10px] sm:text-[16px] h-5 sm:h-7`}
               key={value}
               value={value}
             >
