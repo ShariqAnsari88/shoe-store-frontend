@@ -9,7 +9,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const handlePayment = createAsyncThunk(
   "payments/handlePayment",
-  async ({ paymentMethod, products, addressInfo, user, totalPrice }) => {
+  async ({ paymentMethod, products, addressInfo, credentialsInfo, user, totalPrice }) => {
     if (paymentMethod === "card") {
       try {
         const stripe = await stripePromise;
@@ -19,6 +19,7 @@ export const handlePayment = createAsyncThunk(
           paymentMethod,
           status: "active",
           addressInfo,
+          credentialsInfo,
           user,
           totalPrice,
         });
@@ -36,6 +37,7 @@ export const handlePayment = createAsyncThunk(
           paymentMethod,
           status: "active",
           addressInfo,
+          credentialsInfo,
           user,
           totalPrice,
         });
