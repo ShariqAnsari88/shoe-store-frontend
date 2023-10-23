@@ -19,7 +19,7 @@
   "phone_incorrect": "Please use a valid phone number!",
   "phone_required": "Please enter a phone number!",
   "name_required": "Please enter your name!",
-  "email": "Email address",
+  "email": "Email address*",
   "email_required": "Si prega di inserire un indirizzo email!",
   "email_incorrect": "Please enter a valid e-mail address!",
   "address": "Address",
