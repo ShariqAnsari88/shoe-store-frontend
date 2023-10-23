@@ -13,41 +13,48 @@ const ProductCard = ({ data: { attributes: p, id }, isCarouselCard }) => {
 
   return (
     <Link
-      href={{ pathname: `/product/${p.slug}`}}
+      href={{ pathname: `/product/${p.slug}` }}
       locale={locale}
       className={`${isCarouselCard ? "h-[500px]" : ""} transform border-2
      overflow-hidden bg-[#181516] duration-200 hover:scale-105 cursor-pointer flex flex-1 flex-col justify-between`}
     >
       <div className="flex flex-1 flex-col">
         <div className="flex flex-1">
-      <Image
-        width={500}
-        height={500}
-        src={p.thumbnail.data.attributes.url}
-        alt={p.name ?? "No Photo"}
-      />
-      </div>
-      <div className="justify-end flex-col p-4 text-offWhite/[0.9]">
-        <h2 className="text-lg text-neonGreenLighter font-bold">{p.name}</h2>
-        <div className="flex items-center text-black/[0.5]">
-          <p className="mr-2 text-lg font-normal">{p.price} {currency}</p>
-
-          {p.original_price && (
-            <>
-              {discount > 0 && (
-                <>
-                  <p className="text-base font-normal line-through">
-                    {p.original_price} {currency}
-                  </p>
-                  <p className="ml-auto text-base font-semibold rounded-md bg-orange-400 p-[5px] text-white">
-                    -{discount}%
-                  </p>
-                </>
-              )}
-            </>
-          )}
+          <Image
+            width={500}
+            height={500}
+            src={p.thumbnail.data.attributes.url}
+            alt={p.name ?? "No Photo"}
+          />
         </div>
-      </div></div>
+        <div className="justify-end flex-col p-4 text-offWhite/[0.9]">
+          <h2 className="text-lg text-neonGreenLighter font-bold">{p.name}</h2>
+          <div className="flex items-center justify-between flex-row sm:flex-row text-black/[0.5]">
+            <div className="flex flex-row">
+              <p className="mr-2 text-lg font-normal">
+                {p.price} {currency}
+              </p>
+
+              {discount > 0 && (
+                <p className="text-base font-normal line-through">
+                  {p.original_price} {currency}
+                </p>
+              )}
+            </div>
+            {p.original_price && (
+              <>
+                {discount > 0 && (
+                  <div className="flex justify-betwee">
+                    <p className="text-base font-semibold rounded-md bg-orange-400 p-[5px] text-white">
+                      -{discount}%
+                    </p>
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+        </div>
+      </div>
     </Link>
   );
 };

@@ -12,8 +12,21 @@ export const API = axios.create({
 });
 
 export const fetchDataFromApi = async (endpoint) => {
-  const res = await API.get(`${API_URL}${endpoint}`);
-  return res?.data;
+  try {
+    const res = await API.get(`${API_URL}${endpoint}`);
+    return res?.data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const deleteDataFromApi = async (endpoint) => {
+  try {
+    const res = await API.delete(`${API_URL}${endpoint}`);
+    return res?.data;
+  } catch (error) {
+    return error;
+  }
 };
 
 export const sendSubscriptionEmail = async (endpoint, email) => {

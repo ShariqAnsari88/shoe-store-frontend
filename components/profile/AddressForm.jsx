@@ -39,6 +39,7 @@ function AddressForm({ disabled, setShowError }) {
   const [address, setAddress] = useState({ ...initialValues });
 
   const isEmptyAddress = Object.values(address).every((k) => k.length < 1);
+  const addressSaved = !!addressInfo
 
   const validationSchema = Yup.object().shape({
     company: Yup.string().optional(),
@@ -136,7 +137,7 @@ function AddressForm({ disabled, setShowError }) {
                 ))}
                 <div className="flex flex-row gap-5">
                   <button
-                    onClick={() => !isValid || isEmptyAddress ? setShouldShowAddress(true) : null}
+                    onClick={() => addressSaved ? setShouldShowAddress(true) : null}
                     className={`
                      hover:opacity-80 
                      transition 
@@ -191,8 +192,20 @@ export const AddressInfo = ({ disabled, addressInfo, setShouldShowAddress }) => 
         </h2>
       </div>
       <div className="relative">
-        <button
-          className="w-8  hover:bg-black/[0.1] transition ease-in-out bg-transparent rounded-full h-8 top-2 absolute right-2"
+      <button
+          className={`${
+            disabled ? "pointer-events-none" : "pointer-events-auto"
+          }
+          w-8 
+          hover:bg-black/[0.1] 
+          transition 
+          ease-in-out 
+          bg-transparent 
+          rounded-full 
+          h-8 
+          top-2 
+          absolute 
+          right-2`}
           name="button"
           onClick={() => setShouldShowAddress(false)}
         >

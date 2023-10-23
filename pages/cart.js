@@ -12,7 +12,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { getUser } from "@/store/contexts/userContext";
 import { useAppSelector } from "@/store/hooks";
-import { selectUserAddress, selectUserCredentials } from "@/store/userSlice";
+import {
+  selectOfficeAddress,
+  selectUserAddress,
+  selectUserCredentials,
+} from "@/store/userSlice";
 import AddressForm from "@/components/profile/AddressForm";
 import Divider from "@/components/Divider";
 import Image from "next/image";
@@ -26,21 +30,36 @@ import OfficeAddressForm from "@/components/profile/OfficeAddressForm";
 
 const Cart = (props) => {
   const user = props.user.username;
-  const { t } = useTranslation(["cart", "buttons"]);
-  const dispatch = useDispatch();
   const router = useRouter();
   const { locale } = router;
-  const currency = locale !== "bg" ? "€" : "ЛВ";
+
+  const { t } = useTranslation(["cart", "buttons"]);
+  const dispatch = useDispatch();
   const [showError, setShowError] = useState(false);
   const addressInfo = useAppSelector(selectUserAddress);
+  const officeAddressInfo = useAppSelector(selectOfficeAddress);
   const credentialsInfo = useAppSelector(selectUserCredentials);
   const { cartItems } = useSelector((state) => state.cart);
   const [deliveryOption, setDeliveryOption] = useState("home");
-  const deliveryPrice = deliveryOption === 'office' ? 5 : 7.50;
+
+  const deliveryPrice = deliveryOption === "office" ? 5 : 7.5;
+  const currency = locale !== "bg" ? "€" : "ЛВ";
 
   const subTotal = useMemo(() => {
     return cartItems.reduce((total, val) => total + val.attributes.price, 0);
   }, [cartItems]);
+
+  const paymentDisabled = useMemo(() => {
+    if (!credentialsInfo) return true;
+
+    if (deliveryOption === "home") {
+      if (!addressInfo) return true;
+      return false;
+    } else {
+      if (!officeAddressInfo) return true;
+      return false;
+    }
+  }, [deliveryOption, officeAddressInfo, addressInfo, credentialsInfo]);
 
   const calculateTotal = () => {
     if (locale === "bg") {
@@ -100,11 +119,13 @@ const Cart = (props) => {
                       selected={deliveryOption}
                     />
                     <div className="flex flex-col gap-6">
-                    <CredentialsForm />
-                    <div className="grid sm:grid-cols-2 grid-cols-1 gap-2">
-                    <AddressForm disabled={deliveryOption === "office"} />
-                    <OfficeAddressForm disabled={deliveryOption === "home"} />
-                    </div>
+                      <CredentialsForm />
+                      <div className="grid sm:grid-cols-2 grid-cols-1 gap-2">
+                        <AddressForm disabled={deliveryOption !== "home"} />
+                        <OfficeAddressForm
+                          disabled={deliveryOption !== "office"}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -168,10 +189,12 @@ const Cart = (props) => {
                     <button
                       name="arrive"
                       className={`transition ease-in-out w-full py-4 rounded-md ${
-                        !addressInfo || !credentialsInfo ? "disabled pointer-events-none" : "bg-neonGreen"
+                        paymentDisabled
+                          ? "disabled pointer-events-none"
+                          : "bg-neonGreen"
                       } text-offWhite text-md font-medium active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center`}
                       onClick={(e) => {
-                        if (!addressInfo) setShowError(true);
+                        if (paymentDisabled) setShowError(true);
                         else makePayment(e);
                       }}
                     >
@@ -181,10 +204,12 @@ const Cart = (props) => {
                     <button
                       name="card"
                       className={`transition ease-in-out w-full py-4 rounded-md ${
-                        !addressInfo || !credentialsInfo  ? "disabled pointer-events-none" : "bg-neonGreen"
+                        paymentDisabled
+                          ? "disabled pointer-events-none"
+                          : "bg-neonGreen"
                       } text-offWhite text-md font-medium active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center`}
                       onClick={(e) => {
-                        if (!addressInfo) setShowError(true);
+                        if (paymentDisabled) setShowError(true);
                         else makePayment(e);
                       }}
                     >

@@ -1,13 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Wrapper from "@/components/Wrapper";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { resetCart } from "@/store/cartSlice";
+import { deleteDataFromApi, fetchDataFromApi } from "@/utils/api";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "react-i18next";
 
 const Success = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation(["order"]);
 
   useEffect(() => {
+    const deleteUnpaidOrder = async () => {
+      const res = await fetchDataFromApi(`/api/orders?populate=*`);
+
+      let orderNotPaid = res?.data.find((item) => !item?.attributes?.isPaid)
+
+      if (orderNotPaid) {
+        await deleteDataFromApi(`/api/orders/${orderNotPaid?.id}`);
+        console.info("...DELETED");
+      } else {
+        console.info("....NO UNPAID ORDERS")
+      }
+      return;
+    };
+
+    deleteUnpaidOrder();
+
     dispatch(resetCart());
   }, []);
 
@@ -16,18 +36,21 @@ const Success = () => {
       <Wrapper>
         <div className="max-w-[600px] rounded-lg p-5 border border-offWhite mx-auto flex flex-col">
           <div className="text-2xl font-bold text-offWhite">
-            Благодаря, че пазарувахте с нас!
+            {t("title_success")}
           </div>
           <div className="text-lg font-bold mt-2 text-offWhite">
-            Вашата поръчка е успешна.
+            {t("order_success")}
           </div>
           <div className="text-base mt-5 text-offWhite">
-            За всяко запитване, свързано с продукт, изпратете имейл до
+            {t("title_success")}
           </div>
           <div className="underline text-offWhite">troyka@gmail.com</div>
 
-          <Link href="/" className="font-bold mt-5 bg-neonGreen p-2 w-52 hover:opacity-75 text-center rounded-md text-offWhite">
-            Продължи пазаруването
+          <Link
+            href="/"
+            className="font-bold mt-5 bg-neonGreen p-2 w-52 hover:opacity-75 text-center rounded-md text-offWhite"
+          >
+            {t("continue_shopping")}
           </Link>
         </div>
       </Wrapper>
@@ -36,3 +59,13 @@ const Success = () => {
 };
 
 export default Success;
+
+export async function getStaticProps(ctx) {
+  const { locale } = ctx;
+
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["order"])),
+    },
+  };
+}

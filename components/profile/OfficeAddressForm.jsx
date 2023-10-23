@@ -19,7 +19,7 @@ function OfficeAddressForm({ disabled, setShowError }) {
   );
 
   const labels = {
-    officeAddress: t("officeAddress", { ns: "froms" }),
+    officeAddress: t("officeAddress", { ns: "forms" }),
   };
 
   const initialValues = {
@@ -29,6 +29,7 @@ function OfficeAddressForm({ disabled, setShowError }) {
   const [address, setAddress] = useState({ ...initialValues });
 
   const isEmptyAddress = Object.values(address).every((k) => k.length < 1);
+  const addressSaved = !!officeAddressInfo;
 
   const validationSchema = Yup.object().shape({
     officeAddress: Yup.string()
@@ -117,9 +118,22 @@ function OfficeAddressForm({ disabled, setShowError }) {
                 ))}
                 <div className="flex flex-row gap-5">
                   <button
-                    onClick={() => setShouldShowAddress(true)}
-                    className={`hover:opacity-80 transition ease-in-out"
-                   md:mr-auto md:ml-0 min-h-[50px] bg-[#181516] rounded-[4px] md:max-w-[450px] w-full text-offWhite`}
+                    onClick={() =>
+                      addressSaved ? setShouldShowAddress(true) : null
+                    }
+                    className={`
+                   hover:opacity-80
+                   transition 
+                   ease-in-out"
+                   md:mr-auto 
+                   md:ml-0 
+                   min-h-[50px] 
+                   bg-[#181516] 
+                   rounded-[4px] 
+                   md:max-w-[450px] 
+                   w-full 
+                   text-offWhite
+                   `}
                     type="button"
                   >
                     {t("cancel", { ns: "buttons" })}
@@ -166,7 +180,19 @@ export const OfficeAddressInfo = ({
       </div>
       <div className="relative">
         <button
-          className="w-8  hover:bg-black/[0.1] transition ease-in-out bg-transparent rounded-full h-8 top-2 absolute right-2"
+          className={`${
+            disabled ? "pointer-events-none" : "pointer-events-auto"
+          }
+          w-8 
+          hover:bg-black/[0.1] 
+          transition 
+          ease-in-out 
+          bg-transparent 
+          rounded-full 
+          h-8 
+          top-2 
+          absolute 
+          right-2`}
           name="button"
           onClick={() => setShouldShowAddress(false)}
         >
@@ -175,7 +201,9 @@ export const OfficeAddressInfo = ({
 
         <div
           className={`${
-            disabled ? "opacity-60 pointer-events-none" : "opacity-100 border-[2px] border-neonGreen"
+            disabled
+              ? "opacity-60 pointer-events-none"
+              : "opacity-100 border-[2px] border-neonGreen"
           } bg-offWhite p-4 rounded-md flex flex-col gap-1`}
         >
           <div className="text-[#151718]">
