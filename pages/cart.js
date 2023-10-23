@@ -79,7 +79,8 @@ const Cart = (props) => {
       handlePayment({
         paymentMethod: event.target.name,
         products: cartItems,
-        addressInfo,
+        addressInfo:
+          deliveryOption !== "home" ? officeAddressInfo : addressInfo,
         user,
         totalPrice: calculateTotal(),
       })

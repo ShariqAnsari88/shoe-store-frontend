@@ -13,7 +13,7 @@ const Failed = () => {
     const deleteUnpaidOrder = async () => {
       const res = await fetchDataFromApi(`/api/orders?populate=*`);
 
-      const orderNotPaid = res?.data.find((item) => !item?.attributes?.isPaid);
+      let orderNotPaid = res?.data.find((item) => !item?.attributes?.isPaid && item.attributes.paymentMethod === 'card')
 
       if (orderNotPaid) {
         await deleteDataFromApi(`/api/orders/${orderNotPaid?.id}`);
