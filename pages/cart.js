@@ -65,9 +65,11 @@ const Cart = (props) => {
     if (locale === "bg") {
       return subTotal >= 50 ? subTotal : subTotal + deliveryPrice;
     } else {
-      subTotal >= 25 ? subTotal : subTotal + deliveryPrice;
+      return subTotal >= 25 ? subTotal : subTotal + deliveryPrice;
     }
   };
+
+ console.log(calculateTotal(),'')
 
   const handleDeliveryOption = (option) => {
     if (!option) return;
@@ -156,7 +158,7 @@ const Cart = (props) => {
                       </div>
                       <div
                         className={`text-md md:text-lg font-normal text-neonGreenLighter ${
-                          subTotal >= 50 && "line-through"
+                          (locale === 'bg' && subTotal >= 50) || (locale !== 'bg' && subTotal >= 25)  ? "line-through" : ''
                         }`}
                       >
                         {deliveryPrice} {currency}
