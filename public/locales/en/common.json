@@ -1,6 +1,5 @@
 {
-    "coming_soon": { 
-        "welcome": "Unleash the chaos", 
-        "description": "You want to pursue the pleasure of being the first to know or,\n you want to avoid missing the release? Subscribe to our newsletter and miss none of what we have prepared for you!" }
-  }
-  
+  "welcome": "Освободете хаоса",
+  "description": "Искате ли да преследвате удоволствието да научите първи или искате да избегнете пропускането на изданието?\n Абонирайте се за нашия бюлетин и не пропускайте нищо от това, което сме подготвили за вас!",
+  "shipping_exclaimer": "We apologize for the inconvenience, but we temporarily do not ship products outside Bulgaria!"
+}

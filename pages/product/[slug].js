@@ -16,6 +16,7 @@ import { selectIsWishlisted } from "@/store/wishlistSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
+  faCircleExclamation,
   faHeartCircleCheck,
   faHeartCirclePlus,
 } from "@fortawesome/free-solid-svg-icons";
@@ -25,7 +26,7 @@ import Container from "@/components/Container";
 import ImageSelector from "@/components/product/ImageSelector";
 
 const ProductDetails = ({ product, products }) => {
-  const { t } = useTranslation(["product_details", "buttons"]);
+  const { t } = useTranslation(["product_details", "buttons", "common"]);
   const dispatch = useDispatch();
   const { productSlider, slug } = product.data[0].attributes;
 
@@ -37,7 +38,7 @@ const ProductDetails = ({ product, products }) => {
 
   const [showError, setShowError] = useState(false);
   const [selectedImage, setSelectedImage] = useState(undefined);
-  const hasSlider = productSlider && productSlider?.data?.length > 0
+  const hasSlider = productSlider && productSlider?.data?.length > 0;
   const isWishlisted = useAppSelector((state) =>
     selectIsWishlisted(state, { ...product.data[0] })
   );
@@ -64,7 +65,6 @@ const ProductDetails = ({ product, products }) => {
       }
     );
   };
-
 
   return (
     <Container>
@@ -98,11 +98,6 @@ const ProductDetails = ({ product, products }) => {
               <div className="text-neonGreenLighter text-[34px] font-semibold mb-2 leading-tight">
                 {p.name}
               </div>
-
-              {/* PRODUCT SUBTITLE */}
-              {/* <div className="text-offWhite text-lg font-semibold mb-5">
-              {p.subtitle}
-            </div> */}
 
               {/* PRODUCT PRICE */}
               <div className="flex items-center">
@@ -146,7 +141,7 @@ const ProductDetails = ({ product, products }) => {
                     {p.size.data.map((item, i) => (
                       <div
                         key={i}
-                        className={`border-[2px] border-neonGreen rounded-md text-center py-3 font-medium ${
+                        className={`border-[2px] text-md border-neonGreen rounded-md text-center py-3 font-medium ${
                           item.enabled
                             ? "cursor-pointer"
                             : "cursor-not-allowed bg-#393646/[0.1] opacity-50"
@@ -176,9 +171,25 @@ const ProductDetails = ({ product, products }) => {
               {/* PRODUCT SIZE RANGE END */}
 
               {/* ADD TO CART BUTTON START */}
+              <div className="flex justify-between gap-2 mb-12">
               <button
                 name="cart"
-                className="flex items-center justify-center gap-2 w-full py-4 rounded-full bg-neonGreen  text-[#F1F0F1] text-lg font-medium transition ease-in-out active:scale-95 mb-3 hover:opacity-75"
+                className="
+                flex
+                flex-1
+                items-center 
+                justify-center 
+                gap-2 
+                p-4 
+                text-md
+                rounded-full 
+                bg-neonGreen  
+                text-[#F1F0F1] 
+                font-medium 
+                transition 
+                ease-in-out 
+                active:scale-95 
+                hover:opacity-75"
                 onClick={() => {
                   if (!selectedSize) {
                     setShowError(true);
@@ -216,7 +227,21 @@ const ProductDetails = ({ product, products }) => {
                   );
                   notify("wishlist");
                 }}
-                className="bg-offWhite text-neonGreen transition ease-in-out w-full py-4 rounded-full border  border-neonGreen text-lg font-medium active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10"
+                className="
+                bg-offWhite
+                text-neonGreen
+                flex-1
+                transition 
+                ease-in-out 
+                p-4 
+                rounded-full 
+              border-neonGreen 
+                font-medium 
+                active:scale-95 
+                flex items-center 
+                justify-center 
+                gap-2 
+                hover:opacity-75"
               >
                 {isWishlisted
                   ? t("remove_wishlist", { ns: "buttons" })
@@ -226,6 +251,23 @@ const ProductDetails = ({ product, products }) => {
                   color={isWishlisted ? "#B22222" : "charcoal"}
                 />
               </button>
+              </div>
+              <div className="
+              mx-auto
+              bg-offWhite
+              rounded-md 
+              px-4
+              py-2
+              mb-4
+              flex
+              items-center 
+              justify-between 
+              gap-4">
+              <FontAwesomeIcon size="xl" className="text-darkBlack shadow-md rounded-full" icon={faCircleExclamation} />
+                <div className="text-darkBlack text-[14px]">
+                  {t("shipping_exclaimer", { ns: "common" })}
+                </div>
+              </div>
               {/* WHISHLIST BUTTON END */}
 
               <div>
@@ -267,6 +309,7 @@ export async function getServerSideProps({ params: { slug }, locale }) {
         "buttons",
         "footer",
         "nav",
+        "common",
       ])),
     },
   };

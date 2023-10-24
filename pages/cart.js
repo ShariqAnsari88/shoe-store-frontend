@@ -248,7 +248,19 @@ const Cart = (props) => {
               </span>
               <Link
                 href="/"
-                className="py-4 px-8 rounded-full bg-neonGreen text-offWhite text-lg font-medium transition ease-in-out active:scale-95 mb-3 hover:opacity-75 mt-8"
+                className="
+                py-4
+                px-8
+                rounded-full
+              bg-neonGreen
+              text-offWhite
+                font-medium
+                transition
+                ease-in-out
+                active:scale-95
+                mb-3
+                hover:opacity-75
+                mt-8"
               >
                 {t("continue", { ns: "buttons" })}
               </Link>
