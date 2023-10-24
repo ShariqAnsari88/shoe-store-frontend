@@ -30,7 +30,7 @@ const RelatedProducts = ({ products }) => {
       <Carousel
         infiniteLoop={true}
         responsive={responsive}
-        containerClass="-mx-[10px] w-full"
+        containerClass="-mx-[10px] w-full h-[650px]"
         itemClass="p-[10px]"
       >
         {products?.data?.map((product) => (

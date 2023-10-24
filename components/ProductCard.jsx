@@ -15,18 +15,21 @@ const ProductCard = ({ data: { attributes: p, id }, isCarouselCard }) => {
     <Link
       href={{ pathname: `/product/${p.slug}` }}
       locale={locale}
-      className={`${isCarouselCard ? "h-[500px]" : ""} transform border-2
-     overflow-hidden bg-[#181516] duration-200 hover:scale-105 cursor-pointer flex flex-1 flex-col justify-between`}
+      className={`${isCarouselCard ? "h-[500px] w-[450px]" : ""} transform
+     overflow-hidden bg-[#181516] duration-200 md:hover:scale-105 cursor-pointer`}
     >
-      <div className="flex flex-1 flex-col">
-        <div className="flex flex-1">
-          <Image
-            width={500}
-            height={500}
-            src={p.thumbnail.data.attributes.url}
-            alt={p.name ?? "No Photo"}
-          />
-        </div>
+      <div
+        className={` ${
+          isCarouselCard && "w-[250px] h-[470px]"
+        } border-[2px] border-white`}
+      >
+        <Image
+         className="bg-cover"
+          width={isCarouselCard ? 250 : 400}
+          height={isCarouselCard ? 200 : 400}
+          src={p.thumbnail.data.attributes.url}
+          alt={p.name ?? "No Photo"}
+        />
         <div className="justify-end flex-col p-4 text-offWhite/[0.9]">
           <h2 className="text-lg text-neonGreenLighter font-bold">{p.name}</h2>
           <div className="flex items-center justify-between flex-row sm:flex-row text-black/[0.5]">
