@@ -14,6 +14,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Container from "@/components/Container";
 import CredentialsForm from "@/components/profile/CredentialsForm";
 import OfficeAddressForm from "@/components/profile/OfficeAddressForm";
+import BillingAddressForm from "@/components/profile/BillingAddressForm";
 
 function ProfilePage(props) {
   const { userData, ordersData } = props;
@@ -36,6 +37,7 @@ function ProfilePage(props) {
               <div className="flex flex-col gap-10 md:border-r-[1px] px-4 mx-auto w-full">
                 <CredentialsForm />
                 <AddressForm />
+                <BillingAddressForm />
                 <OfficeAddressForm />
                 <button
                   onClick={() => {

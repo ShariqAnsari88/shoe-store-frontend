@@ -8,6 +8,7 @@ export const userSlice = createSlice({
     userInfo: null,
     address: null,
     officeAddress: null,
+    billingAddress: null,
     credentials: null,
   },
   reducers: {
@@ -31,8 +32,11 @@ export const userSlice = createSlice({
     updateCredentials: (state, action) => {
       state.credentials = action.payload;
     },
-    updateOfficeAddres: (state, action) => {
+    updateOfficeAddress: (state, action) => {
       state.officeAddress = action.payload;
+    },
+    updateBillingAddress: (state, action) => {
+      state.billingAddress = action.payload;
     },
   },
   extraReducers: {},
@@ -45,10 +49,13 @@ export const {
   updateUserInfo,
   updateAddress,
   updateCredentials,
-  updateOfficeAddres
+  updateOfficeAddress,
+  updateBillingAddress
 } = userSlice.actions;
 
 export const selectUserAddress = (state) => state[name].address;
 export const selectUserCredentials = (state) => state[name].credentials;
 export const selectOfficeAddress = (state) => state[name].officeAddress;
+export const selectBillingAddress = (state) => state[name].billingAddress;
+
 // export default cartSlice.reducer;

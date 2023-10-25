@@ -13,6 +13,7 @@ import {
 import { getUser } from "@/store/contexts/userContext";
 import { useAppSelector } from "@/store/hooks";
 import {
+  selectBillingAddress,
   selectOfficeAddress,
   selectUserAddress,
   selectUserCredentials,
@@ -27,6 +28,8 @@ import { useRouter } from "next/router";
 import SelectAddress from "@/components/cart/SelectAddress";
 import CredentialsForm from "@/components/profile/CredentialsForm";
 import OfficeAddressForm from "@/components/profile/OfficeAddressForm";
+import BillingAddressForm from "@/components/profile/BillingAddressForm";
+import Exclaimer from "@/components/Exclaimer";
 
 const Cart = (props) => {
   const user = props.user.username;
@@ -39,6 +42,7 @@ const Cart = (props) => {
   const addressInfo = useAppSelector(selectUserAddress);
   const officeAddressInfo = useAppSelector(selectOfficeAddress);
   const credentialsInfo = useAppSelector(selectUserCredentials);
+  const billingAddressInfo = useAppSelector(selectBillingAddress);
   const { cartItems } = useSelector((state) => state.cart);
   const [deliveryOption, setDeliveryOption] = useState("home");
 
@@ -69,25 +73,24 @@ const Cart = (props) => {
     }
   };
 
- console.log(calculateTotal(),'')
-
   const handleDeliveryOption = (option) => {
     if (!option) return;
     setDeliveryOption(option);
   };
 
   const makePayment = async (event) => {
-    dispatch(
-      handlePayment({
-        paymentMethod: event.target.name,
-        products: cartItems,
-        credentialsInfo,
-        addressInfo:
-          deliveryOption !== "home" ? officeAddressInfo : addressInfo,
-        user,
-        totalPrice: calculateTotal(),
-      })
-    );
+    
+    const paymentData = {
+      paymentMethod: event.target.name,
+      products: cartItems,
+      credentialsInfo,
+      billingAddressInfo,
+      addressInfo: deliveryOption !== "home" ? officeAddressInfo : addressInfo,
+      user,
+      totalPrice: calculateTotal(),
+    };
+
+    dispatch(handlePayment(paymentData));
   };
 
   return (
@@ -124,6 +127,7 @@ const Cart = (props) => {
                     />
                     <div className="flex flex-col gap-6">
                       <CredentialsForm />
+                      <BillingAddressForm />
                       <div className="grid sm:grid-cols-2 grid-cols-1 gap-2">
                         <AddressForm disabled={deliveryOption !== "home"} />
                         <OfficeAddressForm
@@ -158,7 +162,10 @@ const Cart = (props) => {
                       </div>
                       <div
                         className={`text-md md:text-lg font-normal text-neonGreenLighter ${
-                          (locale === 'bg' && subTotal >= 50) || (locale !== 'bg' && subTotal >= 25)  ? "line-through" : ''
+                          (locale === "bg" && subTotal >= 50) ||
+                          (locale !== "bg" && subTotal >= 25)
+                            ? "line-through"
+                            : ""
                         }`}
                       >
                         {deliveryPrice} {currency}
@@ -221,6 +228,7 @@ const Cart = (props) => {
                       <FontAwesomeIcon icon={faCreditCard} />
                     </button>
                   </div>
+                  <Exclaimer />
                   {showError && (
                     <div className="text-errorYellow mt-1">
                       {t("address_error", { ns: "forms" })}
@@ -289,6 +297,7 @@ export async function getServerSideProps(ctx) {
         "nav",
         "buttons",
         "forms",
+        "common",
       ])),
     },
   };

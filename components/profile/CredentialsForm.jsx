@@ -3,21 +3,26 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/store/hooks";
-import { selectUserCredentials, updateAddress, updateCredentials } from "@/store/userSlice";
+import {
+  selectUserCredentials,
+  updateCredentials,
+} from "@/store/userSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faUser } from "@fortawesome/free-regular-svg-icons";
 import { emailRegex } from "@/utils/regex";
 import { ToastContainer } from "react-toastify";
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
+import AddInfoButton from "./AddInfoButton";
 
 function CredentialsForm({ disabled, setShowError }) {
   const dispatch = useDispatch();
   const { t } = useTranslation(["profile", "buttons", "forms"]);
   const credentialsInfo = useAppSelector(selectUserCredentials);
+  const [isPressed, setIsPressed] = useState(false);
   const [shouldShowCredentialsInfo, setShouldShowCredentialsInfo] = useState(
     credentialsInfo ? true : false
   );
+  const credentialsSaved = !!credentialsInfo;
 
   const labels = {
     firstName: t("firstName", { ns: "forms" }),
@@ -34,9 +39,13 @@ function CredentialsForm({ disabled, setShowError }) {
     email: credentialsInfo?.email ?? "",
   };
 
-  const [credentials, setCredentials] = useState({ ...initialValuesCredentials });
+  const [credentials, setCredentials] = useState({
+    ...initialValuesCredentials,
+  });
 
-  const isEmptyCredentials = Object.values(credentials).every((k) => k.length < 1);
+  const isEmptyCredentials = Object.values(credentials).every(
+    (k) => k.length < 1
+  );
 
   const validationSchemaCredentials = Yup.object().shape({
     firstName: Yup.string().required(t("name_required", { ns: "forms" })),
@@ -87,6 +96,10 @@ function CredentialsForm({ disabled, setShowError }) {
       />
     );
 
+    if (!shouldShowCredentialsInfo && !isPressed) {
+      return <AddInfoButton label={"credentials"} onPress={() => setIsPressed(!isPressed)}/>
+    }
+
   return (
     <div className="bg-neonGreen flex-1 flex-column mt-4 space-y-2 p-[40px] shadow-md border-zinc-700 rounded-sm">
       <ToastContainer />
@@ -132,7 +145,11 @@ function CredentialsForm({ disabled, setShowError }) {
                 ))}
                 <div className="flex flex-row gap-5">
                   <button
-                    onClick={() => setShouldShowCredentialsInfo(true)}
+                    onClick={() =>
+                      credentialsSaved
+                        ? setShouldShowAddress(true)
+                        : setIsPressed(false)
+                    }
                     className={`hover:opacity-80 transition ease-in-out"
                    md:mr-auto md:ml-0 min-h-[50px] bg-[#181516] rounded-[4px] md:max-w-[450px] w-full text-offWhite`}
                     type="button"
@@ -147,7 +164,9 @@ function CredentialsForm({ disabled, setShowError }) {
                       !isEmptyCredentials &&
                       "hover:opacity-80 transition-opacity ease-in-out"
                     } md:mr-auto md:ml-0 min-h-[50px] bg-offWhite rounded-[4px] ${
-                      isValid && !isEmptyCredentials ? " opacity-100" : "opacity-30"
+                      isValid && !isEmptyCredentials
+                        ? " opacity-100"
+                        : "opacity-30"
                     } md:max-w-[450px] w-full text-[#181516]`}
                     type="submit"
                   >
@@ -191,7 +210,11 @@ export const UserCredentials = ({
           <FontAwesomeIcon color="#151718" icon={faPenToSquare} />
         </button>
 
-        <div  className={`${disabled ? 'opacity-60' : 'opacity-100'} transition ease-in-out bg-offWhite p-4 rounded-md flex flex-col gap-1`}>
+        <div
+          className={`${
+            disabled ? "opacity-60" : "opacity-100"
+          } transition ease-in-out bg-offWhite p-4 rounded-md flex flex-col gap-1`}
+        >
           <div className="text-[#151718] font-semibold">{`${credentialsInfo.firstName} ${credentialsInfo.secondName}`}</div>
           {credentialsInfo.company && <div>{`${credentialsInfo.company}`}</div>}
           <div className="text-[#151718]">{`${credentialsInfo.email}`}</div>
@@ -201,8 +224,5 @@ export const UserCredentials = ({
     </div>
   );
 };
-
-
-
 
 export default CredentialsForm;

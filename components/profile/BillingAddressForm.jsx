@@ -3,40 +3,64 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/store/hooks";
-import { selectOfficeAddress, updateOfficeAddress } from "@/store/userSlice";
+import {
+  selectBillingAddress,
+  updateBillingAddress,
+} from "@/store/userSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { ToastContainer } from "react-toastify";
-import { faLocationDot, faTruck } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircleDollarToSlot,
+  faLocationDot,
+} from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import AddInfoButton from "./AddInfoButton";
 
-function OfficeAddressForm({ disabled, setShowError }) {
+function BillingAddressForm({ disabled, setShowError }) {
   const dispatch = useDispatch();
   const { t } = useTranslation(["profile", "buttons", "forms"]);
-  const officeAddressInfo = useAppSelector(selectOfficeAddress);
+  const addressInfo = useAppSelector(selectBillingAddress);
   const [isPressed, setIsPressed] = useState(false);
+
   const [shouldShowAddress, setShouldShowAddress] = useState(
-    officeAddressInfo ? true : false
+    addressInfo ? true : false
   );
 
   const labels = {
-    officeAddress: t("officeAddress", { ns: "forms" }),
+    company: t("company", { ns: "forms" }),
+    street: t("street", { ns: "forms" }),
+    streetNumber: t("streetNumber", { ns: "forms" }),
+    houseNumber: t("houseNumber", { ns: "forms" }),
+    city: t("city", { ns: "forms" }),
+    postalCode: t("postalCode", { ns: "forms" }),
   };
 
   const initialValues = {
-    officeAddress: officeAddressInfo?.officeAddress ?? "",
+    city: addressInfo?.city ?? "",
+    company: addressInfo?.company ?? "",
+    street: addressInfo?.street ?? "",
+    streetNumber: addressInfo?.streetNumber ?? "",
+    houseNumber: addressInfo?.houseNumber ?? "",
+    postalCode: addressInfo?.postalCode ?? "",
   };
 
   const [address, setAddress] = useState({ ...initialValues });
 
   const isEmptyAddress = Object.values(address).every((k) => k.length < 1);
-  const addressSaved = !!officeAddressInfo;
+  const addressSaved = !!addressInfo;
 
   const validationSchema = Yup.object().shape({
-    officeAddress: Yup.string()
-      .required(t("officeAddress_required", { ns: "forms" }))
-      .min(10, t("officeAddress_min", { ns: "forms" })),
+    company: Yup.string().optional(),
+    city: Yup.string()
+      .required(t("city_required", { ns: "forms" }))
+      .min(4, t("city_min", { ns: "forms" })),
+    street: Yup.string().required(t("street_required", { ns: "forms" })),
+    streetNumber: Yup.string().required(
+      t("streetNumber_required", { ns: "forms" })
+    ),
+    houseNumber: Yup.string().required(t("house_required", { ns: "forms" })),
+    postalCode: Yup.string().required(t("postal_required", { ns: "forms" })),
   });
 
   //=========================== Handler Functions START ============================//
@@ -46,8 +70,10 @@ function OfficeAddressForm({ disabled, setShowError }) {
   };
 
   const handleSubmit = async () => {
-    dispatch(updateOfficeAddress(address));
+    dispatch(updateBillingAddress(address));
+
     setShouldShowAddress(true);
+
     setShowError(false);
 
     toast.success(t("address_saved", { ns: "buttons" }), {
@@ -68,16 +94,16 @@ function OfficeAddressForm({ disabled, setShowError }) {
 
   if (shouldShowAddress)
     return (
-      <OfficeAddressInfo
+      <BillingAddressInfo
         disabled={disabled}
-        officeAddressInfo={officeAddressInfo}
+        addressInfo={addressInfo}
         setShouldShowAddress={setShouldShowAddress}
       />
     );
 
-    if (!shouldShowAddress && !isPressed) {
-      return <AddInfoButton label={"officeAddress"} onPress={() => setIsPressed(!isPressed)}/>
-    }
+  if (!shouldShowAddress && !isPressed) {
+    return <AddInfoButton label={"billing_address"} onPress={() => setIsPressed(!isPressed)}/>
+  }
 
   return (
     <div className="bg-neonGreen flex-1 flex-column space-y-2 p-[40px] shadow-md border-zinc-700 rounded-sm">
@@ -87,7 +113,7 @@ function OfficeAddressForm({ disabled, setShowError }) {
           <FontAwesomeIcon color="#EEEEEE" icon={faLocationDot} />
         </div>
         <h2 className="font-semibold text-xl text-[#F8F1F1]">
-          {t("officeAddress", { ns: "forms" })}
+          {t("billing_address", { ns: "forms" })}
         </h2>
       </div>
       <Formik
@@ -125,21 +151,21 @@ function OfficeAddressForm({ disabled, setShowError }) {
                 <div className="flex flex-row gap-5">
                   <button
                     onClick={() =>
-                      addressSaved ? setShouldShowAddress(true) : setIsPressed(!isPressed)
+                      addressSaved ? setShouldShowAddress(true) : setIsPressed(false)
                     }
                     className={`
-                   hover:opacity-80
-                   transition 
-                   ease-in-out"
-                   md:mr-auto 
-                   md:ml-0 
-                   min-h-[50px] 
-                   bg-[#181516] 
-                   rounded-[4px] 
-                   md:max-w-[450px] 
-                   w-full 
-                   text-offWhite
-                   `}
+                     hover:opacity-80 
+                     transition 
+                     ease-in-out
+                     md:mr-auto 
+                     md:ml-0
+                     min-h-[50px] 
+                    bg-[#181516] 
+                     rounded-[4px] 
+                     md:max-w-[450px] 
+                     w-full 
+                    text-offWhite
+                    `}
                     type="button"
                   >
                     {t("cancel", { ns: "buttons" })}
@@ -168,9 +194,9 @@ function OfficeAddressForm({ disabled, setShowError }) {
   );
 }
 
-export const OfficeAddressInfo = ({
+export const BillingAddressInfo = ({
   disabled,
-  officeAddressInfo,
+  addressInfo,
   setShouldShowAddress,
 }) => {
   const { t } = useTranslation(["profile", "buttons"]);
@@ -178,10 +204,10 @@ export const OfficeAddressInfo = ({
     <div>
       <div className="flex items-center gap-2 mb-2">
         <div className="bg-neonGreen w-8 h-8 rounded-full flex items-center justify-center">
-          <FontAwesomeIcon color="#EEEEEE" icon={faTruck} />
+          <FontAwesomeIcon color="#EEEEEE" icon={faCircleDollarToSlot} />
         </div>
         <h2 className="text-offWhite text-xl font-semibold">
-          {t("officeAddress", { ns: "forms" })}
+          {t("billing_address", { ns: "forms" })}
         </h2>
       </div>
       <div className="relative">
@@ -208,17 +234,18 @@ export const OfficeAddressInfo = ({
         <div
           className={`${
             disabled
-              ? "opacity-60 pointer-events-none"
+              ? "opacity-60 pointer-events-none border-[0px]"
               : "opacity-100 border-[2px] border-neonGreen"
-          } bg-offWhite p-4 rounded-md flex flex-col gap-1`}
+          } bg-offWhite p-4 rounded-md flex flex-col gap-1 transition ease-in-out`}
         >
-          <div className="text-[#151718]">
-            {officeAddressInfo.officeAddress}
-          </div>
+          {addressInfo?.company && <div>{`${addressInfo.company}`}</div>}
+          <div className="text-[#151718]">{addressInfo.city}</div>
+          <div className="text-[#151718]">{`${addressInfo.postalCode}`}</div>
+          <div className="text-[#151718]">{`${addressInfo.street} ${addressInfo.streetNumber}`}</div>
         </div>
       </div>
     </div>
   );
 };
 
-export default OfficeAddressForm;
+export default BillingAddressForm;

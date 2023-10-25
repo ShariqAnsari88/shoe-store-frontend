@@ -9,11 +9,13 @@ import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { ToastContainer } from "react-toastify";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
+import AddInfoButton from "./AddInfoButton";
 
 function AddressForm({ disabled, setShowError }) {
   const dispatch = useDispatch();
   const { t } = useTranslation(["profile", "buttons", "forms"]);
   const addressInfo = useAppSelector(selectUserAddress);
+  const [isPressed, setIsPressed] = useState(false);
   const [shouldShowAddress, setShouldShowAddress] = useState(
     addressInfo ? true : false
   );
@@ -92,6 +94,10 @@ function AddressForm({ disabled, setShowError }) {
       />
     );
 
+    if (!shouldShowAddress && !isPressed) {
+      return <AddInfoButton label={"address"} onPress={() => setIsPressed(!isPressed)}/>
+    }
+
   return (
     <div className="bg-neonGreen flex-1 flex-column space-y-2 p-[40px] shadow-md border-zinc-700 rounded-sm">
       <ToastContainer />
@@ -137,7 +143,9 @@ function AddressForm({ disabled, setShowError }) {
                 ))}
                 <div className="flex flex-row gap-5">
                   <button
-                    onClick={() => addressSaved ? setShouldShowAddress(true) : null}
+                      onClick={() =>
+                        addressSaved ? setShouldShowAddress(true) : setIsPressed(false)
+                      }
                     className={`
                      hover:opacity-80 
                      transition 

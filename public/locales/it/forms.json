@@ -22,6 +22,7 @@
   "email": "Indirizzo e-mail*",
   "email_required": "Si prega di inserire un indirizzo email!",
   "email_incorrect": "Si prega di inserire un indirizzo email valido!",
+  "billing_address": "Indirizzo di fatturazione",
   "address": "Indirizzo",
   "address_error": "Per favore aggiungi un indirizzo di spedizione!",
   "address_registration": "Inserisci l'indirizzo email fornito durante la registrazione. Ti invieremo un'e-mail con le istruzioni per modificare la password all'indirizzo che hai fornito.",

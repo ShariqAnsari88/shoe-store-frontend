@@ -16,7 +16,6 @@ import { selectIsWishlisted } from "@/store/wishlistSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
-  faCircleExclamation,
   faHeartCircleCheck,
   faHeartCirclePlus,
 } from "@fortawesome/free-solid-svg-icons";
@@ -24,6 +23,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Container from "@/components/Container";
 import ImageSelector from "@/components/product/ImageSelector";
+import Exclaimer from "@/components/Exclaimer";
 
 const ProductDetails = ({ product, products }) => {
   const { t } = useTranslation(["product_details", "buttons", "common"]);
@@ -252,22 +252,7 @@ const ProductDetails = ({ product, products }) => {
                 />
               </button>
               </div>
-              <div className="
-              mx-auto
-              bg-offWhite
-              rounded-md 
-              px-4
-              py-2
-              mb-4
-              flex
-              items-center 
-              justify-between 
-              gap-4">
-              <FontAwesomeIcon size="xl" className="text-darkBlack shadow-md rounded-full" icon={faCircleExclamation} />
-                <div className="text-darkBlack text-[14px]">
-                  {t("shipping_exclaimer", { ns: "common" })}
-                </div>
-              </div>
+              <Exclaimer />
               {/* WHISHLIST BUTTON END */}
 
               <div>
