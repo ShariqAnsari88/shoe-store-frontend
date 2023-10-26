@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const ForgotPassword = () => {
   const { t } = useTranslation(["forms", "buttons"]);
@@ -33,7 +34,7 @@ const ForgotPassword = () => {
   const handleSubmit = async () => {
     await sendResetEmail(userEmailInfo.email)
       .then((res) => {
-        toast.success(t("success_request"), {
+        toast.success(t("success_request", { ns: "buttons" }), {
           position: "bottom-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -82,7 +83,7 @@ const ForgotPassword = () => {
                         name="email"
                         component="div"
                         render={(msg) => (
-                          <div className="text-darkRed">{msg}</div>
+                          <div className="text-errorYellow">{msg}</div>
                         )}
                       />
                     </div>
@@ -121,7 +122,7 @@ export async function getServerSideProps(ctx) {
 
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["forms","buttons"])),
+      ...(await serverSideTranslations(locale, ["forms", "buttons"])),
       // Will be passed to the page component as props
     },
   };

@@ -4,9 +4,12 @@ import { useRouter } from "next/router";
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useState } from "react";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const ForgotPassword = () => {
   const router = useRouter();
+  const { t } = useTranslation(["forms", "buttons"]);
+
   const code = router.query?.code;
 
   const [passwordInfo, setPasswordInfo] = useState({
@@ -21,11 +24,11 @@ const ForgotPassword = () => {
 
   const validationSchema = Yup.object().shape({
     password: Yup.string()
-      .min(8, "Паролата трябва да съдържа поне 8 символа.")
-      .required("Моля въведете парола."),
+      .min(8, t("password_min", { ns: "forms" }))
+      .required(t("password_required", { ns: "forms" })),
     passwordConfirmation: Yup.string()
-      .oneOf([Yup.ref("password"), null], "Паролите не съвпадат.")
-      .required("Моля потвърдете паролата."),
+      .oneOf([Yup.ref("password"), null], t("password_match", { ns: "forms" }))
+      .required(t("password_confirm", { ns: "forms" })),
   });
 
   const isEmptyPassword = Object.values(passwordInfo).some((k) => k.length < 1);
@@ -37,12 +40,12 @@ const ForgotPassword = () => {
   const handleSubmit = async () =>
     await changePassword({ ...passwordInfo, code })
       .then(() => router.push("/profile"))
-      .catch((e) => console.error(e,"Проблем със заявката :/"));
+      .catch((e) => console.error(e, "Error with request :/"));
 
   return (
     <div className="min-h-[650px] mt-8 flex mb-10 md:mb-0">
       <Wrapper>
-        <div className="bg-neonGreen flex-1 flex-column space-y-5 md:max-w-[450px] mx-auto  p-[40px] shadow-md border-zinc-700 rounded-sm">
+        <div className="bg-neonGreen flex-1 flex-column space-y-5 md:max-w-[450px] mx-auto p-[40px] shadow-md border-zinc-700 rounded-sm">
           <h2 className="font-semibold text-3xl text-center text-[#F8F1F1]">
             Забравена парола
           </h2>
@@ -61,7 +64,7 @@ const ForgotPassword = () => {
                         className="text-offWhite font-semibold text-lg"
                         htmlFor="password"
                       >
-                        Нова парола
+                        {t("new_password", { ns: "forms" })}
                       </label>
                       <Field
                         className="border-offWhite"
@@ -73,7 +76,7 @@ const ForgotPassword = () => {
                         name="password"
                         component="div"
                         render={(msg) => (
-                          <div className="text-darkRed">{msg}</div>
+                          <div className="text-errorYellow">{msg}</div>
                         )}
                       />
                     </div>
@@ -83,7 +86,7 @@ const ForgotPassword = () => {
                         className="text-offWhite font-semibold text-lg"
                         htmlFor="passwordConfirmation"
                       >
-                        Потвърди парола
+                        {t("confirm_password", { ns: "forms" })}
                       </label>
                       <Field
                         className="border-offWhite"
@@ -95,7 +98,7 @@ const ForgotPassword = () => {
                         name="passwordConfirmation"
                         component="div"
                         render={(msg) => (
-                          <div className="text-darkRed">{msg}</div>
+                          <div className="text-errorYellow">{msg}</div>
                         )}
                       />
                     </div>
@@ -113,7 +116,7 @@ const ForgotPassword = () => {
                       } md:max-w-[450px] w-full text-[#181516]`}
                       type="submit"
                     >
-                      Изпрати
+                      {t("send", { ns: "buttons" })}
                     </button>
                   </div>
                 </Form>
@@ -127,3 +130,14 @@ const ForgotPassword = () => {
 };
 
 export default ForgotPassword;
+
+export async function getServerSideProps(ctx) {
+  const { locale } = ctx;
+
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["forms", "buttons"])),
+      // Will be passed to the page component as props
+    },
+  };
+}

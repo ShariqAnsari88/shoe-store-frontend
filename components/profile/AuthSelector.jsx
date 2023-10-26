@@ -3,10 +3,12 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import login from "@/pages/api/auth/login";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 
 function AuthSelector({ setChoice }) {
   const router = useRouter();
-  
+  const { t } = useTranslation(["forms", "buttons"]);
+
   const initialValues = {
     username: "",
     password: "",
@@ -17,10 +19,10 @@ function AuthSelector({ setChoice }) {
   const isEmptyUser = Object.values(user).some((k) => k.length < 1);
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required("Моля въведете потребителско име!"),
+    username: Yup.string().required(t('username_required')),
     password: Yup.string()
-      .min(8, "Паролата трябва да съдържа поне 8 символа!")
-      .required("Моля въведете парола!"),
+      .min(8, t("password_min"))
+      .required(t("password_required")),
   });
 
   //=========================== Handler Functions START ============================//
