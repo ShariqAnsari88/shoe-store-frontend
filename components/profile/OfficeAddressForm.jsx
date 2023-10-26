@@ -75,7 +75,7 @@ function OfficeAddressForm({ disabled, setShowError }) {
       />
     );
 
-    if (!shouldShowAddress && !isPressed) {
+    if (!shouldShowAddress && !isPressed && !officeAddressInfo) {
       return <AddInfoButton label={"officeAddress"} onPress={() => setIsPressed(!isPressed)}/>
     }
 

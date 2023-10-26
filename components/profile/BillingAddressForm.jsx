@@ -20,11 +20,11 @@ import AddInfoButton from "./AddInfoButton";
 function BillingAddressForm({ disabled, setShowError }) {
   const dispatch = useDispatch();
   const { t } = useTranslation(["profile", "buttons", "forms"]);
-  const addressInfo = useAppSelector(selectBillingAddress);
+  const billingAddressInfo = useAppSelector(selectBillingAddress);
   const [isPressed, setIsPressed] = useState(false);
 
   const [shouldShowAddress, setShouldShowAddress] = useState(
-    addressInfo ? true : false
+    billingAddressInfo ? true : false
   );
 
   const labels = {
@@ -37,18 +37,18 @@ function BillingAddressForm({ disabled, setShowError }) {
   };
 
   const initialValues = {
-    city: addressInfo?.city ?? "",
-    company: addressInfo?.company ?? "",
-    street: addressInfo?.street ?? "",
-    streetNumber: addressInfo?.streetNumber ?? "",
-    houseNumber: addressInfo?.houseNumber ?? "",
-    postalCode: addressInfo?.postalCode ?? "",
+    city: billingAddressInfo?.city ?? "",
+    company: billingAddressInfo?.company ?? "",
+    street: billingAddressInfo?.street ?? "",
+    streetNumber: billingAddressInfo?.streetNumber ?? "",
+    houseNumber: billingAddressInfo?.houseNumber ?? "",
+    postalCode: billingAddressInfo?.postalCode ?? "",
   };
 
   const [address, setAddress] = useState({ ...initialValues });
 
   const isEmptyAddress = Object.values(address).every((k) => k.length < 1);
-  const addressSaved = !!addressInfo;
+  const addressSaved = !!billingAddressInfo;
 
   const validationSchema = Yup.object().shape({
     company: Yup.string().optional(),
@@ -96,12 +96,12 @@ function BillingAddressForm({ disabled, setShowError }) {
     return (
       <BillingAddressInfo
         disabled={disabled}
-        addressInfo={addressInfo}
+        addressInfo={billingAddressInfo}
         setShouldShowAddress={setShouldShowAddress}
       />
     );
 
-  if (!shouldShowAddress && !isPressed) {
+  if (!shouldShowAddress && !isPressed && !billingAddressInfo) {
     return <AddInfoButton label={"billing_address"} onPress={() => setIsPressed(!isPressed)}/>
   }
 

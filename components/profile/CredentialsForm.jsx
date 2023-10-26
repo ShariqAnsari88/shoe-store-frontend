@@ -96,7 +96,7 @@ function CredentialsForm({ disabled, setShowError }) {
       />
     );
 
-    if (!shouldShowCredentialsInfo && !isPressed) {
+    if (!shouldShowCredentialsInfo && !isPressed && !credentialsInfo) {
       return <AddInfoButton label={"credentials"} onPress={() => setIsPressed(!isPressed)}/>
     }
 
@@ -147,7 +147,7 @@ function CredentialsForm({ disabled, setShowError }) {
                   <button
                     onClick={() =>
                       credentialsSaved
-                        ? setShouldShowAddress(true)
+                        ? setShouldShowCredentialsInfo(true)
                         : setIsPressed(false)
                     }
                     className={`hover:opacity-80 transition ease-in-out"

@@ -94,7 +94,7 @@ function AddressForm({ disabled, setShowError }) {
       />
     );
 
-    if (!shouldShowAddress && !isPressed) {
+    if (!shouldShowAddress && !isPressed && !addressInfo) {
       return <AddInfoButton label={"address"} onPress={() => setIsPressed(!isPressed)}/>
     }
 
