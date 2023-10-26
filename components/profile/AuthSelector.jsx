@@ -19,7 +19,7 @@ function AuthSelector({ setChoice }) {
   const isEmptyUser = Object.values(user).some((k) => k.length < 1);
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required(t('username_required')),
+    username: Yup.string().required(t("username_required")),
     password: Yup.string()
       .min(8, t("password_min"))
       .required(t("password_required")),
@@ -60,7 +60,7 @@ function AuthSelector({ setChoice }) {
                     className="text-offWhite font-semibold text-lg"
                     htmlFor="username"
                   >
-                    Потребителско име
+                    {t("username", { ns: "forms" })}
                   </label>
                   <Field
                     className="border-offWhite"
@@ -82,7 +82,7 @@ function AuthSelector({ setChoice }) {
                     className="text-offWhite font-semibold text-lg"
                     htmlFor="password"
                   >
-                    Парола
+                    {t("password", { ns: "forms" })}
                   </label>
                   <Field
                     className="border-offWhite"
@@ -113,19 +113,19 @@ function AuthSelector({ setChoice }) {
                   Влез
                 </button>
                 <div className="text-offWhite text-center w-full">
-                  Нямаш профил?
+                  {t("no_profile", { ns: "forms" })}
                   <div
                     onClick={setChoice}
                     className="ml-1 inline-block underline cursor-pointer"
                   >
-                    Регистрирай се.
+                    {t("register", { ns: "forms" })}
                   </div>
                 </div>
                 <div
                   onClick={handleForgotPassword}
                   className="text-offWhite text-center w-full underline cursor-pointer"
                 >
-                  Забравена парола?
+                  {t("forgot_password", { ns: "forms" })}
                 </div>
               </div>
             </Form>
