@@ -20,7 +20,7 @@ const Menu = ({ showCatMenu, setShowCatMenu, categories }) => {
           <React.Fragment key={item.id}>
             {!!item?.subMenu ? (
               <li
-                className="cursor-pointer p-2 transition ease-in-out hover:bg-offWhite hover:text-darkBlack flex items-center gap-2 relative"
+                className="cursor-pointer p-2 transition ease-in-out hover:bg-offWhite text-darkBlack flex items-center gap-2 relative"
                 onMouseEnter={() => setShowCatMenu(true)}
                 onMouseLeave={() => setShowCatMenu(false)}
               >
@@ -50,7 +50,7 @@ const Menu = ({ showCatMenu, setShowCatMenu, categories }) => {
               </li>
             ) : (
               <li
-                className="cursor-pointer p-2 transition ease-in-out hover:bg-offWhite hover:text-darkBlack"
+                className="cursor-pointer p-2 transition ease-in-out hover:bg-offWhite text-darkBlack"
               >
                 <Link href={item?.url}>{item.name}</Link>
               </li>

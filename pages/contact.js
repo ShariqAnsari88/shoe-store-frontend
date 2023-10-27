@@ -1,7 +1,5 @@
 import Wrapper from "@/components/Wrapper";
 import React, { useState } from "react";
-import { BsPhoneFill } from "react-icons/bs";
-import { FaLocationArrow, FaTruckMoving } from "react-icons/fa";
 import { ErrorMessage, Form, Formik } from "formik";
 import { emailRegex } from "@/utils/regex";
 import * as Yup from "yup";
@@ -53,7 +51,7 @@ export default function Contact() {
       <Wrapper>
         <div className="container p-4 my-12 grid sm:grid-cols-2 gap-4">
           <div className="bg-offWhite rounded p-8 shadow-md">
-            <h2 className="text-center text-2xl font-bold mb-4 text-neonGreen">
+            <h2 className="text-center text-2xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-t from-[#0ba360] to-[#3cba92]">
               {t("contact_us")}
             </h2>
             <Formik
@@ -163,9 +161,17 @@ export default function Contact() {
                     type="submit"
                     className={`${
                       isValid && !isEmptyForm
-                        ? "bg-neonGreen"
-                        : "bg-neonGreen/[0.5]"
-                    } text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline`}
+                        ? "bg-gradient-to-t from-[#0ba360] to-[#3cba92]"
+                        : "bg-gradient-to-t from-[#0ba360] to-[#3cba92]/[0.5]"
+                    } 
+                    text-white 
+                    drop-shadow-lg 
+                    font-bold 
+                    py-2 
+                    px-4 
+                    rounded 
+                    focus:outline-none 
+                    focus:shadow-outline`}
                   >
                     {t("send", { ns: "buttons" })}
                   </button>
@@ -179,8 +185,8 @@ export default function Contact() {
               {/* Safe Shopping Grid Card */}
               <div className="rounded-md p-6 bg-offWhite">
                 <div className="flex flex-row items-center">
-                  <BsPhoneFill color="#168900" />
-                  <p className="text-xl text-neonGreen font-semibold leading-5 mt-6">
+                <i class="fa-solid fa-mobile text-transparent bg-clip-text bg-gradient-to-t from-[#0ba360] to-[#3cba92]"></i>
+                  <p className="text-xl text-transparent bg-clip-text bg-gradient-to-t from-[#0ba360] to-[#3cba92] font-semibold leading-5 mt-6">
                     {t("phoneNumber")}
                   </p>
                 </div>
@@ -192,8 +198,8 @@ export default function Contact() {
               {/* Personal Shopping Grid Card */}
               <div className="rounded-md p-6 bg-offWhite">
                 <div className="flex flex-row items-center">
-                  <FaLocationArrow color="#168900" />
-                  <p className=" text-xl text-neonGreen font-semibold leading-5 mt-6">
+                <i class="fa-solid fa-location-dot text-transparent bg-clip-text bg-gradient-to-t from-[#0ba360] to-[#3cba92]"></i>
+                  <p className=" text-xl text-transparent bg-clip-text bg-gradient-to-t from-[#0ba360] to-[#3cba92] font-semibold leading-5 mt-6">
                     {t("address")}
                   </p>
                 </div>
@@ -205,8 +211,8 @@ export default function Contact() {
               {/* Free Shopping Grid Card */}
               <div className="rounded-md p-6 bg-offWhite">
                 <div className="flex flex-row items-center">
-                  <FaTruckMoving color="#168900" />
-                  <p className=" text-xl text-neonGreen font-semibold leading-5 mt-6">
+                <i class="fa-solid fa-envelope-open-text text-transparent bg-clip-text bg-gradient-to-t from-[#0ba360] to-[#3cba92]"></i>
+                  <p className=" text-xl text-transparent bg-clip-text bg-gradient-to-t from-[#0ba360] to-[#3cba92] font-semibold leading-5 mt-6">
                     {t("email")}
                   </p>
                 </div>

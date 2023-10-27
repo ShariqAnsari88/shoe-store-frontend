@@ -45,7 +45,7 @@ const ForgotPassword = () => {
   return (
     <div className="min-h-[650px] mt-8 flex mb-10 md:mb-0">
       <Wrapper>
-        <div className="bg-neonGreen flex-1 flex-column space-y-5 md:max-w-[450px] mx-auto p-[40px] shadow-md border-zinc-700 rounded-sm">
+        <div className="bg-gradient-to-r from-[#0ba360] to-[#3cba92] flex-1 flex-column space-y-5 md:max-w-[450px] mx-auto p-[40px] shadow-md border-zinc-700 rounded-sm">
           <h2 className="font-semibold text-3xl text-center text-[#F8F1F1]">
             Забравена парола
           </h2>

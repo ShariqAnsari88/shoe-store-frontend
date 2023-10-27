@@ -52,7 +52,7 @@ function SignUp() {
         {({ isValid }) => (
           <div>
             <Form className="" onChange={handleChange}>
-              <div className="flex flex-col space-y-6 bg-neonGreen md:max-w-[450px] p-6 rounded-md">
+              <div className="flex flex-col space-y-6 bg-gradient-to-r from-[#0ba360] to-[#3cba92] md:max-w-[450px] p-6 rounded-md">
                 <div className="flex  flex-col">
                   <label className="font-semibold text-lg" htmlFor="username">
                     Потребителско име*

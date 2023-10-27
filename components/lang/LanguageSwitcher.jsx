@@ -51,7 +51,7 @@ export default function LanguageSwitcher({ isHeader, textColor, borderColor }) {
           href="/"
           locale={option.value}
           className={`transition ease-in-out border-[1px] w-10 h-10 rounded-md flex items-center justify-center hover:bg-gray-500/[0.5] ${
-            option.value === locale ? "bg-neonGreen" : null
+            option.value === locale ? "bg-gradient-to-r from-[#0ba360] to-[#3cba92]" : null
           }`}
           key={`${option.label}-${index}`}
         >

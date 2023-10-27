@@ -13,7 +13,7 @@ export default function AddInfoButton({ onPress, label }) {
   return (
     <div onClick={onPress}>
       <div className="flex items-center gap-2 mb-2">
-        <div className="bg-neonGreen w-8 h-8 rounded-full flex items-center justify-center">
+        <div className="bg-gradient-to-r from-[#0ba360] to-[#3cba92] w-8 h-8 rounded-full flex items-center justify-center">
           <FontAwesomeIcon color="#EEEEEE" icon={faCircleDollarToSlot} />
         </div>
         <h2 className="text-offWhite text-xl font-semibold">

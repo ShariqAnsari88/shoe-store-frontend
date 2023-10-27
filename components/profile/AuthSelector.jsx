@@ -43,7 +43,7 @@ function AuthSelector({ setChoice }) {
 
   return (
     <div className="
-    bg-neonGreen 
+    bg-gradient-to-r from-[#0ba360] to-[#3cba92] 
     flex-1
     flex-column 
     space-y-5 

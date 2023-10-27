@@ -66,8 +66,9 @@ const Header = () => {
     <>
       {isReleased === "true" && <Banner />}
       <header
-        className={`border-b-[2px] border-neonGreen w-full sm:h-[50px] md:h-[170px] bg-[#181516] flex flex-col items-center justify-around z-20 sticky transition-transform duration-300 ${show}`}
-      >
+        className={`bg-gradient-to-r from-[#0ba360] to-[#3cba92] w-full sm:h-[50px] md:h-[170px] bg-[#181516] flex flex-col items-center justify-around z-20 sticky transition-transform duration-300 ${show}`}
+      > 
+      <div className="w-full h-full z-12 bg-black">
         <div className="flex justify-between items-center w-full px-4">
           <div className="flex gap-6 justify-between items-center">
           <Link href="/">
@@ -144,6 +145,7 @@ const Header = () => {
             </div>
             {/* Mobile icon end */}
           </div>
+        </div>
         </div>
         <div>
         <Menu

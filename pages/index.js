@@ -12,7 +12,14 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { revertAll } from "@/store/rootReducer";
 
-export default function Home({ products, userData, ...rest }) {
+export default function Home({
+  products,
+  shirts,
+  bandanas,
+  userData,
+  ...rest
+}) {
+  console.log(shirts);
   const dispatch = useDispatch();
   const { locale, query } = useRouter();
 
@@ -31,7 +38,11 @@ export default function Home({ products, userData, ...rest }) {
   return (
     <main>
       {isReleased && <Header />}
-      {isReleased ? <HomePage products={products} /> : <ComingSoon />}
+      {isReleased ? (
+        <HomePage products={products} shirts={shirts} bandanas={bandanas} />
+      ) : (
+        <ComingSoon />
+      )}
       {isReleased && <Footer />}
     </main>
   );
@@ -43,10 +54,20 @@ export async function getServerSideProps(ctx) {
     `/api/products?populate=*&sort=slug:desc&locale=${locale}`
   );
 
+  const shirts = await fetchDataFromApi(
+    `/api/products?populate=*&filters[subtitle][$contains]=Troyka&locale=${locale}`
+  );
+
+  const bandanas = await fetchDataFromApi(
+    `/api/products?populate=*&filters[subtitle][$null]=true&locale=${locale}`
+  );
+
   const userData = getUser(ctx);
 
   return {
     props: {
+      shirts,
+      bandanas,
       products,
       userData,
       ...(await serverSideTranslations(locale, [

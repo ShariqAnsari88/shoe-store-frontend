@@ -98,7 +98,7 @@ export default function ComingSoon() {
                 className={`rounded-full h-full w-24 ${
                   isLoading || hasError ? "disabled" : ""
                 }   
-                ${isLoading || hasError ? "bg-darkBlack" : "bg-neonGreen"}
+                ${isLoading || hasError ? "bg-darkBlack" : "bg-gradient-to-r from-[#0ba360] to-[#3cba92]"}
                 ${isLoading || hasError ? " border-[1px]" : "border-0"}
                 text-offWhite
                  text-[12px]

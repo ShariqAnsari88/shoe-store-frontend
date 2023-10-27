@@ -43,33 +43,33 @@
 }
 
 :root {
-    font-family:  "Euclid", sans-serif;
+    font-family: "Euclid", sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
 
     color: #EEEEEE;
-    
+
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
-    
+
 }
- 
+
 body {
     background-color: #181516;
 }
 
 h1 {
-    line-height:normal;
+    line-height: normal;
     font-size: 80px;
     color: #EEEEEE
 }
 
 h2 {
-    line-height:normal;
+    line-height: normal;
     font-size: 48px;
     color: #EEEEEE
 }
@@ -80,7 +80,7 @@ h3 {
 
 p {
     font-size: 14px;
-    color:#EEEEEE
+    color: #EEEEEE
 }
 
 button {
@@ -106,7 +106,7 @@ textarea {
         background: #888;
         border-radius: 5px;
     }
-      
+
     scroll-behavior: smooth;
     margin: 0;
     padding: 0;

@@ -16,7 +16,7 @@ const SelectAddress = ({ onSelect, selected }) => {
         id="home"
         name="home"
         className={`${
-          selected === "home" ? "bg-neonGreen" : "bg-tranpsarent"
+          selected === "home" ? "bg-gradient-to-r from-[#0ba360] to-[#3cba92]" : "bg-tranpsarent"
         } gap-2 flex flex-1 flex-col items-center justify-between cursor-pointer transition ease-in-out border-[2px] hover:bg-offWhite/[0.5] rounded-md p-4`}
       >
         <FontAwesomeIcon icon={faStore} />
@@ -30,7 +30,7 @@ const SelectAddress = ({ onSelect, selected }) => {
         id="office"
         name="office"
         className={`${
-          selected === "office" ? "bg-neonGreen" : "bg-tranpsarent"
+          selected === "office" ? "bg-gradient-to-r from-[#0ba360] to-[#3cba92]" : "bg-tranpsarent"
         } gap-2 flex flex-1 flex-col items-center justify-between cursor-pointer transition ease-in-out border-[2px] hover:bg-offWhite/[0.5] rounded-md p-4`}
       >
         <FontAwesomeIcon icon={faTruck} />

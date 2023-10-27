@@ -35,7 +35,7 @@ const Modal = ({ logOut, close }) => {
             <button
               onClick={close}
               type="button"
-              class="py-2.5 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-neonGreen text-white hover:bg-neonGreen/[0.8] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm"
+              class="py-2.5 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gradient-to-r from-[#0ba360] to-[#3cba92] text-white hover:bg-gradient-to-r from-[#0ba360] to-[#3cba92]/[0.8] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm"
             >
               {t("cancel", { ns: "buttons" })}
             </button>

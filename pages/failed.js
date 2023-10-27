@@ -38,7 +38,7 @@ const Failed = () => {
 
           <Link
             href="/"
-            className="font-bold mt-5 bg-neonGreen p-2 w-52 hover:opacity-75 text-center rounded-md text-offWhite"
+            className="font-bold mt-5 bg-gradient-to-r from-[#0ba360] to-[#3cba92] p-2 w-52 hover:opacity-75 text-center rounded-md text-offWhite"
           >
             {t("continue_shopping")}
           </Link>

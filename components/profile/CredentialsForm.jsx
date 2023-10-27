@@ -101,7 +101,7 @@ function CredentialsForm({ disabled, setShowError }) {
     }
 
   return (
-    <div className="bg-neonGreen flex-1 flex-column mt-4 space-y-2 p-[40px] shadow-md border-zinc-700 rounded-sm">
+    <div className="bg-gradient-to-r from-[#0ba360] to-[#3cba92] flex-1 flex-column mt-4 space-y-2 p-[40px] shadow-md border-zinc-700 rounded-sm">
       <ToastContainer />
       <div className="flex items-center gap-2 mb-2 justify-center">
         <div>
@@ -192,7 +192,7 @@ export const UserCredentials = ({
   return (
     <div>
       <div className="flex items-center gap-2 mb-2">
-        <div className="bg-neonGreen w-8 h-8 rounded-full flex items-center justify-center">
+        <div className="bg-gradient-to-r from-[#0ba360] to-[#3cba92] w-8 h-8 rounded-full flex items-center justify-center">
           <FontAwesomeIcon color="#EEEEEE" icon={faUser} />
         </div>
         <h2 className="text-offWhite text-xl font-semibold">

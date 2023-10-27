@@ -137,7 +137,6 @@ const Cart = (props) => {
                     </div>
                   </div>
                 </div>
-
                 {/* CART ITEMS END */}
 
                 {/* SUMMARY START */}
@@ -151,7 +150,7 @@ const Cart = (props) => {
                       <div className="uppercase text-md md:text-lg font-normal text-offWhite">
                         {t("subtotal")}
                       </div>
-                      <div className="text-md md:text-lg font-normal text-offWhite">
+                      <div className="text-md md:text-lg font-bold text-offWhite">
                         {subTotal} {currency}
                       </div>
                     </div>
@@ -161,7 +160,7 @@ const Cart = (props) => {
                         {t("shipping")}
                       </div>
                       <div
-                        className={`text-md md:text-lg font-normal text-neonGreenLighter ${
+                        className={`text-md md:text-lg font-bold ${
                           (locale === "bg" && subTotal >= 50) ||
                           (locale !== "bg" && subTotal >= 25)
                             ? "line-through"
@@ -173,10 +172,10 @@ const Cart = (props) => {
                     </div>
                     <Divider />
                     <div className="flex justify-between">
-                      <div className="uppercase text-md md:text-lg font-normal text-offWhite">
+                      <div className="uppercase text-md md:text-lg font-bold text-offWhite">
                         {t("total")}
                       </div>
-                      <div className="uppercase text-md md:text-lg font-normal text-offWhite">
+                      <div className="uppercase text-md md:text-lg font-bold text-offWhite">
                         {calculateTotal()} {currency}
                       </div>
                     </div>
@@ -202,7 +201,7 @@ const Cart = (props) => {
                       className={`transition ease-in-out w-full py-4 rounded-md ${
                         paymentDisabled
                           ? "disabled pointer-events-none"
-                          : "bg-neonGreen"
+                          : "bg-gradient-to-r from-[#0ba360] to-[#3cba92]"
                       } text-offWhite text-md font-medium active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center`}
                       onClick={(e) => {
                         if (paymentDisabled) setShowError(true);
@@ -217,7 +216,7 @@ const Cart = (props) => {
                       className={`transition ease-in-out w-full py-4 rounded-md ${
                         paymentDisabled
                           ? "disabled pointer-events-none"
-                          : "bg-neonGreen"
+                          : "bg-gradient-to-r from-[#0ba360] to-[#3cba92]"
                       } text-offWhite text-md font-medium active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center`}
                       onClick={(e) => {
                         if (paymentDisabled) setShowError(true);
@@ -262,7 +261,7 @@ const Cart = (props) => {
                 py-4
                 px-8
                 rounded-full
-              bg-neonGreen
+              bg-gradient-to-r from-[#0ba360] to-[#3cba92]
               text-offWhite
                 font-medium
                 transition

@@ -130,7 +130,7 @@ export default function SubscribeDialog() {
         </CardBody>
         <CardFooter className="flex pt-0 items-center justify-center">
           <Button
-            className="bg-neonGreen w-[1/2]"
+            className="bg-gradient-to-r from-[#0ba360] to-[#3cba92] w-[1/2]"
             variant="filled"
             onClick={onSubmit}
           >

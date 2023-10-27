@@ -6,8 +6,12 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useTranslation } from "next-i18next";
 
-
-const ProductCard = ({ data: { attributes: p, id }, isCarouselCard }) => {
+const ProductCard = ({
+  data: { attributes: p, id },
+  isCarouselCard,
+  border,
+  dropShadow,
+}) => {
   const { t } = useTranslation("common");
   const discount = getDiscountedPricePercentage(p.original_price, p.price);
   const router = useRouter();
@@ -27,17 +31,19 @@ const ProductCard = ({ data: { attributes: p, id }, isCarouselCard }) => {
      transition 
      ease-in-out
      duration-200
+     drop-shadow-2xl
      ${
        disabled
          ? "hover:scale-1 pointer-events-none cursor-auto"
          : "hover:scale-105"
      }
-     cursor-pointer`}
+     cursor-pointer
+     `}
     >
       {disabled && (
         <div
           className="
-      absolute 
+       absolute 
        z-10 
        inset-0
        flex 
@@ -46,18 +52,20 @@ const ProductCard = ({ data: { attributes: p, id }, isCarouselCard }) => {
        items-center
        justify-center
       text-white
-      font-bold
-      top-50"
+       font-bold
+       top-50"
         >
-          <div className="bg-black p-2  text-center">{t("out_of_stock")}</div>
+          <div className="bg-black p-2 text-center">{t("out_of_stock")}</div>
         </div>
       )}
       <div
-        className={` ${
-          isCarouselCard && "w-[250px] h-[470px]"
-        } border-[2px] border-white`}
+        className={` ${isCarouselCard && "w-[250px] h-[470px]"} ${
+          border ?? "border-[2px] border-white"
+        }
+        
+        `}
       >
-        {disabled && <div className=" inset-0 absolute bg-white opacity-50" />}
+        {disabled && <div className="inset-0 absolute bg-white opacity-50" />}
         <Image
           className={`bg-cover bg-white`}
           width={isCarouselCard ? 250 : 400}
@@ -66,7 +74,9 @@ const ProductCard = ({ data: { attributes: p, id }, isCarouselCard }) => {
           alt={p.name ?? "No Photo"}
         />
         <div className="justify-end flex-col p-4 text-offWhite/[0.9]">
-          <h2 className="text-lg text-neonGreenLighter font-bold">{p.name}</h2>
+          <h2 className="text-lg text-transparent bg-clip-text bg-gradient-to-r from-[#0ba360] to-[#3cba92] font-bold">
+            {p.name}
+          </h2>
           <div className="flex items-center justify-between flex-row sm:flex-row text-black/[0.5]">
             <div className="flex flex-row">
               <p className="mr-2 text-lg font-normal">

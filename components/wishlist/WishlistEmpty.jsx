@@ -19,7 +19,7 @@ const WishlistEmpty = () => {
       </span>
       <Link
         href="/"
-        className="rounded-full py-4 px-8 bg-neonGreen text-offWhite font-medium transition ease-in-out active:scale-95 mb-3 hover:opacity-75 mt-8"
+        className="rounded-full py-4 px-8 bg-gradient-to-r from-[#0ba360] to-[#3cba92] text-offWhite font-medium transition ease-in-out active:scale-95 mb-3 hover:opacity-75 mt-8"
       >
         {t("continue", { ns: "buttons" })}
       </Link>

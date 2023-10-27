@@ -95,7 +95,7 @@ const ProductDetails = ({ product, products }) => {
             {/* right column start */}
             <div className="flex-[1] py-3">
               {/* PRODUCT TITLE */}
-              <div className="text-neonGreenLighter text-[34px] font-semibold mb-2 leading-tight">
+              <div className="text-transparent bg-clip-text bg-gradient-to-r from-[#0ba360] to-[#3cba92] text-[34px] font-semibold mb-2 leading-tight">
                 {p.name}
               </div>
 
@@ -141,13 +141,13 @@ const ProductDetails = ({ product, products }) => {
                     {p.size.data.map((item, i) => (
                       <div
                         key={i}
-                        className={`border-[2px] text-md border-neonGreen rounded-md text-center py-3 font-medium ${
+                        className={`border-[2px] text-md border-offWhite transition ease-in-out rounded-md text-center py-3 font-medium ${
                           item.enabled
                             ? "cursor-pointer"
                             : "cursor-not-allowed bg-#393646/[0.1] opacity-50"
                         } ${
                           selectedSize === item.size
-                            ? "border-[2px] bg-neonGreenLighter text-darkBlack"
+                            ? "border-[2px] bg-gradient-to-r from-[#0ba360] to-[#3cba92] text-darkBlack"
                             : ""
                         }`}
                         onClick={() => {
@@ -183,7 +183,7 @@ const ProductDetails = ({ product, products }) => {
                 p-4 
                 text-md
                 rounded-full 
-                bg-neonGreen  
+                bg-gradient-to-r from-[#0ba360] to-[#3cba92]
                 text-[#F1F0F1] 
                 font-medium 
                 transition 
@@ -217,6 +217,7 @@ const ProductDetails = ({ product, products }) => {
               {/* ADD TO CART BUTTON END */}
 
               {/* WHISHLIST BUTTON START */}
+              <div className="bg-offWhite rounded-full">
               <button
                 name="wishlist"
                 onClick={() => {
@@ -231,13 +232,13 @@ const ProductDetails = ({ product, products }) => {
                 }}
                 className="
                 bg-offWhite
-                text-neonGreen
+                text-transparent bg-clip-text bg-gradient-to-r from-[#0ba360] to-[#3cba92]
                 flex-1
                 transition 
                 ease-in-out 
                 p-4 
-                rounded-full 
-              border-neonGreen 
+                
+              
                 font-medium 
                 active:scale-95 
                 flex items-center 
@@ -245,14 +246,13 @@ const ProductDetails = ({ product, products }) => {
                 gap-2 
                 hover:opacity-75"
               >
+                
                 {isWishlisted
                   ? t("remove_wishlist", { ns: "buttons" })
                   : t("add_wishlist", { ns: "buttons" })}
-                <FontAwesomeIcon
-                  icon={isWishlisted ? faHeartCircleCheck : faHeartCirclePlus}
-                  color={isWishlisted ? "#B22222" : "charcoal"}
-                />
+              {isWishlisted ? <i class="fa-solid fa-heart-circle-minus"/> : <i class="fa-solid fa-heart-circle-plus"/>}
               </button>
+              </div>
               </div>
               <Exclaimer />
               {/* WHISHLIST BUTTON END */}
