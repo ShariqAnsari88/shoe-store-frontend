@@ -1,5 +1,6 @@
 {
   "welcome": "Освободете хаоса",
   "description": "Искате ли да преследвате удоволствието да научите първи или искате да избегнете пропускането на изданието?\n Абонирайте се за нашия бюлетин и не пропускайте нищо от това, което сме подготвили за вас!",
-  "shipping_exclaimer": "Si prega di notare che è un nuovo prodotto, ma non utilizzare i prodotti della Bulgaria!"
+  "shipping_exclaimer": "Si prega di notare che è un nuovo prodotto, ma non utilizzare i prodotti della Bulgaria!",
+  "out_of_stock": "Esaurito"
 }

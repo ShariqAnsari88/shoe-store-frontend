@@ -40,7 +40,7 @@ export default function Home({ products, userData, ...rest }) {
 export async function getServerSideProps(ctx) {
   const { locale } = ctx;
   const products = await fetchDataFromApi(
-    `/api/products?populate=*&locale=${locale}`
+    `/api/products?populate=*&sort=slug:desc&locale=${locale}`
   );
 
   const userData = getUser(ctx);

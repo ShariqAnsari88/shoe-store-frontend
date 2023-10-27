@@ -91,15 +91,12 @@ export default function SubscribeDialog() {
       className="bg-transparent shadow-none"
     >
       <Card className="mx-auto w-full max-w-[24rem]">
-        <IconButton
+        <FontAwesomeIcon
+          className="self-end p-4 cursor-pointer text-darkBlack"
           onClick={handleOpen}
-          variant="text"
-          rounded="full"
-          className="hover:shadow-0 hover:bg-transparent self-end"
-        >
-          <FontAwesomeIcon icon={faCircleXmark} size="xl" />
-        </IconButton>
-        {/* // <FontAwesomeIcon icon={faCircleXmark} size="xl" className="text-darkBlack self-end p-2 hover:cursor-pointer" /> */}
+          icon={faCircleXmark}
+          size="xl"
+        />
 
         <CardBody className="flex flex-col gap-4">
           <div className="flex flex-col gap-4 items-center">

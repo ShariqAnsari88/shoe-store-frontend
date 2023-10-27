@@ -4,27 +4,62 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-const ProductCard = ({ data: { attributes: p, id }, isCarouselCard }) => {
-  const discount = getDiscountedPricePercentage(p.original_price, p.price);
+import { useTranslation } from "next-i18next";
 
+
+const ProductCard = ({ data: { attributes: p, id }, isCarouselCard }) => {
+  const { t } = useTranslation("common");
+  const discount = getDiscountedPricePercentage(p.original_price, p.price);
   const router = useRouter();
   const { locale } = router;
   const { currency } = useCurrency();
+
+  const disabled = p.outOfStock;
 
   return (
     <Link
       href={{ pathname: `/product/${p.slug}` }}
       locale={locale}
-      className={`${isCarouselCard ? "h-[500px] w-[450px]" : ""} transform
-     overflow-hidden bg-[#181516] duration-200 md:hover:scale-105 cursor-pointer`}
+      className={`${isCarouselCard && "h-[500px] w-[450px]"} 
+      relative
+     overflow-hidden
+    bg-[#181516]
+     transition 
+     ease-in-out
+     duration-200
+     ${
+       disabled
+         ? "hover:scale-1 pointer-events-none cursor-auto"
+         : "hover:scale-105"
+     }
+     cursor-pointer`}
     >
+      {disabled && (
+        <div
+          className="
+      absolute 
+       z-10 
+       inset-0
+       flex 
+       flex-1
+       flex-col
+       items-center
+       justify-center
+      text-white
+      font-bold
+      top-50"
+        >
+          <div className="bg-black p-2  text-center">{t("out_of_stock")}</div>
+        </div>
+      )}
       <div
         className={` ${
           isCarouselCard && "w-[250px] h-[470px]"
         } border-[2px] border-white`}
       >
+        {disabled && <div className=" inset-0 absolute bg-white opacity-50" />}
         <Image
-         className="bg-cover"
+          className={`bg-cover bg-white`}
           width={isCarouselCard ? 250 : 400}
           height={isCarouselCard ? 200 : 400}
           src={p.thumbnail.data.attributes.url}

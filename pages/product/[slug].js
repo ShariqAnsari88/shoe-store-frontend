@@ -28,7 +28,7 @@ import Exclaimer from "@/components/Exclaimer";
 const ProductDetails = ({ product, products }) => {
   const { t } = useTranslation(["product_details", "buttons", "common"]);
   const dispatch = useDispatch();
-  const { productSlider, slug } = product.data[0].attributes;
+  const { productSlider, slug, outOfStock } = product.data[0].attributes;
 
   const isAccessory = slug.includes("band");
 
@@ -174,7 +174,7 @@ const ProductDetails = ({ product, products }) => {
               <div className="flex justify-between gap-2 mb-12">
               <button
                 name="cart"
-                className="
+                className={`
                 flex
                 flex-1
                 items-center 
@@ -189,7 +189,9 @@ const ProductDetails = ({ product, products }) => {
                 transition 
                 ease-in-out 
                 active:scale-95 
-                hover:opacity-75"
+                hover:opacity-75
+                ${outOfStock && 'pointer-events-none'}
+                `}
                 onClick={() => {
                   if (!selectedSize) {
                     setShowError(true);
