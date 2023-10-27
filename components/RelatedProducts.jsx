@@ -6,6 +6,10 @@ import ProductCard from "./ProductCard";
 import { useTranslation } from "next-i18next";
 
 const RelatedProducts = ({ products }) => {
+  const availableProducts = products.data.filter(
+    (item) => !item.attributes.outOfStock
+  );
+
   const { t } = useTranslation("product_details");
   const responsive = {
     desktop: {
@@ -33,7 +37,7 @@ const RelatedProducts = ({ products }) => {
         containerClass="-mx-[10px] w-full h-[650px]"
         itemClass="p-[10px]"
       >
-        {products?.data?.map((product) => (
+        {availableProducts.map((product) => (
           <ProductCard isCarouselCard key={product?.id} data={product} />
         ))}
       </Carousel>
