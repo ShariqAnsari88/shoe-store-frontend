@@ -27,7 +27,7 @@ const ProductCard = ({
       className={`${isCarouselCard && "h-[500px] w-[450px]"} 
       relative
      overflow-hidden
-    bg-[#181516]
+    bg-darkBlack
      transition 
      ease-in-out
      duration-200
@@ -92,7 +92,7 @@ const ProductCard = ({
             {p.original_price && (
               <>
                 {discount > 0 && (
-                  <div className="flex justify-betwee">
+                  <div className="flex justify-between">
                     <p className="text-base font-semibold rounded-md bg-orange-400 p-[5px] text-white">
                       -{discount}%
                     </p>

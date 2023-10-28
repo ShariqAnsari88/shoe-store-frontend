@@ -66,9 +66,26 @@ const Header = () => {
     <>
       {isReleased === "true" && <Banner />}
       <header
-        className={`bg-gradient-to-r from-[#0ba360] to-[#3cba92] w-full sm:h-[50px] md:h-[170px] bg-[#181516] flex flex-col items-center justify-around z-20 sticky transition-transform duration-300 ${show}`}
+        className={`
+        bg-gradient-to-r 
+        from-[#0ba360] 
+        to-[#3cba92] 
+        w-full 
+        sm:h-[50px] 
+        md:h-[170px] 
+        bg-[#181516] 
+        pb-1
+        flex 
+        flex-col 
+        items-center 
+        justify-center 
+        z-10
+        sticky 
+        transition-transform 
+        duration-300 
+        ${show}`}
       > 
-      <div className="w-full h-full z-12 bg-black">
+      <div className="w-full h-full z-12 bg-darkBlack">
         <div className="flex justify-between items-center w-full px-4">
           <div className="flex gap-6 justify-between items-center">
           <Link href="/">
@@ -95,7 +112,7 @@ const Header = () => {
             />
           )}
 
-          <div className="flex items-center text-black">
+          <div className="flex items-center">
             {/* Icon start */}
             <Link href="/profile">
               <div className="text-offWhite border-[#D8E3E7] w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-white/[0.05] cursor-pointer relative">
@@ -147,7 +164,7 @@ const Header = () => {
           </div>
         </div>
         </div>
-        <div>
+        <div className="w-full bg-darkBlack">
         <Menu
             showCatMenu={showCatMenu}
             setShowCatMenu={setShowCatMenu}
