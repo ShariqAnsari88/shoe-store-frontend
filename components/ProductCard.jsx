@@ -35,7 +35,7 @@ const ProductCard = ({
      ${
        disabled
          ? "hover:scale-1 pointer-events-none cursor-auto"
-         : "hover:scale-105"
+         : "sm:hover:scale-105"
      }
      cursor-pointer
      `}
