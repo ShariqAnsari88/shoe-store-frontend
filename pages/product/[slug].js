@@ -4,7 +4,7 @@ import ProductDetailsCarousel from "@/components/ProductDetailsCarousel";
 import RelatedProducts from "@/components/RelatedProducts";
 import { fetchDataFromApi } from "@/utils/api";
 import { getDiscountedPricePercentage } from "@/utils/helper";
-import Markdown from "react-markdown";
+import Markdown from 'react-markdown'
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/store/cartSlice";
 
@@ -20,6 +20,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Container from "@/components/Container";
 import ImageSelector from "@/components/product/ImageSelector";
 import Exclaimer from "@/components/Exclaimer";
+
 
 const ProductDetails = ({ product, products }) => {
   const { t } = useTranslation(["product_details", "buttons", "common"]);
@@ -262,7 +263,7 @@ const ProductDetails = ({ product, products }) => {
                   {t("details")}
                 </div>
                 <div>
-                <Markdown className="prose">{description}</Markdown>
+                <Markdown>{description}</Markdown>
                 </div>
               </div>
             </div>

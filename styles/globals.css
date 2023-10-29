@@ -88,6 +88,19 @@ button {
     background-color: #393646;
 }
 
+strong {
+    font-family: "Euclid_Bold";
+}
+
+ .about-us {
+    font-size: 42px;
+}
+
+.prose > p {
+    font-family: "Euclid_SemiBold", sans-serif;
+    font-size: 20px;
+}
+
 textarea {
     color: #181516;
 }
