@@ -4,7 +4,7 @@ import ProductDetailsCarousel from "@/components/ProductDetailsCarousel";
 import RelatedProducts from "@/components/RelatedProducts";
 import { fetchDataFromApi } from "@/utils/api";
 import { getDiscountedPricePercentage } from "@/utils/helper";
-import ReactMarkdown from "react-markdown";
+import Markdown from 'react-markdown'
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/store/cartSlice";
 
@@ -34,6 +34,7 @@ const ProductDetails = ({ product, products }) => {
     isAccessory ? "M" : undefined
   );
 
+
   const [showError, setShowError] = useState(false);
   const [selectedImage, setSelectedImage] = useState(undefined);
   const hasSlider = productSlider && productSlider?.data?.length > 0;
@@ -41,6 +42,10 @@ const ProductDetails = ({ product, products }) => {
     selectIsWishlisted(state, { ...product.data[0] })
   );
   const p = product?.data?.[0]?.attributes;
+
+  const description = product?.data?.[0]?.attributes.description
+  console.log(description);
+
 
   const discount = getDiscountedPricePercentage(p.original_price, p.price);
 
@@ -259,9 +264,7 @@ const ProductDetails = ({ product, products }) => {
                 <div className="text-offWhite text-lg font-bold mb-5">
                   {t("details")}
                 </div>
-                <div className="text-offWhite markdown text-md mb-5">
-                  <ReactMarkdown>{p.description}</ReactMarkdown>
-                </div>
+                  <Markdown skipHtml={false}>{description}</Markdown>
               </div>
             </div>
             {/* right column end */}

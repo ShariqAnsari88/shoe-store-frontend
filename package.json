@@ -40,7 +40,7 @@
         "react-dom": "18.2.0",
         "react-i18next": "^13.2.2",
         "react-icons": "^4.7.1",
-        "react-markdown": "^8.0.5",
+        "react-markdown": "^9.0.0",
         "react-multi-carousel": "^2.8.2",
         "react-redux": "^8.0.5",
         "react-responsive-carousel": "^3.2.23",
