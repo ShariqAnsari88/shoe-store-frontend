@@ -261,7 +261,9 @@ const ProductDetails = ({ product, products }) => {
                 <div className="text-offWhite text-lg font-bold mb-5">
                   {t("details")}
                 </div>
-                <Markdown className="prose markdown">{description}</Markdown>
+                <div>
+                <Markdown className="prose">{description}</Markdown>
+                </div>
               </div>
             </div>
             {/* right column end */}

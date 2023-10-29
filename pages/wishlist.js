@@ -26,9 +26,8 @@ const Wishlist = () => {
               {/* HEADING AND PARAGRAPH END */}
 
               {/* CART CONTENT START */}
-              <div className="flex flex-col lg:flex-row gap-12 py-10">
                 {/* CART ITEMS START */}
-                <div className="flex-1">
+                <div className="flex flex-1">
                   <div className="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-4 gap-5 my-14 px-5 md:px-0">
                     {wishlistItems.map((item) => (
                       <WishlistItem key={item.id} wishlistItem={item} />
@@ -36,7 +35,6 @@ const Wishlist = () => {
                   </div>
                 </div>
                 {/* CART ITEMS END */}
-              </div>
               {/* CART CONTENT END */}
             </>
           )}
