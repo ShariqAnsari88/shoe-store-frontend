@@ -4,7 +4,7 @@ import ProductDetailsCarousel from "@/components/ProductDetailsCarousel";
 import RelatedProducts from "@/components/RelatedProducts";
 import { fetchDataFromApi } from "@/utils/api";
 import { getDiscountedPricePercentage } from "@/utils/helper";
-import Markdown from 'react-markdown'
+import Markdown from "react-markdown";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/store/cartSlice";
 
@@ -14,9 +14,7 @@ import { addToWishlist } from "@/store/wishlistSlice";
 import { useAppSelector } from "@/store/hooks";
 import { selectIsWishlisted } from "@/store/wishlistSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCartShopping,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Container from "@/components/Container";
@@ -26,14 +24,14 @@ import Exclaimer from "@/components/Exclaimer";
 const ProductDetails = ({ product, products }) => {
   const { t } = useTranslation(["product_details", "buttons", "common"]);
   const dispatch = useDispatch();
-  const { productSlider, slug, outOfStock, subtitle } = product.data[0].attributes;
+  const { productSlider, slug, outOfStock, subtitle } =
+    product.data[0].attributes;
 
   const isAccessory = !subtitle.includes("t-shirt");
 
   const [selectedSize, setSelectedSize] = useState(
     isAccessory ? "M" : undefined
   );
-
 
   const [showError, setShowError] = useState(false);
   const [selectedImage, setSelectedImage] = useState(undefined);
@@ -43,9 +41,7 @@ const ProductDetails = ({ product, products }) => {
   );
   const p = product?.data?.[0]?.attributes;
 
-  const description = product?.data?.[0]?.attributes.description
-  console.log(description);
-
+  const description = product?.data?.[0]?.attributes.description;
 
   const discount = getDiscountedPricePercentage(p.original_price, p.price);
 
@@ -175,9 +171,9 @@ const ProductDetails = ({ product, products }) => {
 
               {/* ADD TO CART BUTTON START */}
               <div className="flex justify-between gap-2 mb-12">
-              <button
-                name="cart"
-                className={`
+                <button
+                  name="cart"
+                  className={`
                 flex
                 flex-1
                 items-center 
@@ -193,69 +189,70 @@ const ProductDetails = ({ product, products }) => {
                 ease-in-out 
                 active:scale-95 
                 hover:opacity-75
-                ${outOfStock && 'pointer-events-none'}
+                ${outOfStock && "pointer-events-none"}
                 `}
-                onClick={() => {
-                  if (!selectedSize) {
-                    setShowError(true);
-                    document.getElementById("wrapperGrid").scrollIntoView({
-                      block: "center",
-                      behavior: "smooth",
-                    });
-                  } else {
-                    dispatch(
-                      addToCart({
-                        ...product?.data?.[0],
-                        selectedSize,
-                        oneQuantityPrice: p.price,
-                      })
-                    );
-                    notify("cart");
-                  }
-                }}
-              >
-                {t("add_cart", { ns: "buttons" })}
-                <FontAwesomeIcon icon={faCartShopping} />
-              </button>
-              {/* ADD TO CART BUTTON END */}
+                  onClick={() => {
+                    if (!selectedSize) {
+                      setShowError(true);
+                      document.getElementById("wrapperGrid").scrollIntoView({
+                        block: "center",
+                        behavior: "smooth",
+                      });
+                    } else {
+                      dispatch(
+                        addToCart({
+                          ...product?.data?.[0],
+                          selectedSize,
+                          oneQuantityPrice: p.price,
+                        })
+                      );
+                      notify("cart");
+                    }
+                  }}
+                >
+                  {t("add_cart", { ns: "buttons" })}
+                  <FontAwesomeIcon icon={faCartShopping} />
+                </button>
+                {/* ADD TO CART BUTTON END */}
 
-              {/* WHISHLIST BUTTON START */}
-              <div className="bg-offWhite rounded-full">
-              <button
-                name="wishlist"
-                onClick={() => {
-                  dispatch(
-                    addToWishlist({
-                      ...product?.data?.[0],
-                      selectedSize,
-                      oneQuantityPrice: p.price,
-                    })
-                  );
-                  notify("wishlist");
-                }}
-                className="
+                {/* WHISHLIST BUTTON START */}
+                <div className="bg-offWhite rounded-full">
+                  <button
+                    name="wishlist"
+                    onClick={() => {
+                      dispatch(
+                        addToWishlist({
+                          ...product?.data?.[0],
+                          selectedSize,
+                          oneQuantityPrice: p.price,
+                        })
+                      );
+                      notify("wishlist");
+                    }}
+                    className="
                 bg-offWhite
                 text-transparent bg-clip-text bg-gradient-to-r from-[#0ba360] to-[#3cba92]
                 flex-1
                 transition 
                 ease-in-out 
                 p-4 
-                
-              
                 font-medium 
                 active:scale-95 
                 flex items-center 
                 justify-center 
                 gap-2 
                 hover:opacity-75"
-              >
-                
-                {isWishlisted
-                  ? t("remove_wishlist", { ns: "buttons" })
-                  : t("add_wishlist", { ns: "buttons" })}
-              {isWishlisted ? <i class="fa-solid fa-heart-circle-minus"/> : <i class="fa-solid fa-heart-circle-plus"/>}
-              </button>
-              </div>
+                  >
+                    {isWishlisted
+                      ? t("remove_wishlist", { ns: "buttons" })
+                      : t("add_wishlist", { ns: "buttons" })}
+                    {isWishlisted ? (
+                      <i class="fa-solid fa-heart-circle-minus" />
+                    ) : (
+                      <i class="fa-solid fa-heart-circle-plus" />
+                    )}
+                  </button>
+                </div>
               </div>
               <Exclaimer />
               {/* WHISHLIST BUTTON END */}
@@ -264,7 +261,7 @@ const ProductDetails = ({ product, products }) => {
                 <div className="text-offWhite text-lg font-bold mb-5">
                   {t("details")}
                 </div>
-                  <Markdown skipHtml={false}>{description}</Markdown>
+                <Markdown className="prose markdown">{description}</Markdown>
               </div>
             </div>
             {/* right column end */}

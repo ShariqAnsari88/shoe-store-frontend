@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import "react-toastify/dist/ReactToastify.css";
 import HomePage from "@/components/screens/HomePage";
-import ComingSoon from "@/components/screens/ComingSoon";
 import { fetchDataFromApi } from "@/utils/api";
 import { useRouter } from "next/router";
 import Header from "@/components/Header";
@@ -21,9 +20,7 @@ export default function Home({
 }) {
   console.log(shirts);
   const dispatch = useDispatch();
-  const { locale, query } = useRouter();
-
-  const isReleased = query.released;
+  const { locale } = useRouter();
 
   document.cookie = `NEXT_LOCALE=${locale}; max-age=31536000; path=/`;
 
@@ -37,13 +34,15 @@ export default function Home({
 
   return (
     <main>
-      {isReleased && <Header />}
-      {isReleased ? (
-        <HomePage products={products} shirts={shirts} productsNoShirt={productsNoShirt} />
-      ) : (
-        <ComingSoon />
-      )}
-      {isReleased && <Footer />}
+      <Header />
+
+      <HomePage
+        products={products}
+        shirts={shirts}
+        productsNoShirt={productsNoShirt}
+      />
+
+      <Footer />
     </main>
   );
 }

@@ -44,15 +44,7 @@ module.exports = withMT({
     },
   },
   plugins: [
-    plugin(function ({ matchUtilities, theme }) {
-      matchUtilities(
-        {
-          "text-shadow": (value) => ({
-            textShadow: value,
-          }),
-        },
-        { values: theme("textShadow") }
-      );
-    }),
+    require('@tailwindcss/typography'),
+    // ...
   ],
 });
