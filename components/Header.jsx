@@ -19,9 +19,8 @@ import Banner from "./Banner";
 import LanguageSwitcher from "./lang/LanguageSwitcher";
 
 const Header = () => {
-  const { locale, query } = useRouter();
+  const { locale } = useRouter();
 
-  const isReleased = query.released;
   const [mobileMenu, setMobileMenu] = useState(false);
   const [showCatMenu, setShowCatMenu] = useState(false);
   const [show, setShow] = useState("translate-y-0");
@@ -64,7 +63,7 @@ const Header = () => {
 
   return (
     <>
-      {isReleased === "true" && <Banner />}
+      <Banner />
       <header
         className={`
         bg-gradient-to-r 
