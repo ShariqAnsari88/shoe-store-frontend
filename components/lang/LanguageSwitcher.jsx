@@ -33,7 +33,7 @@ export default function LanguageSwitcher({ isHeader, textColor, borderColor }) {
             >
               <Link
                 locale={value}
-                href="/?released=true"
+                href="/"
                 className="flex items-center justify-center gap-2"
               >
                 {label.toUpperCase()}
