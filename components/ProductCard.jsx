@@ -79,7 +79,7 @@ const ProductCard = ({
           </h2>
           <div className="flex items-center justify-between flex-row sm:flex-row text-black/[0.5]">
             <div className="flex flex-row">
-              <p className="mr-2 text-lg font-normal">
+              <p className="mr-2 text-lg font-semibold">
                 {p.price} {currency}
               </p>
 

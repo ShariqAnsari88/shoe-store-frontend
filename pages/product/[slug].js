@@ -16,8 +16,6 @@ import { selectIsWishlisted } from "@/store/wishlistSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
-  faHeartCircleCheck,
-  faHeartCirclePlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -28,9 +26,9 @@ import Exclaimer from "@/components/Exclaimer";
 const ProductDetails = ({ product, products }) => {
   const { t } = useTranslation(["product_details", "buttons", "common"]);
   const dispatch = useDispatch();
-  const { productSlider, slug, outOfStock } = product.data[0].attributes;
+  const { productSlider, slug, outOfStock, subtitle } = product.data[0].attributes;
 
-  const isAccessory = slug.includes("band");
+  const isAccessory = !subtitle.includes("t-shirt");
 
   const [selectedSize, setSelectedSize] = useState(
     isAccessory ? "M" : undefined

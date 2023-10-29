@@ -4,6 +4,6 @@ export default function useCurrency() {
   const { locale } = useRouter();
 
   return {
-    currency: locale !== 'bg' ? "€" : "ЛВ"
+    currency: locale !== 'bg' ? "BGN" : "ЛВ"
   } 
 }

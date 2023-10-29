@@ -51,11 +51,11 @@ export default function WishlistItem(props) {
         </button>
       </div>
       <div className="p-4 text-offWhite/[0.9]">
-        <h2 className="text-lg text-neonGreenLighter font-bold">
+        <h2 className="text-lg text-transparent bg-clip-text bg-gradient-to-r from-[#0ba360] to-[#3cba92] font-bold">
           {props.wishlistItem.attributes.name}
         </h2>
         <div className="flex items-center text-black/[0.5]">
-          <p className="mr-2 text-lg font-normal">
+          <p className="mr-2 text-lg font-semibold">
             {props.wishlistItem.attributes.price} {currency}.
           </p>
 

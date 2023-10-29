@@ -15,7 +15,7 @@ import { revertAll } from "@/store/rootReducer";
 export default function Home({
   products,
   shirts,
-  bandanas,
+  productsNoShirt,
   userData,
   ...rest
 }) {
@@ -39,7 +39,7 @@ export default function Home({
     <main>
       {isReleased && <Header />}
       {isReleased ? (
-        <HomePage products={products} shirts={shirts} bandanas={bandanas} />
+        <HomePage products={products} shirts={shirts} productsNoShirt={productsNoShirt} />
       ) : (
         <ComingSoon />
       )}
@@ -51,15 +51,15 @@ export default function Home({
 export async function getServerSideProps(ctx) {
   const { locale } = ctx;
   const products = await fetchDataFromApi(
-    `/api/products?populate=*&sort=slug:desc&locale=${locale}`
+    `/api/products?populate=*&sort=subtitle:desc&locale=${locale}`
   );
 
   const shirts = await fetchDataFromApi(
-    `/api/products?populate=*&filters[subtitle][$contains]=Troyka&locale=${locale}`
+    `/api/products?populate=*&filters[subtitle][$contains]=t-shirt&sort=price:desc&locale=${locale}`
   );
 
-  const bandanas = await fetchDataFromApi(
-    `/api/products?populate=*&filters[subtitle][$null]=true&locale=${locale}`
+  const productsNoShirt = await fetchDataFromApi(
+    `/api/products?populate=*&filters[subtitle][$notContains]=t-shirt&sort=price:asc&locale=${locale}`
   );
 
   const userData = getUser(ctx);
@@ -67,7 +67,7 @@ export async function getServerSideProps(ctx) {
   return {
     props: {
       shirts,
-      bandanas,
+      productsNoShirt,
       products,
       userData,
       ...(await serverSideTranslations(locale, [

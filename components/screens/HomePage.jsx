@@ -1,4 +1,3 @@
-import Image from "next/image";
 import HeroBanner from "../HeroBanner";
 import ProductCard from "../ProductCard";
 import Wrapper from "../Wrapper";
@@ -6,10 +5,9 @@ import SubscribeDialog from "../SubscribeDialog";
 import { ToastContainer } from "react-toastify";
 import { useTranslation } from "next-i18next";
 
-export default function HomePage({ products, shirts, bandanas }) {
+export default function HomePage({ products, shirts, productsNoShirt }) {
   const { t } = useTranslation("common");
 
-  console.log(bandanas);
   return (
     <>
       <ToastContainer />
@@ -30,7 +28,7 @@ export default function HomePage({ products, shirts, bandanas }) {
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-2 my-12 md:gap-6">
-          {bandanas?.data?.map((product) => (
+          {productsNoShirt?.data?.map((product) => (
             <ProductCard key={product?.id} data={product} />
           ))}
         </div>
