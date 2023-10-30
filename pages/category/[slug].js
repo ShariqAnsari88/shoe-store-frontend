@@ -96,7 +96,7 @@ export async function getServerSideProps({ params: { slug }, locale }) {
       category,
       products,
       slug,
-      ...(await serverSideTranslations(locale, ["footer", "nav", "buttons"])),
+      ...(await serverSideTranslations(locale, ["footer", "nav", "buttons","banner"])),
     },
   };
 }
