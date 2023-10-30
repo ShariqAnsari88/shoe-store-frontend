@@ -4,7 +4,7 @@ import ProductDetailsCarousel from "@/components/ProductDetailsCarousel";
 import RelatedProducts from "@/components/RelatedProducts";
 import { fetchDataFromApi } from "@/utils/api";
 import { getDiscountedPricePercentage } from "@/utils/helper";
-import Markdown from 'react-markdown'
+import Markdown from "react-markdown";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/store/cartSlice";
 
@@ -20,7 +20,6 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Container from "@/components/Container";
 import ImageSelector from "@/components/product/ImageSelector";
 import Exclaimer from "@/components/Exclaimer";
-
 
 const ProductDetails = ({ product, products }) => {
   const { t } = useTranslation(["product_details", "buttons", "common"]);
@@ -93,7 +92,7 @@ const ProductDetails = ({ product, products }) => {
             {/* left column end */}
 
             {/* right column start */}
-            <div className="flex-[1] py-3">
+            <div className="flex-[1.1] py-3 ">
               {/* PRODUCT TITLE */}
               <div className="text-transparent bg-clip-text bg-gradient-to-r from-[#0ba360] to-[#3cba92] text-[34px] font-semibold mb-2 leading-tight">
                 {p.name}
@@ -171,14 +170,16 @@ const ProductDetails = ({ product, products }) => {
               {/* PRODUCT SIZE RANGE END */}
 
               {/* ADD TO CART BUTTON START */}
-              <div className="flex justify-between gap-2 mb-12">
+              <div className="flex flex-1 flex-col sm:flex-row gap-2 justify-around items-center mb-12">
+                <div className="w-full">
                 <button
                   name="cart"
                   className={`
-                flex
-                flex-1
-                items-center 
-                justify-center 
+                  w-full
+                  flex
+                  flex-1
+                  items-center 
+                  justify-center 
                 gap-2 
                 p-4 
                 text-md
@@ -214,10 +215,11 @@ const ProductDetails = ({ product, products }) => {
                   {t("add_cart", { ns: "buttons" })}
                   <FontAwesomeIcon icon={faCartShopping} />
                 </button>
+                </div>
                 {/* ADD TO CART BUTTON END */}
 
                 {/* WHISHLIST BUTTON START */}
-                <div className="bg-offWhite rounded-full">
+                <div className="bg-offWhite w-full rounded-full">
                   <button
                     name="wishlist"
                     onClick={() => {
@@ -230,27 +232,30 @@ const ProductDetails = ({ product, products }) => {
                       );
                       notify("wishlist");
                     }}
-                    className="
-                bg-offWhite
+                    className="bg-offWhite
                 text-transparent bg-clip-text bg-gradient-to-r from-[#0ba360] to-[#3cba92]
+                flex
                 flex-1
+                w-full
+                items-center 
+                justify-center 
                 transition 
                 ease-in-out 
-                p-4 
+                p-4
                 font-medium 
                 active:scale-95 
-                flex items-center 
-                justify-center 
-                gap-2 
                 hover:opacity-75"
                   >
-                    {isWishlisted
-                      ? t("remove_wishlist", { ns: "buttons" })
-                      : t("add_wishlist", { ns: "buttons" })}
                     {isWishlisted ? (
-                      <i class="fa-solid fa-heart-circle-minus" />
+                      <div className="flex flex-1 items-center justify-center gap-2">
+                        {t("remove_wishlist", { ns: "buttons" })}
+                        <i class="fa-solid fa-heart-circle-minus" />
+                      </div>
                     ) : (
-                      <i class="fa-solid fa-heart-circle-plus" />
+                      <div className="flex flex-1 items-center justify-center gap-2">
+                        {t("add_wishlist", { ns: "buttons" })}
+                        <i class="fa-solid fa-heart-circle-plus" />
+                      </div>
                     )}
                   </button>
                 </div>
@@ -263,7 +268,7 @@ const ProductDetails = ({ product, products }) => {
                   {t("details")}
                 </div>
                 <div>
-                <Markdown>{description}</Markdown>
+                  <Markdown>{description}</Markdown>
                 </div>
               </div>
             </div>
@@ -298,6 +303,7 @@ export async function getServerSideProps({ params: { slug }, locale }) {
         "footer",
         "nav",
         "common",
+        "banner",
       ])),
     },
   };
