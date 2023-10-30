@@ -78,7 +78,6 @@ export default function Contact() {
             >
               {({ isValid, errors, handleBlur, handleChange }) => (
                 <Form onChange={handleFormChange}>
-                  {console.log(isValid)}
                   <div className="mb-4">
                     <Input
                       className="bg-white"

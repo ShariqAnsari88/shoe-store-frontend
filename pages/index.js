@@ -18,7 +18,6 @@ export default function Home({
   userData,
   ...rest
 }) {
-  console.log(shirts);
   const dispatch = useDispatch();
   const { locale } = useRouter();
 
