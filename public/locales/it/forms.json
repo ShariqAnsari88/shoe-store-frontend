@@ -20,6 +20,7 @@
   "phone_required": "Inserisci un numero di telefono",
   "name_required": "Per favore inserisci il tuo nome!",
   "email": "Indirizzo e-mail*",
+  "email_contact": "Indirizzo e-mail",
   "email_required": "Si prega di inserire un indirizzo email!",
   "email_incorrect": "Si prega di inserire un indirizzo email valido!",
   "billing_address": "Indirizzo di fatturazione",

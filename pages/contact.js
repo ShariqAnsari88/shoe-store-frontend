@@ -49,8 +49,25 @@ export default function Contact() {
   return (
     <Container>
       <Wrapper>
-        <div className="container p-4 my-12 grid sm:grid-cols-2 gap-4">
-          <div className="bg-offWhite rounded p-8 shadow-md">
+        <div className="container p-4 my-12 max-w-xl mx-auto flex flex-col flex-1 gap-4">
+        <div className="h-full flex justify-between">
+            <div className="w-full">
+              <div className="bg-offWhite rounded-md">
+              <div className="p-6 text-transparent bg-clip-text bg-gradient-to-t from-[#0ba360] to-[#3cba92]">
+                <div className="flex flex-row items-center gap-2">
+                <i class="fa-solid fa-envelope-open-text"/>
+                  <p className=" text-xl text-transparent font-semibold leading-5 ">
+                    {t("email_contact")}
+                  </p>
+                </div>
+                <p className=" font-normal text-base leading-6 text-gray-600 my-4">
+                  info.troyka@gmail.com
+                </p>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-offWhite rounded-md p-8 shadow-md">
             <h2 className="text-center text-2xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-t from-[#0ba360] to-[#3cba92]">
               {t("contact_us")}
             </h2>
@@ -105,7 +122,7 @@ export default function Contact() {
                       error={errors.phone}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      label={t("phoneNumber")}
+                      label={t("phoneNumber") + '*'}
                       type="tel"
                       id="phone"
                       name="phone"
@@ -178,49 +195,6 @@ export default function Contact() {
                 </Form>
               )}
             </Formik>
-          </div>
-
-          <div className="h-full flex justify-between">
-            <div className="grid w-full grid-cols-1 gap-4">
-              {/* Safe Shopping Grid Card */}
-              <div className="rounded-md p-6 bg-offWhite">
-                <div className="flex flex-row items-center">
-                <i class="fa-solid fa-mobile text-transparent bg-clip-text bg-gradient-to-t from-[#0ba360] to-[#3cba92]"></i>
-                  <p className="text-xl text-transparent bg-clip-text bg-gradient-to-t from-[#0ba360] to-[#3cba92] font-semibold leading-5 mt-6">
-                    {t("phoneNumber")}
-                  </p>
-                </div>
-                <p className="font-normal text-base leading-6 text-gray-600 my-4">
-                  *
-                </p>
-              </div>
-
-              {/* Personal Shopping Grid Card */}
-              <div className="rounded-md p-6 bg-offWhite">
-                <div className="flex flex-row items-center">
-                <i class="fa-solid fa-location-dot text-transparent bg-clip-text bg-gradient-to-t from-[#0ba360] to-[#3cba92]"></i>
-                  <p className=" text-xl text-transparent bg-clip-text bg-gradient-to-t from-[#0ba360] to-[#3cba92] font-semibold leading-5 mt-6">
-                    {t("address")}
-                  </p>
-                </div>
-                <p className="font-normal text-base leading-6 text-gray-600 my-4">
-                  *
-                </p>
-              </div>
-
-              {/* Free Shopping Grid Card */}
-              <div className="rounded-md p-6 bg-offWhite">
-                <div className="flex flex-row items-center">
-                <i class="fa-solid fa-envelope-open-text text-transparent bg-clip-text bg-gradient-to-t from-[#0ba360] to-[#3cba92]"></i>
-                  <p className=" text-xl text-transparent bg-clip-text bg-gradient-to-t from-[#0ba360] to-[#3cba92] font-semibold leading-5 mt-6">
-                    {t("email")}
-                  </p>
-                </div>
-                <p className=" font-normal text-base leading-6 text-gray-600 my-4">
-                  info.troyka@gmail.com
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </Wrapper>

@@ -20,6 +20,7 @@
   "phone_required": "Please enter a phone number!",
   "name_required": "Please enter your name!",
   "email": "Email address*",
+  "email_contact": "Email address",
   "email_required": "Please enter email address!",
   "email_incorrect": "Please enter a valid e-mail address!",
   "billing_address": "Billing Address",
