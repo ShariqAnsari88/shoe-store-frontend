@@ -55,7 +55,7 @@ export async function getStaticProps(ctx) {
 
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["order"])),
+      ...(await serverSideTranslations(locale, ["order","banner"])),
     },
   };
 }

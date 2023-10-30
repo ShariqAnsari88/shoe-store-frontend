@@ -57,6 +57,7 @@ export async function getStaticProps({ locale }) {
         "nav",
         "wishlist",
         "buttons",
+        "banner"
       ])),
     },
   };

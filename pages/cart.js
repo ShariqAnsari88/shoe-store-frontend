@@ -54,12 +54,9 @@ const Cart = (props) => {
   }, [cartItems]);
 
   const paymentDisabled = useMemo(() => {
-    if (!credentialsInfo) return true;
+    if (!credentialsInfo || !addressInfo ) return true;
 
     if (deliveryOption === "home") {
-      if (!addressInfo) return true;
-      return false;
-    } else {
       if (!officeAddressInfo) return true;
       return false;
     }
@@ -297,6 +294,7 @@ export async function getServerSideProps(ctx) {
         "buttons",
         "forms",
         "common",
+        "banner"
       ])),
     },
   };
