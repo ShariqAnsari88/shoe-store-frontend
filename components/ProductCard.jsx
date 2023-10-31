@@ -29,13 +29,12 @@ const ProductCard = ({
      overflow-hidden
     bg-darkBlack
      transition 
-     ease-in-out
-     duration-200
+     ease-in-out duration-300
      drop-shadow-2xl
      ${
        disabled
          ? "hover:scale-1 pointer-events-none cursor-auto"
-         : "sm:hover:scale-105"
+         : "sm:hover:scale-105 hover:-translate-y-5"
      }
      cursor-pointer
      `}
