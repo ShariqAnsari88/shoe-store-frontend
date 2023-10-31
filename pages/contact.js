@@ -28,7 +28,7 @@ export default function Contact() {
     email: Yup.string()
       .required(t("email_required"))
       .matches(emailRegex, t("email_incorrect")),
-    phone: Yup.number().typeError(t("phone_incorrect")).min(5).max(12).notRequired(),
+    phone: Yup.number().typeError(t("phone_incorrect")).notRequired(),
     message: Yup.string()
       .required(t("message_required"))
       .min(10, t("message_min")),
