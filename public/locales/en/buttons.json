@@ -20,5 +20,7 @@
   "cancel": "Cancel",
   "save": "Save",
   "delivery_home": "Delivery to specified address",
-  "delivery_office": "Delivery to Speedy office"
+  "delivery_office": "Delivery to Speedy office",
+  "email_sent": "Your message has been sent successfully. Thank you for your feedback!",
+  "email_failed": "Error sending the message. Please try again!"
 }

@@ -38,13 +38,22 @@ export default function ComingSoon() {
             setIsLoading(false);
             setEmail("");
           } else {
-            sendContactEmail({ type: "subscribe", email, locale });
-            toast.success(
-              t("success_subscribe", { ns: "buttons" }),
-              successConfig
-            );
-            setIsLoading(false);
-            setEmail("");
+            try {
+              sendContactEmail({ type: "subscribe", email, locale });
+              toast.success(
+                t("success_subscribe", { ns: "buttons" }),
+                successConfig
+              );
+              setIsLoading(false);
+              setEmail("");
+            } catch (error) {
+              toast.error(
+                t("failed_subscribe", { ns: "buttons" }),
+                errorConfig
+              );
+              setIsLoading(false);
+              setEmail("");
+            }
           }
         })
         .catch((e) => {
@@ -98,7 +107,11 @@ export default function ComingSoon() {
                 className={`rounded-full h-full w-24 ${
                   isLoading || hasError ? "disabled" : ""
                 }   
-                ${isLoading || hasError ? "bg-darkBlack" : "bg-gradient-to-r from-[#0ba360] to-[#3cba92]"}
+                ${
+                  isLoading || hasError
+                    ? "bg-darkBlack"
+                    : "bg-gradient-to-r from-[#0ba360] to-[#3cba92]"
+                }
                 ${isLoading || hasError ? " border-[1px]" : "border-0"}
                 text-offWhite
                  text-[12px]

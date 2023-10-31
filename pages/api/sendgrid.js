@@ -28,12 +28,14 @@ export default async function handler(req, res) {
       res.status(error.statusCode || 500).json({ error: error.message });
     }
   } else {
-    const { email, subject, name, message } = body;
+    const { email, subject, name, message, phone } = body;
     try {
       await sendgrid.send({
-        text: `Имейл на потребителя: ${email}; $Име:${name}; Съобщение:${message}`,
+        text: `Имейл на потребителя: ${email}; $Име:${name}; Съобщение:${message} Телефонен номер:${
+          phone ?? "[Празно]"
+        }`,
         subject,
-        to: "info.troyka@gmail.com", // Your email where you'll receive emails
+        to: "pilyovmartin20@gmail.com", // Your email where you'll receive emails
         from: "info.troyka@gmail.com", // your website email address here
       });
 

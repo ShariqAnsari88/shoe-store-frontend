@@ -20,5 +20,7 @@
   "cancel": "Annulla",
   "save": "Salva",
   "delivery_home": "Consegna all'indirizzo specificato",
-  "delivery_office": "Consegna all'ufficio veloce"
+  "delivery_office": "Consegna all'ufficio veloce",
+  "email_sent": "Il tuo messaggio è stato inviato con successo. Grazie per il tuo feedback!",
+  "email_failed": "Errore durante l'invio del messaggio. Riprova!"
 }

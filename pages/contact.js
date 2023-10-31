@@ -8,6 +8,8 @@ import { useTranslation } from "next-i18next";
 import Container from "@/components/Container";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Textarea, Input } from "@material-tailwind/react";
+import { ToastContainer, toast } from "react-toastify";
+import { errorConfig, successConfig } from "@/utils/toastConfig";
 
 export default function Contact() {
   const { t } = useTranslation(["forms", "buttons"]);
@@ -26,7 +28,7 @@ export default function Contact() {
     email: Yup.string()
       .required(t("email_required"))
       .matches(emailRegex, t("email_incorrect")),
-    phone: Yup.number(t("phone_incorrect")).optional(),
+    phone: Yup.number().typeError(t("phone_incorrect")).min(5).max(12).notRequired(),
     message: Yup.string()
       .required(t("message_required"))
       .min(10, t("message_min")),
@@ -41,29 +43,33 @@ export default function Contact() {
   };
 
   const handleSubmit = async () => {
-    await sendContactEmail(contactForm);
+    try {
+      await sendContactEmail(contactForm);
+      toast.success(t("email_sent", { ns: "buttons" }), successConfig);
+    } catch (error) {
+      toast.error(t("email_failed", { ns: "buttons" }), errorConfig);
+    }
   };
-
-
 
   return (
     <Container>
       <Wrapper>
+      <ToastContainer />
         <div className="container p-4 my-12 max-w-xl mx-auto flex flex-col flex-1 gap-4">
-        <div className="h-full flex justify-between">
+          <div className="h-full flex justify-between">
             <div className="w-full">
               <div className="bg-offWhite rounded-md">
-              <div className="p-6 text-transparent bg-clip-text bg-gradient-to-t from-[#0ba360] to-[#3cba92]">
-                <div className="flex flex-row items-center gap-2">
-                <i class="fa-solid fa-envelope-open-text"/>
-                  <p className=" text-xl text-transparent font-semibold leading-5 ">
-                    {t("email_contact")}
+                <div className="p-6 text-transparent bg-clip-text bg-gradient-to-t from-[#0ba360] to-[#3cba92]">
+                  <div className="flex flex-row items-center gap-2">
+                    <i class="fa-solid fa-envelope-open-text" />
+                    <p className=" text-xl text-transparent font-semibold leading-5 ">
+                      {t("email_contact")}
+                    </p>
+                  </div>
+                  <p className=" font-normal text-base leading-6 text-gray-600 my-4">
+                    info.troyka@gmail.com
                   </p>
                 </div>
-                <p className=" font-normal text-base leading-6 text-gray-600 my-4">
-                  info.troyka@gmail.com
-                </p>
-              </div>
               </div>
             </div>
           </div>
@@ -79,6 +85,7 @@ export default function Contact() {
               {({ isValid, errors, handleBlur, handleChange }) => (
                 <Form onChange={handleFormChange}>
                   <div className="mb-4">
+
                     <Input
                       className="bg-white"
                       label={t("firstName")}
@@ -121,7 +128,7 @@ export default function Contact() {
                       error={errors.phone}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      label={t("phoneNumber") + '*'}
+                      label={t("phoneNumber")}
                       type="tel"
                       id="phone"
                       name="phone"
@@ -173,12 +180,11 @@ export default function Contact() {
                     />
                   </div>
                   <button
-                    disabled={!isValid || isEmptyForm}
                     type="submit"
                     className={`${
-                      isValid && !isEmptyForm
-                        ? "bg-gradient-to-t from-[#0ba360] to-[#3cba92]"
-                        : "bg-gradient-to-t from-[#0ba360] to-[#3cba92]/[0.5]"
+                      isValid || !isEmptyForm
+                        ? "bg-gradient-to-t from-[#0ba360] to-[#3cba92] cursor-pointer"
+                        : "bg-darkBlack/[0.2] pointer-events-none"
                     } 
                     text-white 
                     drop-shadow-lg 
