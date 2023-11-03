@@ -53,7 +53,7 @@ export async function getServerSideProps(ctx) {
   );
 
   const shirts = await fetchDataFromApi(
-    `/api/products?populate=*&filters[subtitle][$contains]=t-shirt&sort=price:desc&locale=${locale}`
+    `/api/products?populate=*&filters[subtitle][$contains]=t-shirt&sort=updatedAt:asc&locale=${locale}`
   );
 
   const productsNoShirt = await fetchDataFromApi(
