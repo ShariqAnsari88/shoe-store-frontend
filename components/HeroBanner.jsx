@@ -11,7 +11,7 @@ import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 const HeroBanner = () => {
   return (
-    <div className={`text-white mt-12 text-[20px] flex sm:h-[600px] min-w-[400px] h-[400px] mx-auto my-4`}>
+    <div className={`text-white mt-12 text-[20px] flex sm:h-[600px] min-w-[400px] h-[400px] mx-auto mb-12`}>
       <Carousel
         autoPlay={true}
         infiniteLoop={true}

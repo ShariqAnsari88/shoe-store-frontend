@@ -73,7 +73,7 @@ const ProductCard = ({
           alt={p.name ?? "No Photo"}
         />
         <div className="justify-end flex-col p-4 text-offWhite/[0.9]">
-          <h2 className="text-lg text-transparent bg-clip-text bg-gradient-to-r from-[#0ba360] to-[#3cba92] font-bold">
+          <h2 className="text-lg text-transparent  bg-clip-text bg-gradient-to-r from-[#0ba360] to-[#3cba92] font-bold">
             {p.name}
           </h2>
           <div className="flex items-center justify-between flex-row sm:flex-row text-black/[0.5]">
