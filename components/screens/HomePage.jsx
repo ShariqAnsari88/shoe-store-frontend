@@ -5,7 +5,6 @@ import SubscribeDialog from "../SubscribeDialog";
 import { ToastContainer } from "react-toastify";
 import { useTranslation } from "next-i18next";
 import ClimateSection from "../ClimateSection";
-import Link from "next/link";
 
 export default function HomePage({ products, shirts, productsNoShirt }) {
   const { t } = useTranslation("common");
@@ -14,8 +13,8 @@ export default function HomePage({ products, shirts, productsNoShirt }) {
     <>
       <ToastContainer />
       <SubscribeDialog />
-      <HeroBanner />
       <Wrapper>
+      <HeroBanner />
         <div className="bg-offWhite relative flex flex-col flex-1 p-6 mb-12 rounded-md gap-6 bg-opacity-90">
           <div className="rounded-md z-1 text-center">
             <h2 className="text-darkBlack p-4 rounded-md uppercase sm:text-[32px] my-6 text-[24px] font-semibold">

@@ -3,74 +3,42 @@ import slideImage1 from "../public/carousel_images/carousel_1-min.jpg";
 import slideImage2 from "../public/carousel_images/carousel_2-min.jpg";
 import slideImage3 from "../public/carousel_images/carousel_3-min.jpg";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
+import { Carousel } from "@material-tailwind/react";
 
 import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 const HeroBanner = () => {
+  const images = [slideImage1, slideImage2, slideImage3];
+
   return (
-    <div className={`text-white mt-12 text-[20px] flex sm:h-[600px] min-w-[400px] h-[400px] mx-auto mb-12`}>
+    <div
+      className={`text-white mt-12 text-[20px] flex sm:h-[600px] min-w-[400px] h-[400px] mx-auto mb-12`}
+    >
       <Carousel
-        autoPlay={true}
-        infiniteLoop={true}
-        showThumbs={false}
-        showIndicators={false}
-        showStatus={false}
-        renderArrowPrev={(clickHandler, hasPrev) => (
-          <div
-            onClick={clickHandler}
-            className="bg-transparent absolute left-5 top-[50%] translate-y-[-50%] md:right-[51px] bottom-0 w-[30px] md:w-[50px] h-[30px] md:h-[50px] bg-#393646 z-10 flex items-center justify-center cursor-pointer hover:opacity-100"
-          >
-            <FontAwesomeIcon size="xl" icon={faAngleLeft} />
-          </div>
-        )}
-        renderArrowNext={(clickHandler, hasNext) => (
-          <div
-            onClick={clickHandler}
-            className="absolute  
-          text-white 
-            right-5 
-            top-[50%] 
-            translate-y-[-50%] 
-            w-[30px] md:w-[50px] 
-            h-[30px] md:h-[50px] 
-            bg-#393646 
-            z-10 
-            flex 
-            items-center 
-            justify-center 
-            cursor-pointer 
-            hover:opacity-90"
-          >
-            <FontAwesomeIcon size="xl" icon={faAngleRight} />
+        loop
+        autoplay
+        navigation={({ setActiveIndex, activeIndex, length }) => (
+          <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
+            {new Array(length).fill("").map((_, i) => (
+              <span
+                key={i}
+                className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
+                  activeIndex === i ? "w-8 bg-white" : "w-4 bg-white/50"
+                }`}
+                onClick={() => setActiveIndex(i)}
+              />
+            ))}
           </div>
         )}
       >
-        <div>
+        {images.map((item, index) => (
           <Image
             alt="img"
-            src={slideImage1}
+            key={index}
+            src={item}
             className={`sm:h-[600px] h-[350px] object-contain`}
           />
-        </div>
-
-        <div>
-          <Image
-            alt="img"
-            src={slideImage2}
-            className={`sm:h-[600px] h-[350px]  object-contain`}
-          />
-        </div>
-
-        <div>
-          <Image
-            alt="img"
-            src={slideImage3}
-            className={`sm:h-[600px] h-[350px]  object-contain`}
-          />
-        </div>
+        ))}
       </Carousel>
     </div>
   );
