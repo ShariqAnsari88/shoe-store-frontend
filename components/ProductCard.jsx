@@ -58,8 +58,8 @@ const ProductCard = ({
         </div>
       )}
       <div
-        className={` ${isCarouselCard && "w-[250px] h-[470px]"} ${
-          border ?? "border-[2px] border-white"
+        className={` ${isCarouselCard && "sm:w-[250px] sm:min-h-[500px]"} ${
+          border ?? "sm:border-[2px] sm:border-white"
         }
         
         `}
@@ -68,7 +68,7 @@ const ProductCard = ({
         <Image
           className={`bg-cover bg-white`}
           width={isCarouselCard ? 250 : 400}
-          height={isCarouselCard ? 200 : 400}
+          height={isCarouselCard ? 250 : 400}
           src={p.thumbnail.data.attributes.url}
           alt={p.name ?? "No Photo"}
         />
