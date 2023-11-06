@@ -5,7 +5,7 @@ const ClimateIcon = (props) => (
     wrapper="span"
     beforeInjection={(svg) => {
       svg.classList.add("svg-class-name");
-      svg.setAttribute("style", "width: 30px");
+      svg.setAttribute("style", "width: 40px");
     }}
     width="12"
     

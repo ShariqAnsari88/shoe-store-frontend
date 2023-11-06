@@ -17,7 +17,6 @@ export default function HomePage({ products, shirts, productsNoShirt }) {
       <HeroBanner />
       <Wrapper>
         <div className="bg-offWhite relative flex flex-col flex-1 p-6 mb-12 rounded-md gap-6 bg-opacity-90">
-          <ClimateSection />
           <div className="rounded-md z-1 text-center">
             <h2 className="text-darkBlack p-4 rounded-md uppercase sm:text-[32px] my-6 text-[24px] font-semibold">
               {t("uncensored_collection")}
@@ -29,24 +28,16 @@ export default function HomePage({ products, shirts, productsNoShirt }) {
               <ProductCard key={product?.id} data={product} border="border-0" />
             ))}
           </div>
-          <div className="bg-offWhite shadow-md mx-auto p-4 -mb-6 mt-4">
-            <Link
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://climate.stripe.com/gJpCUa"
-            >
-              <p className="font-bold hover:cursor-pointer hover:opacity-20 transition duration-300 ease-in-out text-transparent bg-clip-text bg-gradient-to-b from-[#0ba360] to-[#3cba92] text-center uppercase">
-                stripe climate member
-              </p>
-            </Link>
-          </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-2 my-12 md:gap-6">
           {productsNoShirt?.data?.map((product) => (
             <ProductCard key={product?.id} data={product} />
           ))}
         </div>
+
       </Wrapper>
+      <ClimateSection />
+
     </>
   );
 }

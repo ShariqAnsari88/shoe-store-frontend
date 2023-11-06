@@ -7,16 +7,31 @@ function ClimateSection(props) {
 
   return (
     <div
-      className={`bg-offWhite absolute z-10 m-auto left-0 right-0 -top-8 shadow-md rounded-full flex w-16 h-16 items-center justify-center
+      className={`shadow-md flex items-center justify-center
      `}
     >
       <Link
         target="_blank"
         rel="noopener noreferrer"
         href="https://climate.stripe.com/gJpCUa"
-        className="p-4 flex flex-row items-center justify-center hover:cursor-pointer hover:opacity-20 transition duration-300 ease-in-out gap-4"
+        className="flex-row p-4 sm:m-0 my-6 flex items-center justify-center 
+        hover:cursor-pointer hover:bg-offWhite transition duration-300 ease-in-out gap-2"
       >
         <ClimateIcon />
+        <p className="font-semibold
+        text-[16px]
+        hover:cursor-pointer 
+        transition 
+        duration-300 
+        ease-in-out 
+        text-transparent 
+        bg-clip-text
+        bg-gradient-to-b
+        from-[#00D522] 
+        to-[#FFD44B] 
+        text-center capitalize">
+          stripe climate member
+        </p>
       </Link>
     </div>
   );
