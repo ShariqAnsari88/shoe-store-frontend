@@ -86,7 +86,7 @@ export default function ComingSoon() {
           <h1 className="mb-2 font-semibold text-center text-[42px] sm:text-[50px] md:text-[82px]">
             {t("welcome")}
           </h1>
-          <Divider height="5px" />
+          <Divider />
           <p className="md:text-[18px] text-[18px] mb-12 md:max-w-[600px] max-w-[90%]">
             {t("description")}
           </p>
@@ -127,7 +127,7 @@ export default function ComingSoon() {
                   <svg
                     aria-hidden="true"
                     role="status"
-                    class="inline w-4 h-4 text-white animate-spin"
+                    className="inline w-4 h-4 text-white animate-spin"
                     viewBox="0 0 100 101"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"

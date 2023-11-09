@@ -9,7 +9,13 @@ const options = [
   { label: "bg", value: "bg" },
 ];
 
-export default function LanguageSwitcher({ isHeader, textColor, borderColor }) {
+interface Props {
+  isHeader?: boolean
+  textColor?: string
+  borderColor?: string
+}
+
+export default function LanguageSwitcher({ isHeader, textColor, borderColor }: Props) {
   const { locale } = useRouter();
 
   if (isHeader)

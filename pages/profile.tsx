@@ -74,10 +74,12 @@ function ProfilePage(props) {
     <Container>
       <div className="min-h-[650px] mt-8 flex">
         <Wrapper>
-          {choice === "login" && (
-            <AuthSelector choice={choice} setChoice={handleChoice} />
-          )}
-          {choice === "signup" && <SignUp />}
+          <>
+            {choice === "login" && (
+              <AuthSelector choice={choice} setChoice={handleChoice} />
+            )}
+            {choice === "signup" && <SignUp />}
+          </>
         </Wrapper>
       </div>
     </Container>
@@ -108,6 +110,7 @@ export async function getServerSideProps(ctx) {
         "buttons",
         "modals",
         "forms",
+        "banner"
       ])),
     },
   };

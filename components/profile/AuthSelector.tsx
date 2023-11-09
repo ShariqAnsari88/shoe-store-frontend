@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import login from "@/pages/api/auth/login";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 
-function AuthSelector({ setChoice }) {
+interface Props {
+  choice?: string
+  setChoice: () => void
+}
+
+function AuthSelector({ setChoice }: Props) {
   const router = useRouter();
   const { t } = useTranslation(["forms", "buttons"]);
 

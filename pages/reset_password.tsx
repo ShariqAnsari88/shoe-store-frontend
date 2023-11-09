@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useState } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
 const ForgotPassword = () => {
   const router = useRouter();
@@ -27,7 +28,7 @@ const ForgotPassword = () => {
       .min(8, t("password_min", { ns: "forms" }))
       .required(t("password_required", { ns: "forms" })),
     passwordConfirmation: Yup.string()
-      .oneOf([Yup.ref("password"), null], t("password_match", { ns: "forms" }))
+      .oneOf([Yup.ref("password"), undefined], t("password_match", { ns: "forms" }))
       .required(t("password_confirm", { ns: "forms" })),
   });
 
