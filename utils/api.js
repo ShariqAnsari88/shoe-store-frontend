@@ -16,6 +16,7 @@ export const fetchDataFromApi = async (endpoint) => {
     const res = await API.get(`${API_URL}${endpoint}`);
     return res?.data;
   } catch (error) {
+    console.log(error, "- Error fetching data.");
     return error;
   }
 };
@@ -25,6 +26,7 @@ export const deleteDataFromApi = async (endpoint) => {
     const res = await API.delete(`${API_URL}${endpoint}`);
     return res?.data;
   } catch (error) {
+    console.log(error, "- Error deleting data.");
     return error;
   }
 };
@@ -34,6 +36,7 @@ export const sendSubscriptionEmail = async (endpoint, email) => {
     const res = await API.post(`${API_URL}${endpoint}`, email);
     return res?.data;
   } catch (error) {
+    console.log(error, "- Error sending subscription mail.");
     return error;
   }
 };
@@ -43,25 +46,36 @@ export const makePaymentRequest = async (endpoint, payload) => {
     const res = await API.post(`${API_URL}${endpoint}`, payload);
     return res?.data;
   } catch (error) {
-    console.log(error, "error");
+    console.log(error, "- Error making payment.");
+    return error;
   }
 };
 
 export const sendResetEmail = async (payload) => {
-  const res = await API.post(`${API_URL}/api/auth/forgot-password`, {
-    email: payload,
-  });
-  return res?.data;
+  try {
+    const res = await API.post(`${API_URL}/api/auth/forgot-password`, {
+      email: payload,
+    });
+    return res?.data;
+  } catch (error) {
+    console.log(error, "- Error sending reset mail.");
+    return error;
+  }
 };
 
 export const changePassword = async (payload) => {
   const { code, password, passwordConfirmation } = payload;
 
-  const res = await API.post(`${API_URL}/api/auth/reset-password`, {
-    code, // code contained in the reset link of step 3.
-    password,
-    passwordConfirmation,
-  });
+  try {
+    const res = await API.post(`${API_URL}/api/auth/reset-password`, {
+      code, // code contained in the reset link of step 3.
+      password,
+      passwordConfirmation,
+    });
 
-  return res?.data;
+    return res?.data;
+  } catch (error) {
+    console.log(error, "- Error changing password.");
+    return error;
+  }
 };

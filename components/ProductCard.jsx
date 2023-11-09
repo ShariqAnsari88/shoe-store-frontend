@@ -10,7 +10,6 @@ const ProductCard = ({
   data: { attributes: p, id },
   isCarouselCard,
   border,
-  dropShadow,
 }) => {
   const { t } = useTranslation("common");
   const discount = getDiscountedPricePercentage(p.original_price, p.price);
@@ -58,11 +57,8 @@ const ProductCard = ({
         </div>
       )}
       <div
-        className={` ${isCarouselCard && "sm:w-[250px] sm:min-h-[500px]"} ${
-          border ?? "sm:border-[2px] sm:border-white"
-        }
-        
-        `}
+        className={` ${isCarouselCard && "sm:w-[250px] sm:min-h-[500px]"} 
+        ${border ?? "border-[2px] border-white"}`}
       >
         {disabled && <div className="inset-0 absolute bg-white opacity-50" />}
         <Image

@@ -38,7 +38,7 @@ const RelatedProducts = ({ products }) => {
         itemClass="p-[10px]"
       >
         {availableProducts.map((product) => (
-          <ProductCard isCarouselCard key={product?.id} data={product} />
+          <ProductCard isCarouselCard border="border-0" key={product?.id} data={product} />
         ))}
       </Carousel>
     </div>
