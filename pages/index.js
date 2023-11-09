@@ -11,13 +11,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { revertAll } from "@/store/rootReducer";
 
-export default function Home({
-  products,
-  shirts,
-  productsNoShirt,
-  userData,
-  ...rest
-}) {
+export default function Home({ shirts, productsNoShirt, userData }) {
   const dispatch = useDispatch();
   const { locale } = useRouter();
 
@@ -35,22 +29,19 @@ export default function Home({
     <main>
       <Header />
 
-      <HomePage
-        products={products}
-        shirts={shirts}
-        productsNoShirt={productsNoShirt}
-      />
+      <HomePage shirts={shirts} productsNoShirt={productsNoShirt} />
 
       <Footer />
     </main>
   );
 }
 
-export async function getServerSideProps(ctx) {
+export async function getStaticProps(ctx) {
   const { locale } = ctx;
-  const products = await fetchDataFromApi(
-    `/api/products?populate=*&sort=subtitle:desc&locale=${locale}`
-  );
+
+  // const products = await fetchDataFromApi(
+  //   `/api/products?populate=*&sort=subtitle:desc&locale=${locale}`
+  // );
 
   const shirts = await fetchDataFromApi(
     `/api/products?populate=*&filters[subtitle][$contains]=t-shirt&sort=updatedAt:asc&locale=${locale}`
@@ -66,7 +57,6 @@ export async function getServerSideProps(ctx) {
     props: {
       shirts,
       productsNoShirt,
-      products,
       userData,
       ...(await serverSideTranslations(locale, [
         "common",
