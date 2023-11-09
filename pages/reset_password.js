@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useState } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 const ForgotPassword = () => {
   const router = useRouter();
