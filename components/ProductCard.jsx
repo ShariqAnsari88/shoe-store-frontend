@@ -57,7 +57,7 @@ const ProductCard = ({
         </div>
       )}
       <div
-        className={` ${isCarouselCard && "sm:w-[250px] sm:min-h-[500px]"} 
+        className={` ${isCarouselCard && "sm:border-[2px] sm:border-white sm:w-[250px] sm:min-h-[500px]"} 
         ${border ?? "border-[2px] border-white"}`}
       >
         {disabled && <div className="inset-0 absolute bg-white opacity-50" />}
