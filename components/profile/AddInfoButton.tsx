@@ -1,14 +1,18 @@
 import { faSquarePlus } from "@fortawesome/free-regular-svg-icons";
 import {
   faCircleDollarToSlot,
-  faCirclePlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useTranslation } from "next-i18next";
 import { Button } from "@material-tailwind/react";
 
-export default function AddInfoButton({ onPress, label }) {
+interface Props {
+  onPress: () => void;
+  label: string;
+}
+
+export default function AddInfoButton({ onPress, label }: Props) {
   const { t } = useTranslation(["forms, buttons"]);
   return (
     <div onClick={onPress}>
@@ -27,7 +31,7 @@ export default function AddInfoButton({ onPress, label }) {
         className="bg-offWhite text-darkBlack flex gap-2 items-center"
         variant="outlined"
       >
-        <FontAwesomeIcon size="2x" cla icon={faSquarePlus} />
+        <FontAwesomeIcon size="2x" icon={faSquarePlus} />
 
         {t("add", { ns: "buttons" })}
       </Button>

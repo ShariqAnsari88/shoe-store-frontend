@@ -33,7 +33,7 @@ module.exports = withMT({
       },
       backgroundImage: {
         troykaEye: "url('../assets/images/troyka-eye.png')",
-        random: "url('/about-us-3.jpg')",
+        about: "url('/about-us-3.jpg')",
       },
       screens: {
         sm: "767px",

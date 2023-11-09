@@ -2,7 +2,7 @@ import React from "react";
 
 interface WrapperProps {
     className?: string
-    children: JSX.Element
+    children: JSX.Element | JSX.Element[]
 }
 
 const Wrapper = ({ children, className }: WrapperProps) => {
