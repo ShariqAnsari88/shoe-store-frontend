@@ -4,8 +4,11 @@ import { FaInstagram } from "react-icons/fa";
 import Wrapper from "./Wrapper";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
-// bg-darkBlack
+import { useRouter } from "next/router";
+import { policies } from "@/helpers/policies";
+
 const Footer = () => {
+  const { locale } = useRouter();
   const { t } = useTranslation("footer");
   return (
     <footer className="flex justify-center md:flex-row flex-col items-center gap-2 bg-offWhite text-[#181516]">
@@ -72,14 +75,32 @@ const Footer = () => {
           {/* LEFT END */}
 
           {/* RIGHT START */}
-          <div  className="flex flex-col gap-2 md:gap-1 text-center md:text-right flex-wrap justify-center">
-            <a href="pdfs/Troyka_Wear_Returns.pdf" target="_blank" rel='noopener noreferrer' className="text-[12px] text-darkBlack hover:text-darkBlack/[0.5] cursor-pointer">
+          <div className="flex flex-col gap-2 md:gap-1 text-center md:text-right flex-wrap justify-center">
+            <a
+              id="refund"
+              href={policies[locale].refund}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[12px] text-darkBlack hover:text-darkBlack/[0.5] cursor-pointer"
+            >
               {t("refund_policy")}
             </a>
-            <a href="/pdfs/Troyka_Wear_Terms_Of_Service.pdf" target="_blank" rel='noopener noreferrer' className="text-[12px] text-darkBlack hover:text-darkBlack/[0.5] cursor-pointer">
+            <a
+              id="terms"
+              href={policies[locale].terms}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[12px] text-darkBlack hover:text-darkBlack/[0.5] cursor-pointer"
+            >
               {t("terms_use")}
             </a>
-            <a href="/pdfs/Troyka_Wear_Privacy_Policy.pdf" target='_blank' rel='noopener noreferrer' className="text-[12px] text-darkBlack hover:text-darkBlack/[0.5] cursor-pointer">
+            <a
+              id="privacy"
+              href={policies[locale].privacy}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[12px] text-darkBlack hover:text-darkBlack/[0.5] cursor-pointer"
+            >
               {t("privacy_policy")}
             </a>
           </div>
