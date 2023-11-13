@@ -62,7 +62,7 @@ const Header = () => {
 
   useEffect(() => {
     fetchCategories();
-  }, []);
+  }, [locale]);
 
   const fetchCategories = async () => {
     const { data } = await fetchDataFromApi(

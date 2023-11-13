@@ -36,7 +36,7 @@ export default function HomePage({ products, shirts, productsNoShirt }) {
             </div>
           )}
         </div>
-        {products && (
+        {productsNoShirt && (
           <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-2 my-12 md:gap-6">
             {productsNoShirt?.data?.map((product) => (
               <ProductCard key={product?.id} data={product} />
