@@ -7,7 +7,7 @@ import { useTranslation } from "next-i18next";
 import ClimateSection from "../ClimateSection";
 import Wrapper from "../Wrapper";
 
-export default function HomePage({ products, shirts, productsNoShirt }) {
+export default function HomePage({ shirts, productsNoShirt }) {
   const { t } = useTranslation("common");
 
   return (
