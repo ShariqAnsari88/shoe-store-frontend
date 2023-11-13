@@ -3,21 +3,29 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/store/hooks";
-import { selectUserAddress, updateAddress } from "@/store/userSlice";
+import {
+  selectBillingAddress,
+  updateBillingAddress,
+} from "@/store/userSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
-import { ToastContainer } from "react-toastify";
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { ToastContainer, toast } from "react-toastify";
+import {
+  faCircleDollarToSlot,
+  faLocationDot,
+} from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import AddInfoButton from "./AddInfoButton";
+import { FormProps } from "@/models/forms";
 
-function AddressForm({ disabled, setShowError }) {
+function BillingAddressForm({ disabled, setShowError }: FormProps) {
   const dispatch = useDispatch();
   const { t } = useTranslation(["profile", "buttons", "forms"]);
-  const addressInfo = useAppSelector(selectUserAddress);
+  const billingAddressInfo = useAppSelector(selectBillingAddress);
   const [isPressed, setIsPressed] = useState(false);
+
   const [shouldShowAddress, setShouldShowAddress] = useState(
-    addressInfo ? true : false
+    billingAddressInfo ? true : false
   );
 
   const labels = {
@@ -30,18 +38,18 @@ function AddressForm({ disabled, setShowError }) {
   };
 
   const initialValues = {
-    city: addressInfo?.city ?? "",
-    company: addressInfo?.company ?? "",
-    street: addressInfo?.street ?? "",
-    streetNumber: addressInfo?.streetNumber ?? "",
-    houseNumber: addressInfo?.houseNumber ?? "",
-    postalCode: addressInfo?.postalCode ?? "",
+    city: billingAddressInfo?.city ?? "",
+    company: billingAddressInfo?.company ?? "",
+    street: billingAddressInfo?.street ?? "",
+    streetNumber: billingAddressInfo?.streetNumber ?? "",
+    houseNumber: billingAddressInfo?.houseNumber ?? "",
+    postalCode: billingAddressInfo?.postalCode ?? "",
   };
 
   const [address, setAddress] = useState({ ...initialValues });
 
   const isEmptyAddress = Object.values(address).every((k) => k.length < 1);
-  const addressSaved = !!addressInfo
+  const addressSaved = !!billingAddressInfo;
 
   const validationSchema = Yup.object().shape({
     company: Yup.string().optional(),
@@ -63,11 +71,11 @@ function AddressForm({ disabled, setShowError }) {
   };
 
   const handleSubmit = async () => {
-    dispatch(updateAddress(address));
+    dispatch(updateBillingAddress(address));
 
     setShouldShowAddress(true);
 
-    setShowError(false);
+    setShowError?.(false);
 
     toast.success(t("address_saved", { ns: "buttons" }), {
       position: "bottom-right",
@@ -87,16 +95,16 @@ function AddressForm({ disabled, setShowError }) {
 
   if (shouldShowAddress)
     return (
-      <AddressInfo
-      disabled={disabled}
-        addressInfo={addressInfo}
+      <BillingAddressInfo
+        disabled={disabled}
+        addressInfo={billingAddressInfo}
         setShouldShowAddress={setShouldShowAddress}
       />
     );
 
-    if (!shouldShowAddress && !isPressed && !addressInfo) {
-      return <AddInfoButton label={"address"} onPress={() => setIsPressed(!isPressed)}/>
-    }
+  if (!shouldShowAddress && !isPressed && !billingAddressInfo) {
+    return <AddInfoButton label={"billing_address"} onPress={() => setIsPressed(!isPressed)}/>
+  }
 
   return (
     <div className="bg-gradient-to-r from-[#0ba360] to-[#3cba92] flex-1 flex-column space-y-2 p-[40px] shadow-md border-zinc-700 rounded-sm">
@@ -106,7 +114,7 @@ function AddressForm({ disabled, setShowError }) {
           <FontAwesomeIcon color="#EEEEEE" icon={faLocationDot} />
         </div>
         <h2 className="font-semibold text-xl text-[#F8F1F1]">
-          {t("address", { ns: "forms" })}
+          {t("billing_address", { ns: "forms" })}
         </h2>
       </div>
       <Formik
@@ -143,9 +151,9 @@ function AddressForm({ disabled, setShowError }) {
                 ))}
                 <div className="flex flex-row gap-5">
                   <button
-                      onClick={() =>
-                        addressSaved ? setShouldShowAddress(true) : setIsPressed(false)
-                      }
+                    onClick={() =>
+                      addressSaved ? setShouldShowAddress(true) : setIsPressed(false)
+                    }
                     className={`
                      hover:opacity-80 
                      transition 
@@ -187,20 +195,24 @@ function AddressForm({ disabled, setShowError }) {
   );
 }
 
-export const AddressInfo = ({ disabled, addressInfo, setShouldShowAddress }) => {
+export const BillingAddressInfo = ({
+  disabled,
+  addressInfo,
+  setShouldShowAddress,
+}) => {
   const { t } = useTranslation(["profile", "buttons"]);
   return (
     <div>
       <div className="flex items-center gap-2 mb-2">
         <div className="bg-gradient-to-r from-[#0ba360] to-[#3cba92] w-8 h-8 rounded-full flex items-center justify-center">
-          <FontAwesomeIcon color="#EEEEEE" icon={faLocationDot} />
+          <FontAwesomeIcon color="#EEEEEE" icon={faCircleDollarToSlot} />
         </div>
         <h2 className="text-offWhite text-xl font-semibold">
-          {t("address", { ns: "forms" })}
+          {t("billing_address", { ns: "forms" })}
         </h2>
       </div>
       <div className="relative">
-      <button
+        <button
           className={`${
             disabled ? "pointer-events-none" : "pointer-events-auto"
           }
@@ -222,10 +234,12 @@ export const AddressInfo = ({ disabled, addressInfo, setShouldShowAddress }) => 
 
         <div
           className={`${
-            disabled ? "opacity-60 pointer-events-none border-[0px]" : "opacity-100 border-[2px] border-neonGreen"
+            disabled
+              ? "opacity-60 pointer-events-none border-[0px]"
+              : "opacity-100 border-[2px] border-neonGreen"
           } bg-offWhite p-4 rounded-md flex flex-col gap-1 transition ease-in-out`}
         >
-          {addressInfo.company && <div>{`${addressInfo.company}`}</div>}
+          {addressInfo?.company && <div>{`${addressInfo.company}`}</div>}
           <div className="text-[#151718]">{addressInfo.city}</div>
           <div className="text-[#151718]">{`${addressInfo.postalCode}`}</div>
           <div className="text-[#151718]">{`${addressInfo.street} ${addressInfo.streetNumber}`}</div>
@@ -235,4 +249,4 @@ export const AddressInfo = ({ disabled, addressInfo, setShouldShowAddress }) => 
   );
 };
 
-export default AddressForm;
+export default BillingAddressForm;

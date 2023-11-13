@@ -3,40 +3,57 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/store/hooks";
-import { selectOfficeAddress, updateOfficeAddress } from "@/store/userSlice";
+import { selectUserAddress, updateAddress } from "@/store/userSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
-import { ToastContainer } from "react-toastify";
-import { faLocationDot, faTruck } from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import AddInfoButton from "./AddInfoButton";
+import { FormProps } from "@/models/forms";
 
-function OfficeAddressForm({ disabled, setShowError }) {
+function AddressForm({ disabled, setShowError }: FormProps) {
   const dispatch = useDispatch();
   const { t } = useTranslation(["profile", "buttons", "forms"]);
-  const officeAddressInfo = useAppSelector(selectOfficeAddress);
+  const addressInfo = useAppSelector(selectUserAddress);
   const [isPressed, setIsPressed] = useState(false);
   const [shouldShowAddress, setShouldShowAddress] = useState(
-    officeAddressInfo ? true : false
+    addressInfo ? true : false
   );
 
   const labels = {
-    officeAddress: t("officeAddress", { ns: "forms" }),
+    company: t("company", { ns: "forms" }),
+    street: t("street", { ns: "forms" }),
+    streetNumber: t("streetNumber", { ns: "forms" }),
+    houseNumber: t("houseNumber", { ns: "forms" }),
+    city: t("city", { ns: "forms" }),
+    postalCode: t("postalCode", { ns: "forms" }),
   };
 
   const initialValues = {
-    officeAddress: officeAddressInfo?.officeAddress ?? "",
+    city: addressInfo?.city ?? "",
+    company: addressInfo?.company ?? "",
+    street: addressInfo?.street ?? "",
+    streetNumber: addressInfo?.streetNumber ?? "",
+    houseNumber: addressInfo?.houseNumber ?? "",
+    postalCode: addressInfo?.postalCode ?? "",
   };
 
   const [address, setAddress] = useState({ ...initialValues });
 
   const isEmptyAddress = Object.values(address).every((k) => k.length < 1);
-  const addressSaved = !!officeAddressInfo;
+  const addressSaved = !!addressInfo
 
   const validationSchema = Yup.object().shape({
-    officeAddress: Yup.string()
-      .required(t("officeAddress_required", { ns: "forms" }))
-      .min(10, t("officeAddress_min", { ns: "forms" })),
+    company: Yup.string().optional(),
+    city: Yup.string()
+      .required(t("city_required", { ns: "forms" }))
+      .min(4, t("city_min", { ns: "forms" })),
+    street: Yup.string().required(t("street_required", { ns: "forms" })),
+    streetNumber: Yup.string().required(
+      t("streetNumber_required", { ns: "forms" })
+    ),
+    houseNumber: Yup.string().required(t("house_required", { ns: "forms" })),
+    postalCode: Yup.string().required(t("postal_required", { ns: "forms" })),
   });
 
   //=========================== Handler Functions START ============================//
@@ -46,48 +63,40 @@ function OfficeAddressForm({ disabled, setShowError }) {
   };
 
   const handleSubmit = async () => {
-    dispatch(updateOfficeAddress(address));
+    dispatch(updateAddress(address));
+
     setShouldShowAddress(true);
-    setShowError(false);
 
-    toast.success(t("address_saved", { ns: "buttons" }), {
-      position: "bottom-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-
+    setShowError?.(false);
     // Perform registration logic here
   };
+
+
+  
 
   //=========================== Handler Functions END ============================//
 
   if (shouldShowAddress)
     return (
-      <OfficeAddressInfo
-        disabled={disabled}
-        officeAddressInfo={officeAddressInfo}
+      <AddressInfo
+      disabled={disabled}
+        addressInfo={addressInfo}
         setShouldShowAddress={setShouldShowAddress}
       />
     );
 
-    if (!shouldShowAddress && !isPressed && !officeAddressInfo) {
-      return <AddInfoButton label={"officeAddress"} onPress={() => setIsPressed(!isPressed)}/>
+    if (!shouldShowAddress && !isPressed && !addressInfo) {
+      return <AddInfoButton label={"address"} onPress={() => setIsPressed(!isPressed)}/>
     }
 
   return (
     <div className="bg-gradient-to-r from-[#0ba360] to-[#3cba92] flex-1 flex-column space-y-2 p-[40px] shadow-md border-zinc-700 rounded-sm">
-      <ToastContainer />
       <div className="flex items-center gap-2 mb-2 justify-center">
         <div>
           <FontAwesomeIcon color="#EEEEEE" icon={faLocationDot} />
         </div>
         <h2 className="font-semibold text-xl text-[#F8F1F1]">
-          {t("officeAddress", { ns: "forms" })}
+          {t("address", { ns: "forms" })}
         </h2>
       </div>
       <Formik
@@ -124,22 +133,22 @@ function OfficeAddressForm({ disabled, setShowError }) {
                 ))}
                 <div className="flex flex-row gap-5">
                   <button
-                    onClick={() =>
-                      addressSaved ? setShouldShowAddress(true) : setIsPressed(!isPressed)
-                    }
+                      onClick={() =>
+                        addressSaved ? setShouldShowAddress(true) : setIsPressed(false)
+                      }
                     className={`
-                   hover:opacity-80
-                   transition 
-                   ease-in-out"
-                   md:mr-auto 
-                   md:ml-0 
-                   min-h-[50px] 
-                   bg-[#181516] 
-                   rounded-[4px] 
-                   md:max-w-[450px] 
-                   w-full 
-                   text-offWhite
-                   `}
+                     hover:opacity-80 
+                     transition 
+                     ease-in-out
+                     md:mr-auto 
+                     md:ml-0
+                     min-h-[50px] 
+                    bg-[#181516] 
+                     rounded-[4px] 
+                     md:max-w-[450px] 
+                     w-full 
+                    text-offWhite
+                    `}
                     type="button"
                   >
                     {t("cancel", { ns: "buttons" })}
@@ -168,24 +177,20 @@ function OfficeAddressForm({ disabled, setShowError }) {
   );
 }
 
-export const OfficeAddressInfo = ({
-  disabled,
-  officeAddressInfo,
-  setShouldShowAddress,
-}) => {
+export const AddressInfo = ({ disabled, addressInfo, setShouldShowAddress }) => {
   const { t } = useTranslation(["profile", "buttons"]);
   return (
     <div>
       <div className="flex items-center gap-2 mb-2">
         <div className="bg-gradient-to-r from-[#0ba360] to-[#3cba92] w-8 h-8 rounded-full flex items-center justify-center">
-          <FontAwesomeIcon color="#EEEEEE" icon={faTruck} />
+          <FontAwesomeIcon color="#EEEEEE" icon={faLocationDot} />
         </div>
         <h2 className="text-offWhite text-xl font-semibold">
-          {t("officeAddress", { ns: "forms" })}
+          {t("address", { ns: "forms" })}
         </h2>
       </div>
       <div className="relative">
-        <button
+      <button
           className={`${
             disabled ? "pointer-events-none" : "pointer-events-auto"
           }
@@ -207,18 +212,17 @@ export const OfficeAddressInfo = ({
 
         <div
           className={`${
-            disabled
-              ? "opacity-60 pointer-events-none"
-              : "opacity-100 border-[2px] border-neonGreen"
-          } bg-offWhite p-4 rounded-md flex flex-col gap-1`}
+            disabled ? "opacity-60 pointer-events-none border-[0px]" : "opacity-100 border-[2px] border-neonGreen"
+          } bg-offWhite p-4 rounded-md flex flex-col gap-1 transition ease-in-out`}
         >
-          <div className="text-[#151718]">
-            {officeAddressInfo.officeAddress}
-          </div>
+          {addressInfo.company && <div>{`${addressInfo.company}`}</div>}
+          <div className="text-[#151718]">{addressInfo.city}</div>
+          <div className="text-[#151718]">{`${addressInfo.postalCode}`}</div>
+          <div className="text-[#151718]">{`${addressInfo.street} ${addressInfo.streetNumber}`}</div>
         </div>
       </div>
     </div>
   );
 };
 
-export default OfficeAddressForm;
+export default AddressForm;

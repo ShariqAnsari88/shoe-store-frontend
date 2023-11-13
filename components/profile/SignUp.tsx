@@ -28,7 +28,7 @@ function SignUp() {
       .min(8, "Паролата трябва да бъде поне 8 символа.")
       .required("Моля въведете парола."),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), null], "Паролите не съвпадат.")
+      .oneOf([Yup.ref("password"), undefined], "Паролите не съвпадат.")
       .required("Моля потвърдете паролата."),
   });
 

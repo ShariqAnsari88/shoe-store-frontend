@@ -1,12 +1,13 @@
 import HeroBanner from "../HeroBanner";
 import ProductCard from "../ProductCard";
-import Wrapper from "../Wrapper";
+
 import SubscribeDialog from "../SubscribeDialog";
 import { ToastContainer } from "react-toastify";
 import { useTranslation } from "next-i18next";
 import ClimateSection from "../ClimateSection";
+import Wrapper from "../Wrapper";
 
-export default function HomePage({ products, shirts, productsNoShirt }) {
+export default function HomePage({ shirts, productsNoShirt }) {
   const { t } = useTranslation("common");
 
   return (
@@ -14,6 +15,7 @@ export default function HomePage({ products, shirts, productsNoShirt }) {
       <ToastContainer />
       <SubscribeDialog />
       <Wrapper>
+        <>
         <HeroBanner />
         <div className="bg-offWhite relative flex flex-col flex-1 p-6 mb-12 rounded-md gap-6 bg-opacity-90">
           <div className="rounded-md z-1 text-center">
@@ -41,6 +43,7 @@ export default function HomePage({ products, shirts, productsNoShirt }) {
             ))}
           </div>
         )}
+        </>
       </Wrapper>
       <ClimateSection />
     </>

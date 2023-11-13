@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
@@ -10,11 +10,12 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faUser } from "@fortawesome/free-regular-svg-icons";
 import { emailRegex } from "@/utils/regex";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import AddInfoButton from "./AddInfoButton";
+import { FormProps } from "@/models/forms";
 
-function CredentialsForm({ disabled, setShowError }) {
+function CredentialsForm({ disabled, setShowError }: FormProps) {
   const dispatch = useDispatch();
   const { t } = useTranslation(["profile", "buttons", "forms"]);
   const credentialsInfo = useAppSelector(selectUserCredentials);
@@ -69,7 +70,7 @@ function CredentialsForm({ disabled, setShowError }) {
 
     setShouldShowCredentialsInfo(true);
 
-    setShowError(false);
+    setShowError?.(false);
 
     toast.success(t("credentials_saved", { ns: "buttons" }), {
       position: "bottom-right",

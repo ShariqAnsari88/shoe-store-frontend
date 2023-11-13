@@ -12,7 +12,7 @@ const ProductCard = ({
   border,
 }) => {
   const { t } = useTranslation("common");
-  const discount = getDiscountedPricePercentage(p.original_price, p.price);
+  const discount = Number(getDiscountedPricePercentage(p.original_price, p.price));
   const router = useRouter();
   const { locale } = router;
   const { currency } = useCurrency();
@@ -62,7 +62,7 @@ const ProductCard = ({
       >
         {disabled && <div className="inset-0 absolute bg-white opacity-50" />}
         <Image
-          className={`bg-cover bg-white`}
+          className={`bg-cover`}
           width={isCarouselCard ? 250 : 400}
           height={isCarouselCard ? 250 : 400}
           src={p.thumbnail.data.attributes.url}

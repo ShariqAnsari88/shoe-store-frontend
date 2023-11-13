@@ -6,7 +6,6 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import Container from "@/components/Container";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-const maxResult = 3;
 
 const Category = ({ category, products, slug }) => {
   const [pageIndex, setPageIndex] = useState(1);

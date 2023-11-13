@@ -28,7 +28,7 @@ const ForgotPassword = () => {
       .min(8, t("password_min", { ns: "forms" }))
       .required(t("password_required", { ns: "forms" })),
     passwordConfirmation: Yup.string()
-      .oneOf([Yup.ref("password"), null], t("password_match", { ns: "forms" }))
+      .oneOf([Yup.ref("password"), undefined], t("password_match", { ns: "forms" }))
       .required(t("password_confirm", { ns: "forms" })),
   });
 

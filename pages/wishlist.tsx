@@ -15,7 +15,7 @@ const Wishlist = () => {
     <Container>
       <div className="w-full md:py-20">
         <Wrapper>
-          {wishlistItems.length > 0 && (
+          {wishlistItems && wishlistItems?.length > 0 && (
             <>
               {/* HEADING AND PARAGRAPH START */}
               <div className="text-center max-w-[800px] mx-auto mt-8 md:mt-0">

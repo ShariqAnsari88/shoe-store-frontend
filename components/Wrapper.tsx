@@ -1,6 +1,11 @@
 import React from "react";
 
-const Wrapper = ({ children, className }) => {
+interface WrapperProps {
+    className?: string
+    children: JSX.Element | JSX.Element[]
+}
+
+const Wrapper = ({ children, className }: WrapperProps) => {
     return (
         <div
             className={`w-full max-w-[1280px] px-5 md:px-10 mx-auto ${
