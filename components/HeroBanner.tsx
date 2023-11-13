@@ -3,9 +3,9 @@ import slideImage1 from "../public/carousel_images/carousel_1-min.jpg";
 import slideImage2 from "../public/carousel_images/carousel_2-min.jpg";
 import slideImage3 from "../public/carousel_images/carousel_3-min.jpg";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "@material-tailwind/react";
 
 import Image from "next/image";
+import { Carousel } from "@material-tailwind/react/components/Carousel";
 
 const HeroBanner = () => {
   const images = [slideImage1, slideImage2, slideImage3];
@@ -33,6 +33,7 @@ const HeroBanner = () => {
       >
         {images.map((item, index) => (
           <Image
+            priority={index === 0 ? true : false}
             alt="img"
             key={index}
             src={item}

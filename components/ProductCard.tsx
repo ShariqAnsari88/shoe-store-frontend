@@ -12,7 +12,9 @@ const ProductCard = ({
   border,
 }) => {
   const { t } = useTranslation("common");
-  const discount = Number(getDiscountedPricePercentage(p.original_price, p.price));
+  const discount = Number(
+    getDiscountedPricePercentage(p.original_price, p.price)
+  );
   const router = useRouter();
   const { locale } = router;
   const { currency } = useCurrency();
@@ -57,7 +59,10 @@ const ProductCard = ({
         </div>
       )}
       <div
-        className={` ${isCarouselCard && "sm:border-[2px] sm:border-white sm:w-[250px] sm:min-h-[500px]"} 
+        className={` ${
+          isCarouselCard &&
+          "sm:border-[2px] sm:border-white sm:w-[250px] sm:min-h-[500px]"
+        } 
         ${border ?? "border-[2px] border-white"}`}
       >
         {disabled && <div className="inset-0 absolute bg-white opacity-50" />}

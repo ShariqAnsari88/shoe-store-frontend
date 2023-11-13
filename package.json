@@ -30,6 +30,8 @@
         "eslint": "8.34.0",
         "eslint-config-next": "^14.0.1",
         "formik": "^2.4.2",
+        "framer-motion": "^10.16.4",
+        "gsap": "^3.12.2",
         "i18next": "^23.6.0",
         "js-cookie": "^3.0.5",
         "next": "^14.0.1",
