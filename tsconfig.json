@@ -31,7 +31,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "store/store.ts", "pages/cart.js"  ],
+, "store/store.ts", "pages/cart.js", "pages/product/[slug].jsx"  ],
   "exclude": [
     "node_modules"
   ]

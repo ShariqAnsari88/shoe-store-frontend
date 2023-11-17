@@ -35,7 +35,7 @@ export const rootReducer = configureStore({
 			serializableCheck: {
 				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
 			},
-			thunk,
+			// thunk,
 		}),
 })
 
