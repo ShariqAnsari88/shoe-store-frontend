@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */ 
 import {
 	faCartShopping,
 	faCreditCard,
@@ -33,7 +34,6 @@ import {
 } from '@/store/userSlice'
 
 const Cart = (props) => {
-	// eslint-disable-next-line react/prop-types
 	const user = props.user.username
 	const router = useRouter()
 	const { locale } = router
@@ -52,7 +52,7 @@ const Cart = (props) => {
 	const currency = locale !== 'bg' ? 'BGN' : 'ЛВ'
 
 	const subTotal = useMemo(() => {
-		return cartItems.reduce((total, val) => total + val.attributes.price, 0)
+		return cartItems.reduce((total, val) => total + val?.attributes.price, 0)
 	}, [cartItems])
 
 	const paymentDisabled = useMemo(() => {

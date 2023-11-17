@@ -10,15 +10,7 @@ import { makePaymentRequest } from '@/utils/api'
 
 export const handlePayment = createAsyncThunk<
   void,
-  {
-    paymentMethod;
-    products;
-    addressInfo;
-    billingAddressInfo;
-    credentialsInfo;
-    user;
-    totalPrice;
-  }
+  unknown
 >(
 	'payments/handlePayment',
 	async ({
