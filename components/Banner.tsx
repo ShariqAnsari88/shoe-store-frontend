@@ -64,10 +64,10 @@ export default function Banner() {
 					>
 						<circle cx={1} cy={1} r={1} />
 					</svg>
-					<p className="text-sm leading-6 text-gray-900">{t('description')}</p>
+					<p className="text-sm leading-6 text-gray-900 uppercase">{t('description')}</p>
 				</div>
 				<div className="lowercase cursor-pointer flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-phlatt-9000 text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900">
-          50 {currency}
+          50 {currency.toUpperCase()}
 				</div>
 			</div>
 			<div className="flex flex-1 justify-end">
