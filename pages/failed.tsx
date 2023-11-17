@@ -35,7 +35,7 @@ const Failed = () => {
 						{t('title_failed')}
 					</div>
 					<div className="text-base mt-5 text-offWhite">{t('description')}</div>
-					<div className="underline text-offWhite">troyka@gmail.com</div>
+					<div className="underline text-offWhite">info.troyka@gmail.com</div>
 
 					<Link
 						href="/"
