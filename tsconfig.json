@@ -31,7 +31,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "store/store.ts"  ],
   "exclude": [
     "node_modules"
   ]

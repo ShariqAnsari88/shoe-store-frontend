@@ -1,7 +1,7 @@
 module.exports = function (api) {
-    return {
-      plugins: ['macros'],
-      presets: ["@babel/preset-react"]
-    }
-  }
+	return {
+		plugins: ['macros'],
+		presets: ['@babel/preset-react']
+	}
+}
   

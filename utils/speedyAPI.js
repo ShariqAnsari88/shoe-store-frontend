@@ -1,22 +1,22 @@
-import axios from "axios";
+import axios from 'axios'
 
 const APIHeaders = {
-  "Content-Type": "application/json",
-};
+	'Content-Type': 'application/json',
+}
 
 export const API = axios.create({
-  baseL: process.env.SPEEDY_API_URL,
-  headers: APIHeaders,
-});
+	baseL: process.env.SPEEDY_API_URL,
+	headers: APIHeaders,
+})
 
 export const getAllOffices = async () => {
-  try {
-    const result = await API.get(
-      `/location/office/?username=tsvetomir.uzunoff@gmail.com&password=9908113506Narutos22&country_id=100`
-    );
-    return result.data
+	try {
+		const result = await API.get(
+			'/location/office/?username=tsvetomir.uzunoff@gmail.com&password=9908113506Narutos22&country_id=100'
+		)
+		return result.data
     
-  } catch (error) {
-    return error;
-  }
-};
+	} catch (error) {
+		return error
+	}
+}
