@@ -57,8 +57,13 @@ const Cart = (props) => {
 
 	const paymentDisabled = useMemo(() => {
 		if (!credentialsInfo || !addressInfo ) return true
-
+		
 		if (deliveryOption === 'home') {
+			if (!addressInfo) return true
+			return false
+		}
+
+		if(deliveryOption === 'office'){
 			if (!officeAddressInfo) return true
 			return false
 		}
