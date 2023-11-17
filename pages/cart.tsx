@@ -10,7 +10,6 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { memo, useMemo, useState } from 'react'
-import { useSelector } from 'react-redux'
 
 import SelectAddress from '@/components/cart/SelectAddress'
 import CartItem from '@/components/CartItem'
@@ -46,7 +45,7 @@ const Cart = (props) => {
 	const officeAddressInfo = useAppSelector(selectOfficeAddress)
 	const credentialsInfo = useAppSelector(selectUserCredentials)
 	const billingAddressInfo = useAppSelector(selectBillingAddress)
-	const { cartItems } = useSelector((state) => state.cart)
+	const { cartItems } = useAppSelector((state) => state?.cart)
 	const [deliveryOption, setDeliveryOption] = useState('home')
 
 	const deliveryPrice = deliveryOption === 'office' ? 5 : 7.5

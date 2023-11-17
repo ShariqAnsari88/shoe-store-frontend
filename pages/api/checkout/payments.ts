@@ -8,10 +8,28 @@ import { loadStripe } from '@stripe/stripe-js'
 
 import { makePaymentRequest } from '@/utils/api'
 
-
-export const handlePayment = createAsyncThunk(
+export const handlePayment = createAsyncThunk<
+  void,
+  {
+    paymentMethod;
+    products;
+    addressInfo;
+    billingAddressInfo;
+    credentialsInfo;
+    user;
+    totalPrice;
+  }
+>(
 	'payments/handlePayment',
-	async ({ paymentMethod, products, addressInfo,billingAddressInfo, credentialsInfo, user, totalPrice }) => {
+	async ({
+		paymentMethod,
+		products,
+		addressInfo,
+		billingAddressInfo,
+		credentialsInfo,
+		user,
+		totalPrice,
+	}) => {
 		if (paymentMethod === 'card') {
 			try {
 				const stripe = await stripePromise
@@ -27,11 +45,14 @@ export const handlePayment = createAsyncThunk(
 					totalPrice,
 				})
 
-				await stripe.redirectToCheckout({
-					sessionId: res.stripeSession.id,
-				})
+				if (stripe) {
+					await stripe.redirectToCheckout({
+						sessionId: res.stripeSession.id,
+					})
+				}
 			} catch (error) {
 				console.log(error, 'Error handling card payment')
+				return error
 			}
 		} else {
 			try {
