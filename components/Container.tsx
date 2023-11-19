@@ -8,11 +8,11 @@ interface ContainerProps {
 }
 
 export default function Container({ children }: ContainerProps) {
-	return (
-		<div>
-			<Header />
-			{children}
-			<Footer />
-		</div>
-	)
+  return (
+    <div>
+      <Header />
+      {children}
+      <Footer />
+    </div>
+  )
 }
