@@ -1,15 +1,22 @@
-// import { NextPage, GetStaticProps } from 'next'
+import { NextPage, GetStaticProps } from 'next'
 
-// interface Props {}
+import FeaturedBlog from '@/components/blog/FeaturedBlog'
+import Wrapper from '@/components/Wrapper'
 
-// const Blog: NextPage<Props> = ({}) => {
-//   return <div></div>
-// }
+interface Props {}
 
-// export const getStaticProps: GetStaticProps = async (ctx) => {
-//   return {
-//     props: {}
-//   }
-// }
+// eslint-disable-next-line no-empty-pattern
+const Blog: NextPage<Props> = ({}) => {
+  return <Wrapper>
+    <FeaturedBlog />
+  </Wrapper>
+}
 
-// export default Blog
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const { locale } = ctx
+  return {
+    props: {}
+  }
+}
+
+export default Blog

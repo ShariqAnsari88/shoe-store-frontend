@@ -32,8 +32,6 @@ module.exports = {
   'plugins': [ '@typescript-eslint', 'react', 'prettier', 'import', '@stylistic' ],
   'rules': {
     '@stylistic/indent': [ 'warn', 2 ],
-    // '@stylistic/jsx/jsx-indent': [ 'error', 2 ],
-    // 'indent': [ 'warn', 'tab' ],
     '@stylistic/space-before-blocks': 'warn',
     '@stylistic/brace-style': 'warn',
     '@stylistic/function-call-argument-newline': [ 'warn','consistent' ],
@@ -43,6 +41,7 @@ module.exports = {
     '@stylistic/no-multi-spaces': 'error',
     '@stylistic/max-statements-per-line': [ 'warn', { 'max': 5 } ],
 
+    '@typescript-eslint/no-unused-vars': 'warn',
     'linebreak-style': [ 'error', 'unix' ],
     'quotes': [ 'warn', 'single' ],
     'semi': [ 'warn', 'never' ],
