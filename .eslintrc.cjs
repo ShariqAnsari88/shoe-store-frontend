@@ -31,7 +31,7 @@ module.exports = {
   },
   'plugins': [ '@typescript-eslint', 'react', 'prettier', 'import', '@stylistic' ],
   'rules': {
-    '@stylistic/indent': [ 'error', 2 ],
+    '@stylistic/indent': [ 'warn', 2 ],
     // '@stylistic/jsx/jsx-indent': [ 'error', 2 ],
     // 'indent': [ 'warn', 'tab' ],
     '@stylistic/space-before-blocks': 'warn',

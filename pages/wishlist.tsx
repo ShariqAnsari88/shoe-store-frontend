@@ -10,57 +10,57 @@ import { selectWishlistItems } from '@/store/wishlistSlice'
 
 
 const Wishlist = () => {
-	const { t } = useTranslation('wishlist')
-	const wishlistItems = useAppSelector(selectWishlistItems)
+  const { t } = useTranslation('wishlist')
+  const wishlistItems = useAppSelector(selectWishlistItems)
 
-	return (
-		<Container>
-			<div className="w-full md:py-20">
-				<Wrapper>
-					{wishlistItems && wishlistItems?.length > 0 && (
-						<>
-							{/* HEADING AND PARAGRAPH START */}
-							<div className="text-center max-w-[800px] mx-auto mt-8 md:mt-0">
-								<div className="text-offWhite text-[28px] md:text-[34px] mb-5 font-semibold leading-tight">
-									{t('favourite')}
-								</div>
-							</div>
-							{/* HEADING AND PARAGRAPH END */}
+  return (
+    <Container>
+      <div className="w-full md:py-20">
+        <Wrapper>
+          {wishlistItems && wishlistItems?.length > 0 && (
+            <>
+              {/* HEADING AND PARAGRAPH START */}
+              <div className="text-center max-w-[800px] mx-auto mt-8 md:mt-0">
+                <div className="text-offWhite text-[28px] md:text-[34px] mb-5 font-semibold leading-tight">
+                  {t('favourite')}
+                </div>
+              </div>
+              {/* HEADING AND PARAGRAPH END */}
 
-							{/* CART CONTENT START */}
-							{/* CART ITEMS START */}
-							<div className="flex flex-1">
-								<div className="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-4 gap-5 my-14 px-5 md:px-0">
-									{wishlistItems.map((item) => (
-										<WishlistItem key={item.id} wishlistItem={item} />
-									))}
-								</div>
-							</div>
-							{/* CART ITEMS END */}
-							{/* CART CONTENT END */}
-						</>
-					)}
+              {/* CART CONTENT START */}
+              {/* CART ITEMS START */}
+              <div className="flex flex-1">
+                <div className="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-4 gap-5 my-14 px-5 md:px-0">
+                  {wishlistItems.map((item) => (
+                    <WishlistItem key={item.id} wishlistItem={item} />
+                  ))}
+                </div>
+              </div>
+              {/* CART ITEMS END */}
+              {/* CART CONTENT END */}
+            </>
+          )}
 
-					{/* This is empty screen */}
-					{wishlistItems.length < 1 && <WishlistEmpty />}
-				</Wrapper>
-			</div>
-		</Container>
-	)
+          {/* This is empty screen */}
+          {wishlistItems.length < 1 && <WishlistEmpty />}
+        </Wrapper>
+      </div>
+    </Container>
+  )
 }
 
 export default Wishlist
 
 export async function getStaticProps({ locale }) {
-	return {
-		props: {
-			...(await serverSideTranslations(locale, [
-				'footer',
-				'nav',
-				'wishlist',
-				'buttons',
-				'banner'
-			])),
-		},
-	}
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'footer',
+        'nav',
+        'wishlist',
+        'buttons',
+        'banner'
+      ]))
+    }
+  }
 }

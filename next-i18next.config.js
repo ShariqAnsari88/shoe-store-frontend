@@ -3,12 +3,12 @@
 const path = require('path')
 
 module.exports = {
-	i18n: {
-		defaultLocale: 'bg',
-		locales: ['en', 'bg', 'it'],
-		localePath: path.resolve('./public/locales'),
-		reloadOnPrerender: process.env.NODE_ENV === 'development',
-		localeDetection: false,
-		localePrefix: 'never',
-	},
+  i18n: {
+    defaultLocale: 'bg',
+    locales: [ 'en', 'bg', 'it' ],
+    localePath: path.resolve('./public/locales'),
+    reloadOnPrerender: process.env.NODE_ENV === 'development',
+    localeDetection: false,
+    localePrefix: 'never'
+  }
 }

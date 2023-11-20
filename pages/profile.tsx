@@ -19,104 +19,104 @@ import { fetchDataFromApi } from '@/utils/api'
 import { logOut } from '@/utils/auth'
 
 function ProfilePage(props) {
-	// eslint-disable-next-line react/prop-types
-	const { userData, ordersData } = props
-	const [choice, setChoice] = useState('login')
-	const { t } = useTranslation(['profile', 'buttons'])
-	const orders = ordersData?.data
-	const hasOrders = orders?.length > 0
-	const [openModal, setOpenModal] = useState(false)
-	const handleChoice = () => setChoice('signup')
+  // eslint-disable-next-line react/prop-types
+  const { userData, ordersData } = props
+  const [ choice, setChoice ] = useState('login')
+  const { t } = useTranslation([ 'profile', 'buttons' ])
+  const orders = ordersData?.data
+  const hasOrders = orders?.length > 0
+  const [ openModal, setOpenModal ] = useState(false)
+  const handleChoice = () => setChoice('signup')
 
-	if (userData.jwt)
-		return (
-			<Container>
-				<div className="min-h-[650px] mt-8 flex mb-10 md:mb-0">
-					{openModal && (
-						<Modal logOut={logOut} close={() => setOpenModal(false)} />
-					)}
-					<div className="w-full mx-2">
-						<div className="grid grid-cols-1 gap-10 md:gap-0 md:grid-cols-2 md:py-4 h-full">
-							<div className="flex flex-col gap-10 md:border-r-[1px] px-4 mx-auto w-full">
-								<CredentialsForm />
-								<AddressForm />
-								<BillingAddressForm />
-								<OfficeAddressForm />
-								<button
-									onClick={() => {
-										setOpenModal(true)
-									}}
-									className={
-										'hover:opacity-80 transition-opacity ease-in-out mx-auto min-h-[50px] border-dashed border-[2px] bg-[#151718] rounded-[4px] md:max-w-[250px] w-full text-offWhite'
-									}
-									type="button"
-								>
-									{t('log_out', { ns: 'buttons' })}
-								</button>
-							</div>
-							<div className="flex flex-col px-4">
-								<h3 className="font-semibold mb-4 text-center">
-									{t('my_orders')}
-								</h3>
+  if (userData.jwt)
+    return (
+      <Container>
+        <div className="min-h-[650px] mt-8 flex mb-10 md:mb-0">
+          {openModal && (
+            <Modal logOut={logOut} close={() => setOpenModal(false)} />
+          )}
+          <div className="w-full mx-2">
+            <div className="grid grid-cols-1 gap-10 md:gap-0 md:grid-cols-2 md:py-4 h-full">
+              <div className="flex flex-col gap-10 md:border-r-[1px] px-4 mx-auto w-full">
+                <CredentialsForm />
+                <AddressForm />
+                <BillingAddressForm />
+                <OfficeAddressForm />
+                <button
+                  onClick={() => {
+                    setOpenModal(true)
+                  }}
+                  className={
+                    'hover:opacity-80 transition-opacity ease-in-out mx-auto min-h-[50px] border-dashed border-[2px] bg-[#151718] rounded-[4px] md:max-w-[250px] w-full text-offWhite'
+                  }
+                  type="button"
+                >
+                  {t('log_out', { ns: 'buttons' })}
+                </button>
+              </div>
+              <div className="flex flex-col px-4">
+                <h3 className="font-semibold mb-4 text-center">
+                  {t('my_orders')}
+                </h3>
 
-								{hasOrders && (
-									<div className="flex flex-col gap-2 overflow-y-scroll max-h-[800px]">
-										{orders.map((order, index) => (
-											<OrderItem key={index} {...order.attributes} />
-										))}
-									</div>
-								)}
+                {hasOrders && (
+                  <div className="flex flex-col gap-2 overflow-y-scroll max-h-[800px]">
+                    {orders.map((order, index) => (
+                      <OrderItem key={index} {...order.attributes} />
+                    ))}
+                  </div>
+                )}
 
-								{!hasOrders && <EmptyOrders />}
-							</div>
-						</div>
-					</div>
-				</div>
-			</Container>
-		)
+                {!hasOrders && <EmptyOrders />}
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    )
 
-	return (
-		<Container>
-			<div className="min-h-[650px] mt-8 flex">
-				<Wrapper>
-					<>
-						{choice === 'login' && (
-							<AuthSelector choice={choice} setChoice={handleChoice} />
-						)}
-						{choice === 'signup' && <SignUp />}
-					</>
-				</Wrapper>
-			</div>
-		</Container>
-	)
+  return (
+    <Container>
+      <div className="min-h-[650px] mt-8 flex">
+        <Wrapper>
+          <>
+            {choice === 'login' && (
+              <AuthSelector choice={choice} setChoice={handleChoice} />
+            )}
+            {choice === 'signup' && <SignUp />}
+          </>
+        </Wrapper>
+      </div>
+    </Container>
+  )
 }
 
 export default ProfilePage
 
 export async function getServerSideProps(ctx) {
-	const userData = getUser(ctx)
-	const { locale } = ctx
-	const { username } = userData
+  const userData = getUser(ctx)
+  const { locale } = ctx
+  const { username } = userData
 
-	let ordersData = await fetchDataFromApi(
-		`/api/orders?filters[user][$eq]=${username}`,
-	)
+  let ordersData = await fetchDataFromApi(
+    `/api/orders?filters[user][$eq]=${username}`
+  )
 
-	if (ordersData.data.length < 1) ordersData = null
+  if (ordersData.data.length < 1) ordersData = null
 
-	return {
-		props: {
-			userData,
-			ordersData,
-			...(await serverSideTranslations(locale, [
-				'profile',
-				'footer',
-				'nav',
-				'buttons',
-				'modals',
-				'forms',
-				'banner',
-			])),
-		},
-	}
+  return {
+    props: {
+      userData,
+      ordersData,
+      ...(await serverSideTranslations(locale, [
+        'profile',
+        'footer',
+        'nav',
+        'buttons',
+        'modals',
+        'forms',
+        'banner'
+      ]))
+    }
+  }
 }

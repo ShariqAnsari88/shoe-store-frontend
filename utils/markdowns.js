@@ -1,5 +1,5 @@
 export const about = {
-	bg: `Добре дошъл в Troyka!\\
+  bg: `Добре дошъл в Troyka!\\
     \\
     Не сме типичният бранд за дрехи. Изцяло залагаме на премиум стрийтуеър с отличаваща се нотка. Базирани сме в България, но мечтите ни нямат граници!\\
     \\
@@ -11,7 +11,7 @@ export const about = {
     \\
     Изпитай удоволствието от дрехите. Изживяването ти с Troyka продължава…`,
 
-	it: `Welcome to Troyka! We're far from your typical clothing brand we're all about that premium streetwear with a unique twist. Although we call Bulgaria home, our aspirations know no borders.\\
+  it: `Welcome to Troyka! We're far from your typical clothing brand we're all about that premium streetwear with a unique twist. Although we call Bulgaria home, our aspirations know no borders.\\
     \\
     Our motto? “Omne Trium Perfectum”. Because great things come in threes! We believe in the power of the trio that drives the world of fashion: premium materials, A+ service, and a next-level experience is one tight package we always aim to deliver.\\
     \\
@@ -21,7 +21,7 @@ export const about = {
     \\
     Experience the pleasure of clothing. Your journey with Troyka continues…
     `,
-	en: `Welcome to Troyka! We're far from your typical clothing brand; we're all about that premium streetwear with a unique twist. Although we call Bulgaria home, our aspirations know no borders.\\
+  en: `Welcome to Troyka! We're far from your typical clothing brand; we're all about that premium streetwear with a unique twist. Although we call Bulgaria home, our aspirations know no borders.\\
     \\
     Our motto? “Omne Trium Perfectum”. Because great things come in threes! We believe in the power of the trio that drives the world of fashion: premium materials, A+ service, and a next-level experience is one tight package we always aim to deliver.\\
     \\

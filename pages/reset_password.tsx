@@ -1,47 +1,49 @@
-import Wrapper from "@/components/Wrapper";
-import { changePassword } from "@/utils/api";
-import { useRouter } from "next/router";
-import * as Yup from "yup";
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useState } from "react";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "next-i18next";
+import { ErrorMessage, Field, Form, Formik } from 'formik'
+import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useState } from 'react'
+import * as Yup from 'yup'
+
+import Wrapper from '@/components/Wrapper'
+import { changePassword } from '@/utils/api'
+
 
 const ForgotPassword = () => {
-  const router = useRouter();
-  const { t } = useTranslation(["forms", "buttons"]);
+  const router = useRouter()
+  const { t } = useTranslation([ 'forms', 'buttons' ])
 
-  const code = router.query?.code;
+  const code = router.query?.code
 
-  const [passwordInfo, setPasswordInfo] = useState({
-    password: "",
-    passwordConfirmation: "",
-  });
+  const [ passwordInfo, setPasswordInfo ] = useState({
+    password: '',
+    passwordConfirmation: ''
+  })
 
   const initialValues = {
-    password: "",
-    passwordConfirmation: "",
-  };
+    password: '',
+    passwordConfirmation: ''
+  }
 
   const validationSchema = Yup.object().shape({
     password: Yup.string()
-      .min(8, t("password_min", { ns: "forms" }))
-      .required(t("password_required", { ns: "forms" })),
+      .min(8, t('password_min', { ns: 'forms' }))
+      .required(t('password_required', { ns: 'forms' })),
     passwordConfirmation: Yup.string()
-      .oneOf([Yup.ref("password"), undefined], t("password_match", { ns: "forms" }))
-      .required(t("password_confirm", { ns: "forms" })),
-  });
+      .oneOf([ Yup.ref('password'), undefined ], t('password_match', { ns: 'forms' }))
+      .required(t('password_confirm', { ns: 'forms' }))
+  })
 
-  const isEmptyPassword = Object.values(passwordInfo).some((k) => k.length < 1);
+  const isEmptyPassword = Object.values(passwordInfo).some((k) => k.length < 1)
 
   const handleChange = (e) => {
-    setPasswordInfo({ ...passwordInfo, [e.target.name]: e.target.value });
-  };
+    setPasswordInfo({ ...passwordInfo, [e.target.name]: e.target.value })
+  }
 
   const handleSubmit = async () =>
     await changePassword({ ...passwordInfo, code })
-      .then(() => router.push("/profile"))
-      .catch((e) => console.error(e, "Error with request :/"));
+      .then(() => router.push('/profile'))
+      .catch((e) => console.error(e, 'Error with request :/'))
 
   return (
     <div className="min-h-[650px] mt-8 flex mb-10 md:mb-0">
@@ -65,7 +67,7 @@ const ForgotPassword = () => {
                         className="text-offWhite font-semibold text-lg"
                         htmlFor="password"
                       >
-                        {t("new_password", { ns: "forms" })}
+                        {t('new_password', { ns: 'forms' })}
                       </label>
                       <Field
                         className="border-offWhite"
@@ -87,7 +89,7 @@ const ForgotPassword = () => {
                         className="text-offWhite font-semibold text-lg"
                         htmlFor="passwordConfirmation"
                       >
-                        {t("confirm_password", { ns: "forms" })}
+                        {t('confirm_password', { ns: 'forms' })}
                       </label>
                       <Field
                         className="border-offWhite"
@@ -109,15 +111,15 @@ const ForgotPassword = () => {
                       className={`${
                         isValid &&
                         !isEmptyPassword &&
-                        "hover:opacity-80 transition-opacity ease-in-out"
+                        'hover:opacity-80 transition-opacity ease-in-out'
                       } md:mr-auto md:ml-0 min-h-[50px] bg-offWhite rounded-[4px] ${
                         isValid && !isEmptyPassword
-                          ? " opacity-100"
-                          : "opacity-30"
+                          ? ' opacity-100'
+                          : 'opacity-30'
                       } md:max-w-[450px] w-full text-[#181516]`}
                       type="submit"
                     >
-                      {t("send", { ns: "buttons" })}
+                      {t('send', { ns: 'buttons' })}
                     </button>
                   </div>
                 </Form>
@@ -127,18 +129,18 @@ const ForgotPassword = () => {
         </div>
       </Wrapper>
     </div>
-  );
-};
+  )
+}
 
-export default ForgotPassword;
+export default ForgotPassword
 
 export async function getServerSideProps(ctx) {
-  const { locale } = ctx;
+  const { locale } = ctx
 
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["forms", "buttons"])),
+      ...(await serverSideTranslations(locale, [ 'forms', 'buttons' ]))
       // Will be passed to the page component as props
-    },
-  };
+    }
+  }
 }
