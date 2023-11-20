@@ -23,7 +23,7 @@ const HeroBanner = () => {
             {new Array(length).fill('').map((_, i) => (
               <span
                 key={i}
-                className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
+                className={`block h-1 cursor-pointer rounded-2xl transition-all duration-300 content-[''] ${
                   activeIndex === i ? 'w-8 bg-white' : 'w-4 bg-white/50'
                 }`}
                 onClick={() => setActiveIndex(i)}

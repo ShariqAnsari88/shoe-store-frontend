@@ -13,16 +13,36 @@ const Menu = ({ showCatMenu, setShowCatMenu, categories }) => {
     { id: 2, name: t('about'), url: '/about' },
     { id: 3, name: t('category'), subMenu: true },
     { id: 4, name: t('contact'), url: '/contact' }
+    // { id: 4, name: t('blog'), url: '/blog' }
   ]
 
   return (
-    <ul className="hidden md:flex items-center justify-center gap-6 font-semibold text-[18px]">
+    <ul className="
+    hidden 
+    md:flex 
+    items-center 
+    justify-center 
+    gap-6 
+    font-semibold 
+    text-[18px]">
       {navItems.map((item) => {
         return (
           <React.Fragment key={item.id}>
             {item?.subMenu ? (
               <li
-                className="hover:bg-offWhite hover:text-darkBlack cursor-pointer p-2 transition ease-in-out flex items-center gap-2 relative"
+                className="hover:bg-offWhite 
+                hover:text-darkBlack 
+                cursor-pointer 
+                py-1.5
+                px-2
+                transition 
+                ease-in-out 
+                duration-300
+                rounded-sm 
+                flex 
+                items-center 
+                gap-2 
+                relative"
                 onMouseEnter={() => setShowCatMenu(true)}
                 onMouseLeave={() => setShowCatMenu(false)}
               >
@@ -30,7 +50,22 @@ const Menu = ({ showCatMenu, setShowCatMenu, categories }) => {
                 <BsChevronDown size={14} />
 
                 {showCatMenu && (
-                  <ul className="bg-offWhite absolute top-10 left-0 min-w-[250px] px-1 py-1 text-darkBlack shadow-lg">
+                  <ul className="
+                  bg-offWhite 
+                  flex
+                  flex-col
+                  gap-2
+                  transition 
+                  ease-in-out 
+                  duration-300
+                  absolute 
+                  top-9 
+                  left-0 
+                  min-w-[250px] 
+                  py-1.5
+                  px-2
+                  text-darkBlack
+                  shadow-lg">
                     {categories && categories?.map(({ attributes: c, id }) => {
                       return (
                         <Link
@@ -38,7 +73,17 @@ const Menu = ({ showCatMenu, setShowCatMenu, categories }) => {
                           href={`/category/${c.slug}`}
                           onClick={() => setShowCatMenu(false)}
                         >
-                          <li className="h-12 flex justify-between items-center px-3 hover:bg-#393646/[0.03] rounded-md">
+                          <li className="
+                          flex 
+                          justify-between
+                          items-center
+                          p-3
+                          transition 
+                          ease-in-out 
+                          duration-300 
+                          hover:bg-darkBlack/[0.05]
+                          shadow-sm
+                          rounded-sm">
                             {c.name}
                             <span className="opacity-50 text-sm">
                               {`(${c.products.data.length})`}
@@ -52,7 +97,17 @@ const Menu = ({ showCatMenu, setShowCatMenu, categories }) => {
               </li>
             ) : (
               <li
-                className="cursor-pointer p-2 transition ease-in-out hover:bg-offWhite hover:text-darkBlack"
+                className="cursor-pointer 
+                py-1.5
+                px-2
+                shadow-lg
+                transition 
+                ease-in-out
+                duration-300 
+                hover:bg-offWhite
+                hover:text-darkBlack
+                rounded-sm
+                "
               >
                 <Link href={item?.url}>{item.name}</Link>
               </li>

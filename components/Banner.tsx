@@ -18,7 +18,18 @@ export default function Banner() {
   if (!shouldShowBanner) return null
 
   return (
-    <div className="relative bg-gray-50 isolate flex justify-between items-center sm:flex-row gap-2 overflow-hidden p-2 sm:px-3.5">
+    <div className="
+    relative 
+    bg-gray-50 
+    isolate 
+    flex 
+    justify-between 
+    items-center 
+    sm:flex-row 
+    gap-2 
+    overflow-hidden 
+    p-2 
+    sm:px-3.5">
       {!isMobile && <div className="w-6 h-6 md:w-12 md:h-12" />}
       <div className="flex flex-wrap gap-x-4 gap-y-2">
         <div className="flex justify-center items-center sm:flex-row gap-2">
@@ -58,8 +69,11 @@ export default function Banner() {
           md:text-lg 
           text-white 
           text-sm 
-          flex-none
+          transition 
+          ease-in-out 
+          duration-300 
           hover:bg-gray-700 
+          flex-none
           font-semibold 
           font-phlatt-9000 
           focus-visible:outline 

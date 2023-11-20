@@ -106,7 +106,11 @@ const CartItem = ({ data }) => {
                 removeFromCart({ id: data.id, selectedSize: data.selectedSize })
               )
             }
-            className="cursor-pointer transition ease-in-out text-offWhite/[0.5] hover:text-offWhite text-[16px] md:text-[20px]"
+            className="
+            cursor-pointer   
+            transition 
+            ease-in-out 
+            duration-300  text-offWhite/[0.5] hover:text-offWhite text-[16px] md:text-[20px]"
           />
         </div>
       </div>

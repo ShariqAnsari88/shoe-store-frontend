@@ -1,5 +1,6 @@
 import { config } from '@fortawesome/fontawesome-svg-core'
 import { ThemeProvider } from '@material-tailwind/react'
+import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { appWithTranslation } from 'next-i18next'
 import { Provider } from 'react-redux'
@@ -15,8 +16,8 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 
 config.autoAddCss = false
 
-// eslint-disable-next-line react/prop-types
-function App({ Component, pageProps }) {
+
+function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>

@@ -41,6 +41,7 @@ module.exports = {
     '@stylistic/newline-per-chained-call': [ 'error', { 'ignoreChainWithDepth': 4 } ],
     '@stylistic/comma-dangle': [ 'warn', 'never' ],
     '@stylistic/no-multi-spaces': 'error',
+    '@stylistic/max-statements-per-line': [ 'warn', { 'max': 5 } ],
 
     'linebreak-style': [ 'error', 'unix' ],
     'quotes': [ 'warn', 'single' ],
