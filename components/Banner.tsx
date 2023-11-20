@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next'
 
 import { useAppDispatch } from '@/helpers/store'
 import useCurrency from '@/hooks/useCurrency'
+import useWindowSize from '@/hooks/useWindowSize'
 import { useAppSelector } from '@/store/hooks'
 import { selectShowBanner, setShowBanner } from '@/store/uiSlice'
 
@@ -11,11 +12,14 @@ export default function Banner() {
   const shouldShowBanner = useAppSelector(selectShowBanner)
   const { currency } = useCurrency()
   const { t } = useTranslation('banner')
+  const { width } = useWindowSize()
+  const isMobile = width < 420 // Blaze it
 
   if (!shouldShowBanner) return null
 
   return (
-    <div className="relative bg-gray-50 isolate flex justify-center items-center sm:flex-row gap-2 overflow-hidden p-2 sm:px-3.5">
+    <div className="relative bg-gray-50 isolate flex justify-between items-center sm:flex-row gap-2 overflow-hidden p-2 sm:px-3.5">
+      {!isMobile && <div className="w-6 h-6 md:w-12 md:h-12" />}
       <div className="flex flex-wrap gap-x-4 gap-y-2">
         <div className="flex justify-center items-center sm:flex-row gap-2">
           <svg
@@ -44,7 +48,26 @@ export default function Banner() {
             {t('description')}
           </p>
 
-          <div className="uppercase ml-4 cursor-pointer font-semibold flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm md:text-lg font-phlatt-9000 text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900">
+          <div className="
+          bg-gray-900 
+          uppercase 
+          cursor-pointer 
+          rounded-full 
+          px-3.5 
+          py-1 
+          md:text-lg 
+          text-white 
+          text-sm 
+          flex-none
+          hover:bg-gray-700 
+          font-semibold 
+          font-phlatt-9000 
+          focus-visible:outline 
+          focus-visible:outline-2 
+          focus-visible:outline-offset-2 
+          focus-visible:outline-gray-900
+          shadow-sm 
+          ">
             50 {currency}
           </div>
         </div>
