@@ -31,7 +31,7 @@ function ProfilePage(props) {
   if (userData.jwt)
     return (
       <Container>
-        <div className="min-h-[650px] mt-8 flex mb-10 md:mb-0">
+        <div className="min-h-[650px] flex mb-10 md:mb-0">
           {openModal && (
             <Modal logOut={logOut} close={() => setOpenModal(false)} />
           )}
@@ -77,7 +77,7 @@ function ProfilePage(props) {
 
   return (
     <Container>
-      <div className="min-h-[650px] mt-8 flex">
+      <div className="min-h-[650px] sm:mt-32 md:mt-64 flex">
         <Wrapper>
           <>
             {choice === 'login' && (

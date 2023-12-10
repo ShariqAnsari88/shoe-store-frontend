@@ -23,6 +23,7 @@ const Menu = ({ showCatMenu, setShowCatMenu, categories }) => {
     items-center 
     justify-center 
     gap-6 
+    mt-1
     font-semibold 
     text-[18px]">
       {navItems.map((item) => {

@@ -54,7 +54,7 @@ export default function Contact() {
 
   return (
     <Container>
-      <Wrapper>
+      <Wrapper className='sm:mt-32 md:mt-64'>
         <ToastContainer />
         <div className="container p-4 my-12 max-w-xl mx-auto flex flex-col flex-1 gap-4">
           <div className="h-full flex justify-between">

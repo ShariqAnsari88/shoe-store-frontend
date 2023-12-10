@@ -12,8 +12,8 @@ function About() {
   const { t } = useTranslation('about')
   return (
     <Container>
-      <div className="bg-about bg-center bg-cover bg-fixed bg-no-repeat">
-        <Wrapper className="flex flex-col justify-center items-center min-h-[800px] backdrop-blur-xl min-w-full py-10">
+      <div className="bg-about bg-center bg-cover bg-fixed bg-no-repeat md:-mt-12">
+        <Wrapper className="flex flex-col justify-center items-center min-h-[800px] backdrop-blur-xl min-w-full">
           <h2 className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] text-center pb-10">
             {t('who_are_we')}
           </h2>

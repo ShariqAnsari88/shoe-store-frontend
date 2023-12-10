@@ -1,6 +1,6 @@
 
 import Footer from './Footer'
-import Header from './Header'
+import Navigation from './navigation/Navigation'
 
 interface ContainerProps {
   className?: string
@@ -10,8 +10,8 @@ interface ContainerProps {
 export default function Container({ children }: ContainerProps) {
   return (
     <div>
-      <Header />
-      {children}
+      <Navigation />
+      <div className='sm:mt-24 md:mt-40 mt-32'>{children}</div>
       <Footer />
     </div>
   )

@@ -1,4 +1,5 @@
 import { XMarkIcon } from '@heroicons/react/20/solid'
+import { motion } from 'framer-motion'
 import { useTranslation } from 'next-i18next'
 
 import { useAppDispatch } from '@/helpers/store'
@@ -7,22 +8,22 @@ import useWindowSize from '@/hooks/useWindowSize'
 import { useAppSelector } from '@/store/hooks'
 import { selectShowBanner, setShowBanner } from '@/store/uiSlice'
 
-export default function Banner() {
+export default function Banner({ ...props }) {
   const dispatch = useAppDispatch()
   const shouldShowBanner = useAppSelector(selectShowBanner)
   const { currency } = useCurrency()
   const { t } = useTranslation('banner')
-  const { width } = useWindowSize()
-  const isMobile = width < 420 // Blaze it
+  const { isMobile } = useWindowSize()
 
   if (!shouldShowBanner) return null
 
   return (
-    <div className="
+    <motion.div {...props} className="
     relative 
     bg-gray-50 
-    isolate 
+    w-full
     flex 
+    flex-1
     justify-between 
     items-center 
     sm:flex-row 
@@ -93,6 +94,6 @@ export default function Banner() {
       >
         <XMarkIcon className="sm:w-7 w-6 text-gray-900" aria-hidden="true" />
       </button>
-    </div>
+    </motion.div>
   )
 }
