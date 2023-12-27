@@ -13,7 +13,7 @@ const HeroBanner = () => {
 
   return (
     <div
-      className={'text-white md:mt-64 mt-32 text-[20px] flex sm:h-[600px] h-[400px] mx-auto mb-12'}
+      className={'text-white text-[20px] flex sm:h-[600px] h-[400px] mx-auto mb-12'}
     >
       <Carousel
         loop

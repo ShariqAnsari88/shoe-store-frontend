@@ -19,7 +19,6 @@ export default function Banner({ ...props }) {
 
   return (
     <motion.div {...props} className="
-    relative 
     bg-gray-50 
     w-full
     flex 
@@ -28,8 +27,11 @@ export default function Banner({ ...props }) {
     items-center 
     sm:flex-row 
     gap-2 
+    z-12
     overflow-hidden 
     p-2 
+    fixed 
+    bottom-0
     sm:px-3.5">
       {!isMobile && <div className="w-6 h-6 md:w-12 md:h-12" />}
       <div className="flex flex-wrap gap-x-4 gap-y-2">
@@ -40,7 +42,6 @@ export default function Banner({ ...props }) {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="#181516"
-						
             className="sm:w-8 w-12"
           >
             <path

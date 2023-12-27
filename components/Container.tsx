@@ -1,4 +1,5 @@
 
+import Banner from './Banner'
 import Footer from './Footer'
 import Navigation from './navigation/Navigation'
 
@@ -7,11 +8,13 @@ interface ContainerProps {
   children: JSX.Element | JSX.Element[]
 }
 
-export default function Container({ children }: ContainerProps) {
+export default function Container({ className,children }: ContainerProps) {
   return (
     <div>
       <Navigation />
-      <div className='sm:mt-24 md:mt-40 mt-32'>{children}</div>
+      <div className={`${className ?? 'md:mt-44 mt-12'}`}>{children}</div>
+      <Banner />
+
       <Footer />
     </div>
   )

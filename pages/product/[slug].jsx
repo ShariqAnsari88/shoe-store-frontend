@@ -67,7 +67,7 @@ const ProductDetails = ({ product, products }) => {
 
   return (
     <Container>
-      <div className="w-full sm:mt-32 md:mt-64 py-12">
+      <div className="w-full py-12">
         <ToastContainer />
         <Wrapper>
           <div

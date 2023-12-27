@@ -20,7 +20,7 @@ import { selectWishlistItems } from '@/store/wishlistSlice'
 import { fetchDataFromApi } from '@/utils/api'
 
 import Additional from './Additional'
-import Banner from '../Banner'
+import Spacer from '../generic/Spacer'
 import LanguageSwitcher from '../lang/LanguageSwitcher'
 import Menu from '../Menu'
 import MenuMobile from '../MenuMobile'
@@ -49,7 +49,7 @@ const Navigation = () => {
   useMotionValueEvent(scrollY, 'change', (current) => {
     const previous = scrollY.getPrevious()
 
-    if ( current > 35 && !isTablet && !isMobile) {
+    if ( current > previous && current > 35 && !isTablet && !isMobile) {
       setHidden(true)
     } else {
       setHidden(false)
@@ -114,7 +114,6 @@ const Navigation = () => {
         duration-300
         `}
       >
-        <Banner />
 
         <motion.div
           animate={hidden ? 'hidden' : 'visible'}
@@ -138,7 +137,7 @@ const Navigation = () => {
                   src="/logo-white.png"
                 />
               </Link>
-              <LanguageSwitcher isHeader />
+              <LanguageSwitcher key="main" isHeader />
             </div>
 
             <Image
@@ -217,7 +216,7 @@ const Navigation = () => {
                 src="/logo-white.png"
               />
             </Link>
-            <LanguageSwitcher isHeader />
+            <Spacer/>
           </motion.div>
           <Menu
             showCatMenu={showCatMenu}

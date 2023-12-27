@@ -99,26 +99,26 @@ const Cart = (props) => {
 
   return (
     <Container>
-      <div className="w-full sm:mt-32 md:mt-64">
+      <div className="w-full py-12">
         <Wrapper>
           {cartItems && cartItems.length > 0 && (
             <>
               {/* HEADING AND PARAGRAPH START */}
-              <div className="text-center max-w-[800px] mx-auto mt-8 md:mt-0">
-                <div className="text-offWhite text-[28px] md:text-[34px] mb-5 font-semibold leading-tight">
+              <div className="text-center max-w-[800px] mx-auto">
+                <div className="text-offWhite text-[28px] md:text-[34px] font-semibold leading-tight">
                   {t('your_cart')}
                 </div>
               </div>
               {/* HEADING AND PARAGRAPH END */}
 
               {/* CART CONTENT START */}
-              <div className="flex flex-col lg:flex-row gap-12 py-10">
+              <div className="flex flex-col lg:flex-row">
                 {/* CART ITEMS START */}
-                <div className="flex-[2]">
+                <div className="flex-1">
                   <div className="text-offWhite text-lg font-bold">
                     {t('products', { ns: 'cart' })}
                   </div>
-                  <div className="mb-10">
+                  <div className="">
                     {cartItems.map((item) => (
                       <CartItem key={item.id} data={item} />
                     ))}
@@ -247,11 +247,11 @@ const Cart = (props) => {
 
           {/* This is empty screen */}
           {cartItems.length < 1 && (
-            <div className="flex-[2] flex flex-col items-center pb-[50px]">
+            <div className="flex-1 flex flex-col items-center">
               <FontAwesomeIcon
                 color="#EEEEEE"
                 icon={faCartShopping}
-                className="my-10 w-20 md:w-40 flex flex-1"
+                className="w-20 md:w-40 flex flex-1 pb-4"
               />
               <span className="text-offWhite text-xl font-bold">
                 {t('empty')}
@@ -267,7 +267,7 @@ const Cart = (props) => {
                 rounded-full
               bg-gradient-to-r from-[#0ba360] to-[#3cba92]
               text-offWhite
-                font-medium
+                font-semibold
                 transition
                 ease-in-out
                 active:scale-95

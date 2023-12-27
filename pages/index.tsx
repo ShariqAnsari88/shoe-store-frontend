@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useEffect } from 'react'
 
+import Container from '@/components/Container'
 import Footer from '@/components/Footer'
 import Navigation from '@/components/navigation/Navigation'
 import HomePage from '@/components/screens/HomePage'
@@ -30,11 +31,9 @@ export default function Home({ shirts, productsNoShirt, userData }) {
 
   return (
     <main>
-      <Navigation />
-
-      <HomePage shirts={shirts} productsNoShirt={productsNoShirt} />
-
-      <Footer />
+      <Container className='md:mt-56 sm:mt-28 mt-12'>
+        <HomePage shirts={shirts} productsNoShirt={productsNoShirt} />
+      </Container>
     </main>
   )
 }

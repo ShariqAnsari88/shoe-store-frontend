@@ -19,9 +19,9 @@ export const setToken = (token) => {
   })
 }
 
-export const logOut = (token) => {
-  destroyCookie(token, 'jwt')
-  destroyCookie(token, 'user')
+export const logOut = async (ctx) => {
+  destroyCookie(ctx, 'jwt')
+  destroyCookie(ctx, 'user')
 
   Router.replace('/')
 }
