@@ -2,8 +2,9 @@ import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useEffect } from 'react'
 
+import Container from '@/components/Container'
 import Footer from '@/components/Footer'
-import Header from '@/components/Header'
+import Navigation from '@/components/navigation/Navigation'
 import HomePage from '@/components/screens/HomePage'
 import { useAppDispatch } from '@/helpers/store'
 import { getUser } from '@/store/contexts/userContext'
@@ -12,7 +13,6 @@ import { setUserInfo } from '@/store/userSlice'
 import { fetchDataFromApi } from '@/utils/api'
 
 import 'react-toastify/dist/ReactToastify.css'
-
 
 // eslint-disable-next-line react/prop-types
 export default function Home({ shirts, productsNoShirt, userData }) {
@@ -31,11 +31,9 @@ export default function Home({ shirts, productsNoShirt, userData }) {
 
   return (
     <main>
-      <Header />
-
-      <HomePage shirts={shirts} productsNoShirt={productsNoShirt} />
-
-      <Footer />
+      <Container className='md:mt-56 sm:mt-28 mt-12'>
+        <HomePage shirts={shirts} productsNoShirt={productsNoShirt} />
+      </Container>
     </main>
   )
 }

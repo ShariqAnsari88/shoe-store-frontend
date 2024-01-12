@@ -15,13 +15,13 @@ const Wishlist = () => {
 
   return (
     <Container>
-      <div className="w-full md:py-20">
+      <div className="w-full py-12">
         <Wrapper>
           {wishlistItems && wishlistItems?.length > 0 && (
             <>
               {/* HEADING AND PARAGRAPH START */}
-              <div className="text-center max-w-[800px] mx-auto mt-8 md:mt-0">
-                <div className="text-offWhite text-[28px] md:text-[34px] mb-5 font-semibold leading-tight">
+              <div className="text-center max-w-[800px] mx-auto">
+                <div className="text-offWhite text-[28px] md:text-[34px] font-semibold leading-tight">
                   {t('favourite')}
                 </div>
               </div>

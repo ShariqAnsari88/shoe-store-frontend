@@ -42,6 +42,21 @@
     src: url('../assets/fonts/SPArielBG.otf');
 }
 
+@font-face {
+    font-family: "Trip";
+    src: url('../assets/fonts/Trip-Sans-Font/trip-sans.otf');
+}
+
+@font-face {
+    font-family: "Trip-M";
+    src: url('../assets/fonts/Trip-Sans-Font/trip-sans-medium.otf');
+}
+
+@font-face {
+    font-family: "Trip-B";
+    src: url('../assets/fonts/Trip-Sans-Font/trip-sans-bold.otf');
+}
+
 :root {
     font-family: "Euclid", sans-serif;
     font-weight: 400;
@@ -93,7 +108,7 @@ strong {
 }
 
  .about-us {
-    font-size: 42px;
+    font-size: 36px;
 }
 
 .prose > p {

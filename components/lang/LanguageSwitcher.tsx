@@ -16,7 +16,7 @@ interface Props {
 
 export default function LanguageSwitcher({ isHeader, textColor, borderColor }: Props) {
   const { locale } = useRouter()
-
+ 
   if (isHeader)
     return (
       <Tabs value={locale}>

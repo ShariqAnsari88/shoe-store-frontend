@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 import Container from '@/components/Container'
 import Modal from '@/components/Modal'
@@ -14,9 +14,9 @@ import CredentialsForm from '@/components/profile/CredentialsForm'
 import OfficeAddressForm from '@/components/profile/OfficeAddressForm'
 import SignUp from '@/components/profile/SignUp'
 import Wrapper from '@/components/Wrapper'
+import logOut from '@/pages/api/auth/logout'
 import { getUser } from '@/store/contexts/userContext'
 import { fetchDataFromApi } from '@/utils/api'
-import { logOut } from '@/utils/auth'
 
 function ProfilePage(props) {
   // eslint-disable-next-line react/prop-types
@@ -28,15 +28,20 @@ function ProfilePage(props) {
   const [ openModal, setOpenModal ] = useState(false)
   const handleChoice = () => setChoice('signup')
 
+  const handleLogout = useCallback(async () => {
+    await logOut(userData.jwt)
+  },[ userData.jwt ])
+
+
   if (userData.jwt)
     return (
-      <Container>
-        <div className="min-h-[650px] mt-8 flex mb-10 md:mb-0">
+      <Container className='md:mt-52 mt-24 mb-12'>
+        <div className="min-h-[650px] flex">
           {openModal && (
-            <Modal logOut={logOut} close={() => setOpenModal(false)} />
+            <Modal logOut={handleLogout} close={() => setOpenModal(false)} />
           )}
           <div className="w-full mx-2">
-            <div className="grid grid-cols-1 gap-10 md:gap-0 md:grid-cols-2 md:py-4 h-full">
+            <div className="grid grid-cols-1 gap-10 md:gap-0 md:grid-cols-2 h-full">
               <div className="flex flex-col gap-10 md:border-r-[1px] px-4 mx-auto w-full">
                 <CredentialsForm />
                 <AddressForm />
@@ -76,8 +81,8 @@ function ProfilePage(props) {
     )
 
   return (
-    <Container>
-      <div className="min-h-[650px] mt-8 flex">
+    <Container className='mt-24 -mb-24 sm:mt-56 sm:-mb-24 flex-1 justify-between'>
+      <div className="min-h-[650px] flex flex-1">
         <Wrapper>
           <>
             {choice === 'login' && (

@@ -10,7 +10,7 @@ interface Props {
   cartItems: Array<any[]>
 }
 
-const initialState:Props = { cartItems: [] }
+const initialState: Props = { cartItems: [] }
 
 export const cartSlice = createSlice({
   name: 'cart',
