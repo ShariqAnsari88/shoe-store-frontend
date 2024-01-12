@@ -118,7 +118,7 @@ const Cart = (props) => {
                   <div className="text-offWhite text-lg font-bold">
                     {t('products', { ns: 'cart' })}
                   </div>
-                  <div className="">
+                  <div className="mb-4">
                     {cartItems.map((item) => (
                       <CartItem key={item.id} data={item} />
                     ))}
@@ -184,6 +184,8 @@ const Cart = (props) => {
                       </div>
                     </div>
                     <Divider />
+                    
+                    <Exclaimer />
                     <div className="text-offWhite text-sm md:text-md py-5 mt-5">
                       <div className=" text-offWhite text-xl rounded-md flex flex-row items-center gap-2 mb-6">
                         <Image
@@ -196,42 +198,40 @@ const Cart = (props) => {
                       </div>
                       {t('shipping_description')}
                     </div>
+                    {/* BUTTON START */}
+                    <div className="flex space-x-3 flex-row justify-between">
+                      <button
+                        name="arrive"
+                        className={`transition ease-in-out w-full py-4 rounded-md ${
+                          paymentDisabled
+                            ? 'disabled pointer-events-none'
+                            : 'bg-gradient-to-r from-[#0ba360] to-[#3cba92]'
+                        } text-offWhite text-md font-medium active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center`}
+                        onClick={(e) => {
+                          if (paymentDisabled) setShowError(true)
+                          else makePayment(e)
+                        }}
+                      >
+                        {t('pay_arrival', { ns: 'buttons' })}
+                        <FontAwesomeIcon icon={faTruckArrowRight} />
+                      </button>
+                      <button
+                        name="card"
+                        className={`transition ease-in-out w-full py-4 rounded-md ${
+                          paymentDisabled
+                            ? 'disabled pointer-events-none'
+                            : 'bg-gradient-to-r from-[#0ba360] to-[#3cba92]'
+                        } text-offWhite text-md font-medium active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center`}
+                        onClick={(e) => {
+                          if (paymentDisabled) setShowError(true)
+                          else makePayment(e)
+                        }}
+                      >
+                        {t('pay_card', { ns: 'buttons' })}
+                        <FontAwesomeIcon icon={faCreditCard} />
+                      </button>
+                    </div>
                   </div>
-
-                  {/* BUTTON START */}
-                  <div className="flex space-x-3 flex-row justify-between">
-                    <button
-                      name="arrive"
-                      className={`transition ease-in-out w-full py-4 rounded-md ${
-                        paymentDisabled
-                          ? 'disabled pointer-events-none'
-                          : 'bg-gradient-to-r from-[#0ba360] to-[#3cba92]'
-                      } text-offWhite text-md font-medium active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center`}
-                      onClick={(e) => {
-                        if (paymentDisabled) setShowError(true)
-                        else makePayment(e)
-                      }}
-                    >
-                      {t('pay_arrival', { ns: 'buttons' })}
-                      <FontAwesomeIcon icon={faTruckArrowRight} />
-                    </button>
-                    <button
-                      name="card"
-                      className={`transition ease-in-out w-full py-4 rounded-md ${
-                        paymentDisabled
-                          ? 'disabled pointer-events-none'
-                          : 'bg-gradient-to-r from-[#0ba360] to-[#3cba92]'
-                      } text-offWhite text-md font-medium active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center`}
-                      onClick={(e) => {
-                        if (paymentDisabled) setShowError(true)
-                        else makePayment(e)
-                      }}
-                    >
-                      {t('pay_card', { ns: 'buttons' })}
-                      <FontAwesomeIcon icon={faCreditCard} />
-                    </button>
-                  </div>
-                  <Exclaimer />
                   {showError && (
                     <div className="text-errorYellow mt-1">
                       {t('address_error', { ns: 'forms' })}

@@ -3,12 +3,9 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useEffect } from 'react'
 
 import Container from '@/components/Container'
-import Footer from '@/components/Footer'
-import Navigation from '@/components/navigation/Navigation'
 import HomePage from '@/components/screens/HomePage'
 import { useAppDispatch } from '@/helpers/store'
 import { getUser } from '@/store/contexts/userContext'
-import { revertAll } from '@/store/rootReducer'
 import { setUserInfo } from '@/store/userSlice'
 import { fetchDataFromApi } from '@/utils/api'
 
@@ -24,10 +21,6 @@ export default function Home({ shirts, productsNoShirt, userData }) {
   useEffect(() => {
     dispatch(setUserInfo(userData))
   }, [])
-
-  useEffect(() => {
-    dispatch(revertAll())
-  }, [ locale ])
 
   return (
     <main>
