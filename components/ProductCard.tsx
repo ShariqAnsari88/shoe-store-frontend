@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
-import { Variants, motion } from 'framer-motion'
+import { Variants, motion, useInView } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
+import { useRef } from 'react'
 
 import useCurrency from '@/hooks/useCurrency'
 import useWindowSize from '@/hooks/useWindowSize'
+import { fadeIn } from '@/utils/animations'
 import { getDiscountedPricePercentage } from '@/utils/helper'
 const ProductCard = ({
   data: { attributes: p },
@@ -14,22 +16,7 @@ const ProductCard = ({
   border,
   mIndex // eslint-disable-next-line @typescript-eslint/no-explicit-any
 }: any) => {
-  const { windowSize } = useWindowSize()
-
-  const variants: Variants = {
-    initial: {
-      opacity:0,
-      transition: { duration: 0.5 }
-    },
-    initialCarousel: {
-      opacity: 1
-    },
-    animate: () => ({
-      opacity: 1,
-      transition: { delay: 0.15 * mIndex }
-    })
-  }
-
+  const { isMobile } = useWindowSize()
   const { t } = useTranslation('common')
   const router = useRouter()
   const { locale } = router
@@ -38,18 +25,16 @@ const ProductCard = ({
     getDiscountedPricePercentage(p.original_price, p.price)
   )
   
-  const disabled: boolean = p.outOfStock
+  const productRef = useRef(null) 
 
-  const attributes = windowSize.width > 420 ? {
-    variants,
-    initial: !isCarouselCard ? 'initial' : 'initialCarousel',
-    whileInView:!isCarouselCard ? 'animate' : undefined,
-    viewport:{ once: true }
-  } : {}
+  const productInView = useInView(productRef, { once: true })
+
+  const disabled: boolean = p.outOfStock
 
   return (
     <motion.div
-      {...attributes}
+      ref={productRef}
+      style={!isMobile ? fadeIn(productInView, mIndex) : undefined}
       className={`${isCarouselCard && 'h-[500px] w-[450px]'} 
       relative
       overflow-hidden
