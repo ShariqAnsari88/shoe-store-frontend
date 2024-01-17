@@ -3,6 +3,7 @@ import { useInView } from 'framer-motion'
 import Image from 'next/image'
 import { useRef } from 'react'
 
+import useWindowSize from '@/hooks/useWindowSize'
 import { slideRight } from '@/utils/animations'
 
 import slideImage1 from '../public/carousel_images/carousel_1-min.jpg'
@@ -13,6 +14,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loa
 
 const HeroBanner = () => {
   const images = [ slideImage1, slideImage2, slideImage3 ]
+  const { isMobile } = useWindowSize()
 
   const carouselRef = useRef(null)
 
@@ -20,7 +22,7 @@ const HeroBanner = () => {
 
   return (
     <div
-      style={slideRight(cInView)}
+      style={!isMobile ? slideRight(cInView) : undefined}
       ref={carouselRef}
       className={
         'text-white text-[20px] flex sm:h-[600px] h-[400px] mx-auto mb-12'

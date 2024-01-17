@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next'
 import { useRef } from 'react'
 import { ToastContainer } from 'react-toastify'
 
+import useWindowSize from '@/hooks/useWindowSize'
 import { slideRight } from '@/utils/animations'
 
 import ClimateSection from '../ClimateSection'
@@ -13,6 +14,7 @@ import SubscribeDialog from '../SubscribeDialog'
 import Wrapper from '../Wrapper'
 
 export default function HomePage({ shirts, productsNoShirt }) {
+  const { isMobile } = useWindowSize()
   const { t } = useTranslation('common')
 
   const collectionRef = useRef(null) 
@@ -25,7 +27,7 @@ export default function HomePage({ shirts, productsNoShirt }) {
       <SubscribeDialog />
       <Wrapper>
         <HeroBanner />
-        <div style={slideRight(collectionInView)} ref={collectionRef} className="bg-offWhite relative flex flex-col flex-1 p-6 mb-12 rounded-md gap-6 bg-opacity-90">
+        <div style={!isMobile ? slideRight(collectionInView) : undefined} ref={collectionRef} className="bg-offWhite relative flex flex-col flex-1 p-6 mb-12 rounded-md gap-6 bg-opacity-90">
           <div className="rounded-md z-1 text-center">
             <h2 className="text-darkBlack p-4 rounded-md uppercase sm:text-[32px] my-6 text-[24px] font-semibold">
               {t('uncensored_collection')}

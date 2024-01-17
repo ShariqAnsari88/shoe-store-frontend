@@ -6,17 +6,19 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
 import useCurrency from '@/hooks/useCurrency'
+import useWindowSize from '@/hooks/useWindowSize'
 import { getDiscountedPricePercentage } from '@/utils/helper'
-
 const ProductCard = ({
   data: { attributes: p },
   isCarouselCard,
   border,
   mIndex // eslint-disable-next-line @typescript-eslint/no-explicit-any
 }: any) => {
+  const { windowSize } = useWindowSize()
+
   const variants: Variants = {
     initial: {
-      opacity: 0,
+      opacity:0,
       transition: { duration: 0.5 }
     },
     initialCarousel: {
@@ -35,15 +37,19 @@ const ProductCard = ({
   const discount = Number(
     getDiscountedPricePercentage(p.original_price, p.price)
   )
-
+  
   const disabled: boolean = p.outOfStock
+
+  const attributes = windowSize.width > 420 ? {
+    variants,
+    initial: !isCarouselCard ? 'initial' : 'initialCarousel',
+    whileInView:!isCarouselCard ? 'animate' : undefined,
+    viewport:{ once: true }
+  } : {}
 
   return (
     <motion.div
-      variants={variants}
-      initial={!isCarouselCard ? 'initial' : 'initialCarousel'}
-      whileInView={!isCarouselCard ? 'animate' : undefined}
-      viewport={{ once: true }}
+      {...attributes}
       className={`${isCarouselCard && 'h-[500px] w-[450px]'} 
       relative
       overflow-hidden
