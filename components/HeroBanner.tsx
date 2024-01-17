@@ -1,19 +1,30 @@
-
 import { Carousel } from '@material-tailwind/react/components/Carousel'
+import { useInView } from 'framer-motion'
 import Image from 'next/image'
+import { useRef } from 'react'
+
+import { slideRight } from '@/utils/animations'
 
 import slideImage1 from '../public/carousel_images/carousel_1-min.jpg'
 import slideImage2 from '../public/carousel_images/carousel_2-min.jpg'
 import slideImage3 from '../public/carousel_images/carousel_3-min.jpg'
-import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
 
+import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
 
 const HeroBanner = () => {
   const images = [ slideImage1, slideImage2, slideImage3 ]
 
+  const carouselRef = useRef(null)
+
+  const cInView = useInView(carouselRef, { once: true })
+
   return (
     <div
-      className={'text-white text-[20px] flex sm:h-[600px] h-[400px] mx-auto mb-12'}
+      style={slideRight(cInView)}
+      ref={carouselRef}
+      className={
+        'text-white text-[20px] flex sm:h-[600px] h-[400px] mx-auto mb-12'
+      }
     >
       <Carousel
         loop
