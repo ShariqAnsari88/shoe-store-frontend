@@ -41,6 +41,11 @@ module.exports = withMT({
         '2sm': '1024px',
         md: '1025px'
         // => @media (min-width: 992px) { ... }
+      },
+      fontFamily: {
+        normal: [ 'var(--font-normal)' ],
+        semibold: [ 'var(--font-semibold)' ],
+        bold: [ 'var(--font-bold)' ]
       }
     }
   },
