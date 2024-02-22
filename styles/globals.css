@@ -2,63 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-    font-family: "Euclid";
-    src: url('../assets/fonts/Euclid.ttf');
-}
-
-@font-face {
-    font-family: "Euclid_Bold";
-    src: url('../assets/fonts/Euclid_Bold.ttf');
-}
-
-@font-face {
-    font-family: "Euclid_SemiBold";
-    src: url('../assets/fonts/Euclid_SemiBold.ttf');
-}
-
-@font-face {
-    font-family: "Hearthless";
-    src: url('../assets/fonts/Heartless.ttf');
-}
-
-@font-face {
-    font-family: "Boffin";
-    src: url('../assets/fonts/Boffin.otf');
-}
-
-@font-face {
-    font-family: "Boffin-B";
-    src: url('../assets/fonts/BoffinBold.otf');
-}
-
-@font-face {
-    font-family: "Boffin-M";
-    src: url('../assets/fonts/BoffinCondensed.otf');
-}
-
-@font-face {
-    font-family: "SPArielBG";
-    src: url('../assets/fonts/SPArielBG.otf');
-}
-
-@font-face {
-    font-family: "Trip";
-    src: url('../assets/fonts/Trip-Sans-Font/trip-sans.otf');
-}
-
-@font-face {
-    font-family: "Trip-M";
-    src: url('../assets/fonts/Trip-Sans-Font/trip-sans-medium.otf');
-}
-
-@font-face {
-    font-family: "Trip-B";
-    src: url('../assets/fonts/Trip-Sans-Font/trip-sans-bold.otf');
-}
-
 :root {
-    font-family: "Euclid", sans-serif;
+    
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
@@ -104,15 +49,16 @@ button {
 }
 
 strong {
-    font-family: "Euclid_Bold";
+    font-weight: 900;
 }
 
- .about-us {
+.about-us {
     font-size: 36px;
 }
 
 .prose > p {
     font-family: "Euclid_SemiBold", sans-serif;
+    font-weight: 700;
     font-size: 20px;
 }
 

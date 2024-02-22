@@ -102,14 +102,14 @@ const Navigation = () => {
         transition={{ duration: 0.35, ease: 'anticipate' }}
         className={`
         ${'bg-gradient-to-r from-[#0ba360] to-[#3cba92]'}
-        w-full 
+        w-full
         pb-1
-        flex 
-        flex-col 
-        items-center 
-        justify-center 
+        flex
+        flex-col
+        items-center
+        justify-center
         z-10
-        fixed 
+        fixed
         top-0
         duration-300
         `}
