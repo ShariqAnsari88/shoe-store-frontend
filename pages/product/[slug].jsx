@@ -27,7 +27,7 @@ const ProductDetails = ({ product, products }) => {
   const { productSlider, outOfStock, subtitle } =
     product.data[0].attributes
 
-  const isAccessory = !subtitle.includes('t-shirt')
+  const isAccessory = !subtitle.toLowerCase().includes('t-shirt') || !subtitle.toLowerCase().includes('hoodie')
 
   const [ selectedSize, setSelectedSize ] = useState(
     isAccessory ? 'M' : undefined
@@ -35,6 +35,7 @@ const ProductDetails = ({ product, products }) => {
 
   const [ showError, setShowError ] = useState(false)
   const [ selectedImage, setSelectedImage ] = useState(undefined)
+
   const hasSlider = productSlider && productSlider?.data?.length > 0
   const isWishlisted = useAppSelector((state) =>
     selectIsWishlisted(state, { ...product.data[0] })
