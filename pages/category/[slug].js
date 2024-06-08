@@ -36,15 +36,7 @@ const Category = ({ category, products, slug }) => {
                     {data?.data?.map((product) => (
                         <ProductCard key={product?.id} data={product} />
                     ))}
-                    {/* <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard /> */}
+                    
                 </div>
                 {/* products grid end */}
 
